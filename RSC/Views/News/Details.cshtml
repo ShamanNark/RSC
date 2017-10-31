@@ -1,0 +1,26 @@
+﻿@model RSC.Models.NewsViewModels.DetailsNewsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h3>@Html.DisplayFor(model => model.Title)</h3>
+    <p>@Html.DisplayFor(model => model.CreateDateTime)</p>
+    <hr />  
+    
+    <p><img style="max-height:300px;" src="@Url.Content(Model.MainImagePath)"></p>
+    
+    <div>
+        <p>
+            @Html.DisplayFor(model => model.Text)
+        </p>
+    </div>   
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
+    <a asp-action="Index">Back to List</a>
+</div>
