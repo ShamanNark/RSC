@@ -71,10 +71,10 @@ namespace RSC.Controllers
                 MainImage = await SaveFile(model.MainImage, maxId.ToString()),
                 Text = model.Text,
                 Title = model.Title,
-                ListObjectNewsNewsRubric = model.SelectedRubrics.Select(rubric => new Data.DbModels.ObjectNewsNewsRubric
+                ListObjectNewsNewsRubric = model.SelectedRubrics.Any() ? model.SelectedRubrics.Select(rubric => new Data.DbModels.ObjectNewsNewsRubric
                 {
                     NewsRubricId = rubric
-                }).ToList(),
+                }).ToList() : new List<ObjectNewsNewsRubric>(),
                 CreateDateTime = DateTime.Now,
                 UpdateDateTime = DateTime.Now
             });
@@ -105,16 +105,20 @@ namespace RSC.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditNewsViewModel model)
         {
-            var news = db.News.Include(n => n.ListObjectNewsNewsRubric).Where(n => n.Id == model.Id).FirstOrDefault();
-            var Rubricids = news.ListObjectNewsNewsRubric.ToList();
-            var rubricsForDeleting = Rubricids.Where(rubricId => !model.SelectedRubrics.Any(selectedRubricId => selectedRubricId == rubricId.NewsRubricId)).ToList();
-            var rubricForAdding = model.SelectedRubrics.Where(selectedRubricId => !Rubricids.Any(rubric => rubric.NewsRubricId == selectedRubricId)).ToList();
-            db.ListObjectNewsNewsRubric.RemoveRange(rubricsForDeleting);
-            db.ListObjectNewsNewsRubric.AddRange(rubricForAdding.Select(rubric => new ObjectNewsNewsRubric
+            var news = db.News.Include(n => n.ListObjectNewsNewsRubric).FirstOrDefault(n => n.Id == model.Id);
+            var rubricids = news.ListObjectNewsNewsRubric.ToList();
+            if (rubricids.Any())
             {
-                NewsRubricId = rubric,
-                ObjectNewsId = news.Id
-            }).ToList());
+                var rubricsForDeleting = rubricids.Where(rubricId => model.SelectedRubrics.All(selectedRubricId => selectedRubricId != rubricId.NewsRubricId)).ToList();
+                var rubricForAdding = model.SelectedRubrics.Where(selectedRubricId => rubricids.All(rubric => rubric.NewsRubricId != selectedRubricId)).ToList();
+                db.ListObjectNewsNewsRubric.RemoveRange(rubricsForDeleting);
+                db.ListObjectNewsNewsRubric.AddRange(rubricForAdding.Select(rubric => new ObjectNewsNewsRubric
+                {
+                    NewsRubricId = rubric,
+                    ObjectNewsId = news.Id
+                }).ToList());
+            }
+
             news.Title = model.Title;
             news.Text = model.Text;
             news.MainImage = await SaveFile(model.MainImage, news.Id.ToString()) ?? news.MainImage;

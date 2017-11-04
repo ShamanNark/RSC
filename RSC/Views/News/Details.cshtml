@@ -36,12 +36,10 @@
     </div>
     
     <div class="col-md-12">
-        <p>
-            @Html.DisplayFor(model => model.Text)
-        </p>
+        @Html.Raw(@Model.Text)
     </div>   
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Вернуться к списку</a>
 </div>
