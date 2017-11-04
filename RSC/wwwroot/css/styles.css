@@ -36,14 +36,14 @@ p{
     line-height: 1.38;
     color: #ffffff;
 } */
-
+/*
 a{
     font-size: 19px;
     font-weight: bold;
     line-height: 1.38;
     color: #ffffff;
 }
-
+*/
 /* h1{
     margin-top: 0;
     margin-bottom: 17px;
@@ -61,11 +61,11 @@ h3{
     margin-top: 0;
     margin-bottom: 10px;
 } */
-
 nav {
     height: 60px;
     background-color: none;
 }
+
 
 
 /* КНОПКИ */
@@ -130,7 +130,6 @@ nav {
 .navbar .navbar-nav {
     display: inline-block;
     float: none;
-    vertical-align: center;
     font-weight: 600;
   }
 
@@ -143,11 +142,9 @@ nav {
     padding-top: 20px;  
     padding-bottom: 20px; 
     color: #000000;
+    font-size:12px;
   }
-  .navbar-default .navbar-nav > .active > a {
-    padding-top: 20px;  
-    padding-bottom: 20px; 
-  }
+
   
   .navbar .navbar-collapse {
     text-align: center;
@@ -172,7 +169,26 @@ nav {
     -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
     transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
     background: none;
+    width:100px;
+    padding-top:8px;
   }
+
+ .lupa-icon{
+
+     padding-top: 21px;
+     margin-left: 3px;
+ }
+
+
+ .user-login-circle {
+     padding-top: 21px;
+     padding-left: 50px;
+ }
+
+ #login-word{
+     padding-left: 5px;
+ }
+
 
 .slider {
     min-height: 670px;
