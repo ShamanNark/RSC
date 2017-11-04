@@ -22,7 +22,7 @@ namespace RSC.Controllers
     {
         private ApplicationDbContext db;
         private IHostingEnvironment _appEnvironment;
-        int pageSize = 6;
+        int pageSize = 10;
 
         public NewsController(ApplicationDbContext context, IHostingEnvironment appEnvironment)
         {
@@ -38,7 +38,7 @@ namespace RSC.Controllers
                 News = db.News.Select(n => new DetailsNewsViewModel
                 {
                     Id = n.Id,
-                    Text = n.Text,
+                    Text = n.Text.Substring(0,250),
                     Title = n.Title,
                     AdditionalImagePath = n.AdditionalImages,
                     MainImagePath = n.MainImage,
@@ -172,7 +172,7 @@ namespace RSC.Controllers
                     AdditionalImagePath = n.ObjectNews.AdditionalImages,
                     MainImagePath = n.ObjectNews.MainImage,
                     CreateDateTime = n.ObjectNews.CreateDateTime
-                }).OrderByDescending(n => n.CreateDateTime).Take(6).ToList(),
+                }).OrderByDescending(n => n.CreateDateTime).Take(pageSize).ToList(),
                 NewsRubrics = db.NewsRubrics.Select(n => new Models.NewsRubricsViewModels.NewsRubricViewModel
                 {
                     Id = n.Id,
@@ -193,7 +193,7 @@ namespace RSC.Controllers
                 AdditionalImagePath = n.ObjectNews.AdditionalImages,
                 MainImagePath = n.ObjectNews.MainImage,
                 CreateDateTime = n.ObjectNews.CreateDateTime
-            }).OrderByDescending(n => n.CreateDateTime).Take(6).ToList();
+            }).OrderByDescending(n => n.CreateDateTime).Take(pageSize).ToList();
             return PartialView("PartialViewNews", model);
         }
 

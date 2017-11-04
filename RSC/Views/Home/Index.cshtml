@@ -60,11 +60,13 @@
     </div>
     @foreach (var item in Model.News)
     {
-        <div class="col-md-3 one-news-block" style="background-image: url(@Url.Content(item.MainImagePath))">
-            <h3>@item.Title</h3>
-            <br>
-            @*<a href="">Читать далее</a>*@
-        </div>
+        <a href="@Url.Action("Details","News",new {id = @item.Id})">
+            <div class="col-md-3 one-news-block" style="background-image: url(@Url.Content(item.MainImagePath))">
+                <h3>@item.Title</h3>
+                <br>
+                @*<a href="">Читать далее</a>*@
+            </div>
+        </a>
     }
 </div>
 
