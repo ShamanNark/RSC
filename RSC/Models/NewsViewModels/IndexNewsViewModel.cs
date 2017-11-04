@@ -1,5 +1,4 @@
-﻿using PagedList;
-using RSC.Models.NewsRubricsViewModels;
+﻿using RSC.Models.NewsRubricsViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
