@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace RSC.Models.NewsViewModels
         public string AdditionalImagePath { get; set; }
         public IFormFile MainImage { get; set; }
         public IFormFile AdditionalImage { get; set; }
+        public List<int> SelectedRubrics { get; set; }
+        public SelectList NewsRubrics { get; set; }
         public DateTime CreateDateTime { get; set; }
     }
 }

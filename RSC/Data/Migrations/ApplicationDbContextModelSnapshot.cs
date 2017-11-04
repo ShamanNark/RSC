@@ -139,6 +139,21 @@ namespace RSC.Data.Migrations
                     b.ToTable("NewsRubrics");
                 });
 
+            modelBuilder.Entity("RSC.Data.DbModels.ObjectNewsNewsRubric", b =>
+                {
+                    b.Property<int>("ObjectNewsId");
+
+                    b.Property<int>("NewsRubricId");
+
+                    b.Property<int>("Id");
+
+                    b.HasKey("ObjectNewsId", "NewsRubricId");
+
+                    b.HasIndex("NewsRubricId");
+
+                    b.ToTable("ListObjectNewsNewsRubric");
+                });
+
             modelBuilder.Entity("RSC.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -253,6 +268,19 @@ namespace RSC.Data.Migrations
                     b.HasOne("RSC.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.ObjectNewsNewsRubric", b =>
+                {
+                    b.HasOne("RSC.Data.DbModels.NewsRubric", "NewsRubric")
+                        .WithMany("ListObjectNewsNewsRubric")
+                        .HasForeignKey("NewsRubricId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RSC.Models.NewsViewModels.ObjectNews", "ObjectNews")
+                        .WithMany("ListObjectNewsNewsRubric")
+                        .HasForeignKey("ObjectNewsId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

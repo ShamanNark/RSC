@@ -67,5 +67,28 @@ namespace RSC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var model = db.NewsRubrics.Where(rubric => rubric.Id == id).Select(rubric => new NewsRubricViewModel
+            {
+                Id = rubric.Id,
+                Name = rubric.Name
+            }).FirstOrDefault();
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(NewsRubricViewModel model)
+        {
+            var dbModel = db.NewsRubrics.Where(rubric => rubric.Id == model.Id).FirstOrDefault();
+            if (dbModel != null)
+            {
+                db.NewsRubrics.Remove(dbModel);
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

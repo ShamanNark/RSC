@@ -5,16 +5,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<style>
+    .newsheader {
+        background: linear-gradient(to right, #e55727 3%, #e21c25) 0 0 no-repeat;
+    }
 
+    .headerTitle{
+        color:white;
+    }
+
+    .rs-news__title {
+        font-size: 24px;
+        font-weight: 800;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .rs-news__img {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+</style>
+<div class="newsheader">
+    <h2 class="headerTitle">Новости</h2>
+</div>
 <div>
-    <h3>@Html.DisplayFor(model => model.Title)</h3>
-    <p>@Html.DisplayFor(model => model.CreateDateTime)</p>
-    <hr />  
+    <div class="rs-news__title">@Html.DisplayFor(model => model.Title)</div>
     
-    <p><img style="max-height:300px;" src="@Url.Content(Model.MainImagePath)"></p>
+    <div class="rs-news__img col-md-12">
+        <img src="@Url.Content(Model.MainImagePath)">
+    </div>
     
-    <div>
+    <div class="col-md-12">
         <p>
             @Html.DisplayFor(model => model.Text)
         </p>

@@ -4,60 +4,156 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RSC</title>
+    <link rel="icon" href="../../../../favicon.ico">
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <!-- Custom styles for this template -->
+        <link href="~/css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="~/font-awesome-4.7.0/css/font-awesome.css">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <!-- Custom styles for this template -->
+        <link href="~/css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="~/font-awesome-4.7.0/css/font-awesome.min.css">
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">RSC</a>
+    <div role="main" class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                            aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="~/img/logo.png" alt="Росстуденчество">
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#">О НАС</a>
+                        </li>
+                        <li>
+                            <a href="#about">СТУДЕНТУ</a>
+                        </li>
+                        <li>
+                            <a href="#contact">СОВЕТАМ</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                ПРДСО
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Документы ПРДСО</a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#contact">АБИТУРИЕНТУ</a>
+                        </li>
+                        <li>
+                            <a href="#contact">В УЧЕБЕ</a>
+                        </li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="form-inline mt-2 mt-md-0">
+                            <input id="searchinput" name="searchinput" class="enjoy-css" type="text">
+                            <i class="fa fa-search  fa-flip-horizontal fa-2x" aria-hidden="true"></i>
+
+                        </form>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    @if (User.IsInRole("admin"))
-                    {
-                        <li><a asp-area="" asp-controller="Roles" asp-action="Index">Roles</a></li>
-                    }
-                    <li><a asp-area="" asp-controller="News" asp-action="Index">News</a></li>
-                    <li><a asp-area="" asp-controller="NewsRubrics" asp-action="Index">NewsRubrics</a></li>
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
+        </nav>
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <a href="#">
+                    <img src="img/logowhite.png" alt="Росстуденчество">
+                </a>
+            </div>
+            <div class="footer-info">
+                <div class="col-md-4">
+                    <p>ПОЧТОВЫЙ АДРЕС:</p>
+                    <p>ул.Николоямская, д.11, стр. 1, Москва, 109240</p>
+                    <p>(метро Таганская, Кольцевая линия)</p>
+                    <br>
+                    <p>
+                        <i class="fa fa-phone fa-2x" aria-hidden="true"></i> ТЕЛЕФОНЫ ГОРЯЧЕЙ ЛИНИИ:
+                    </p>
+                    <p>Горячая линия по вопросам социальной и правовой помощи обучающимся</p>
+                    <p>+7 800 555 2390 </p>
+                    <p>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i> E-mail: pravo@russtudcenter.ru
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>ОТДЕЛ ПРДСО:</p>
+                    <p>
+                        <i class="fa fa-phone" aria-hidden="true"></i>Телефон: +7(495)915-08-65, +7(495)915-26-02
+                    </p>
+                    <p>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i> E-mail: prdso@russtudcenter.ru
+                    </p>
+
+                    <br>
+                    <p>
+                        <i class="fa fa-phone fa-2x" aria-hidden="true"></i> ПО ДРУГИМ ВОПРОСАМ:
+                    </p>
+                    <p>
+                        <i class="fa fa-phone" aria-hidden="true"></i>+7(495)915-28-10, +7(495)915-56-14
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p>ПРИЕМНАЯ:</p>
+                    <p>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i> E-mail: prdso@russtudcenter.ru
+                    </p>
+                    <br>
+                    <p>ОТДЕЛ РЕАЛИЗАЦИИ</p>
+                    <p>СТУДЕНЧЕСКИХ ПРОГРАММ:</p>
+                    <p>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>otdelprogram@russtudcenter.ru
+                    </p>
+                </div>
             </div>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - RSC</p>
-        </footer>
+        <div class="social-icons col-md-12" style="text-align:center;">
+            <div class="five-icons">
+                <i class="fa fa-vk fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-telegram fa-2x" aria-hidden="true"></i>
+            </div>
+        </div>
     </div>
-
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/assets/js/vendor/popper.min.js"></script>
+        <script src="~/dist/main.js"></script>
     </environment>
     <environment exclude="Development">
+        <script src="~/assets/js/vendor/popper.min.js"></script>
+        <script src="~/dist/main.js"></script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery"

@@ -10,13 +10,19 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mime;
+using RSC.Models.NewsRubricsViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using RSC.Data.DbModels;
+using RSC.Models;
 
 namespace RSC.Controllers
 {
     public class NewsController : Controller
     {
         private ApplicationDbContext db;
-        private IHostingEnvironment _appEnvironment; 
+        private IHostingEnvironment _appEnvironment;
+        int pageSize = 6;
 
         public NewsController(ApplicationDbContext context, IHostingEnvironment appEnvironment)
         {
@@ -24,8 +30,9 @@ namespace RSC.Controllers
             _appEnvironment = appEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
+            var count = db.News.Count();
             var viewModel = new IndexNewsViewModel
             {
                 News = db.News.Select(n => new DetailsNewsViewModel
@@ -36,7 +43,8 @@ namespace RSC.Controllers
                     AdditionalImagePath = n.AdditionalImages,
                     MainImagePath = n.MainImage,
                     CreateDateTime = n.CreateDateTime
-                }).OrderByDescending(n => n.CreateDateTime).ToList()
+                }).OrderByDescending(n => n.CreateDateTime).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                PageViewModel = new PageViewModel(count, page, pageSize)
             };
             return View(viewModel);
         }
@@ -44,7 +52,13 @@ namespace RSC.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View(new CreateNewsViewModel());
+            var NewsRubricsViewModel = db.NewsRubrics.Select(n => new NewsRubricViewModel
+            {
+                Id = n.Id,
+                Name = n.Name
+            }).ToList();
+            var rubrics = new SelectList(NewsRubricsViewModel, "Id", "Name");
+            return View(new CreateNewsViewModel() { NewsRubrics = rubrics });
         }
 
         [HttpPost]
@@ -57,6 +71,10 @@ namespace RSC.Controllers
                 MainImage = await SaveFile(model.MainImage, maxId.ToString()),
                 Text = model.Text,
                 Title = model.Title,
+                ListObjectNewsNewsRubric = model.SelectedRubrics.Select(rubric => new Data.DbModels.ObjectNewsNewsRubric
+                {
+                    NewsRubricId = rubric
+                }).ToList(),
                 CreateDateTime = DateTime.Now,
                 UpdateDateTime = DateTime.Now
             });
@@ -67,12 +85,19 @@ namespace RSC.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            var NewsRubricsViewModel = db.NewsRubrics.Select(n => new NewsRubricViewModel
+            {
+                Id = n.Id,
+                Name = n.Name
+            }).ToList();
             var viewmodel = db.News.Where(n => n.Id == id).Select(n => new EditNewsViewModel
             {
                 Id = n.Id,
                 Title = n.Title,
                 Text = n.Text,
                 MainImagePath = n.MainImage,
+                SelectedRubrics = n.ListObjectNewsNewsRubric.Select(l => l.NewsRubricId).ToList(),
+                NewsRubrics = new SelectList(NewsRubricsViewModel, "Id", "Name", n.ListObjectNewsNewsRubric.Select(l => l.NewsRubricId).ToList())
             }).FirstOrDefault();
             return View(viewmodel);
         }
@@ -80,7 +105,16 @@ namespace RSC.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditNewsViewModel model)
         {
-            var news = db.News.Where(n => n.Id == model.Id).FirstOrDefault();
+            var news = db.News.Include(n => n.ListObjectNewsNewsRubric).Where(n => n.Id == model.Id).FirstOrDefault();
+            var Rubricids = news.ListObjectNewsNewsRubric.ToList();
+            var rubricsForDeleting = Rubricids.Where(rubricId => !model.SelectedRubrics.Any(selectedRubricId => selectedRubricId == rubricId.NewsRubricId)).ToList();
+            var rubricForAdding = model.SelectedRubrics.Where(selectedRubricId => !Rubricids.Any(rubric => rubric.NewsRubricId == selectedRubricId)).ToList();
+            db.ListObjectNewsNewsRubric.RemoveRange(rubricsForDeleting);
+            db.ListObjectNewsNewsRubric.AddRange(rubricForAdding.Select(rubric => new ObjectNewsNewsRubric
+            {
+                NewsRubricId = rubric,
+                ObjectNewsId = news.Id
+            }).ToList());
             news.Title = model.Title;
             news.Text = model.Text;
             news.MainImage = await SaveFile(model.MainImage, news.Id.ToString()) ?? news.MainImage;
@@ -122,6 +156,47 @@ namespace RSC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        [HttpGet]
+        public IActionResult TakeLastSix (string newsRubricm, int? pagenum)
+        {
+            int pageNumber = (pagenum ?? 1);       
+            var viewModel = new IndexNewsViewModel
+            {
+                News = db.ListObjectNewsNewsRubric.Where(l => l.NewsRubricId == 1).Select(n => new DetailsNewsViewModel
+                {
+                    Id = n.ObjectNews.Id,
+                    Text = n.ObjectNews.Text,
+                    Title = n.ObjectNews.Title,
+                    AdditionalImagePath = n.ObjectNews.AdditionalImages,
+                    MainImagePath = n.ObjectNews.MainImage,
+                    CreateDateTime = n.ObjectNews.CreateDateTime
+                }).OrderByDescending(n => n.CreateDateTime).Take(6).ToList(),
+                NewsRubrics = db.NewsRubrics.Select(n => new Models.NewsRubricsViewModels.NewsRubricViewModel
+                {
+                    Id = n.Id,
+                    Name = n.Name
+                }).ToList()
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult GetNewsByRubricId (int id)
+        {
+            var model = db.ListObjectNewsNewsRubric.Where(l => l.NewsRubricId == id).Select(n => new DetailsNewsViewModel
+            {
+                Id = n.ObjectNews.Id,
+                Text = n.ObjectNews.Text,
+                Title = n.ObjectNews.Title,
+                AdditionalImagePath = n.ObjectNews.AdditionalImages,
+                MainImagePath = n.ObjectNews.MainImage,
+                CreateDateTime = n.ObjectNews.CreateDateTime
+            }).OrderByDescending(n => n.CreateDateTime).Take(6).ToList();
+            return PartialView("PartialViewNews", model);
+        }
+
         private async Task<string> SaveFile(IFormFile uploadedFile, string FileName)
         {
             if (uploadedFile != null && (uploadedFile.ContentType == "image/png" || uploadedFile.ContentType == "image/jpeg"))
