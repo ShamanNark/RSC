@@ -1,5 +1,4 @@
-﻿@model PagedList.IPagedList<RSC.Models.NewsViewModels.DetailsNewsViewModel>
-@using PagedList.Mvc;
+﻿@model List<RSC.Models.NewsViewModels.DetailsNewsViewModel>
 
 @foreach (var item in Model)
 {
@@ -17,5 +16,3 @@
 
 <br />
 @*Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount*@
-
-@Html.PagedListPager(Model, page => Url.Action("GetNewsByRubricId", new { page }))

@@ -385,56 +385,17 @@ nav {
 
 }
 
-.news-block .one-news-block:nth-child(2){
+.news-block .one-news-block{
     min-height: 350px;
-    background-image: url(../../img/news1.jpg);background-repeat:no-repeat;
     background-size: cover;
     text-align: center;
-    
 }
 
-.news-block .one-news-block:nth-child(3){
-    min-height: 350px;
-    background-image: url(../../img/news2.jpg);
-    background-size: cover;
-    text-align: center;
-}
-.news-block .one-news-block:nth-child(4){
-    min-height: 350px;
-    background-image: url(../../img/news3.jpg);
-    background-size: cover;
-    text-align: center;
-}
-.news-block .one-news-block:nth-child(5){
-    min-height: 350px;
-    background-image: url(../../img/news4.jpg);
-    background-size: cover;
-    text-align: center;
-}
-.news-block .one-news-block:nth-child(6){
-    min-height: 350px;
-    background-image: url(../../img/news5.jpg);
-    background-size: cover;
-    text-align: center;
-}
-.news-block .one-news-block:nth-child(7){
-    min-height: 350px;
-    background-image: url(../../img/news6.jpg);
-    background-size: cover;
-    text-align: center;
-    
-}
 
 
 .news-block .one-news-block h3 {
     padding-top: 230px;
 }
-
-
-
-
-
-
 
 .news-banner {
     min-height: 350px;
