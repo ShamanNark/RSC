@@ -9,30 +9,30 @@
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Создать новую</a>
 </p>
 
 <p>
-    <a asp-action="TakeLastSix">Take last six</a>
+    <a asp-action="TakeLastSix">Посмотреть в каталоге</a>
 </p>
 
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    MainImage
+                    Изображение
                 </th>
                 <th>
                     Id
                 </th>
                 <th>
-                    Title
+                    Оглавление
                 </th>
                 <th>
-                    Text
+                    Содержание
                 </th>
                 <th>
-                    CreateDateTime
+                    Дата создания
                 </th>
             <th></th>
         </tr>
@@ -56,9 +56,9 @@
                 @Html.DisplayFor(modelItem => item.CreateDateTime)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Изменить", "Edit", new {  id=item.Id  }) |
+                @Html.ActionLink("Детали", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
             </td>
         </tr>
 }

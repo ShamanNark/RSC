@@ -7,15 +7,14 @@
 
 <h2>Edit</h2>
 
-<h4>EditNewsViewModel</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
             @Html.HiddenFor(model => model.Id)
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>           
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label col-md-12" style="padding: 0"></label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
@@ -29,11 +28,11 @@
                 <input asp-for="CreateDateTime" class="form-control" />
                 <span asp-validation-for="CreateDateTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Text" class="control-label"></label>
-                <input asp-for="Text" class="form-control" />
-                <span asp-validation-for="Text" class="text-danger"></span>
-            </div>
+            <script src="https://cdn.quilljs.com/1.3.3/quill.js"></script>
+            <div style="height: 300px;" id="editor"></div>
+            <link href="https://cdn.quilljs.com/1.3.3/quill.snow.css" rel="stylesheet">
+            @Html.HiddenFor(item => Model.Text)
+
             <div class="form-group">
                 <label asp-for="MainImagePath" class="control-label"></label>
                 <p><img height="100" src="@Url.Content(Model.MainImagePath)"></p>
@@ -41,13 +40,7 @@
                 <span asp-validation-for="MainImage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AdditionalImagePath" class="control-label"></label>
-                <p><img height="100" src="@Url.Content(Model.MainImagePath)"></p>
-                <input type="file" asp-for="AdditionalImage"/>
-                <span asp-validation-for="AdditionalImage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Сохранить" onclick="SaveText()" class="btn btn-default" />
             </div>
         </form>
     </div>
@@ -57,3 +50,13 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+    var quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+    quill.pasteHTML(document.getElementById('Text').value);
+    function SaveText(parameters) {
+        document.getElementById('Text').value = document.getElementById('editor').innerHTML;
+    }
+</script>

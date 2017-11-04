@@ -5,12 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<!-- Include the plugin's CSS and JS: -->
+<link rel="stylesheet" href="~/bootstrap-multiselect/css/bootstrap-multiselect.css" type="text/css" />
 
-<h4>ObjectNewsViewModel</h4>
+<h2>Создание</h2>
+
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -19,33 +21,46 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SelectedRubrics" class="control-label"></label>
+                <label asp-for="SelectedRubrics" class="control-label col-md-12" style="padding: 0"></label>
                 @Html.DropDownListFor(item => Model.SelectedRubrics, Model.NewsRubrics, new { @class = "chzn-select form-control", multiple = "multiple" })
                 <span asp-validation-for="SelectedRubrics" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Text" class="control-label"></label>
-                <input asp-for="Text" class="form-control" />
-                <span asp-validation-for="Text" class="text-danger"></span>
-            </div>
+
+            <script src="https://cdn.quilljs.com/1.3.3/quill.js"></script>
+            <div style="height: 300px;" id="editor"></div>
+            <link href="https://cdn.quilljs.com/1.3.3/quill.snow.css" rel="stylesheet">
+            @Html.HiddenFor(item => Model.Text)
+
             <div class="form-group">
                 <label asp-for="MainImage" class="control-label"></label>
                 <input type="file" asp-for="MainImage"/>
                 <span asp-validation-for="MainImage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AdditionalImage" class="control-label"></label>
-                <input type="file" asp-for="AdditionalImage"/>
-                <span asp-validation-for="AdditionalImage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Сохранить" onclick="SaveText()" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Вернуться к списску</a>
 </div>
+
+<!-- Initialize Quill editor -->
+
+<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="~/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+<script>
+
+    $('#SelectedRubrics').multiselect();
+    var quill = new Quill('#editor', {
+        theme: 'snow',
+        size: 'auto'
+    });
+    function SaveText(parameters) {
+        document.getElementById('Text').value = document.getElementById('editor').innerHTML;
+    }
+
+</script>
 
