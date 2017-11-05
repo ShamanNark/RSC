@@ -96,6 +96,7 @@ namespace RSC.Controllers
                 Title = n.Title,
                 Text = n.Text,
                 MainImagePath = n.MainImage,
+                CreateDateTime = n.CreateDateTime,
                 SelectedRubrics = n.ListObjectNewsNewsRubric.Select(l => l.NewsRubricId).ToList(),
                 NewsRubrics = new SelectList(NewsRubricsViewModel, "Id", "Name", n.ListObjectNewsNewsRubric.Select(l => l.NewsRubricId).ToList())
             }).FirstOrDefault();
@@ -121,6 +122,7 @@ namespace RSC.Controllers
 
             news.Title = model.Title;
             news.Text = model.Text;
+            news.CreateDateTime = model.CreateDateTime;
             news.MainImage = await SaveFile(model.MainImage, news.Id.ToString()) ?? news.MainImage;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -187,9 +189,9 @@ namespace RSC.Controllers
         }
 
         [HttpPost]
-        public IActionResult GetNewsByRubricId (int id)
+        public IActionResult GetNewsByRubricId (int id, DateTime startDateTime, DateTime stopDateTime)
         {
-            var model = db.ListObjectNewsNewsRubric.Where(l => l.NewsRubricId == id).Select(n => new DetailsNewsViewModel
+            var model = db.ListObjectNewsNewsRubric.Where(l => l.NewsRubricId == id).Where(l => l.ObjectNews.CreateDateTime >= startDateTime && l.ObjectNews.CreateDateTime <= stopDateTime).Select(n => new DetailsNewsViewModel
             {
                 Id = n.ObjectNews.Id,
                 Text = n.ObjectNews.Text,
