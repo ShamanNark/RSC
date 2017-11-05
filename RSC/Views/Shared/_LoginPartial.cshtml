@@ -1,4 +1,4 @@
-@using Microsoft.AspNetCore.Identity
+п»ї@using Microsoft.AspNetCore.Identity
 @using RSC.Models
 
 @inject SignInManager<ApplicationUser> SignInManager
@@ -6,21 +6,49 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Выйти</button>
-            </li>
+    @*<form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Р’С‹Р№С‚Рё</button>
+                </li>
+            </ul>
+        </form>*@
+
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">РљРђР‘РРќР•Рў<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="/manage/index/">@UserManager.GetUserName(User)</a></li>
+            <li role="separator" class="divider"></li>
+
+            <li> <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+
+                
+                    <button type="submit">Р’Р«Р™РўР</button>
+
+
+            </form>
+    </li>
+
+
+
+
         </ul>
-    </form>
+    </li>
+
+
+
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a></li>
-        <li><a asp-area="" asp-controller="Account" asp-action="Login">Войти</a></li>
-    </ul>
+
+    <li><a asp-area="" asp-controller="Account" asp-action="Login">Р’РћР™РўР</a></li>
+
+            @*<ul class="nav navbar-nav navbar-right">
+                    <li><a asp-area="" asp-controller="Account" asp-action="Register">Р РµРіРёСЃС‚СЂР°С†РёСЏ</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Login">Р’РѕР№С‚Рё</a></li>
+                </ul>*@
 }

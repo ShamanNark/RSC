@@ -206,6 +206,13 @@ namespace RSC.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        public IActionResult SignedOut()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -247,7 +254,8 @@ namespace RSC.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            //return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction("SignedOut","Account");
         }
 
         [HttpPost]
