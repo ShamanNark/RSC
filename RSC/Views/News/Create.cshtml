@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="SelectedRubrics" class="control-label col-md-12" style="padding: 0"></label>
-                @Html.DropDownListFor(item => Model.SelectedRubrics, Model.NewsRubrics, new { @class = "chzn-select form-control", multiple = "multiple" })
+                @Html.ListBoxFor(item => Model.SelectedRubrics, Model.NewsRubrics, new { @class = "chzn-select form-control", multiple = "multiple" })
                 <span asp-validation-for="SelectedRubrics" class="text-danger"></span>
             </div>
 
@@ -52,14 +52,13 @@
 <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript" src="~/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
 <script>
-
     $('#SelectedRubrics').multiselect();
     var quill = new Quill('#editor', {
         theme: 'snow',
         size: 'auto'
     });
     function SaveText(parameters) {
-        document.getElementById('Text').value = document.getElementById('editor').innerHTML;
+        document.getElementById('Text').value = quill.container.firstChild.innerHTML;
     }
 
 </script>

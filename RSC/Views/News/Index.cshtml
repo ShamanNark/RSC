@@ -6,6 +6,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .text {
+        display: block;
+        width: 500px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
+
 <h2>Index</h2>
 
 <p>
@@ -50,12 +60,14 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Text)
+                <span class="text">
+                    @Html.Raw(@item.Text)
+                </span>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreateDateTime)
             </td>
-            <td>
+            <td style="display: flex; flex-direction: row; justify-content: space-between;">
                 @Html.ActionLink("Изменить", "Edit", new {  id=item.Id  }) |
                 @Html.ActionLink("Детали", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Удалить", "Delete", new { id=item.Id })

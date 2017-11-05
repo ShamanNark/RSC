@@ -38,7 +38,7 @@ namespace RSC.Controllers
                 News = db.News.Select(n => new DetailsNewsViewModel
                 {
                     Id = n.Id,
-                    Text = n.Text.Substring(0,250),
+                    Text = n.Text,
                     Title = n.Title,
                     AdditionalImagePath = n.AdditionalImages,
                     MainImagePath = n.MainImage,
