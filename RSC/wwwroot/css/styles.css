@@ -252,6 +252,30 @@ nav {
 
 }
 
+.tag {height: 250px; width: 500px; float: center; position: absolute; left: 30%; top: 170px; z-index: 1000; background: linear-gradient(to left, #e41b25, #e5652b); padding: 5px; color: #FFFFFF; font-weight: bold;
+
+}
+
+.tag .fa-rocket {
+    padding-top: 70px;
+}
+
+    .tag .tag-text {
+        padding-top: 50px;
+    }
+
+.tag .tag-text h1{
+    padding-bottom: 10px;
+}
+
+
+.tag .btn-transparent {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
 .carousel-indicators li {
     background-color: none;
     border: 2px solid #e5652b;
