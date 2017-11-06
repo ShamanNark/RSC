@@ -23,14 +23,16 @@
         <ul class="dropdown-menu">
             <li><a href="/manage/index/">@UserManager.GetUserName(User)</a></li>
             <li role="separator" class="divider"></li>
+            @if (User.IsInRole("admin"))
+            {
+                <li><a href="@Url.Action("Index","Admin")">Админ панель</a></li>
+            }
             <li> <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+                    
                      <button type="submit">ВЫЙТИ</button>
                 </form>
             </li>
-            @if (User.IsInRole("admin"))
-            {
-                <a href="@Url.Action("Index","Admin")">Админ панель</a>
-            }
+           
         </ul>
     </li>
 
