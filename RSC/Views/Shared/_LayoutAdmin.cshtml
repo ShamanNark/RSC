@@ -3,6 +3,8 @@
     ViewData["Title"] = "_LayoutAdmin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 <style>
     .sidebar {
         top: 51px;
@@ -58,4 +60,6 @@
         </main>
     </div>
 </div>
-
+@section Scripts{ 
+@RenderSection("Scripts", required: false)
+}
