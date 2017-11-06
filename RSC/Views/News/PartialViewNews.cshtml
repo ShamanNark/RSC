@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <p>@Html.DisplayFor(modelItem => item.Title)</p>
                 <p>@Html.DisplayFor(modelItem => item.CreateDateTime)</p>
-                <a href="@Url.Action("Details","News", new { id = @item.Id })">Читать далее</a>
+                <a href="@Url.Action("Details","News", new { id = @item.Id })" class="btn btn-default" role="button">Читать далее</a>
             </div>
         </div>
     </div>

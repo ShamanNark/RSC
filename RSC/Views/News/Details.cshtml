@@ -24,6 +24,21 @@
         padding-top: 20px;
         padding-bottom: 20px;
     }
+    .leftimg {
+        float:left; /* Выравнивание по левому краю */
+        margin: 7px 7px 7px 0; /* Отступы вокруг картинки */
+        max-width: 400px;
+    }
+    .rightimg  {
+        float: right; /* Выравнивание по правому краю  */ 
+        margin: 7px 0 7px 7px; /* Отступы вокруг картинки */
+    }
+
+    .news-share {
+        margin-bottom: 20px;
+    } .news-share i {
+        color: lightblue;
+    }
 </style>
 <div class="newsheader">
     <h2 class="headerTitle">Новости</h2>
@@ -31,13 +46,25 @@
 <div>
     <div class="rs-news__title">@Html.DisplayFor(model => model.Title)</div>
     
-    <div class="rs-news__img col-md-12">
+    @*<div class="rs-news__img col-md-12">
         <img src="@Url.Content(Model.MainImagePath)">
-    </div>
+    </div>*@
     
     <div class="col-md-12">
-        @Html.Raw(@Model.Text)
-    </div>   
+        <p><img src="@Url.Content(Model.MainImagePath)" alt="Лейтенант Бокатуев" class="leftimg"> @Html.Raw(@Model.Text)</p>
+        <hr />
+    </div>
+    
+    <div class="col-md-12 news-share">
+        <h4>Поделиться:</h4>
+        <a href="http://facebook.com"><i class="fa fa-facebook fa-2x"></i></a>
+        <a href="http://vk.com"><i class="fa fa-vk fa-2x"></i></a>
+        <a href="http://twitter.com"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="http://telegram.org"><i class="fa fa-telegram fa-2x"></i></a>
+
+    </div>
+
+
 </div>
 <div>
     <a asp-action="Index">Вернуться к списку</a>
