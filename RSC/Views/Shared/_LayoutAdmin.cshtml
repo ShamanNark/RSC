@@ -36,19 +36,19 @@
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Admin panel <span class="sr-only">(current)</span></a>
+                    <a class="nav-link active" href="@Url.Action("Index", "Admin")">Админ панель<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index","News")">News</a>
+                    <a class="nav-link" href="@Url.Action("Index", "News")">Новости</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index","NewsRubrics")">NewsRubrics</a>
+                    <a class="nav-link" href="@Url.Action("Index", "NewsRubrics")">Новстные рубрики</a>
                 </li>
             </ul>
             
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index","Roles")">Roles</a>
+                    <a class="nav-link" href="@Url.Action("Index", "Roles")">Роли</a>
                 </li>
             </ul>
         </nav>
