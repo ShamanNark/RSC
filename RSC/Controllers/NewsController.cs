@@ -71,10 +71,10 @@ namespace RSC.Controllers
                 MainImage = await SaveFile(model.MainImage, maxId.ToString()),
                 Text = model.Text,
                 Title = model.Title,
-                ListObjectNewsNewsRubric = model.SelectedRubrics.Any() ? model.SelectedRubrics.Select(rubric => new Data.DbModels.ObjectNewsNewsRubric
+                ListObjectNewsNewsRubric = model.SelectedRubrics != null ? model.SelectedRubrics.Select(rubric => new Data.DbModels.ObjectNewsNewsRubric
                 {
                     NewsRubricId = rubric
-                }).ToList() : new List<ObjectNewsNewsRubric>(),
+                }).ToList() : new List<ObjectNewsNewsRubric> { new ObjectNewsNewsRubric { NewsRubricId = 1 } },
                 CreateDateTime = DateTime.Now,
                 UpdateDateTime = DateTime.Now
             });
@@ -108,7 +108,7 @@ namespace RSC.Controllers
         {
             var news = db.News.Include(n => n.ListObjectNewsNewsRubric).FirstOrDefault(n => n.Id == model.Id);
             var rubricids = news.ListObjectNewsNewsRubric.ToList();
-            if (rubricids.Any())
+            if (rubricids.Any() && model.SelectedRubrics != null)
             {
                 var rubricsForDeleting = rubricids.Where(rubricId => model.SelectedRubrics.All(selectedRubricId => selectedRubricId != rubricId.NewsRubricId)).ToList();
                 var rubricForAdding = model.SelectedRubrics.Where(selectedRubricId => rubricids.All(rubric => rubric.NewsRubricId != selectedRubricId)).ToList();
