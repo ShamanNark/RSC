@@ -19,7 +19,7 @@
 
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">КАБИНЕТ<span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="cabinet-link">КАБИНЕТ<span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="/manage/index/">@UserManager.GetUserName(User)</a></li>
             <li role="separator" class="divider"></li>
@@ -45,7 +45,7 @@
 else
 {
 
-    <li><a asp-area="" asp-controller="Account" asp-action="Login">ВОЙТИ</a></li>
+    <li><a asp-area="" asp-controller="Account" asp-action="Login"  id="cabinet-link">ВОЙТИ</a></li>
 
             @*<ul class="nav navbar-nav navbar-right">
                     <li><a asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a></li>

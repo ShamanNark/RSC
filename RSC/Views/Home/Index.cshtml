@@ -61,10 +61,9 @@
     @foreach (var item in Model.News)
     {
         <a href="@Url.Action("Details","News",new {id = @item.Id})">
-            <div class="col-md-3 one-news-block" style="background-image: url(@Url.Content(item.MainImagePath))">
+            <div class="col-md-3 one-news-block" style="background-image: url(@Url.Content(item.MainImagePath)); -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24); -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24); box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);">
                 <h3>@item.Title</h3>
-                <br>
-                @*<a href="">Читать далее</a>*@
+                <h4>читать далее>></h4>
             </div>
         </a>
     }
@@ -110,17 +109,18 @@
     <div class="col-md-3 one-prdso-block">
         <h3>Спорт и ЗОЖ</h3>
     </div>
-    <div class="col-md-3 one-prdso-block">
+    <div class="col-md-6 one-prdso-block">
         <h3>Культура и творчество</h3>
     </div>
-    <div class="col-md-3 one-prdso-block">
+    @*<div class="col-md-3 one-prdso-block">
         <h3>
             Профессиональные
             компетенции
         </h3>
-    </div>    
+    </div>*@    
     <div class="col-md-3 one-prdso-block">
-        <h3>Наука и инновации</h3>
+        <h3>Профессиональные
+            компетенции</h3>
     </div>
     <div class="col-md-3 one-prdso-block">
         <h3>Загаловок ПРДСО</h3>
