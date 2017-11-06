@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RSC.Data.DbModels;
 using RSC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RSC.Controllers
 {
@@ -30,6 +31,7 @@ namespace RSC.Controllers
             _appEnvironment = appEnvironment;
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Index(int page = 1)
         {
             var count = db.News.Count();
@@ -50,6 +52,7 @@ namespace RSC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             var NewsRubricsViewModel = db.NewsRubrics.Select(n => new NewsRubricViewModel
@@ -62,6 +65,7 @@ namespace RSC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create(CreateNewsViewModel model)
         {
             var maxId = db.News.Max(n => n.Id) + 1;
@@ -83,6 +87,7 @@ namespace RSC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(int id)
         {
             var NewsRubricsViewModel = db.NewsRubrics.Select(n => new NewsRubricViewModel
@@ -104,6 +109,7 @@ namespace RSC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(EditNewsViewModel model)
         {
             var news = db.News.Include(n => n.ListObjectNewsNewsRubric).FirstOrDefault(n => n.Id == model.Id);
@@ -142,6 +148,7 @@ namespace RSC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
             var viewmodel = db.News.Where(n => n.Id == id).Select(n => new DetailsNewsViewModel
@@ -155,6 +162,7 @@ namespace RSC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(DetailsNewsViewModel model)
         {
             var dbModel = db.News.Where(n => n.Id == model.Id).FirstOrDefault();
@@ -165,7 +173,7 @@ namespace RSC.Controllers
 
 
         [HttpGet]
-        public IActionResult TakeLastSix (string newsRubricm, int? pagenum)
+        public IActionResult NewsBoard(string newsRubricm, int? pagenum)
         {
             int pageNumber = (pagenum ?? 1);       
             var viewModel = new IndexNewsViewModel
