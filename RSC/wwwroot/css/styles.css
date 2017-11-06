@@ -249,6 +249,9 @@ nav {
     min-height: 670px;
     
     background-image: url(../../img/sliderbackground.png);
+    background-size: 1140px 670px;
+    background-repeat: no-repeat;
+    background-position-x: 0px;
 
 }
 
