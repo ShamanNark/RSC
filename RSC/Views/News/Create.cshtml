@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <!-- Include the plugin's CSS and JS: -->
@@ -45,7 +45,11 @@
 </div>
 
 <div>
-    <a asp-action="Index">Вернуться к списску</a>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-action="Index">Вернуться к списку</a> <br />
+    }
+    <a asp-action="NewsBoard">Вернуться к новостой стене</a>
 </div>
 
 <!-- Initialize Quill editor -->

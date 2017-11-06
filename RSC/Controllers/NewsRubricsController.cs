@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using RSC.Data;
 using RSC.Data.DbModels;
 using RSC.Models.NewsRubricsViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RSC.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class NewsRubricsController : Controller
     {
         private ApplicationDbContext db;
@@ -79,7 +81,7 @@ namespace RSC.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult Delete(NewsRubricViewModel model)
         {
             var dbModel = db.NewsRubrics.Where(rubric => rubric.Id == model.Id).FirstOrDefault();

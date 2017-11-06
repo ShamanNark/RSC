@@ -1,6 +1,6 @@
 ﻿@model RSC.Models.NewsViewModels.IndexNewsViewModel
 @{
-    ViewData["Title"] = "TakeLastSix";
+    ViewData["Title"] = "NewsBoard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -89,7 +89,7 @@
 </header>
 
 <div class="container dateTimePadding">
-    <div class='col-md-5'>
+    <div class='col-md-3'>
         <div class="form-group">
             <div class='input-group date' id='StartDateTime'>
                 <input type='text' class="form-control" />
@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-    <div class='col-md-5'>
+    <div class='col-md-3'>
         <div class="form-group">
             <div class='input-group date' id='StopDateTime'>
                 <input type='text' class="form-control" />
@@ -134,11 +134,14 @@
             });
         }
 
+        var startDateTime = new Date();
         $('#StartDateTime').datetimepicker({
-            locale: 'ru'
+            locale: 'ru',
+            defaultDate: startDateTime.setMonth(startDateTime.getMonth() - 3)
         });
         $('#StopDateTime').datetimepicker({
             locale: 'ru',
+            defaultDate : Date.now(),
             useCurrent: false
         });
         $("#StartDateTime").on("dp.change",
