@@ -16,8 +16,13 @@
   body {
     
     font:400 14px/1.43 'Geometria-Medium',Sans-serif,'Helvetica CY','Nimbus Sans L',sans-serif;
+      padding-bottom: 0px;
    
    }
+
+  .main {
+      margin-top: 10px;
+  }
 
    input,textarea {
     font-family:'Arial','Open Sans',sans-serif;
@@ -242,7 +247,9 @@ nav {
 
 .slider {
     min-height: 670px;
+    
     background-image: url(../../img/sliderbackground.png);
+
 }
 
 .carousel-indicators li {
@@ -360,7 +367,7 @@ nav {
 
 .prdso{
     min-height: 700px;
-    background-color: lightblue;
+    background-color: none;
 
 }
 
@@ -380,6 +387,10 @@ nav {
     margin-top: 0;
     margin-bottom: 10px;
 }
+
+
+
+
 
 .prdso p{
     margin: 0;
@@ -409,12 +420,37 @@ nav {
     
 }
 
+    .one-prdso-block h5 {
+        padding-top: 250px;
+        font-size: 14px;
+        text-align: left;
+        color: #ffffff;
+        text-shadow: 0px 0px 8px #000000;
+        margin-bottom: 1px;
+    }
+
 .one-prdso-block h3 {
-        padding-top: 260px;
-        font-size: 20px;
+       
+        font-size: 18px;
+        text-align: left;
+    color: #ffffff;
+        text-shadow: 0px 0px 8px #000000;
+    margin-bottom: 0px;
+        
+    }
+
+    .one-prdso-block h4 {
+        font-size: 14px;
+        line-height: 1.08;
+        color: #ffffff;
         text-align: left;
         text-shadow: 0px 0px 8px #000000;
+        margin-top: 1px;
     }
+
+
+
+
 
 .one-prdso-block a{
     font-size: 14px;
@@ -423,44 +459,61 @@ nav {
 
 
 
-.prdso .one-prdso-block:nth-child(2){
+.prdso .one-prdso-block:nth-child(2) {
     min-height: 350px;
-    background-image: url(../../img/news1.jpg);
+    background-image: url(../../img/prdso1.png);
     background-size: cover;
-    text-align: center;
-    
-}
-
-.prdso .one-prdso-block:nth-child(3){
-    min-height: 350px;
-    background-image: url(../../img/news2.jpg);
-    background-size: cover;
-    text-align: center;
-}
-.prdso .one-prdso-block:nth-child(4){
-    min-height: 350px;
-    background-image: url(../../img/news3.jpg);
-    background-size: cover;
-    text-align: center;
-}
-.prdso .one-prdso-block:nth-child(5){
-    min-height: 350px;
-    background-image: url(../../img/news4.jpg);
-    background-size: cover;
+    -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
 }
 
-.prdso .one-prdso-block:nth-child(6){
+.prdso .one-prdso-block:nth-child(3) {
     min-height: 350px;
-    background-image: url(../../img/news5.jpg);
+    background-image: url(../../img/prdso2.png);
     background-size: cover;
+    -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    text-align: center;
+}
+.prdso .one-prdso-block:nth-child(4) {
+    min-height: 350px;
+    background-image: url(../../img/prdso3.png);
+    background-size: cover;
+    -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    text-align: center;
+}
+.prdso .one-prdso-block:nth-child(5) {
+    min-height: 350px;
+    background-image: url(../../img/prdso4.png);
+    background-size: cover;
+    -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
 }
 
-.prdso .one-prdso-block:nth-child(7){
+.prdso .one-prdso-block:nth-child(6) {
+    min-height: 350px;
+    background-image: url(../../img/prdso5.png);
+    background-size: cover;
+    -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    text-align: center;
+}
+
+.prdso .one-prdso-block:nth-child(7) {
     min-height: 350px;
     background-image: url(../../img/news6.jpg);
     background-size: cover;
+    -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
+    box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
 }
 
@@ -502,7 +555,7 @@ nav {
     font-size: 14px;
     line-height: 1.08;
     color: #ffffff;
-   
+    margin-top: 0px;
     text-align: left;
     text-shadow: 0px 0px 8px #000000;
 }
@@ -528,6 +581,7 @@ nav {
 
 .news-block .one-news-block h3 {
     padding-top: 250px;
+    margin-bottom: 1px;
 }
 
 .news-banner {
