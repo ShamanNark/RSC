@@ -81,7 +81,7 @@ namespace RSC.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult Delete(NewsRubricViewModel model)
         {
             var dbModel = db.NewsRubrics.Where(rubric => rubric.Id == model.Id).FirstOrDefault();
