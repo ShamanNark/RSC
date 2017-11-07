@@ -636,19 +636,20 @@ nav {
 
 
 
-.footer{
-    min-height: 600px;
-    background-color:#aaaaaa;
+.footer {
+    min-height: 240px;
+    background-color: #333;
 }
 
 .footer p {
     font-size:12px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.footer a{
-    color: white;
-}
+    .footer a {
+        color: lightgray;
+    }
 
 .soc-pad{
     padding-left:5px;
@@ -657,25 +658,54 @@ nav {
 }
 
 .footer-logo{
-    margin-top: 30px;
+    margin-top: 10px;
+    
     
 }
 
+    .footer-logo p {
+        color: lightgray;
+        float: right;
+        margin-bottom: 0px;
+        padding-top: 10px;
+    }
 
 
-.footer-info{
-    margin-top: 30px;
-    color: white;
+    .footer-logo img {
+        height: 40px;
+    }
+
+.footer-hr{
+    border-top: solid 1px;
+    border-top-color: #434343;
+    margin-top: 5px;
 }
 
-.social-icons{
-    color: white;
-    border-top: 1px solid white;
-    margin-top: 40px;
+
+
+.footer-info {
+   
+    color: lightgray;
 }
 
-.five-icons{
-    margin-top: 50px;
+
+
+.social-icons {
+    color: lightgray;
+    background-color: #262626;
+    height:34px;
+}
+
+    .social-icons .adress {
+        float: right;
+        padding-top: 8px;
+    }
+
+
+
+.five-icons {
+    padding-top: 100px;
+    float: right;
 }
 
 .five-icons .fa {
@@ -733,3 +763,4 @@ nav {
     -webkit-filter: blur(0px);
     visibility: visible;
   }
+
