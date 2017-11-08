@@ -7,6 +7,8 @@
 
 <!-- Include the plugin's CSS and JS: -->
 <link rel="stylesheet" href="~/bootstrap-multiselect/css/bootstrap-multiselect.css" type="text/css" />
+<link href="~/css/NewsHomePageImage.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="~/dist/css/croppie.css" type="text/css" />
 
 <h2>Создание</h2>
 
@@ -37,6 +39,10 @@
                 <input type="file" asp-for="MainImage" onchange="readURL(this);"/>
                 <span asp-validation-for="MainImage" class="text-danger"></span>
             </div>
+
+            @Html.HiddenFor(item => Model.HomePageImage)
+            @Html.Partial("PartialViewHomePageImage")
+
             <div class="form-group">
                 <input type="submit" value="Сохранить" onclick="SaveText()" class="btn btn-default" />
             </div>
@@ -56,6 +62,7 @@
 
 <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript" src="~/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+<script src="~/dist/js/croppie.js"></script>
 <script>
     $('#SelectedRubrics').multiselect();
     var quill = new Quill('#editor', {
@@ -78,6 +85,47 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+    $uploadCrop = $('#upload-demo').croppie({
+        viewport: { width: 285, height: 350 },
+        boundary: { width: 400, height: 400 },
+        enableResize: false,
+        enableOrientation: true
+    });
+    
+    $('#upload-file').on('change', function () { readFile(this); });
+    function readFile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.upload-demo').addClass('ready');
+                $uploadCrop.croppie('bind', {
+                    url: e.target.result
+                }).then(function () {
+                    console.log('jQuery bind complete');
+                });
+
+            }
+
+            reader.readAsDataURL(input.files[0]);
+            $('#upload-demo').removeClass('border-error').addClass('border-warning').change();
+        }
+        else {
+            swal("Sorry - you're browser doesn't support the FileReader API");
+        }
+    }
+
+    $('#upload-result').on('click', function (ev) {
+        $uploadCrop.croppie('result', {
+            type: 'canvas',
+            size: 'viewport'
+        }).then(function (resp) {
+            $('#HomePageImage').val(resp);
+            $('#upload-demo').removeClass('border-yellow').addClass('border-success').change();
+        });
+        return false;
+    });
 
 </script>
 

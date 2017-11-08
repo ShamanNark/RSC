@@ -29,7 +29,7 @@ namespace RSC.Controllers
                     Id = n.ObjectNews.Id,
                     Text = n.ObjectNews.Text,
                     Title = n.ObjectNews.Title,
-                    AdditionalImagePath = n.ObjectNews.AdditionalImages,
+                    HomePageImagePath = n.ObjectNews.HomePageImage,
                     MainImagePath = n.ObjectNews.MainImage,
                     CreateDateTime = n.ObjectNews.CreateDateTime
                 }).OrderByDescending(n => n.CreateDateTime).Take(6).ToList(),

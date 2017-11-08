@@ -22,7 +22,7 @@ namespace RSC.Models.NewsViewModels
         [DisplayName("Изображение")]
         public IFormFile MainImage { get; set; }
         [DisplayName("Изображение для главной страницы")]
-        public IFormFile HomePageImage { get; set; }
+        public string HomePageImage { get; set; }
         [DisplayName("Рубрика")]
         public List<int> SelectedRubrics { get; set; }
         [DisplayName("Список рубрик")]

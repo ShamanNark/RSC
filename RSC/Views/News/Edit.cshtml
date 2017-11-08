@@ -5,11 +5,10 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<link href="~/css/NewsHomePageImage.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" href="~/bootstrap-multiselect/css/bootstrap-multiselect.css" type="text/css" />
 <link href="https://cdn.quilljs.com/1.3.3/quill.snow.css" rel="stylesheet">
 <link rel="stylesheet" href="~/dist/css/croppie.css" type="text/css" />
-
-
 
 <h2>Edit</h2>
 
@@ -45,21 +44,11 @@
                 <input type="file" asp-for="MainImage" onchange="readURL(this);"/>
                 <span asp-validation-for="MainImage" class="text-danger"></span>
             </div>
-            
-            
 
-            <input  id="upload" value="Choose a file" accept="image/*" type="file">
+            @Html.HiddenFor(item => Model.HomePageImage)
+            <input id="imagepath" type="hidden" src="@Url.Content(Model.HomePageImagePath)" />
+            @Html.Partial("PartialViewHomePageImage")       
             
-           
-            <input type="file" asp-for="HomePageImage"/>
-
-            <div id="upload-demo">
-               
-                
-                
-            </div>
-            <button id="upload-result">XYU</button>
-
             <div class="form-group">
                 <input type="submit" value="Сохранить" onclick="SaveText()" class="btn btn-default" />
             </div>
@@ -78,6 +67,7 @@
 <script type="text/javascript" src="~/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
 <script src="https://cdn.quilljs.com/1.3.3/quill.js"></script>
 <script src="~/dist/js/croppie.js"></script>
+@*<script src="~/js/NewsHomePageImage.js"></script>*@
     <script>
         $('#SelectedRubrics').multiselect();
         var quill = new Quill('#editor', {
@@ -101,58 +91,48 @@
             }
         }
 
-    
         $uploadCrop = $('#upload-demo').croppie({
-            enableExif: true,
-            viewport: {
-                width: 200,
-                height: 200,
-                type: 'circle'
-            },
-            boundary: {
-                width: 300,
-                height: 300
-            }
+            url: $("#imagepath")[0].src,
+            viewport: { width: 285, height: 350 },
+            boundary: { width: 400, height: 400 },
+            enableResize: false,
+            enableOrientation: true
         });
 
 
-        $('#upload').on('change', function () { readFile(this); });
+        $('#upload-file').on('change', function () { readFile(this); });
         function readFile(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-             
+
                 reader.onload = function (e) {
                     $('.upload-demo').addClass('ready');
                     $uploadCrop.croppie('bind', {
                         url: e.target.result
-                    }).then(function(){
+                    }).then(function () {
                         console.log('jQuery bind complete');
                     });
-              
+
                 }
-             
+
                 reader.readAsDataURL(input.files[0]);
+                $('#upload-demo').removeClass('border-error').addClass('border-warning').change();
             }
             else {
                 swal("Sorry - you're browser doesn't support the FileReader API");
             }
         }
 
-
         $('#upload-result').on('click', function (ev) {
             $uploadCrop.croppie('result', {
                 type: 'canvas',
                 size: 'viewport'
             }).then(function (resp) {
-                $('#HomePageImage')
-                    .attr('value', resp);
-            
-                });
-            ev.stopPropagation();
+                $('#HomePageImage').val(resp);
+                $('#upload-demo').removeClass('border-yellow').addClass('border-success').change();
+            });
             return false;
         });
-
-
-
+        
     </script>
 }

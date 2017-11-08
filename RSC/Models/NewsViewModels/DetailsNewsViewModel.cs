@@ -15,7 +15,7 @@ namespace RSC.Models.NewsViewModels
         public string Text { get; set; }
         [DisplayName("Изображение")]
         public string MainImagePath { get; set; }
-        public string AdditionalImagePath { get; set; }
+        public string HomePageImagePath { get; set; }
         public DateTime CreateDateTime { get; set; }
     }
 }

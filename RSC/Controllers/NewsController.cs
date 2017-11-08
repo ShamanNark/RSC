@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using RSC.Data;
 using RSC.Models.NewsViewModels;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
-using System.Net.Mime;
 using RSC.Models.NewsRubricsViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RSC.Data.DbModels;
 using RSC.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Web;
+using System.Drawing;
 
 namespace RSC.Controllers
 {
@@ -42,7 +42,7 @@ namespace RSC.Controllers
                     Id = n.Id,
                     Text = n.Text,
                     Title = n.Title,
-                    AdditionalImagePath = n.AdditionalImages,
+                    HomePageImagePath = n.HomePageImage,
                     MainImagePath = n.MainImage,
                     CreateDateTime = n.CreateDateTime
                 }).OrderByDescending(n => n.CreateDateTime).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
@@ -69,10 +69,11 @@ namespace RSC.Controllers
         public async Task<IActionResult> Create(CreateNewsViewModel model)
         {
             var maxId = db.News.Max(n => n.Id) + 1;
-            db.News.Add(new ObjectNews
+            var dbmodel = db.News.Add(new ObjectNews
             {
                 Id = model.Id,
                 MainImage = await SaveFile(model.MainImage, maxId.ToString()),
+                HomePageImage = SaveImageFromBase64String(model.HomePageImage, maxId.ToString()),
                 Text = model.Text,
                 Title = model.Title,
                 ListObjectNewsNewsRubric = model.SelectedRubrics != null ? model.SelectedRubrics.Select(rubric => new Data.DbModels.ObjectNewsNewsRubric
@@ -81,7 +82,7 @@ namespace RSC.Controllers
                 }).ToList() : new List<ObjectNewsNewsRubric> { new ObjectNewsNewsRubric { NewsRubricId = 1 } },
                 CreateDateTime = DateTime.Now,
                 UpdateDateTime = DateTime.Now
-            });
+            });            
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -101,6 +102,7 @@ namespace RSC.Controllers
                 Title = n.Title,
                 Text = n.Text,
                 MainImagePath = n.MainImage,
+                HomePageImagePath = n.HomePageImage,
                 CreateDateTime = n.CreateDateTime,
                 SelectedRubrics = n.ListObjectNewsNewsRubric.Select(l => l.NewsRubricId).ToList(),
                 NewsRubrics = new SelectList(NewsRubricsViewModel, "Id", "Name", n.ListObjectNewsNewsRubric.Select(l => l.NewsRubricId).ToList())
@@ -130,6 +132,7 @@ namespace RSC.Controllers
             news.Text = model.Text;
             news.CreateDateTime = model.CreateDateTime;
             news.MainImage = await SaveFile(model.MainImage, news.Id.ToString()) ?? news.MainImage;
+            news.HomePageImage = SaveImageFromBase64String(model.HomePageImage, news.Id.ToString());
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -142,7 +145,8 @@ namespace RSC.Controllers
                 Id = n.Id,
                 Title = n.Title,
                 Text = n.Text,
-                MainImagePath = n.MainImage
+                MainImagePath = n.MainImage,
+                HomePageImagePath = n.HomePageImage,
             }).FirstOrDefault();
             return View(viewmodel);
         }
@@ -156,7 +160,8 @@ namespace RSC.Controllers
                 Id = n.Id,
                 Title = n.Title,
                 Text = n.Text,
-                MainImagePath = n.MainImage
+                MainImagePath = n.MainImage,
+                HomePageImagePath = n.HomePageImage,
             }).FirstOrDefault();
             return View(viewmodel);
         }
@@ -183,7 +188,7 @@ namespace RSC.Controllers
                     Id = n.ObjectNews.Id,
                     Text = n.ObjectNews.Text,
                     Title = n.ObjectNews.Title,
-                    AdditionalImagePath = n.ObjectNews.AdditionalImages,
+                    HomePageImagePath = n.ObjectNews.HomePageImage,
                     MainImagePath = n.ObjectNews.MainImage,
                     CreateDateTime = n.ObjectNews.CreateDateTime
                 }).OrderByDescending(n => n.CreateDateTime).Take(pageSize).ToList(),
@@ -204,7 +209,7 @@ namespace RSC.Controllers
                 Id = n.ObjectNews.Id,
                 Text = n.ObjectNews.Text,
                 Title = n.ObjectNews.Title,
-                AdditionalImagePath = n.ObjectNews.AdditionalImages,
+                HomePageImagePath = n.ObjectNews.HomePageImage,
                 MainImagePath = n.ObjectNews.MainImage,
                 CreateDateTime = n.ObjectNews.CreateDateTime
             }).OrderByDescending(n => n.CreateDateTime).Take(pageSize).ToList();
@@ -217,7 +222,6 @@ namespace RSC.Controllers
             {
                 string contentType = uploadedFile.ContentType == "image/png" ? ".png" : ".jpg"; 
                 string path = "/images/" + FileName + contentType;
-                // сохраняем файл в папку images в каталоге wwwroot
                 using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                 {
                     await uploadedFile.CopyToAsync(fileStream);
@@ -226,7 +230,23 @@ namespace RSC.Controllers
             }
             else
             {
-                return null;
+                return String.Empty;
+            }
+        }
+
+        private string SaveImageFromBase64String (string base64String, string imageName)
+        {
+            if (!string.IsNullOrEmpty(base64String))
+            {
+                string[] words = base64String.Split(new char[] { ';', ',' });
+                byte[] byteBuffer = Convert.FromBase64String(words[2]);
+                string path = $"/images/HomePageImages/{imageName}.png";
+                System.IO.File.WriteAllBytes(_appEnvironment.WebRootPath + path, byteBuffer);
+                return path;
+            }
+            else
+            {
+                return String.Empty;
             }
         }
     }

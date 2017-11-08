@@ -15,7 +15,7 @@ namespace RSC.Models.NewsViewModels
         public string Title { get; set; }
         public string Text { get; set; }
         public string MainImage { get; set; }
-        public string AdditionalImages { get; set; }
+        public string HomePageImage { get; set; }
         public DateTime CreateDateTime { get; set; }
         public DateTime UpdateDateTime { get; set; }
         public List<ObjectNewsNewsRubric> ListObjectNewsNewsRubric { get; set; }
