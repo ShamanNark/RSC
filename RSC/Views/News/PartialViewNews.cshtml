@@ -1,6 +1,7 @@
-﻿@model List<RSC.Models.NewsViewModels.DetailsNewsViewModel>
+﻿@model RSC.Models.NewsViewModels.IndexNewsViewModel
+@addTagHelper "*, RSC"
 
-@foreach (var item in Model)
+@foreach (var item in Model.News)
 {
     <div class="col-md-6 blocknews" >
         <div class="borderblock col-md-12">
@@ -15,4 +16,9 @@
 }
 
 <br />
-@*Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount*@
+<div class="col-md-12">
+    <page-link partial id="pagination" page-model="@Model.PageViewModel"
+               page-url-startdatetime="@Model.StartDateTime"
+               page-url-stopdatetime="@Model.StopDateTime">
+    </page-link>
+</div>

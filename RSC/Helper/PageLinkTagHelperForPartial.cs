@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace RSC.Helper
 {
-    [HtmlTargetElement(Attributes = "action")]
-    public class PageLinkTagHelper : TagHelper
+    [HtmlTargetElement(Attributes = "partial")]
+    public class PageLinkTagHelperForPartial : TagHelper
     {
         private IUrlHelperFactory urlHelperFactory;
-        public PageLinkTagHelper(IUrlHelperFactory helperFactory)
+        public PageLinkTagHelperForPartial(IUrlHelperFactory helperFactory)
         {
             urlHelperFactory = helperFactory;
         }
@@ -68,8 +68,8 @@ namespace RSC.Helper
             else
             {
                 PageUrlValues["page"] = pageNumber;
-                link.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
             }
+            link.MergeAttribute("value", pageNumber.ToString());
             link.InnerHtml.Append(pageNumber.ToString());
             item.InnerHtml.AppendHtml(link);
             return item;

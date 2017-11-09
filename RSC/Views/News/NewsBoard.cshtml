@@ -112,7 +112,7 @@
 </div>
 
 <div class="partialViewNews">
-    @Html.Partial("PartialViewNews", Model.News)
+    @Html.Partial("PartialViewNews", Model)
 </div>
 
 @section Scripts
@@ -120,11 +120,11 @@
     <script src="~/js/moment-with-locales.js"></script>
     <script src="~/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <script tyoe="text/javascript">
-    var GetNews = function () {
-    var tab = $(".tabs-controllers__item-active").attr('data-value');
-    $.ajax({
-    method: "POST",
-    url: '@Url.Action("GetNewsByRubricId","News")',
+        var GetNews = function () {
+            var tab = $(".tabs-controllers__item-active").attr('data-value');
+            $.ajax({
+                method: "POST",
+                url: '@Url.Action("GetNewsByRubricId","News")',
                 data: { id: tab, startDateTime: $("#StartDateTime").find("input").val(), stopDateTime: $("#StopDateTime").find("input").val() },
                 dataType: "html"
             }).success(function(data) {
@@ -156,13 +156,38 @@
                 GetNews();
             });
 
+        var paginationAction = function () {
+            $("#pagination a").click(function () {
+                var tab = $(".tabs-controllers__item-active").attr('data-value');
+                $.ajax({
+                    method: "POST",
+                    url: '@Url.Action("GetNewsByRubricId","News")',
+                    data: {
+                        id: tab,
+                        startDateTime: $("#StartDateTime").find("input").val(),
+                        stopDateTime: $("#StopDateTime").find("input").val(),
+                        page: this.textContent
+                    },
+                    dataType: "html"
+                }).success(function (data) {
+                    $(".partialViewNews").html(data);
+                    paginationAction();
+                }).error(function () {
+
+                });
+            });
+
+        }
+
         $(function() {
             $(".newslink").click(function() {
                 $('.newslink').removeClass('tabs-controllers__item-active');
                 $(this).addClass('tabs-controllers__item-active');
                 GetNews();
             });
+
+            paginationAction();
         });
-    
+
     </script>
 }

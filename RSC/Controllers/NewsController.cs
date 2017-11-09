@@ -178,12 +178,13 @@ namespace RSC.Controllers
 
 
         [HttpGet]
-        public IActionResult NewsBoard(string newsRubricm, int? pagenum)
+        public IActionResult NewsBoard(int newsRubricId = 1, int page = 1)
         {
-            int pageNumber = (pagenum ?? 1);       
+            var dbQuery = db.ListObjectNewsNewsRubric.Where(l => l.NewsRubricId == newsRubricId).AsQueryable();
+            var count = dbQuery.Count();
             var viewModel = new IndexNewsViewModel
             {
-                News = db.ListObjectNewsNewsRubric.Where(l => l.NewsRubricId == 1).Select(n => new DetailsNewsViewModel
+                News = dbQuery.Select(n => new DetailsNewsViewModel
                 {
                     Id = n.ObjectNews.Id,
                     Text = n.ObjectNews.Text,
@@ -191,29 +192,39 @@ namespace RSC.Controllers
                     HomePageImagePath = n.ObjectNews.HomePageImage,
                     MainImagePath = n.ObjectNews.MainImage,
                     CreateDateTime = n.ObjectNews.CreateDateTime
-                }).OrderByDescending(n => n.CreateDateTime).Take(pageSize).ToList(),
+                }).OrderByDescending(n => n.CreateDateTime).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
                 NewsRubrics = db.NewsRubrics.Select(n => new Models.NewsRubricsViewModels.NewsRubricViewModel
                 {
                     Id = n.Id,
                     Name = n.Name
-                }).ToList()
+                }).ToList(),
+                PageViewModel = new PageViewModel(count, page, pageSize)
             };
+
             return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult GetNewsByRubricId (int id, DateTime startDateTime, DateTime stopDateTime)
+        public IActionResult GetNewsByRubricId (int id, DateTime startDateTime, DateTime stopDateTime, int page = 1)
         {
-            var model = db.ListObjectNewsNewsRubric.Where(l => l.NewsRubricId == id).Where(l => l.ObjectNews.CreateDateTime >= startDateTime && l.ObjectNews.CreateDateTime <= stopDateTime).Select(n => new DetailsNewsViewModel
+            var dbQuery = db.ListObjectNewsNewsRubric.Where(l => l.NewsRubricId == id)
+                .Where(l => l.ObjectNews.CreateDateTime >= startDateTime && l.ObjectNews.CreateDateTime <= stopDateTime)
+                .AsQueryable();
+            var count = dbQuery.Count();
+            var viewModel = new IndexNewsViewModel
             {
-                Id = n.ObjectNews.Id,
-                Text = n.ObjectNews.Text,
-                Title = n.ObjectNews.Title,
-                HomePageImagePath = n.ObjectNews.HomePageImage,
-                MainImagePath = n.ObjectNews.MainImage,
-                CreateDateTime = n.ObjectNews.CreateDateTime
-            }).OrderByDescending(n => n.CreateDateTime).Take(pageSize).ToList();
-            return PartialView("PartialViewNews", model);
+                News = dbQuery.Select(n => new DetailsNewsViewModel
+                {
+                    Id = n.ObjectNews.Id,
+                    Text = n.ObjectNews.Text,
+                    Title = n.ObjectNews.Title,
+                    HomePageImagePath = n.ObjectNews.HomePageImage,
+                    MainImagePath = n.ObjectNews.MainImage,
+                    CreateDateTime = n.ObjectNews.CreateDateTime
+                }).OrderByDescending(n => n.CreateDateTime).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                PageViewModel = new PageViewModel(count, page, pageSize)
+            };
+            return PartialView("PartialViewNews", viewModel);
         }
 
         private async Task<string> SaveFile(IFormFile uploadedFile, string FileName)
