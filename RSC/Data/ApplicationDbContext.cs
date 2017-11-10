@@ -24,6 +24,10 @@ namespace RSC.Data
         public DbSet<ObjectNews> News { get; set; }
         public DbSet<NewsRubric> NewsRubrics { get; set; }
         public DbSet<ObjectNewsNewsRubric> ListObjectNewsNewsRubric { get; set;}
+        public DbSet<Student> Students { get; set; }
+        public DbSet<StudentsCouncil> StudentsCouncils { get; set; }
+        public DbSet<Assessor> Asssessors { get; set; }
+        public DbSet<University> Universities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

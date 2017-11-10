@@ -13,9 +13,10 @@ using System;
 namespace RSC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171110211424_AddTableAssessors")]
+    partial class AddTableAssessors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,30 +245,6 @@ namespace RSC.Data.Migrations
                     b.ToTable("StudentsCouncils");
                 });
 
-            modelBuilder.Entity("RSC.Data.DbModels.University", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserId1");
-
-                    b.Property<string>("JobPhoneNumber");
-
-                    b.Property<int>("RegionId");
-
-                    b.Property<string>("UniversityForm");
-
-                    b.Property<string>("UniversityName");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId1");
-
-                    b.ToTable("Universities");
-                });
-
             modelBuilder.Entity("RSC.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -415,13 +392,6 @@ namespace RSC.Data.Migrations
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.StudentsCouncil", b =>
-                {
-                    b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId1");
-                });
-
-            modelBuilder.Entity("RSC.Data.DbModels.University", b =>
                 {
                     b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()

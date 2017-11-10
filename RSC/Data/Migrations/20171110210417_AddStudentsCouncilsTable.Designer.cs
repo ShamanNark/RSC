@@ -13,9 +13,10 @@ using System;
 namespace RSC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171110210417_AddStudentsCouncilsTable")]
+    partial class AddStudentsCouncilsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,36 +130,6 @@ namespace RSC.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RSC.Data.DbModels.Assessor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserId1");
-
-                    b.Property<bool>("ExperienceOfParticipation");
-
-                    b.Property<string>("Job");
-
-                    b.Property<string>("JobPhoneNumber");
-
-                    b.Property<string>("JobPosition");
-
-                    b.Property<string>("MiddleName");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Surname");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId1");
-
-                    b.ToTable("Asssessors");
-                });
-
             modelBuilder.Entity("RSC.Data.DbModels.NewsRubric", b =>
                 {
                     b.Property<int>("Id")
@@ -242,30 +213,6 @@ namespace RSC.Data.Migrations
                     b.HasIndex("ApplicationUserId1");
 
                     b.ToTable("StudentsCouncils");
-                });
-
-            modelBuilder.Entity("RSC.Data.DbModels.University", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserId1");
-
-                    b.Property<string>("JobPhoneNumber");
-
-                    b.Property<int>("RegionId");
-
-                    b.Property<string>("UniversityForm");
-
-                    b.Property<string>("UniversityName");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId1");
-
-                    b.ToTable("Universities");
                 });
 
             modelBuilder.Entity("RSC.Models.ApplicationUser", b =>
@@ -387,13 +334,6 @@ namespace RSC.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("RSC.Data.DbModels.Assessor", b =>
-                {
-                    b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId1");
-                });
-
             modelBuilder.Entity("RSC.Data.DbModels.ObjectNewsNewsRubric", b =>
                 {
                     b.HasOne("RSC.Data.DbModels.NewsRubric", "NewsRubric")
@@ -415,13 +355,6 @@ namespace RSC.Data.Migrations
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.StudentsCouncil", b =>
-                {
-                    b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId1");
-                });
-
-            modelBuilder.Entity("RSC.Data.DbModels.University", b =>
                 {
                     b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()

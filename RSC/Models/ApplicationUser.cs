@@ -9,5 +9,13 @@ namespace RSC.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUserStatus Status { get; set; }
+    }
+
+    public enum ApplicationUserStatus
+    {
+        Submitted,
+        Approved,
+        Rejected
     }
 }
