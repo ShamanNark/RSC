@@ -13,8 +13,8 @@ using System;
 namespace RSC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171112181601_DeleteUniversityDatas")]
-    partial class DeleteUniversityDatas
+    [Migration("20171112182600_DeleteUserFieldsFromUniversityDataTable")]
+    partial class DeleteUserFieldsFromUniversityDataTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -259,6 +259,26 @@ namespace RSC.Data.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Universities");
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.UniversityData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("RegionId");
+
+                    b.Property<string>("UniversityAddress");
+
+                    b.Property<string>("UniversityName");
+
+                    b.Property<string>("UniversityShortName");
+
+                    b.Property<string>("UniversityWebSite");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UniversityDatas");
                 });
 
             modelBuilder.Entity("RSC.Models.ApplicationUser", b =>

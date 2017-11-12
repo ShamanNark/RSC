@@ -15,9 +15,6 @@ namespace RSC.Data.DbModels
         public string UniversityShortName { get; set; }
         public string UniversityName { get; set; }
         public string UniversityAddress { get; set; }
-        public string UniversityWebSite { get; set; }
-
-        public int ApplicationUserId { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public string UniversityWebSite { get; set; }        
     }
 }
