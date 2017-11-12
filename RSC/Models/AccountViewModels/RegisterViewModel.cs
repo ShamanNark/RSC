@@ -23,5 +23,7 @@ namespace RSC.Models.AccountViewModels
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public string ApplicationUserId { get; set; }
     }
 }

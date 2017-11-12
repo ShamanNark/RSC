@@ -1,22 +1,17 @@
 ﻿@model RSC.Models.RegisterViewModels.RegisterStudentViewModel
 
 @{
-    ViewData["Title"] = "RegisterStudent";
+    ViewData["Title"] = "RegisterStudentCouncil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Регитрация студента</h2>
+<h2>Регистрация СО</h2>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        <form asp-action="RegisterStudentCouncil" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>            
             <div class="form-group">
                 <label asp-for="Surname" class="control-label"></label>
                 <input asp-for="Surname" class="form-control" />
@@ -58,12 +53,17 @@
                 <span asp-validation-for="EducationalOrganizationId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword"></label>
+                <label asp-for="ConfirmPassword" class="control-label"></label>
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
@@ -81,3 +81,5 @@
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
+
+

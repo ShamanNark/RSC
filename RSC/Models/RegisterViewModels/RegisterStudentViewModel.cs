@@ -35,6 +35,5 @@ namespace RSC.Models.RegisterViewModels
         [Required]
         [Display(Name = "Институт")]
         public int EducationalOrganizationId { get; set; }
-        public string ApplicationUserId { get; set; }
     }
 }

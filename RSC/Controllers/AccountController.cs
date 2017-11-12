@@ -41,7 +41,10 @@ namespace RSC.Controllers
             _emailSender = emailSender;
             _logger = logger;
             db = context;
-            Mapper.Initialize(cfg => cfg.CreateMap<RegisterStudentViewModel, Student>());
+            Mapper.Initialize(cfg => { cfg.CreateMap<RegisterAssessorViewModel, Assessor>();
+                                       cfg.CreateMap<RegisterStudentViewModel, Student>();
+                                       cfg.CreateMap<RegisterStudentCouncilViewModel, StudentsCouncil>();
+            });
         }
 
         [TempData]
@@ -267,33 +270,83 @@ namespace RSC.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterStudent(RegisterStudentViewModel model, string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
+        {           
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    model.ApplicationUserId = user.Id;
-                    RegisterFactory(model);
-
-                    return RedirectToLocal(returnUrl);
-                }
-                AddErrors(result);
+                return await RegisterApplicationUser(model);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterAssessor(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterAssessor(RegisterAssessorViewModel model, string returnUrl = null)
+        {
+            if (ModelState.IsValid)
+            {
+               return await RegisterApplicationUser(model);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterStudentCouncil(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterStudentCouncil(RegisterStudentCouncilViewModel model, string returnUrl = null)
+        {
+            if (ModelState.IsValid)
+            {
+                return await RegisterApplicationUser(model);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterUniversiy(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterUniversiy(RegisterUniversityViewModel model, string returnUrl = null)
+        {
+            if (ModelState.IsValid)
+            {
+                return await RegisterApplicationUser(model);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -537,17 +590,23 @@ namespace RSC.Controllers
 
         private void RegisterAssessorDb(RegisterAssessorViewModel model)
         {
-            throw new NotImplementedException();
+            var assessorDb = Mapper.Map<Assessor>(model);
+            db.Asssessors.Add(assessorDb);
+            db.SaveChangesAsync();
         }
 
         private void RegisterUniversityDb(RegisterUniversityViewModel model)
         {
-            throw new NotImplementedException();
+            var universityDb = Mapper.Map<University>(model);
+            db.Universities.Add(universityDb);
+            db.SaveChangesAsync();
         }
 
         private void RegisterStudentCouncilDb(RegisterStudentCouncilViewModel model)
         {
-            throw new NotImplementedException();
+            var studentCouncilDb = Mapper.Map<StudentsCouncil>(model);
+            db.StudentsCouncils.Add(studentCouncilDb);
+            db.SaveChangesAsync();
         }
 
         private void RegisterStudentDb(RegisterStudentViewModel model)
@@ -555,6 +614,29 @@ namespace RSC.Controllers
             var studentDb = Mapper.Map<Student>(model);
             db.Students.Add(studentDb);
             db.SaveChangesAsync();            
+        }
+
+        private async Task<IActionResult> RegisterApplicationUser<T>(T model) where T: RegisterViewModel
+        {
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User created a new account with password.");
+
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                _logger.LogInformation("User created a new account with password.");
+                model.ApplicationUserId = user.Id;
+                RegisterFactory(model);
+                return RedirectToAction("Login");
+            }
+
+            AddErrors(result);
+            return View();
         }
 
         #endregion
