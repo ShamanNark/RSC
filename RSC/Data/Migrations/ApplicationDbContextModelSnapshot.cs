@@ -260,6 +260,32 @@ namespace RSC.Data.Migrations
                     b.ToTable("Universities");
                 });
 
+            modelBuilder.Entity("RSC.Data.DbModels.UniversityData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ApplicationUserId");
+
+                    b.Property<string>("ApplicationUserId1");
+
+                    b.Property<int>("RegionId");
+
+                    b.Property<string>("UniversityAddress");
+
+                    b.Property<string>("UniversityName");
+
+                    b.Property<string>("UniversityShortName");
+
+                    b.Property<string>("UniversityWebSite");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId1");
+
+                    b.ToTable("UniversityDatas");
+                });
+
             modelBuilder.Entity("RSC.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -418,6 +444,13 @@ namespace RSC.Data.Migrations
                     b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.UniversityData", b =>
+                {
+                    b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId1");
                 });
 #pragma warning restore 612, 618
         }

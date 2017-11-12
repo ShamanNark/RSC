@@ -28,6 +28,7 @@ namespace RSC.Data
         public DbSet<StudentsCouncil> StudentsCouncils { get; set; }
         public DbSet<Assessor> Asssessors { get; set; }
         public DbSet<University> Universities { get; set; }
+        public DbSet<UniversityData> UniversityDatas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
