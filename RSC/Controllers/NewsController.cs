@@ -136,7 +136,7 @@ namespace RSC.Controllers
                 news.MainImage = await SaveFile(model.MainImage, news.Id.ToString()) ?? news.MainImage;
             }
 
-            if (string.IsNullOrEmpty(model.HomePageImage))
+            if (!string.IsNullOrEmpty(model.HomePageImage))
             {
                 news.HomePageImage = SaveImageFromBase64String(model.HomePageImage, news.Id.ToString());
             }

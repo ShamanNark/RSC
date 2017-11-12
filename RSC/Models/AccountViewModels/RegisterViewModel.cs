@@ -14,11 +14,13 @@ namespace RSC.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Повторить пароль")]
+        [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }

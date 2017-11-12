@@ -13,6 +13,10 @@ using Microsoft.Extensions.Options;
 using RSC.Models;
 using RSC.Models.AccountViewModels;
 using RSC.Services;
+using RSC.Models.RegisterViewModels;
+using RSC.Data;
+using RSC.Data.DbModels;
+using AutoMapper;
 
 namespace RSC.Controllers
 {
@@ -24,17 +28,20 @@ namespace RSC.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext db;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger, ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            db = context;
+            Mapper.Initialize(cfg => cfg.CreateMap<RegisterStudentViewModel, Student>());
         }
 
         [TempData]
@@ -239,6 +246,46 @@ namespace RSC.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
+                    return RedirectToLocal(returnUrl);
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterStudent(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterStudent(RegisterStudentViewModel model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User created a new account with password.");
+
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation("User created a new account with password.");
+                    model.ApplicationUserId = user.Id;
+                    RegisterFactory(model);
+
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
@@ -465,6 +512,49 @@ namespace RSC.Controllers
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
+        }
+
+        private void RegisterFactory(object T)
+        {
+            switch (T.GetType().Name)
+            {
+                case "RegisterStudentViewModel":
+                    RegisterStudentDb(T as RegisterStudentViewModel);
+                    break;
+                case "RegisterStudentCouncilViewModel":
+                    RegisterStudentCouncilDb(T as RegisterStudentCouncilViewModel);
+                    break;
+                case "RegisterUniversityViewModel":
+                    RegisterUniversityDb(T as RegisterUniversityViewModel);
+                    break;
+                case "RegisterAssessorViewModel":
+                    RegisterAssessorDb(T as RegisterAssessorViewModel);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void RegisterAssessorDb(RegisterAssessorViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RegisterUniversityDb(RegisterUniversityViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RegisterStudentCouncilDb(RegisterStudentCouncilViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RegisterStudentDb(RegisterStudentViewModel model)
+        {
+            var studentDb = Mapper.Map<Student>(model);
+            db.Students.Add(studentDb);
+            db.SaveChangesAsync();            
         }
 
         #endregion

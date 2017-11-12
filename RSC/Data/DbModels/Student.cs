@@ -18,7 +18,7 @@ namespace RSC.Data.DbModels
         public int CategoryId { get; set; }
         public int EducationalOrganizationId { get; set; }
 
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; } 
     }
 }

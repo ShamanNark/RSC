@@ -17,7 +17,7 @@ namespace RSC.Data.DbModels
         public string JobPhoneNumber { get; set; }
         public bool ExperienceOfParticipation { get; set; }
 
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }
