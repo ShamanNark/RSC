@@ -336,7 +336,7 @@ namespace RSC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterUniversiy(RegisterUniversityViewModel model, string returnUrl = null)
+        public async Task<IActionResult> RegisterUniversity(RegisterUniversityViewModel model, string returnUrl = null)
         {
             if (ModelState.IsValid)
             {
