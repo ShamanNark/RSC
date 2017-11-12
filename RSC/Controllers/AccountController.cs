@@ -44,7 +44,8 @@ namespace RSC.Controllers
             Mapper.Initialize(cfg => { cfg.CreateMap<RegisterAssessorViewModel, Assessor>();
                                        cfg.CreateMap<RegisterStudentViewModel, Student>();
                                        cfg.CreateMap<RegisterStudentCouncilViewModel, StudentsCouncil>();
-            });
+                                       cfg.CreateMap<RegisterUniversityViewModel, University>();
+                                     });
         }
 
         [TempData]
@@ -327,7 +328,7 @@ namespace RSC.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterUniversiy(string returnUrl = null)
+        public IActionResult RegisterUniversity(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -632,7 +633,7 @@ namespace RSC.Controllers
                 _logger.LogInformation("User created a new account with password.");
                 model.ApplicationUserId = user.Id;
                 RegisterFactory(model);
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Account");
             }
 
             AddErrors(result);
