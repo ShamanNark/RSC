@@ -131,8 +131,16 @@ namespace RSC.Controllers
             news.Title = model.Title;
             news.Text = model.Text;
             news.CreateDateTime = model.CreateDateTime;
-            news.MainImage = await SaveFile(model.MainImage, news.Id.ToString()) ?? news.MainImage;
-            news.HomePageImage = SaveImageFromBase64String(model.HomePageImage, news.Id.ToString());
+            if (model.MainImage != null)
+            {
+                news.MainImage = await SaveFile(model.MainImage, news.Id.ToString()) ?? news.MainImage;
+            }
+
+            if (string.IsNullOrEmpty(model.HomePageImage))
+            {
+                news.HomePageImage = SaveImageFromBase64String(model.HomePageImage, news.Id.ToString());
+            }
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
