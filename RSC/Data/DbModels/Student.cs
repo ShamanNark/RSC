@@ -15,7 +15,7 @@ namespace RSC.Data.DbModels
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
         public int RegionId { get; set; }
-        public int CategoryId { get; set; }
+        public Degrees CategoryId { get; set; }
         public int EducationalOrganizationId { get; set; }
 
         public string ApplicationUserId { get; set; }

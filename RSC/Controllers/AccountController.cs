@@ -227,6 +227,18 @@ namespace RSC.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            ViewBag.Ganders = new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Selected = true, Text = "Мужской", Value = "0"},
+                new SelectListItem { Selected = false, Text = "Женкский", Value = "1"},
+            }, "Value", "Text", 0);
+            ViewBag.Degress = new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Selected = true, Text = "Магистр", Value = "0"},
+                new SelectListItem { Selected = false, Text = "Среднее образование", Value = "1"},
+                new SelectListItem { Selected = false, Text = "Общее образование", Value = "2"},
+            }, "Value", "Text", 0);
+            ViewBag.UniversityDatas = new SelectList(db.UniversityDatas.Select(u => new { Id = u.Id, Name = u.UniversityName }), "Id", "Name");
             return View();
         }
 

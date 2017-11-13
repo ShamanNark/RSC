@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Регистрация";
 }
+<link rel="stylesheet" href="~/bootstrap-multiselect/css/bootstrap-multiselect.css" type="text/css" />
 
 <h2>@ViewData["Title"]</h2>
 
@@ -29,4 +30,19 @@
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script type="text/javascript" src="~/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+    <script>
+        $("#EducationalOrganizationId").multiselect({
+            enableFiltering: true,
+            buttonText: function (options, select) {
+                if (options.length === 0) {
+                    return 'Ничего не выбранно';
+                }
+                if (options.length > 3) {
+                    return 'Выбранно больше 3 институтов';
+                }
+                
+                }
+        });
+    </script>
 }
