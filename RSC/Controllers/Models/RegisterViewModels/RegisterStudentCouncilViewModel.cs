@@ -21,7 +21,7 @@ namespace RSC.Models.RegisterViewModels
         public string MiddleName { get; set; }
         [Required]
         [Display(Name = "Наименование образовательной организации")]
-        public string EducationalOrganization { get; set; }
+        public int EducationalOrganizationIdCouncil { get; set; }
         [Required]
         [Display(Name = "Регион")]
         public int RegionId { get; set; }

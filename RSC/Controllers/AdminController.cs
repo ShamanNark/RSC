@@ -12,5 +12,10 @@ namespace RSC.Controllers
         {
             return View();
         }
+
+        public IActionResult Сonfirmation()
+        {
+            return View();
+        }
     }
 }

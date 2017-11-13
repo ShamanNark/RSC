@@ -32,17 +32,28 @@
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script type="text/javascript" src="~/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
     <script>
-        $("#EducationalOrganizationId").multiselect({
+        $("#EducationalOrganizationId, #EducationalOrganizationIdCouncil").multiselect({
             enableFiltering: true,
             buttonText: function (options, select) {
                 if (options.length === 0) {
                     return 'Ничего не выбранно';
                 }
-                if (options.length > 3) {
-                    return 'Выбранно больше 3 институтов';
+                else if (options.length > 1) {
+                    return 'Выбранно больше 1 элемента';
                 }
-                
+                else {
+                    var labels = [];
+                    options.each(function () {
+                        if ($(this).attr('label') !== undefined) {
+                            labels.push($(this).attr('label'));
+                        }
+                        else {
+                            labels.push($(this).html());
+                        }
+                    });
+                    return labels.join(', ') + '';
                 }
+            }
         });
     </script>
 }
