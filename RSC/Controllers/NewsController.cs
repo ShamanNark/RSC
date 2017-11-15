@@ -201,7 +201,7 @@ namespace RSC.Controllers
                     MainImagePath = n.ObjectNews.MainImage,
                     CreateDateTime = n.ObjectNews.CreateDateTime
                 }).OrderByDescending(n => n.CreateDateTime).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
-                NewsRubrics = db.NewsRubrics.Select(n => new Models.NewsRubricsViewModels.NewsRubricViewModel
+                NewsRubrics = db.NewsRubrics.Select(n => new NewsRubricViewModel
                 {
                     Id = n.Id,
                     Name = n.Name

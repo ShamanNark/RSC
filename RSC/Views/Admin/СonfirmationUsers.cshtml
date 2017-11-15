@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RSC.Models.ApplicationUser>
+﻿@model List<RSC.Controllers.Models.AccountViewModels.ConfirmationUsersViewModel>
 
 @{
     ViewData["Title"] = "СonfirmationUsers";
@@ -11,19 +11,19 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Id)
+                    Id
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.UserName)
+                    Имя 
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Email)
+                    email
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                    номер телефона
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Status)
+                    Статут
                 </th>
             <th></th>
         </tr>
@@ -43,7 +43,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
-            <td>
+            <td>s
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>

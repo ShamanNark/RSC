@@ -7,6 +7,8 @@ using RSC.Data;
 using RSC.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using AutoMapper;
+using RSC.Controllers.Models.AccountViewModels;
 
 namespace RSC.Controllers
 {
@@ -18,6 +20,13 @@ namespace RSC.Controllers
         {
             db = context;
             _userManager = userManager;
+            Mapper.Initialize(cfg => {
+                        cfg.CreateMap<ApplicationUser, ConfirmationUsersViewModel>();
+                        cfg.CreateMap<Data.DbModels.Student, AdditionInfo>();
+                        cfg.CreateMap<Data.DbModels.StudentsCouncil, AdditionInfo>();
+                        cfg.CreateMap<Data.DbModels.University, AdditionInfo>();
+                        cfg.CreateMap<Data.DbModels.Assessor, AdditionInfo>();
+                    });
         }
         public IActionResult Index()
         {
@@ -26,8 +35,15 @@ namespace RSC.Controllers
 
         public IActionResult СonfirmationUsers()
         {
+            var model = new List<ConfirmationUsersViewModel>();
             var users = _userManager.Users.ToList();
-            return View(users);
+            foreach(var user in users)
+            {
+                var item = TypingUser(user);
+                model.Add(item);                
+            }           
+            
+            return View(model);
         }
 
         [HttpGet]
@@ -40,7 +56,7 @@ namespace RSC.Controllers
                 new SelectListItem { Selected = false, Text = "Потвержденно", Value = "1"},
                 new SelectListItem { Selected = false, Text = "Отказанно", Value = "2"},
             }, "Value", "Text", 0);
-            return View(user);
+            return View(TypingUser(user));
         }
 
         [HttpPost]
@@ -50,6 +66,37 @@ namespace RSC.Controllers
             userdb.Status = user.Status;
             await db.SaveChangesAsync();
             return RedirectToAction("СonfirmationUsers", "Admin");
+        }
+
+        private ConfirmationUsersViewModel TypingUser(ApplicationUser user)
+        {
+            var item = Mapper.Map<ApplicationUser, ConfirmationUsersViewModel> (user);
+            switch (user.UserType)
+            {
+                case ApplicationUserTypes.Student:
+                    var studentdb = db.Students.Where(student => student.ApplicationUserId == user.Id).FirstOrDefault();
+                    item.AdditionInfoType = "Student";
+                    item.AdditionInfo = Mapper.Map<AdditionInfo>(studentdb);
+                    break;
+                case ApplicationUserTypes.Assessor:
+                    var assessordb = db.Asssessors.Where(assessor => assessor.ApplicationUserId == user.Id).FirstOrDefault();
+                    item.AdditionInfoType = "Assessor";
+                    item.AdditionInfo = Mapper.Map<AdditionInfo>(assessordb);
+                    break;
+                case ApplicationUserTypes.StudentCouncil:
+                    var councildb = db.StudentsCouncils.Where(council => council.ApplicationUserId == user.Id).FirstOrDefault();
+                    item.AdditionInfoType = "StudentCouncil";
+                    item.AdditionInfo = Mapper.Map<AdditionInfo>(councildb);
+                    break;
+                case ApplicationUserTypes.University:
+                    var universitydb = db.Universities.Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
+                    item.AdditionInfoType = "University";
+                    item.AdditionInfo = Mapper.Map<AdditionInfo>(universitydb);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            return item;
         }
     }
 }

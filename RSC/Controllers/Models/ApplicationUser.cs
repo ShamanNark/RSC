@@ -10,6 +10,7 @@ namespace RSC.Models
     public class ApplicationUser : IdentityUser
     {
         public ApplicationUserStatus Status { get; set; }
+        public ApplicationUserTypes UserType { get; set; }
     }
 
     public enum ApplicationUserStatus
@@ -17,5 +18,13 @@ namespace RSC.Models
         Submitted,
         Approved,
         Rejected
+    }
+
+    public enum ApplicationUserTypes
+    {
+        Assessor,
+        Student,
+        StudentCouncil,
+        University
     }
 }
