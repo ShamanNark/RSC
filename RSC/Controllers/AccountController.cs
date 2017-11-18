@@ -232,6 +232,8 @@ namespace RSC.Controllers
                 new SelectListItem { Selected = true, Text = "Мужской", Value = "0"},
                 new SelectListItem { Selected = false, Text = "Женкский", Value = "1"},
             }, "Value", "Text", 0);
+            ViewBag.Regions = new SelectList(db.Regions.Select(b => new { Id = b.Id, Name = b.RegionName }), "Id", "Name");
+          
             ViewBag.Degress = new SelectList(new List<SelectListItem>
             {
                 new SelectListItem { Selected = true, Text = "Магистр", Value = "0"},

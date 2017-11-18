@@ -14,6 +14,8 @@ namespace RSC.Data.DbModels
         public string UniversityName { get; set; }
         public string JobPhoneNumber { get; set; }
 
+        public virtual Region Region { get; set; }
+
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
     }

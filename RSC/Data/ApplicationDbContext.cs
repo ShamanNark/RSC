@@ -29,6 +29,7 @@ namespace RSC.Data
         public DbSet<Assessor> Asssessors { get; set; }
         public DbSet<University> Universities { get; set; }
         public DbSet<UniversityData> UniversityDatas { get; set; }
+        public DbSet<Region> Regions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

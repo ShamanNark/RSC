@@ -18,6 +18,8 @@ namespace RSC.Data.DbModels
         public int RegionId { get; set; }
         public Degrees CategoryId { get; set; }
 
+        public virtual Region Region {get; set;}
+
         public int EducationalOrganizationId { get; set; }
         [ForeignKey("EducationalOrganizationId")]
         public virtual UniversityData University { get; set; }

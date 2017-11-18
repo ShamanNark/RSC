@@ -25,4 +25,20 @@
     <Folder Include="wwwroot\images\MainImages\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\css\styles.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="wwwroot\css\styles.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20171118215158_AddedRegions.Designer.cs" />
+    <Compile Remove="Data\Migrations\20171118215158_AddedRegions.cs" />
+    <Compile Remove="Data\Migrations\20171118224921_AddedRegions.Designer.cs" />
+    <Compile Remove="Data\Migrations\20171118224921_AddedRegions.cs" />
+    <Compile Remove="Data\Migrations\20171118225347_AddedRegions.cs" />
+    <Compile Remove="Data\Migrations\20171118225347_AddedRegions.Designer.cs" />
+  </ItemGroup>
 </Project>

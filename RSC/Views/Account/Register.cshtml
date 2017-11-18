@@ -32,7 +32,7 @@
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script type="text/javascript" src="~/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
     <script>
-        $("#EducationalOrganizationId, #EducationalOrganizationIdCouncil").multiselect({
+        $("#EducationalOrganizationId, #EducationalOrganizationIdCouncil, #RegionId").multiselect({
             enableFiltering: true,
             buttonText: function (options, select) {
                 if (options.length === 0) {
