@@ -606,7 +606,9 @@ namespace RSC.Controllers
             var assessorDb = Mapper.Map<Assessor>(model);
             assessorDb.ApplicationUser.UserType = ApplicationUserTypes.Assessor;
             db.Asssessors.Add(assessorDb);
-            db.SaveChangesAsync();
+            db.SaveChanges();
+            assessorDb.ApplicationUser.UserType = ApplicationUserTypes.Assessor;
+            db.SaveChanges();
         }
 
         private void RegisterUniversityDb(RegisterUniversityViewModel model)
@@ -614,7 +616,9 @@ namespace RSC.Controllers
             var universityDb = Mapper.Map<University>(model);
             universityDb.ApplicationUser.UserType = ApplicationUserTypes.University;
             db.Universities.Add(universityDb);
-            db.SaveChangesAsync();
+            db.SaveChanges();
+            universityDb.ApplicationUser.UserType = ApplicationUserTypes.University;
+            db.SaveChanges();
         }
 
         private void RegisterStudentCouncilDb(RegisterStudentCouncilViewModel model)
@@ -622,15 +626,19 @@ namespace RSC.Controllers
             var studentCouncilDb = Mapper.Map<StudentsCouncil>(model);
             studentCouncilDb.ApplicationUser.UserType = ApplicationUserTypes.StudentCouncil;
             db.StudentsCouncils.Add(studentCouncilDb);
-            db.SaveChangesAsync();
+            db.SaveChanges();
+            studentCouncilDb.ApplicationUser.UserType = ApplicationUserTypes.StudentCouncil;
+            db.SaveChanges();
+
         }
 
         private void RegisterStudentDb(RegisterStudentViewModel model)
         {
             var studentDb = Mapper.Map<Student>(model);
-            studentDb.ApplicationUser.UserType = ApplicationUserTypes.Student;
             db.Students.Add(studentDb);
-            db.SaveChangesAsync();            
+            db.SaveChanges();
+            studentDb.ApplicationUser.UserType = ApplicationUserTypes.Student;
+            db.SaveChanges();
         }
 
         private async Task<IActionResult> RegisterApplicationUser<T>(T model) where T: RegisterViewModel
