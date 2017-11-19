@@ -14,6 +14,8 @@ namespace RSC.Data.DbModels
         public string MiddleName { get; set; }
         public string EducationalOrganization { get; set; }
         public int RegionId { get; set; }
+        public virtual Region Region { get; set; }
+
 
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }

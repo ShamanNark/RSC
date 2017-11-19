@@ -22,6 +22,7 @@
 
   .main {
       margin-top: 10px;
+      min-height: 510px;
   }
 
    input,textarea {
@@ -711,6 +712,7 @@ h3{
 
 .footer-logo{
     margin-top: 10px;
+    min-height:66px;
     
     
 }

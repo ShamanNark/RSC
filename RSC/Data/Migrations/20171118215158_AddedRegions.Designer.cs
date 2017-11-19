@@ -13,9 +13,10 @@ using System;
 namespace RSC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171118215158_AddedRegions")]
+    partial class AddedRegions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,7 +185,7 @@ namespace RSC.Data.Migrations
                     b.ToTable("ListObjectNewsNewsRubric");
                 });
 
-            modelBuilder.Entity("RSC.Data.DbModels.Region", b =>
+            modelBuilder.Entity("RSC.Data.DbModels.Regions", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -225,8 +226,6 @@ namespace RSC.Data.Migrations
 
                     b.HasIndex("EducationalOrganizationId");
 
-                    b.HasIndex("RegionId");
-
                     b.ToTable("Students");
                 });
 
@@ -251,8 +250,6 @@ namespace RSC.Data.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("RegionId");
-
                     b.ToTable("StudentsCouncils");
                 });
 
@@ -275,8 +272,6 @@ namespace RSC.Data.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("RegionId");
-
                     b.ToTable("Universities");
                 });
 
@@ -296,8 +291,6 @@ namespace RSC.Data.Migrations
                     b.Property<string>("UniversityWebSite");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RegionId");
 
                     b.ToTable("UniversityDatas");
                 });
@@ -453,11 +446,6 @@ namespace RSC.Data.Migrations
                         .WithMany()
                         .HasForeignKey("EducationalOrganizationId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("RSC.Data.DbModels.Region", "Region")
-                        .WithMany()
-                        .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.StudentsCouncil", b =>
@@ -465,11 +453,6 @@ namespace RSC.Data.Migrations
                     b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("RSC.Data.DbModels.Region", "Region")
-                        .WithMany()
-                        .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.University", b =>
@@ -477,19 +460,6 @@ namespace RSC.Data.Migrations
                     b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("RSC.Data.DbModels.Region", "Region")
-                        .WithMany()
-                        .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RSC.Data.DbModels.UniversityData", b =>
-                {
-                    b.HasOne("RSC.Data.DbModels.Region", "Region")
-                        .WithMany()
-                        .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
