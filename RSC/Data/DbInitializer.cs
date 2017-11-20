@@ -9,12 +9,41 @@ namespace RSC.Data
         public static void Initialize(ApplicationDbContext context)
         {
             context.Database.EnsureCreated();
+            // Look for any students.
+            if (context.Regions.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var regiondata = new Region[]
+            {
+                new Region{Id=1, RegionName="Регион 1"},
+                new Region{Id=2, RegionName="Регион 2"},
+                new Region{Id=3, RegionName="Регион 3"},
+                new Region{Id=4, RegionName="Регион 4"},
+                new Region{Id=5, RegionName="Регион 5"},
+                new Region{Id=6, RegionName="Регион 6"},
+                new Region{Id=7, RegionName="Регион 7"},
+                new Region{Id=8, RegionName="Регион 8"},
+                new Region{Id=9, RegionName="Регион 9"},
+                new Region{Id=10, RegionName="Регион 10"}
+            };
+
+            foreach (Region s in regiondata)
+            {
+                context.Regions.Add(s);
+            }
+            context.SaveChanges();
+
 
             // Look for any students.
             if (context.UniversityDatas.Any())
             {
                 return;   // DB has been seeded
             }
+
+
+
 
             var universitydatas = new UniversityData[]
             {
