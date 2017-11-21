@@ -27,6 +27,10 @@
             {
                 <li><a href="@Url.Action("Index","Admin")">Админ панель</a></li>
             }
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li><a href="@Url.Action("Index","PrivateOffice")">Личный кабнет</a></li>
+            }
             <li> <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
                     
                      <button type="submit">ВЫЙТИ</button>
