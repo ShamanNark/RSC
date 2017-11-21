@@ -17,6 +17,7 @@ using RSC.Models.RegisterViewModels;
 using RSC.Data;
 using RSC.Data.DbModels;
 using AutoMapper;
+using RSC.Controllers.Models.AccountViewModels;
 
 namespace RSC.Controllers
 {
@@ -240,7 +241,13 @@ namespace RSC.Controllers
                 new SelectListItem { Selected = false, Text = "Среднее образование", Value = "1"},
                 new SelectListItem { Selected = false, Text = "Общее образование", Value = "2"},
             }, "Value", "Text", 0);
-            ViewBag.UniversityDatas = new SelectList(db.UniversityDatas.Select(u => new { Id = u.Id, Name = u.UniversityName }), "Id", "Name");
+            ViewBag.UniversityDatas = db.UniversityDatas.Select(u => new UniversityDatasViewModel
+            {
+                Id = u.Id,
+                Name = u.UniversityName,
+                ShortName = u.UniversityShortName
+            }).ToList();
+           
             return View();
         }
 

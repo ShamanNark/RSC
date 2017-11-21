@@ -32,9 +32,10 @@
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script type="text/javascript" src="~/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
     <script>
-        $(".multiselect").multiselect({
+        $(".singleselect").multiselect({
             enableFiltering: true,
-            buttonContainer: '<div class="col-md-4" />'
+            buttonContainer: '<div/>',
+            enableCaseInsensitiveFiltering: true,
             buttonText: function (options, select) {
                 if (options.length === 0) {
                     return 'Ничего не выбранно';

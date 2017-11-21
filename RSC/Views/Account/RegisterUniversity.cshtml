@@ -1,4 +1,5 @@
-﻿@model RSC.Models.RegisterViewModels.RegisterUniversityViewModel
+﻿@using RSC.Controllers.Models.AccountViewModels
+@model RSC.Models.RegisterViewModels.RegisterUniversityViewModel
 
 @{
     ViewData["Title"] = "RegisterUniversiy";
@@ -22,9 +23,18 @@
                 <span asp-validation-for="UniversityForm" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UniversityName" class="control-label"></label>
-                <input asp-for="UniversityName" class="form-control" />
-                <span asp-validation-for="UniversityName" class="text-danger"></span>
+                <label asp-for="EducationalOrganizationIdUniversity" class="control-label"></label>
+                @*@Html.DropDownList("EducationalOrganizationId", ViewBag.UniversityDatas as SelectList, htmlAttributes: new { @class= "form-control singleselect" })*@
+                <select id="EducationalOrganizationId" name="EducationalOrganizationIdCouncil" class="form-control singleselect">
+                    @if (ViewBag.UniversityDatas != null)
+                    {
+                        foreach (UniversityDatasViewModel item in @ViewBag.UniversityDatas)
+                        {
+                            <option value="@item.Id">@item.Name , @item.ShortName</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="EducationalOrganizationIdUniversity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="JobPhoneNumber" class="control-label"></label>

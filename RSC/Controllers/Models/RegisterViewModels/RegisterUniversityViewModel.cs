@@ -18,7 +18,7 @@ namespace RSC.Models.RegisterViewModels
         public string UniversityForm { get; set; }
         [Required]
         [Display(Name = "Полное наименование образовательной организации ")]
-        public string UniversityName { get; set; }
+        public int EducationalOrganizationIdUniversity { get; set; }
         [Required]
         [Display(Name = "Телефон рабочий")]
         public string JobPhoneNumber { get; set; }
