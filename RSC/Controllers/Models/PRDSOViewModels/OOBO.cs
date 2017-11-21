@@ -30,7 +30,7 @@ namespace RSC.Controllers.Models.PRDSOViewModels
 
         [Required]
         [Display(Name = "Рабочий телефон")]
-        public string WorkPhone { get; set; }
+        public string JobPhoneNumber { get; set; }
 
         [Required]
         [Display(Name = "Мобильный телефон")]

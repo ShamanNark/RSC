@@ -2,87 +2,31 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Create</h2>
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="RegionId" class="control-label"></label>
-                <input asp-for="RegionId" class="form-control" />
-                <span asp-validation-for="RegionId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OOBO" class="control-label"></label>
-                <input asp-for="OOBO" class="form-control" />
-                <span asp-validation-for="OOBO" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UniversityShortName" class="control-label"></label>
-                <input asp-for="UniversityShortName" class="form-control" />
-                <span asp-validation-for="UniversityShortName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UniversityLongName" class="control-label"></label>
-                <input asp-for="UniversityLongName" class="form-control" />
-                <span asp-validation-for="UniversityLongName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UniversityEngLongName" class="control-label"></label>
-                <input asp-for="UniversityEngLongName" class="form-control" />
-                <span asp-validation-for="UniversityEngLongName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LegalAddress" class="control-label"></label>
-                <input asp-for="LegalAddress" class="form-control" />
-                <span asp-validation-for="LegalAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MailingAddress" class="control-label"></label>
-                <input asp-for="MailingAddress" class="form-control" />
-                <span asp-validation-for="MailingAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="WebSite" class="control-label"></label>
-                <input asp-for="WebSite" class="form-control" />
-                <span asp-validation-for="WebSite" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OGRN" class="control-label"></label>
-                <input asp-for="OGRN" class="form-control" />
-                <span asp-validation-for="OGRN" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="INN" class="control-label"></label>
-                <input asp-for="INN" class="form-control" />
-                <span asp-validation-for="INN" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="KPP" class="control-label"></label>
-                <input asp-for="KPP" class="form-control" />
-                <span asp-validation-for="KPP" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OKPO" class="control-label"></label>
-                <input asp-for="OKPO" class="form-control" />
-                <span asp-validation-for="OKPO" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EGRUL" class="control-label"></label>
-                <input asp-for="EGRUL" class="form-control" />
-                <span asp-validation-for="EGRUL" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#event1" aria-controls="home" role="tab" data-toggle="tab">Описание мероприятия</a></li>
+        <li role="presentation"><a href="#event2" aria-controls="event2" role="tab" data-toggle="tab">Targets</a></li>
+        <li role="presentation"><a href="#event3" aria-controls="event3" role="tab" data-toggle="tab">ФЭО</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="event1">@Html.Partial("DescriptionOfTheEvent", @Model)</div>
+        <div role="tabpanel" class="tab-pane" id="event2">@Html.Partial("Targets", @Model)</div>
+        <div role="tabpanel" class="tab-pane" id="event3">@Html.Partial("FEO", @Model)</div>>
     </div>
+
 </div>
+
 
 <div>
     <a asp-action="Index">Back to List</a>

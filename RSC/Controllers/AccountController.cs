@@ -606,7 +606,6 @@ namespace RSC.Controllers
         private void RegisterAssessorDb(RegisterAssessorViewModel model)
         {
             var assessorDb = Mapper.Map<Assessor>(model);
-            assessorDb.ApplicationUser.UserType = ApplicationUserTypes.Assessor;
             db.Asssessors.Add(assessorDb);
             db.SaveChanges();
             assessorDb.ApplicationUser.UserType = ApplicationUserTypes.Assessor;
@@ -616,7 +615,6 @@ namespace RSC.Controllers
         private void RegisterUniversityDb(RegisterUniversityViewModel model)
         {
             var universityDb = Mapper.Map<University>(model);
-            universityDb.ApplicationUser.UserType = ApplicationUserTypes.University;
             db.Universities.Add(universityDb);
             db.SaveChanges();
             universityDb.ApplicationUser.UserType = ApplicationUserTypes.University;
@@ -626,7 +624,6 @@ namespace RSC.Controllers
         private void RegisterStudentCouncilDb(RegisterStudentCouncilViewModel model)
         {
             var studentCouncilDb = Mapper.Map<StudentsCouncil>(model);
-            studentCouncilDb.ApplicationUser.UserType = ApplicationUserTypes.StudentCouncil;
             db.StudentsCouncils.Add(studentCouncilDb);
             db.SaveChanges();
             studentCouncilDb.ApplicationUser.UserType = ApplicationUserTypes.StudentCouncil;
