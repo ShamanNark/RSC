@@ -30,6 +30,12 @@ namespace RSC.Controllers
         {
             return View();
         }
-       
+
+        public IActionResult Rosstudenchestvo()
+        {
+            return View();
+        }
+
+
     }
 }
