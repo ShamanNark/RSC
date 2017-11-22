@@ -1,0 +1,38 @@
+﻿@model RSC.Controllers.Models.EventsViewModels.EventCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<hr />
+<form asp-action="Create">
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#event1" aria-controls="home" role="tab" data-toggle="tab">Описание мероприятия</a></li>
+            <li role="presentation"><a href="#event2" aria-controls="event2" role="tab" data-toggle="tab">Targets</a></li>
+            <li role="presentation"><a href="#event3" aria-controls="event3" role="tab" data-toggle="tab">ФЭО</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="event1">@Html.Partial("DescriptionOfTheEvent", @Model)</div>
+            <div role="tabpanel" class="tab-pane" id="event2">@Html.Partial("Targets", @Model)</div>
+            <div role="tabpanel" class="tab-pane" id="event3">@Html.Partial("FEO", @Model)</div>
+        </div>
+
+    </div>
+
+    <div>
+        <button class="btn btn-sm btn-primary" type="submit">Сохранить</button>
+        <button class="btn btn-sm btn-default">Сохранить как черновик</button>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</form>
+

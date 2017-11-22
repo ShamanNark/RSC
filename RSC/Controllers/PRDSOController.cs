@@ -9,6 +9,7 @@ using RSC.Data;
 using RSC.Models;
 using AutoMapper;
 using RSC.Data.DbModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace RSC.Controllers
 {
@@ -32,10 +33,11 @@ namespace RSC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create(int id)
+        public async Task<IActionResult> Create(int id)
         {
-            var userid = _userManager.GetUserId(User);
-            var OOBO = db.Universities.Where(university => university.ApplicationUserId == userid).FirstOrDefault();
+            var user = await _userManager.GetUserAsync(User);
+            var OOBO = db.Universities.Include(university => university.ApplicationUser)
+                                      .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
             if(OOBO == null)
             {
                 return RedirectToAction("Index", "Home");
@@ -48,6 +50,7 @@ namespace RSC.Controllers
             {
                 Leaeder = Mapper.Map<OOBO>(OOBO),
             };
+            model.Leaeder.Email = OOBO.ApplicationUser.Email;
 
             return View(model);
         }
