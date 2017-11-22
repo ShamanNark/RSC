@@ -11,6 +11,18 @@ namespace RSC.Models.RegisterViewModels
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Отчество")]
+        public string MiddleName { get; set; }
+        [Required]
+        [Display(Name = "Имя")]
+        public string Name { get; set; }
+        [Required]
+        [Display(Name = "Фамилия")]
+        public string Surname { get; set; }
+        [Required]
+        [Display(Name = "Факс")]
+        public string Fax { get; set; }
+        [Required]
         [Display(Name = "Регион")]
         public int RegionId { get; set; }
         [Required]
@@ -18,7 +30,7 @@ namespace RSC.Models.RegisterViewModels
         public string UniversityForm { get; set; }
         [Required]
         [Display(Name = "Полное наименование образовательной организации ")]
-        public int EducationalOrganizationIdUniversity { get; set; }
+        public int UniversityDataId { get; set; }
         [Required]
         [Display(Name = "Телефон рабочий")]
         public string JobPhoneNumber { get; set; }
