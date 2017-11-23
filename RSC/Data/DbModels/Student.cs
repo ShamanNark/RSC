@@ -21,6 +21,7 @@ namespace RSC.Data.DbModels
         public virtual Region Region {get; set;}
 
         public int EducationalOrganizationId { get; set; }
+
         [ForeignKey("EducationalOrganizationId")]
         public virtual UniversityData University { get; set; }
 

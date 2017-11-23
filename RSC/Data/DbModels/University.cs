@@ -11,10 +11,7 @@ namespace RSC.Data.DbModels
     {
         public int Id { get; set; }
         public string UniversityForm { get; set; }
-        //public string UniversityName { get; set; }
-        public int EducationalOrganizationId { get; set; }
-        [ForeignKey("EducationalOrganizationId")]
-
+        public string UniversityName { get; set; }
         public string MiddleName { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -25,6 +22,9 @@ namespace RSC.Data.DbModels
         public virtual Region Region { get; set; }
 
         public int UniversityDataId { get; set; }
+
+        public int EducationalOrganizationId { get; set; }
+        [ForeignKey("EducationalOrganizationId")]
         public virtual UniversityData UniversityData { get; set; }
 
 
