@@ -7,8 +7,7 @@
 
 <h2>Create</h2>
 
-<hr />
-<form asp-action="Create">
+<form asp-action="Create" style="width:100%">
     <div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -24,15 +23,10 @@
             <div role="tabpanel" class="tab-pane" id="event3">@Html.Partial("FEO", @Model)</div>
         </div>
 
-    </div>
-
-    <div>
-        <button class="btn btn-sm btn-primary" type="submit">Сохранить</button>
-        <button class="btn btn-sm btn-default">Сохранить как черновик</button>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
+        <div>
+            <button class="btn btn-sm btn-primary" type="submit">Сохранить</button>
+            <button class="btn btn-sm btn-default">Сохранить как черновик</button>
+        </div>
     </div>
 </form>
 
