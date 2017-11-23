@@ -20,7 +20,6 @@ namespace RSC.Data.DbModels
         [ForeignKey("EducationalOrganizationId")]
         public virtual UniversityData University { get; set; }
 
-
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
