@@ -11,7 +11,7 @@
 
 
     .prdso-header {
-        height: 100px;
+        min-height: 100px;
         background-color: lightcoral;
     }
 
@@ -21,7 +21,7 @@
 
 
     .prdso-calendar {
-        height: 300px;
+        min-height: 300px;
         background-color: lightcyan;
     }
 
@@ -30,28 +30,29 @@
         margin-bottom: 50px;
         padding-left: 0px;
         padding-right: 0px;
-        height: 900px;
+        min-height: 900px;
     }
 
 
     .prdso-dashboard-left {
         padding: 0px;
-        height: 900px;
+        min-height: 900px;
         background-color: white;
     }
 
-    .prdso-dashboard-left-content{
+    .prdso-dashboard-left-content {
         padding-right: 15px;
         padding-left: 0px;
     }
-    
-    
+
+
     .prdso-dashboard-left-menu {
         padding-left: 0px;
         padding-right: 0px;
-        height: 300px;
+        min-height: 300px;
         background-color: lightblue;
     }
+
         .prdso-dashboard-left-menu h4 {
             margin-top: 0px;
             margin-bottom: 0px;
@@ -59,10 +60,29 @@
             padding-top: 15px;
             padding-left: 15px;
             color: white;
-            background-color: blue;
+            background: lightblue;
+            background: -webkit-linear-gradient(left, rgb(97,162,194), rgb(77,121,170)); 
+            background: -o-linear-gradient(right, rgb(97,162,194), rgb(77,121,170)); 
+            background: -moz-linear-gradient(right, rgb(97,162,194), rgb(77,121,170)); 
+            background: linear-gradient(to right, rgb(97,162,194), rgb(77,121,170));
         }
 
-        .prdso-dashboard-left-menu h5 {
+        .prdso-dashboard-left-menu ul {
+            padding: 0px;
+            list-style-type: none;
+        }
+
+        .prdso-dashboard-left-menu ul a{
+            color: dimgrey;
+            font-weight: 600;
+        }
+
+            .prdso-dashboard-left-menu ul a:hover {
+                color: #337ab7;
+                text-decoration: none;
+            }
+
+        .prdso-dashboard-left-menu li {
             margin-top: 0px;
             margin-bottom: 0px;
             height: 50px;
@@ -74,13 +94,59 @@
             border-top: none;
         }
 
-        .prdso-dashboard-left-application {
+    .prdso-dashboard-left-application {
         padding-left: 0px;
         padding-right: 0px;
         margin-top: 50px;
-        height: 550px;
+        min-height: 550px;
         background-color: lightblue;
     }
+
+
+        .prdso-dashboard-left-application h4 {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            height: 50px;
+            padding-top: 15px;
+            padding-left: 15px;
+            color: white;
+            background: lightblue;
+            background: -webkit-linear-gradient(left, rgb(97,162,194), rgb(77,121,170));
+            background: -o-linear-gradient(right, rgb(97,162,194), rgb(77,121,170));
+            background: -moz-linear-gradient(right, rgb(97,162,194), rgb(77,121,170));
+            background: linear-gradient(to right, rgb(97,162,194), rgb(77,121,170));
+        }
+
+
+        .prdso-dashboard-left-application ul {
+            padding: 0px;
+            list-style-type: none;
+        }
+
+        .prdso-dashboard-left-application ul a {
+            color: dimgrey;
+            font-weight: 600;
+        }
+
+            .prdso-dashboard-left-application ul a:hover {
+                color: #337ab7;
+                text-decoration: none;
+            }
+
+
+        .prdso-dashboard-left-application li {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            height: 50px;
+            padding-top: 15px;
+            padding-left: 15px;
+            color: black;
+            background-color: white;
+            border: 1px solid lightgray;
+            border-top: none;
+        }
+    
+    
     
     
     .prdso-dashboard-main {
@@ -90,11 +156,25 @@
     }
 
     .prdso-dashboard-main-content {
-        background-color: lightgray;
-        padding-top: 20px;
-        padding-left: 0px;
-        padding-right: 0px;
-        height: 900px;
+        background-color: rgb(247,247,247);
+        padding-left: 25px;
+        padding-right: 25px;
+        min-height: 900px;
+    }
+    .prdso-dashboard-main-content h2{
+    margin-top: 50px;
+    text-align:center;
+    }
+    .prdso-dashboard-main-content .btn-red{
+        padding-left: 25px;
+        padding-right: 25px;
+        font-weight: 600;
+    }
+
+    .lot {
+        margin-top: 50px;
+        border: 1px solid lightgrey;
+        min-height: 125px;
     }
 
 </style>
@@ -122,28 +202,32 @@
         <div class="col-md-4 prdso-dashboard-left">
             <div class="col-md-12 prdso-dashboard-left-content">
                 <div class="prdso-dashboard-left-menu">
-                    
                     <h4>Меню пользователя</h4>
-                    <h5>Положение о конкурсе</h5>
-                    <h5>Профиль ООВО</h5>
-                    <h5>Мероприятия</h5>
-                    <h5>Печать заявки</h5>
-                    <h5>Обратная связь</h5>
-
                     <ul>
-                        <li>Меню пользователя</li>
-                        <li>Положение о конкурсе</li>
-                        <li>Профиль ООВО</li>
-                        <li>Мероприятия</li>
-                        <li>Печать заявки</li>
-                        <li>Обратная связь</li>
+                        <li><a href="#">Положение о конкурсе</a></li>
+                        <li><a href="#">Профиль ООВО</a></li>
+                        <li><a href="#">Мероприятия</a></li>
+                        <li><a href="#">Печать заявки</a></li>
+                        <li><a href="#">Обратная связь</a></li>
                     </ul>
 
                 </div>
 
 
                 <div class="prdso-dashboard-left-application">
-
+                    <h4>Заявка ПСО-2018-43</h4>
+                    <ul>
+                        <li><a href="#">Статус заявки</a></li>
+                        <li><a href="#">Количество мероприятий</a></li>
+                        <li><a href="#">Объем субсидий</a></li>
+                        <li><a href="#">Объем софинансирования</a></li>
+                        <li><a href="#">Объем привлеченных средств</a></li>
+                        <li><a href="#">По лотам</a></li>
+                        <li><a href="#">Всероссийские мероприятия</a></li>
+                        <li><a href="#">Межрегиональные(межвузовские) мероприятия</a></li>
+                        <li><a href="#">Региональные мероприятия</a></li>
+                        <li><a href="#">Международные мероприятия</a></li>
+                    </ul>
 
                 </div>
 
@@ -153,6 +237,38 @@
         </div>
         <div class="col-md-8 prdso-dashboard-main">
             <div class="col-md-12 prdso-dashboard-main-content">
+                <div class="col-md-12" style="height:100px;">
+                    <h2>Мероприятия</h2>
+
+                </div>
+
+                <div class="col-md-12" style="margin-top: 25px; padding-left:0px; padding-right:0px;">
+                    <a href="#" class="btn-red">+ Добавить мероприятие</a>
+
+                </div>
+
+                <div class="col-md-12 lot">
+                    <h5>Лот <<Всероссийские мероприятия>></h5>
+                    
+                </div>
+                <div class="col-md-12 lot">
+                    <h5>Лот <<Межрегиональные (межвузовские) мероприятия>></h5>
+
+                </div>
+
+                <div class="col-md-12 lot">
+                    <h5>Лот <<Региональные мероприятия>></h5>
+
+                </div>
+
+                <div class="col-md-12 lot">
+                    <h5>Лот <<Международные мероприятия>></h5>
+
+                </div>
+
+                
+
+
 
             </div>
 

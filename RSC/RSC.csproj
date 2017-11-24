@@ -24,10 +24,6 @@
     <Folder Include="wwwroot\images\HomePageImages\" />
     <Folder Include="wwwroot\images\MainImages\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\css\styles.css" />
-  </ItemGroup>
   <ItemGroup>
     <None Update="wwwroot\css\styles.css">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

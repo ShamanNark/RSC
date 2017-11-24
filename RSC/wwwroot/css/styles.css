@@ -257,11 +257,11 @@ h3{
   
   .btn-transparent:hover {
     background: #ff8861;
-    background-image: -webkit-linear-gradient(top, #ff8861, #ff474f);
-    background-image: -moz-linear-gradient(top, #ff8861, #ff474f);
-    background-image: -ms-linear-gradient(top, #ff8861, #ff474f);
-    background-image: -o-linear-gradient(top, #ff8861, #ff474f);
-    background-image: linear-gradient(to bottom, #ff8861, #ff474f);
+    background-image: -webkit-linear-gradient(left, #ff8861, #ff474f);
+    background-image: -moz-linear-gradient(right, #ff8861, #ff474f);
+    background-image: -ms-linear-gradient(left, #ff8861, #ff474f);
+    background-image: -o-linear-gradient(right, #ff8861, #ff474f);
+    background-image: linear-gradient(to right, #ff8861, #ff474f);
     text-decoration: none;
     color: #ffffff;
   }
@@ -277,24 +277,38 @@ h3{
     text-decoration: none;
   }
 
-  .btn-transparent-red:hover {
-    background: #ff8861;
-    background-image: -webkit-linear-gradient(top, #ff8861, #ff474f);
-    background-image: -moz-linear-gradient(top, #ff8861, #ff474f);
-    background-image: -ms-linear-gradient(top, #ff8861, #ff474f);
-    background-image: -o-linear-gradient(top, #ff8861, #ff474f);
-    background-image: linear-gradient(to bottom, #ff8861, #ff474f);
-    text-decoration: none;
-    color: #ffffff;
-  }
+    .btn-transparent-red:hover {
+        background: #ff8861;
+        background-image: -webkit-linear-gradient(left, #ff8861, #ff474f);
+        background-image: -moz-linear-gradient(right, #ff8861, #ff474f);
+        background-image: -ms-linear-gradient(left, #ff8861, #ff474f);
+        background-image: -o-linear-gradient(right, #ff8861, #ff474f);
+        background-image: linear-gradient(to right, #ff8861, #ff474f);
+        text-decoration: none;
+        color: #ffffff;
+    }
 
 .btn-red {
+    -webkit-border-radius: 25;
+    -moz-border-radius: 25;
+    border-radius: 25px;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 13px 80px 13px 80px;
+    border: none;
+    text-decoration: none;
+
     background: #ff8861;
-    background-image: -webkit-linear-gradient(right, #ff8861, #ff474f);
+    background-image: -webkit-linear-gradient(left, #ff8861, #ff474f);
     background-image: -moz-linear-gradient(right, #ff8861, #ff474f);
-    background-image: -ms-linear-gradient(right, #ff8861, #ff474f);
+    background-image: -ms-linear-gradient(left, #ff8861, #ff474f);
     background-image: -o-linear-gradient(right, #ff8861, #ff474f);
-    background-image: linear-gradient(right bottom, #ff8861, #ff474f);
+    background-image: linear-gradient(to right, #ff8861, #ff474f);
+    text-decoration: none;
+}
+
+
+.btn-red:hover {
     text-decoration: none;
     color: #ffffff;
 }
