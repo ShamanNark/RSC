@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace RSC.Data.Migrations
+namespace RSC.Migrations
 {
-    public partial class AddedRegions : Migration
+    public partial class InitializeDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,6 +51,32 @@ namespace RSC.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CostSections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CostSections", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventDirections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventDirections", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "News",
                 columns: table => new
                 {
@@ -82,6 +108,19 @@ namespace RSC.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PrdsoTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PrdsoTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Regions",
                 columns: table => new
                 {
@@ -92,23 +131,6 @@ namespace RSC.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Regions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UniversityDatas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int4", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    RegionId = table.Column<int>(type: "int4", nullable: false),
-                    UniversityAddress = table.Column<string>(type: "text", nullable: true),
-                    UniversityName = table.Column<string>(type: "text", nullable: true),
-                    UniversityShortName = table.Column<string>(type: "text", nullable: true),
-                    UniversityWebSite = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UniversityDatas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -244,50 +266,23 @@ namespace RSC.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentsCouncils",
+                name: "CostDivisions",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int4", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    ApplicationUserId = table.Column<string>(type: "text", nullable: true),
-                    EducationalOrganization = table.Column<string>(type: "text", nullable: true),
-                    MiddleName = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    RegionId = table.Column<int>(type: "int4", nullable: false),
-                    Surname = table.Column<string>(type: "text", nullable: true)
+                    CostSectionId = table.Column<int>(type: "int4", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentsCouncils", x => x.Id);
+                    table.PrimaryKey("PK_CostDivisions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StudentsCouncils_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
+                        name: "FK_CostDivisions_CostSections_CostSectionId",
+                        column: x => x.CostSectionId,
+                        principalTable: "CostSections",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Universities",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int4", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    ApplicationUserId = table.Column<string>(type: "text", nullable: true),
-                    JobPhoneNumber = table.Column<string>(type: "text", nullable: true),
-                    RegionId = table.Column<int>(type: "int4", nullable: false),
-                    UniversityForm = table.Column<string>(type: "text", nullable: true),
-                    UniversityName = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Universities", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Universities_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -311,6 +306,133 @@ namespace RSC.Data.Migrations
                         name: "FK_ListObjectNewsNewsRubric_News_ObjectNewsId",
                         column: x => x.ObjectNewsId,
                         principalTable: "News",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    CountImplementaionEvents = table.Column<int>(type: "int4", nullable: false),
+                    CountOOVO = table.Column<int>(type: "int4", nullable: false),
+                    EventDirectionId = table.Column<int>(type: "int4", nullable: false),
+                    ExpectedEffectsOfTheEvent = table.Column<string>(type: "text", nullable: false),
+                    ImplementationEventsShotInfo = table.Column<string>(type: "text", nullable: false),
+                    ImplementationPlan = table.Column<string>(type: "text", nullable: false),
+                    MeasuresToEnsurePublicityEvent = table.Column<string>(type: "text", nullable: false),
+                    NameEvent = table.Column<string>(type: "text", nullable: false),
+                    NumberOfParticipantsInThisOOVO = table.Column<int>(type: "int4", nullable: false),
+                    NumberOfParticipantsWithSubsidies = table.Column<int>(type: "int4", nullable: false),
+                    NumberOfParticipantsWithoutSubsidy = table.Column<int>(type: "int4", nullable: false),
+                    OrderOfEventManagement = table.Column<string>(type: "text", nullable: false),
+                    PrdsoId = table.Column<int>(type: "int4", nullable: false),
+                    PrdsoTypeId = table.Column<int>(type: "int4", nullable: false),
+                    PurposeOfTheEvent = table.Column<string>(type: "text", nullable: false),
+                    RegionId = table.Column<int>(type: "int4", nullable: false),
+                    StartDateTime = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    StopDateTime = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    TotalNumberOfParticipants = table.Column<int>(type: "int4", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Events_EventDirections_EventDirectionId",
+                        column: x => x.EventDirectionId,
+                        principalTable: "EventDirections",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Events_PrdsoTypes_PrdsoTypeId",
+                        column: x => x.PrdsoTypeId,
+                        principalTable: "PrdsoTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Events_Regions_RegionId",
+                        column: x => x.RegionId,
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UniversityDatas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    RegionId = table.Column<int>(type: "int4", nullable: false),
+                    UniversityAddress = table.Column<string>(type: "text", nullable: true),
+                    UniversityName = table.Column<string>(type: "text", nullable: true),
+                    UniversityShortName = table.Column<string>(type: "text", nullable: true),
+                    UniversityWebSite = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UniversityDatas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UniversityDatas_Regions_RegionId",
+                        column: x => x.RegionId,
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Costs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    AmountCost = table.Column<int>(type: "int4", nullable: false),
+                    Count = table.Column<int>(type: "int4", nullable: false),
+                    DirectionOfCost = table.Column<string>(type: "text", nullable: true),
+                    EventId = table.Column<int>(type: "int4", nullable: false),
+                    Note = table.Column<string>(type: "text", nullable: true),
+                    Unit = table.Column<string>(type: "text", nullable: true),
+                    UnitPrice = table.Column<decimal>(type: "numeric", nullable: false),
+                    СostDivisionId = table.Column<int>(type: "int4", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Costs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Costs_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Costs_CostDivisions_СostDivisionId",
+                        column: x => x.СostDivisionId,
+                        principalTable: "CostDivisions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TargetIndicators",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    BasicValue = table.Column<int>(type: "int4", nullable: false),
+                    EventId = table.Column<int>(type: "int4", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    PlannedValue = table.Column<int>(type: "int4", nullable: false),
+                    Unit = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TargetIndicators", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TargetIndicators_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -343,6 +465,88 @@ namespace RSC.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Students_UniversityDatas_EducationalOrganizationId",
                         column: x => x.EducationalOrganizationId,
+                        principalTable: "UniversityDatas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Students_Regions_RegionId",
+                        column: x => x.RegionId,
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentsCouncils",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    ApplicationUserId = table.Column<string>(type: "text", nullable: true),
+                    EducationalOrganizationId = table.Column<int>(type: "int4", nullable: false),
+                    MiddleName = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    RegionId = table.Column<int>(type: "int4", nullable: false),
+                    Surname = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentsCouncils", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StudentsCouncils_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_StudentsCouncils_UniversityDatas_EducationalOrganizationId",
+                        column: x => x.EducationalOrganizationId,
+                        principalTable: "UniversityDatas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StudentsCouncils_Regions_RegionId",
+                        column: x => x.RegionId,
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Universities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    ApplicationUserId = table.Column<string>(type: "text", nullable: true),
+                    Fax = table.Column<string>(type: "text", nullable: true),
+                    JobPhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    MiddleName = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    RegionId = table.Column<int>(type: "int4", nullable: false),
+                    Surname = table.Column<string>(type: "text", nullable: true),
+                    UniversityDataId = table.Column<int>(type: "int4", nullable: false),
+                    UniversityForm = table.Column<string>(type: "text", nullable: true),
+                    UniversityName = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Universities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Universities_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Universities_Regions_RegionId",
+                        column: x => x.RegionId,
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Universities_UniversityDatas_UniversityDataId",
+                        column: x => x.UniversityDataId,
                         principalTable: "UniversityDatas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -391,6 +595,36 @@ namespace RSC.Data.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CostDivisions_CostSectionId",
+                table: "CostDivisions",
+                column: "CostSectionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Costs_EventId",
+                table: "Costs",
+                column: "EventId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Costs_СostDivisionId",
+                table: "Costs",
+                column: "СostDivisionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Events_EventDirectionId",
+                table: "Events",
+                column: "EventDirectionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Events_PrdsoTypeId",
+                table: "Events",
+                column: "PrdsoTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Events_RegionId",
+                table: "Events",
+                column: "RegionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ListObjectNewsNewsRubric_NewsRubricId",
                 table: "ListObjectNewsNewsRubric",
                 column: "NewsRubricId");
@@ -406,14 +640,49 @@ namespace RSC.Data.Migrations
                 column: "EducationalOrganizationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Students_RegionId",
+                table: "Students",
+                column: "RegionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StudentsCouncils_ApplicationUserId",
                 table: "StudentsCouncils",
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StudentsCouncils_EducationalOrganizationId",
+                table: "StudentsCouncils",
+                column: "EducationalOrganizationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentsCouncils_RegionId",
+                table: "StudentsCouncils",
+                column: "RegionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TargetIndicators_EventId",
+                table: "TargetIndicators",
+                column: "EventId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Universities_ApplicationUserId",
                 table: "Universities",
                 column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Universities_RegionId",
+                table: "Universities",
+                column: "RegionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Universities_UniversityDataId",
+                table: "Universities",
+                column: "UniversityDataId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UniversityDatas_RegionId",
+                table: "UniversityDatas",
+                column: "RegionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -437,10 +706,10 @@ namespace RSC.Data.Migrations
                 name: "Asssessors");
 
             migrationBuilder.DropTable(
-                name: "ListObjectNewsNewsRubric");
+                name: "Costs");
 
             migrationBuilder.DropTable(
-                name: "Regions");
+                name: "ListObjectNewsNewsRubric");
 
             migrationBuilder.DropTable(
                 name: "Students");
@@ -449,10 +718,16 @@ namespace RSC.Data.Migrations
                 name: "StudentsCouncils");
 
             migrationBuilder.DropTable(
+                name: "TargetIndicators");
+
+            migrationBuilder.DropTable(
                 name: "Universities");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "CostDivisions");
 
             migrationBuilder.DropTable(
                 name: "NewsRubrics");
@@ -461,10 +736,25 @@ namespace RSC.Data.Migrations
                 name: "News");
 
             migrationBuilder.DropTable(
-                name: "UniversityDatas");
+                name: "Events");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "UniversityDatas");
+
+            migrationBuilder.DropTable(
+                name: "CostSections");
+
+            migrationBuilder.DropTable(
+                name: "EventDirections");
+
+            migrationBuilder.DropTable(
+                name: "PrdsoTypes");
+
+            migrationBuilder.DropTable(
+                name: "Regions");
         }
     }
 }

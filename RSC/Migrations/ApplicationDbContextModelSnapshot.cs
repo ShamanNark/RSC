@@ -10,13 +10,12 @@ using RSC.Data.DbModels;
 using RSC.Models;
 using System;
 
-namespace RSC.Data.Migrations
+namespace RSC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171112182600_DeleteUserFieldsFromUniversityDataTable")]
-    partial class DeleteUserFieldsFromUniversityDataTable
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,6 +157,137 @@ namespace RSC.Data.Migrations
                     b.ToTable("Asssessors");
                 });
 
+            modelBuilder.Entity("RSC.Data.DbModels.Cost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AmountCost");
+
+                    b.Property<int>("Count");
+
+                    b.Property<string>("DirectionOfCost");
+
+                    b.Property<int>("EventId");
+
+                    b.Property<string>("Note");
+
+                    b.Property<string>("Unit");
+
+                    b.Property<decimal>("UnitPrice");
+
+                    b.Property<int>("СostDivisionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("СostDivisionId");
+
+                    b.ToTable("Costs");
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.CostDivision", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CostSectionId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CostSectionId");
+
+                    b.ToTable("CostDivisions");
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.CostSection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CostSections");
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CountImplementaionEvents");
+
+                    b.Property<int>("CountOOVO");
+
+                    b.Property<int>("EventDirectionId");
+
+                    b.Property<string>("ExpectedEffectsOfTheEvent")
+                        .IsRequired();
+
+                    b.Property<string>("ImplementationEventsShotInfo")
+                        .IsRequired();
+
+                    b.Property<string>("ImplementationPlan")
+                        .IsRequired();
+
+                    b.Property<string>("MeasuresToEnsurePublicityEvent")
+                        .IsRequired();
+
+                    b.Property<string>("NameEvent")
+                        .IsRequired();
+
+                    b.Property<int>("NumberOfParticipantsInThisOOVO");
+
+                    b.Property<int>("NumberOfParticipantsWithSubsidies");
+
+                    b.Property<int>("NumberOfParticipantsWithoutSubsidy");
+
+                    b.Property<string>("OrderOfEventManagement")
+                        .IsRequired();
+
+                    b.Property<int>("PrdsoId");
+
+                    b.Property<int>("PrdsoTypeId");
+
+                    b.Property<string>("PurposeOfTheEvent")
+                        .IsRequired();
+
+                    b.Property<int>("RegionId");
+
+                    b.Property<DateTime>("StartDateTime");
+
+                    b.Property<DateTime>("StopDateTime");
+
+                    b.Property<int>("TotalNumberOfParticipants");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventDirectionId");
+
+                    b.HasIndex("PrdsoTypeId");
+
+                    b.HasIndex("RegionId");
+
+                    b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.EventDirection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventDirections");
+                });
+
             modelBuilder.Entity("RSC.Data.DbModels.NewsRubric", b =>
                 {
                     b.Property<int>("Id")
@@ -183,6 +313,30 @@ namespace RSC.Data.Migrations
                     b.HasIndex("NewsRubricId");
 
                     b.ToTable("ListObjectNewsNewsRubric");
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.PrdsoType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PrdsoTypes");
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.Region", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("RegionName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Regions");
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.Student", b =>
@@ -212,6 +366,10 @@ namespace RSC.Data.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
+                    b.HasIndex("EducationalOrganizationId");
+
+                    b.HasIndex("RegionId");
+
                     b.ToTable("Students");
                 });
 
@@ -222,7 +380,7 @@ namespace RSC.Data.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<string>("EducationalOrganization");
+                    b.Property<int>("EducationalOrganizationId");
 
                     b.Property<string>("MiddleName");
 
@@ -236,7 +394,33 @@ namespace RSC.Data.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
+                    b.HasIndex("EducationalOrganizationId");
+
+                    b.HasIndex("RegionId");
+
                     b.ToTable("StudentsCouncils");
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.TargetIndicator", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BasicValue");
+
+                    b.Property<int>("EventId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("PlannedValue");
+
+                    b.Property<string>("Unit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("TargetIndicators");
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.University", b =>
@@ -246,9 +430,19 @@ namespace RSC.Data.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
+                    b.Property<string>("Fax");
+
                     b.Property<string>("JobPhoneNumber");
 
+                    b.Property<string>("MiddleName");
+
+                    b.Property<string>("Name");
+
                     b.Property<int>("RegionId");
+
+                    b.Property<string>("Surname");
+
+                    b.Property<int>("UniversityDataId");
 
                     b.Property<string>("UniversityForm");
 
@@ -257,6 +451,10 @@ namespace RSC.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("RegionId");
+
+                    b.HasIndex("UniversityDataId");
 
                     b.ToTable("Universities");
                 });
@@ -277,6 +475,8 @@ namespace RSC.Data.Migrations
                     b.Property<string>("UniversityWebSite");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RegionId");
 
                     b.ToTable("UniversityDatas");
                 });
@@ -320,6 +520,8 @@ namespace RSC.Data.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
+
+                    b.Property<int>("UserType");
 
                     b.HasKey("Id");
 
@@ -407,6 +609,45 @@ namespace RSC.Data.Migrations
                         .HasForeignKey("ApplicationUserId");
                 });
 
+            modelBuilder.Entity("RSC.Data.DbModels.Cost", b =>
+                {
+                    b.HasOne("RSC.Data.DbModels.Event", "Event")
+                        .WithMany("Costs")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RSC.Data.DbModels.CostDivision", "СostDivision")
+                        .WithMany()
+                        .HasForeignKey("СostDivisionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.CostDivision", b =>
+                {
+                    b.HasOne("RSC.Data.DbModels.CostSection", "CostSection")
+                        .WithMany("CostDivisions")
+                        .HasForeignKey("CostSectionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.Event", b =>
+                {
+                    b.HasOne("RSC.Data.DbModels.EventDirection", "EventDirection")
+                        .WithMany()
+                        .HasForeignKey("EventDirectionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RSC.Data.DbModels.PrdsoType", "PrdsoType")
+                        .WithMany()
+                        .HasForeignKey("PrdsoTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RSC.Data.DbModels.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("RSC.Data.DbModels.ObjectNewsNewsRubric", b =>
                 {
                     b.HasOne("RSC.Data.DbModels.NewsRubric", "NewsRubric")
@@ -425,6 +666,16 @@ namespace RSC.Data.Migrations
                     b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("RSC.Data.DbModels.UniversityData", "University")
+                        .WithMany()
+                        .HasForeignKey("EducationalOrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RSC.Data.DbModels.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.StudentsCouncil", b =>
@@ -432,6 +683,24 @@ namespace RSC.Data.Migrations
                     b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("RSC.Data.DbModels.UniversityData", "University")
+                        .WithMany()
+                        .HasForeignKey("EducationalOrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RSC.Data.DbModels.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.TargetIndicator", b =>
+                {
+                    b.HasOne("RSC.Data.DbModels.Event", "Event")
+                        .WithMany("TargetIndicators")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.University", b =>
@@ -439,6 +708,24 @@ namespace RSC.Data.Migrations
                     b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("RSC.Data.DbModels.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RSC.Data.DbModels.UniversityData", "UniversityData")
+                        .WithMany()
+                        .HasForeignKey("UniversityDataId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RSC.Data.DbModels.UniversityData", b =>
+                {
+                    b.HasOne("RSC.Data.DbModels.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
