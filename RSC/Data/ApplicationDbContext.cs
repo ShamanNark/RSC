@@ -30,6 +30,10 @@ namespace RSC.Data
         public DbSet<University> Universities { get; set; }
         public DbSet<UniversityData> UniversityDatas { get; set; }
         public DbSet<Region> Regions { get; set; }
+        public DbSet<Cost> Costs { get; set; }
+        public DbSet<CostSection> CostSections { get; set; }
+        public DbSet<СostDivision> CostDivisions { get; set; }
+        public DbSet<EventDirection> EventDirections { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -9,6 +9,7 @@ using RSC.Data;
 using Microsoft.AspNetCore.Identity;
 using RSC.Models;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace RSC.Controllers
 {
@@ -32,16 +33,24 @@ namespace RSC.Controllers
         [HttpGet]
         public IActionResult Create(int id)
         {
-            var model = new EventCreateViewModel();
-            model.Regions = new SelectList(new[] { "Регион 1", "Регион 2", "Регион 3", "50", "100", "1000" }, "Регион 2");
-            model.EventDirections = new SelectList(new[] { "Наука", "Спорт", "Покушать", "Поспать", "100", "1000" }, "Наука");
+            var model = new EventCreateViewModel();            
+            model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id" , "Name");
+            model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id , Name = direct.Name}).ToList(), "Id", "Name");
+            model.CostSections = db.CostSections.Include(section => section.CostDivisions).ToList();
             return View(model);
         }
 
         [HttpPost]
         public IActionResult Create(EventCreateViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                return View();
+            }
+            model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
+            model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id, Name = direct.Name }).ToList(), "Id", "Name");
+            model.CostSections = db.CostSections.Include(section => section.CostDivisions).ToList();
+            return View(model);
         }
     }
 }

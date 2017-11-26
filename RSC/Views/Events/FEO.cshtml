@@ -1,28 +1,22 @@
-﻿@model RSC.Controllers.Models.EventsViewModels.EventCreateViewModel
+﻿@using RSC.Data.DbModels
+@model RSC.Controllers.Models.EventsViewModels.EventCreateViewModel
 
-<div class="row">
+<div class="paddingMainblock"ы>
     <h2>Финансово-экономическое обоснование</h2>
-    <div class="col-md-5">
-        <h3>1. Привлечение к реализации проектов специалистов</h3>
-        <h4>1.1 Оплата услуг специалистов</h4>
-        <button class="btn btn-sm btn-success">Добавить</button>
-        <h4>1.2 Расходы на проживание</h4>
-        <button class="btn btn-sm btn-success">Добавить</button>
-        <h4>1.3 Транспортные расходы</h4>
-        <button class="btn btn-sm btn-success">Добавить</button>
-        <h3>2. Участие студентов из данного ООВО</h3>
-        <h4>2.1 Расходы на проживание и питание</h4>
-        <button class="btn btn-sm btn-success">Добавить</button>
-        <h4>2.2 Транспортные расходы</h4><button class="btn btn-sm btn-success">Добавить</button>
-        <h3>3. Участие студентов из других ООВО</h3>
-        <h4>2.1 Расходы на проживание и питание</h4>
-        <button class="btn btn-sm btn-success">Добавить</button>
-        <h4>2.2 Транспортные расходы</h4>
-        <button class="btn btn-sm btn-success">Добавить</button>
-        <h3>4. Организационные расходы</h3>
-        <h4>4.1 Закупка оборудования и товаров (мебель, оргтехника, программное обеспечение и др.) кроме расходных материалов</h4>
-        <button class="btn btn-sm btn-success">Добавить</button>
-        <h4>4.2 Закупка расходных материалов и оплата услуг, необходимых для реализации проекта</h4>
-        <button class="btn btn-sm btn-success">Добавить</button>
+    <div class="col-md-12">
+        @foreach(CostSection costsection in Model.CostSections)
+        {            
+            <h3>
+                @costsection.Name
+            </h3>
+            @foreach(var divisions in costsection.CostDivisions)
+            {
+                <div class="costsheet">
+                    <h4>@divisions.Name</h4>
+                    <div class="row CostsList"></div>
+                    <button class="btn btn-sm btn-success addCosts" data-divisionsid="@divisions.Id">Добавить</button>               
+                </div>
+            }
+        }
     </div>
 </div>

@@ -4,7 +4,13 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<style>
+    .paddingMainblock {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+</style>
 <h2>Create</h2>
 
 <form asp-action="Create" style="width:100%">
@@ -23,10 +29,154 @@
             <div role="tabpanel" class="tab-pane" id="event3">@Html.Partial("FEO", @Model)</div>
         </div>
 
-        <div>
+        <div class="col-md-12">
             <button class="btn btn-sm btn-primary" type="submit">Сохранить</button>
             <button class="btn btn-sm btn-default">Сохранить как черновик</button>
         </div>
     </div>
 </form>
 
+@section Scripts{
+    <script src="~/js/moment-with-locales.js"></script>
+    <script src="~/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#StartDateTime').datetimepicker({
+                locale: 'ru',
+                useCurrent: false
+            });
+            $('#StopDateTime').datetimepicker({
+                locale: 'ru',
+                useCurrent: false
+            });
+            $("#StartDateTime").on("dp.change",
+                function (e) {
+                    $('#StopDateTime').data("DateTimePicker").minDate(e.date);
+                    GetNews();
+                });
+
+            $("#StopDateTime").on("dp.change",
+                function (e) {
+                    $('#StartDateTime').data("DateTimePicker").maxDate(e.date);
+                    GetNews();
+                });
+
+
+            var i = 0;
+            $("#add_row").click(function () {
+                var element = '<div id="addrow' + i + '">' +
+                    '<div class="form-group col-md-6" >' +
+                    '<label class="control-label">Название</label>' +
+                    '<input class="form-control" id="TargetIndicators_' + i + '__Name" name="TargetIndicators[' + i + '].Name" value="" type="text">' +
+                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + i + '].Name" data-valmsg-replace="true"></span>' +
+                    '</div>' +
+                    '<div class="form-group col-md-2">' +
+                    '<label class="control-label">Единица измерения</label>' +
+                    '<input class="form-control" id="TargetIndicators_' + i + '__Unit" name="TargetIndicators[' + i + '].Unit" value="" type="text">' +
+                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + i + '].Unit" data-valmsg-replace="true"></span>' +
+                    '</div>' +
+                    '<div class="form-group col-md-2">' +
+                    '<label class="control-label">Базовое значение</label>' +
+                    '<input class="form-control" data-val="true" data-val-required="The BasicValue field is required." id="TargetIndicators_' + i + '__BasicValue" name="TargetIndicators[' + i + '].BasicValue" value="" type="number">' +
+                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + i + '].BasicValue" data-valmsg-replace="true"></span>' +
+                    '</div>' +
+                    '<div class="form-group col-md-2">' +
+                    '<label class="control-label">Плановое значение</label>' +
+                    '<input class="form-control" data-val="true" data-val-required="The PlannedValue field is required." id="TargetIndicators_' + i + '__PlannedValue" name="TargetIndicators[' + i + '].PlannedValue" value="" type="number">' +
+                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + i + '].PlannedValue" data-valmsg-replace="true"></span>' +
+                    '</div>' +
+                    '</div>';
+                $('.targets').append(element).change();
+                i++;
+                return false;
+            });
+            $("#delete_row").click(function () {
+                if (i > 0) {
+                    $("#addrow" + (i - 1)).html('');
+                    i--;
+                }
+                return false;
+            });
+
+            var assignAttributes = function (thisElement, classNameBlock, idText, nameText) {
+                thisElement.find(classNameBlock).find("input").attr("id", idText).attr("name", nameText).change();
+                thisElement.find(classNameBlock).find("span").attr("data-valmsg-for", nameText).change();
+            }
+
+            var conversionElements = function () { 
+                $(".CostsElement").each(function (index) {
+                    $(this).parent().find(".costDivisionId").attr("id", "Costs_" + index + "__СostDivisionId").attr("name", "Costs[" + index + "].СostDivisionId")
+                    //directioncost
+                    assignAttributes($(this), ".directionOfCost", "Costs_" + index + "__DirectionCost", "Costs[" + index + "].DirectionOfCost")
+                    //unit
+                    assignAttributes($(this), ".unit", "Costs_" + index + "__Unit", "Costs[" + index + "].Unit")
+                    //count
+                    assignAttributes($(this), ".count", "Costs_" + index + "__Count", "Costs[" + index + "].Count")
+                    //unitPrice
+                    assignAttributes($(this), ".unitPrice", "Costs_" + index + "__UnitPrice", "Costs[" + index + "].UnitPrice")
+                    //amountCost
+                    assignAttributes($(this), ".amountCost", "Costs_" + index + "__AmountCost", "Costs[" + index + "].AmountCost")
+                    //note
+                    assignAttributes($(this), ".note", "Costs_" + index + "__Note", "Costs[" + index + "].Note");
+                });
+            }            
+
+            $(".addCosts").click(function (e) {
+                var divisionId = $(this).data("divisionsid");
+                var elementsCount = $(this).parent().find(".CostsList").find(".CostsElement").length;
+                var element = ['<div class="CostsElement num' + elementsCount + '">',
+                        '<input class="costDivisionId" type="hidden" value="' + divisionId + '">',
+                        '<div class="form-group directionOfCost col-md-3">',
+                            '<label class="control-label">Направление расходов *</label>',
+                            '<input class="form-control" />',
+                            '<span class="text-danger field-validation-valid"></span>',
+                        '</div>',
+                        '<div class="form-group unit col-md-2">',
+                            '<label class="control-label">Единица измерения*</label>',
+                            '<input  class="form-control" />',
+                            '<span class="text-danger field-validation-valid"></span>',
+                        '</div>',
+                        '<div class="form-group count col-md-1">',
+                            '<label class="control-label">Количество*</label>',
+                            '<input type="number" class="form-control" />',
+                            '<span  class="text-danger field-validation-valid"></span>',
+                        '</div>',
+                        '<div class="form-group unitPrice col-md-2">',
+                            '<label class="control-label">Цена за еденицу</label>',
+                            '<input type="number" class="form-control" />',
+                            '<span class="text-danger field-validation-valid" class="text-danger"></span>',
+                        '</div>',
+                        '<div class="form-group amountCost col-md-2">',
+                            '<label class="control-label">Объем расходов*</label>',
+                            '<input  type="number" class="form-control" />',
+                            '<span class="text-danger field-validation-valid" class="text-danger"></span>',
+                        '</div>',
+                        '<div class="form-group note col-md-1">',
+                            '<label class="control-label">Примечание</label>',
+                            '<input class="form-control" />',
+                            '<span class="text-danger field-validation-valid" class="text-danger"></span>',
+                        '</div>',
+                        '<div class="col-md-1">',
+                        '<span class="glyphicon glyphicon-remove deleteCosts" aria-hidden="true" style="background-color:lightgreay"></span>',
+                        '</div>',
+                    '</div>'];
+                
+                $(this).parent().find(".CostsList").append(element.join("")).change();
+                conversionElements();
+                updateAction();
+                e.preventDefault();
+                return false;
+            });
+
+            var updateAction = function () {
+                $(".deleteCosts").click(function () {
+                    var element = $(this).closest(".CostsElement");
+                    element.remove().change();
+                    conversionElements();
+                    return false;
+                });
+            }
+
+        });
+    </script>
+}

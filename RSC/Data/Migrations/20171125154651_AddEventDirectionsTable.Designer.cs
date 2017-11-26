@@ -13,9 +13,10 @@ using System;
 namespace RSC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171125154651_AddEventDirectionsTable")]
+    partial class AddEventDirectionsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,32 +156,6 @@ namespace RSC.Data.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Asssessors");
-                });
-
-            modelBuilder.Entity("RSC.Data.DbModels.Cost", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AmountCost");
-
-                    b.Property<int>("Count");
-
-                    b.Property<string>("DirectionOfCost");
-
-                    b.Property<string>("Note");
-
-                    b.Property<string>("Unit");
-
-                    b.Property<decimal>("UnitPrice");
-
-                    b.Property<int>("СostDivisionId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("СostDivisionId");
-
-                    b.ToTable("Costs");
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.CostSection", b =>
@@ -510,14 +485,6 @@ namespace RSC.Data.Migrations
                     b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("RSC.Data.DbModels.Cost", b =>
-                {
-                    b.HasOne("RSC.Data.DbModels.СostDivision", "СostDivision")
-                        .WithMany()
-                        .HasForeignKey("СostDivisionId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.ObjectNewsNewsRubric", b =>

@@ -1,30 +1,9 @@
 ﻿@model RSC.Controllers.Models.EventsViewModels.EventCreateViewModel
 
-<div>
-    <h2>Целевые показатели</h2>
-    <div class="col-md-12">
-        <div>
-            <div class="form-group col-md-6">
-                <label class="control-label">Название</label>
-                <input asp-for="TargetIndicators[0].Name" class="form-control" />
-                <span asp-validation-for="TargetIndicators[0].Name" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-2">
-                <label class="control-label">Единица измерения</label>
-                <input asp-for="TargetIndicators[0].Unit" class="form-control" />
-                <span asp-validation-for="TargetIndicators[0].Unit" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-2">
-                <label class="control-label">Базовое значение</label>
-                <input asp-for="TargetIndicators[0].BasicValue" type="number" class="form-control" />
-                <span asp-validation-for="TargetIndicators[0].BasicValue" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-2">
-                <label class="control-label">Плановое значение</label>
-                <input asp-for="TargetIndicators[0].PlannedValue" type="number" class="form-control" />
-                <span asp-validation-for="TargetIndicators[0].PlannedValue" class="text-danger"></span>
-            </div>
-        </div>
+<div class="col-md-12 paddingMainblock">
+    <h2>Целевые показатели</h2> 
+    <div class="targets">
     </div>
-    <button class="btn btn-sm btn-success">Добавить</button>
+    <button id="add_row" class="btn btn-sm btn-success">Добавить</button>
+    <button id="delete_row" class="btn btn-sm btn-danger">Удалить</button>
 </div>

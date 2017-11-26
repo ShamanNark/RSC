@@ -13,9 +13,10 @@ using System;
 namespace RSC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171125160127_AddCostsTable")]
+    partial class AddCostsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,6 +165,8 @@ namespace RSC.Data.Migrations
 
                     b.Property<int>("AmountCost");
 
+                    b.Property<int>("CostDivisionId");
+
                     b.Property<int>("Count");
 
                     b.Property<string>("DirectionOfCost");
@@ -174,7 +177,7 @@ namespace RSC.Data.Migrations
 
                     b.Property<decimal>("UnitPrice");
 
-                    b.Property<int>("СostDivisionId");
+                    b.Property<int?>("СostDivisionId");
 
                     b.HasKey("Id");
 
@@ -516,8 +519,7 @@ namespace RSC.Data.Migrations
                 {
                     b.HasOne("RSC.Data.DbModels.СostDivision", "СostDivision")
                         .WithMany()
-                        .HasForeignKey("СostDivisionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("СostDivisionId");
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.ObjectNewsNewsRubric", b =>

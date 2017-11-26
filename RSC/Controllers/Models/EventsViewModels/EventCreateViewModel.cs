@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using RSC.Data.DbModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,19 +10,11 @@ namespace RSC.Controllers.Models.EventsViewModels
 {
     public class EventCreateViewModel
     {
+        #region property 
+
         [Required]
         [Display(Name = "Наименование мероприятия")]
         public string NameEvent { get; set; }
-
-        [Required]
-        [Display(Name = "Направление мероприятия")]
-        public int EventDirectionId { get; set; }
-        public SelectList EventDirections { get; set; }
-
-        [Required]
-        [Display(Name = "Регионы")]
-        public int RegionId { get; set; }
-        public SelectList Regions { get; set; }
 
         [Required]
         [Display(Name = "Цель мероприятия и его краткое содержание")]
@@ -79,6 +72,39 @@ namespace RSC.Controllers.Models.EventsViewModels
         [Display(Name = "Меры по обеспечению публичности хода и результатов реализации Мероприятия(краткое описание)")]
         public string MeasuresToEnsurePublicityEvent { get; set; }
 
+        #endregion
+
+        #region property type SelectList 
+
+        [Required]
+        [Display(Name = "Направление мероприятия")]
+        public int EventDirectionId { get; set; }
+        public SelectList EventDirections { get; set; }
+
+        [Required]
+        [Display(Name = "Регионы")]
+        public int RegionId { get; set; }
+        public SelectList Regions { get; set; }
+
+        #endregion
+
+        #region property type list
+
         public List<TargetIndicator> TargetIndicators { get; set; }
+        public List<Cost> Costs { get; set; }
+        public List<CostSection> CostSections { get; set; }
+
+        #endregion
+
+        #region default constuctor
+
+        public EventCreateViewModel()
+        {
+            TargetIndicators = new List<TargetIndicator>();
+            Costs = new List<Cost>();
+            CostSections = new List<CostSection>();
+        }
+
+        #endregion
     }
 }

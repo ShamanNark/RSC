@@ -13,9 +13,10 @@ using System;
 namespace RSC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171125152217_AddCostSectionsTable")]
+    partial class AddCostSectionsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,32 +158,6 @@ namespace RSC.Data.Migrations
                     b.ToTable("Asssessors");
                 });
 
-            modelBuilder.Entity("RSC.Data.DbModels.Cost", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AmountCost");
-
-                    b.Property<int>("Count");
-
-                    b.Property<string>("DirectionOfCost");
-
-                    b.Property<string>("Note");
-
-                    b.Property<string>("Unit");
-
-                    b.Property<decimal>("UnitPrice");
-
-                    b.Property<int>("СostDivisionId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("СostDivisionId");
-
-                    b.ToTable("Costs");
-                });
-
             modelBuilder.Entity("RSC.Data.DbModels.CostSection", b =>
                 {
                     b.Property<int>("Id")
@@ -193,18 +168,6 @@ namespace RSC.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CostSections");
-                });
-
-            modelBuilder.Entity("RSC.Data.DbModels.EventDirection", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EventDirections");
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.NewsRubric", b =>
@@ -368,22 +331,6 @@ namespace RSC.Data.Migrations
                     b.ToTable("UniversityDatas");
                 });
 
-            modelBuilder.Entity("RSC.Data.DbModels.СostDivision", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CostSectionId");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CostSectionId");
-
-                    b.ToTable("CostDivisions");
-                });
-
             modelBuilder.Entity("RSC.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -512,14 +459,6 @@ namespace RSC.Data.Migrations
                         .HasForeignKey("ApplicationUserId");
                 });
 
-            modelBuilder.Entity("RSC.Data.DbModels.Cost", b =>
-                {
-                    b.HasOne("RSC.Data.DbModels.СostDivision", "СostDivision")
-                        .WithMany()
-                        .HasForeignKey("СostDivisionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("RSC.Data.DbModels.ObjectNewsNewsRubric", b =>
                 {
                     b.HasOne("RSC.Data.DbModels.NewsRubric", "NewsRubric")
@@ -589,14 +528,6 @@ namespace RSC.Data.Migrations
                     b.HasOne("RSC.Data.DbModels.Region", "Region")
                         .WithMany()
                         .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RSC.Data.DbModels.СostDivision", b =>
-                {
-                    b.HasOne("RSC.Data.DbModels.CostSection", "CostSection")
-                        .WithMany("CostDivisions")
-                        .HasForeignKey("CostSectionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
