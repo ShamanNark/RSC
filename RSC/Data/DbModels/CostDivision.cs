@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RSC.Data.DbModels
 {
-    public class СostDivision
+    public class CostDivision
     {
         public int Id { get; set; }
         public string Name { get; set; }

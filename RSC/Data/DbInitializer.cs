@@ -10,43 +10,33 @@ namespace RSC.Data
         {
             context.Database.EnsureCreated();
             // Look for any students.
-            if (context.Regions.Any())
+            if (!context.Regions.Any())
             {
-                return;   // DB has been seeded
+                var regiondata = new Region[]
+                {
+                    new Region{Id=1, RegionName="Регион 1"},
+                    new Region{Id=2, RegionName="Регион 2"},
+                    new Region{Id=3, RegionName="Регион 3"},
+                    new Region{Id=4, RegionName="Регион 4"},
+                    new Region{Id=5, RegionName="Регион 5"},
+                    new Region{Id=6, RegionName="Регион 6"},
+                    new Region{Id=7, RegionName="Регион 7"},
+                    new Region{Id=8, RegionName="Регион 8"},
+                    new Region{Id=9, RegionName="Регион 9"},
+                    new Region{Id=10, RegionName="Регион 10"}
+                };
+                foreach (Region s in regiondata)
+                {
+                    context.Regions.Add(s);
+                }
+                context.SaveChanges();
             }
-
-            var regiondata = new Region[]
-            {
-                new Region{Id=1, RegionName="Регион 1"},
-                new Region{Id=2, RegionName="Регион 2"},
-                new Region{Id=3, RegionName="Регион 3"},
-                new Region{Id=4, RegionName="Регион 4"},
-                new Region{Id=5, RegionName="Регион 5"},
-                new Region{Id=6, RegionName="Регион 6"},
-                new Region{Id=7, RegionName="Регион 7"},
-                new Region{Id=8, RegionName="Регион 8"},
-                new Region{Id=9, RegionName="Регион 9"},
-                new Region{Id=10, RegionName="Регион 10"}
-            };
-
-            foreach (Region s in regiondata)
-            {
-                context.Regions.Add(s);
-            }
-            context.SaveChanges();
-
 
             // Look for any students.
-            if (context.UniversityDatas.Any())
-            {
-                return;   // DB has been seeded
-            }
-
-
-
-
-            var universitydatas = new UniversityData[]
-            {
+            if (!context.UniversityDatas.Any())
+            {               
+                var universitydatas = new UniversityData[]
+                {
                new UniversityData{RegionId=1  ,UniversityShortName="ФГБОУ ДО ФДЭБЦ" ,UniversityName="Федеральное государственное бюджетное образовательное учреждение дополнительного образования «Федеральный детский эколого-биологический центр»" ,UniversityAddress="Российская Федерация, 107014, г. Москва, Ростокинский пр-д, д. 3" ,UniversityWebSite="http://new.ecobiocentre.ru/" },
 new UniversityData{RegionId=1  ,UniversityShortName="Юность России" ,UniversityName="Общественно-государственное физкультурно-спортивное объединение «Юность России»" ,UniversityAddress="Российская Федерация, 117292, г. Москва, ул. Кедрова, д. 8, к. 2" ,UniversityWebSite="http://www.sportunros.ru/" },
 new UniversityData{RegionId=1  ,UniversityShortName="ФГБУК «ВЦХТ»" ,UniversityName="Федеральное государственное бюджетное учреждение культуры «Всероссийский центр художественного творчества»" ,UniversityAddress="Российская Федерация, 115114, г. Москва, Дербеневская ул., д. 16" ,UniversityWebSite="http://vcht.center/" },
@@ -386,14 +376,96 @@ new UniversityData{RegionId=8  ,UniversityShortName="ФГБОУ ВО «ГГНТ�
 
 
 
-            };
-            foreach (UniversityData s in universitydatas)
-            {
-                context.UniversityDatas.Add(s);
+                };
+                foreach (UniversityData s in universitydatas)
+                {
+                    context.UniversityDatas.Add(s);
+                }
+                context.SaveChanges();
             }
-            context.SaveChanges();
 
-           
+            if(!context.CostSections.Any())
+            {
+                var costSections = new CostSection[]
+                {
+                    new CostSection
+                    {
+                        Id = 1,
+                        Name = "Привлечение к реализации проектов специалистов",
+                        CostDivisions = new System.Collections.Generic.List<CostDivision>
+                        {
+                            new CostDivision{ Id = 1 , Name = "Оплата услуг специалистов", CostSectionId = 1  },
+                            new CostDivision{ Id = 2, Name = "Расходы на проживание", CostSectionId = 1 },
+                            new CostDivision{ Id = 3, Name = "Транспортные расходы", CostSectionId = 1 }
+                        }
+                    },
+                    new CostSection
+                    {
+                        Id = 2,
+                        Name = "Участие студентов из данного ООВО",
+                        CostDivisions = new System.Collections.Generic.List<CostDivision>
+                        {
+                            new CostDivision{ Id = 4, Name = "Расходы на проживание и питание", CostSectionId = 2},
+                            new CostDivision{ Id = 5, Name = "Транспортные расходы", CostSectionId = 2}
+                        }
+                    },
+                    new CostSection
+                    {
+                        Id = 3 ,
+                        Name = "Участие студентов из других ООВО",
+                        CostDivisions = new System.Collections.Generic.List<CostDivision>
+                        {
+                            new CostDivision { Id = 6, Name = "Расходы на проживание и питание", CostSectionId = 3 },
+                            new CostDivision { Id = 7, Name = "Транспортные расходы", CostSectionId = 3 },
+                        }
+                    },
+                    new CostSection
+                    {
+                        Id = 4,
+                        Name = "Организационные расходы",
+                        CostDivisions = new System.Collections.Generic.List<CostDivision>
+                        {
+                            new CostDivision { Id = 8, Name = "Закупка оборудования и товаров (мебель, оргтехника, программное обеспечение и др.) кроме расходных материалов", CostSectionId = 4},
+                            new CostDivision { Id = 9, Name = "Закупка расходных материалов и оплата услуг, необходимых для реализации проекта", CostSectionId = 4}
+                        }
+                    }
+                };
+                foreach (var costSection in costSections)
+                {
+                    context.CostSections.Add(costSection);
+                }
+                context.SaveChanges();
+            }
+            if (!context.EventDirections.Any())
+            {
+                var eventDirections = new EventDirection[]
+                {
+                    new EventDirection{ Id = 1, Name = "Наука"},
+                    new EventDirection{ Id = 2, Name = "Спорт"}
+                };
+                foreach (var eventDirection in eventDirections)
+                {
+                    context.EventDirections.Add(eventDirection);
+                }
+                context.SaveChanges();
+            }
+
+            if(!context.PrdsoTypes.Any())
+            {
+                var PrdsoTypes = new PrdsoType[]
+                {
+                    new PrdsoType { Id = 1, Name = "Международные мероприятия"},
+                    new PrdsoType { Id = 2, Name = "Всеросийские мероприятия"},
+                    new PrdsoType { Id = 3, Name = "Межригеональный уровень"},
+                    new PrdsoType { Id = 4, Name = "Региональный уровень"},
+                    new PrdsoType { Id = 5, Name = "Внутривузовский уровень"}
+                };
+                foreach (var prdsoType in PrdsoTypes)
+                {
+                    context.PrdsoTypes.Add(prdsoType);
+                }
+                context.SaveChanges();
+            }
         }
     }
 }

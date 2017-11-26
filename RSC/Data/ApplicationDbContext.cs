@@ -32,7 +32,7 @@ namespace RSC.Data
         public DbSet<Region> Regions { get; set; }
         public DbSet<Cost> Costs { get; set; }
         public DbSet<CostSection> CostSections { get; set; }
-        public DbSet<СostDivision> CostDivisions { get; set; }
+        public DbSet<CostDivision> CostDivisions { get; set; }
         public DbSet<EventDirection> EventDirections { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<TargetIndicator> TargetIndicators { get; set; }

@@ -9,6 +9,6 @@ namespace RSC.Data.DbModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual List<СostDivision> CostDivisions { get; set; }
+        public virtual List<CostDivision> CostDivisions { get; set; }
     }
 }
