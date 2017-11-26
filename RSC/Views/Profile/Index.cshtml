@@ -6,6 +6,7 @@
     .prdso-main {
         padding-left: 0px;
         padding-right: 0px;
+        min-height: 1200px;
     }
 
 
@@ -61,9 +62,9 @@
             padding-left: 15px;
             color: white;
             background: lightblue;
-            background: -webkit-linear-gradient(left, rgb(97,162,194), rgb(77,121,170)); 
-            background: -o-linear-gradient(right, rgb(97,162,194), rgb(77,121,170)); 
-            background: -moz-linear-gradient(right, rgb(97,162,194), rgb(77,121,170)); 
+            background: -webkit-linear-gradient(left, rgb(97,162,194), rgb(77,121,170));
+            background: -o-linear-gradient(right, rgb(97,162,194), rgb(77,121,170));
+            background: -moz-linear-gradient(right, rgb(97,162,194), rgb(77,121,170));
             background: linear-gradient(to right, rgb(97,162,194), rgb(77,121,170));
         }
 
@@ -72,15 +73,15 @@
             list-style-type: none;
         }
 
-        .prdso-dashboard-left-menu ul a{
-            color: dimgrey;
-            font-weight: 600;
-        }
-
-            .prdso-dashboard-left-menu ul a:hover {
-                color: #337ab7;
-                text-decoration: none;
+            .prdso-dashboard-left-menu ul a {
+                color: dimgrey;
+                font-weight: 600;
             }
+
+                .prdso-dashboard-left-menu ul a:hover {
+                    color: #337ab7;
+                    text-decoration: none;
+                }
 
         .prdso-dashboard-left-menu li {
             margin-top: 0px;
@@ -123,15 +124,15 @@
             list-style-type: none;
         }
 
-        .prdso-dashboard-left-application ul a {
-            color: dimgrey;
-            font-weight: 600;
-        }
-
-            .prdso-dashboard-left-application ul a:hover {
-                color: #337ab7;
-                text-decoration: none;
+            .prdso-dashboard-left-application ul a {
+                color: dimgrey;
+                font-weight: 600;
             }
+
+                .prdso-dashboard-left-application ul a:hover {
+                    color: #337ab7;
+                    text-decoration: none;
+                }
 
 
         .prdso-dashboard-left-application li {
@@ -145,13 +146,13 @@
             border: 1px solid lightgray;
             border-top: none;
         }
-    
-    
-    
-    
+
+
+
+
     .prdso-dashboard-main {
         padding-right: 0px;
-        height: 900px;
+        min-height: 900px;
         background-color: white;
     }
 
@@ -161,15 +162,17 @@
         padding-right: 25px;
         min-height: 900px;
     }
-    .prdso-dashboard-main-content h2{
-    margin-top: 50px;
-    text-align:center;
-    }
-    .prdso-dashboard-main-content .btn-red{
-        padding-left: 25px;
-        padding-right: 25px;
-        font-weight: 600;
-    }
+
+        .prdso-dashboard-main-content h2 {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .prdso-dashboard-main-content .btn-red {
+            padding-left: 25px;
+            padding-right: 25px;
+            font-weight: 600;
+        }
 
     .lot {
         margin-top: 50px;
@@ -177,6 +180,22 @@
         min-height: 125px;
     }
 
+    .accept-prdso {
+        margin-top: 30px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .accept-prdso-inner-one {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .accept-prdso-inner-two {
+        margin-top: 20px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 </style>
 
 <div class="col-md-12 prdso-main">
@@ -237,6 +256,10 @@
                         <h5>Лот <@item.Name></h5>
                     </div>
                 }
+                <div class="col-md-12 accept-prdso">
+                    <div class="col-md-12 accept-prdso-inner-one"><a href="#">С положением о конкурсе ПРДСО ознакомлен</a></div>
+                    <div class="col-md-12 accept-prdso-inner-two"><a href="#" class="btn-blue">Отправить заявку</a></div>
+                </div>
             </div>
         </div>
     </div>

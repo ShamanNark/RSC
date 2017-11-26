@@ -313,6 +313,30 @@ h3{
     color: #ffffff;
 }
 
+.btn-blue {
+    -webkit-border-radius: 25;
+    -moz-border-radius: 25;
+    border-radius: 25px;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 13px 80px 13px 80px;
+    border: none;
+    text-decoration: none;
+    background: #ff8861;
+    background-image: -webkit-linear-gradient(left, rgb(91,165,194), rgb(68,116,164));
+    background-image: -moz-linear-gradient(right, rgb(91,165,194), rgb(68,116,164));
+    background-image: -ms-linear-gradient(left,rgb(91,165,194), rgb(68,116,164));
+    background-image: -o-linear-gradient(right, rgb(91,165,194), rgb(68,116,164));
+    background-image: linear-gradient(to right, rgb(91,165,194), rgb(68,116,164));
+    text-decoration: none;
+}
+
+
+    .btn-blue:hover {
+        text-decoration: none;
+        color: #ffffff;
+    }
+
 
 
 /* КНОПКИ */
