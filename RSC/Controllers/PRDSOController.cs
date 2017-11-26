@@ -22,9 +22,9 @@ namespace RSC.Controllers
         {
             db = context;
             _userManager = userManager;
-            Mapper.Initialize(cfg => {
-                                        cfg.CreateMap<University, OOBO>();
-                                     });
+            //Mapper.Initialize(cfg => {
+            //                            cfg.CreateMap<University, UniversityViewModel>();
+            //                         });
         }
 
         public IActionResult Index()
@@ -46,13 +46,13 @@ namespace RSC.Controllers
             //Надо будет сделать
             //var student = db.StudentsCouncils.Where(council => council.UniversityId == OOBO.Id).FirstOrDefault();
 
-            var model = new CreatePRDSOViewModel
-            {
-                Leaeder = Mapper.Map<OOBO>(OOBO),
-            };
-            model.Leaeder.Email = OOBO.ApplicationUser.Email;
+            //var model = new CreatePRDSOViewModel
+            //{
+            //    Leaeder = Mapper.Map<UniversityViewModel>(OOBO),
+            //};
+            //model.Leaeder.Email = OOBO.ApplicationUser.Email;
 
-            return View(model);
+            return View();
         }
 
         [HttpPost]

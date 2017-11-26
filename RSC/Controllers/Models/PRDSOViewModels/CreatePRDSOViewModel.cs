@@ -68,9 +68,9 @@ namespace RSC.Controllers.Models.PRDSOViewModels
 
         #region leader
 
-        [Required]
-        [Display(Name = "Руководитель ООВО")]
-        public OOBO Leaeder { get; set; }
+        //[Required]
+        //[Display(Name = "Руководитель ООВО")]
+        //public UniversityViewModel Leaeder { get; set; }
 
         #endregion
 

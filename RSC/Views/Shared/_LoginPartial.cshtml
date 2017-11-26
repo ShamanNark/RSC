@@ -29,7 +29,7 @@
             }
             @if (User.Identity.IsAuthenticated)
             {
-                <li><a href="@Url.Action("Index","PrivateOffice")">Личный кабнет</a></li>
+                <li><a href="@Url.Action("Index","Profile")">Личный кабнет</a></li>
             }
             <li> <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
                     
