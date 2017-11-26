@@ -95,8 +95,8 @@
           
             <div>
                 <h4>Уполномоченное лицо</h4>
-                @Html.HiddenFor(model => model.UniversityId)
-                @Html.HiddenFor(model => model.University.Id)
+                @*@Html.HiddenFor(model => model.UniversityId)
+                @Html.HiddenFor(model => model.University.Id)*@
                 <div class="form-group">
                     @Html.LabelFor(model => model.University.Surname)
                     @Html.EditorFor(model => model.University.Surname, new { htmlAttributes = new { @class = "form-control" } })
@@ -128,8 +128,6 @@
             <hr />
             <div class="form-group">
                 <h4>Руководитель СО </h4>
-                @Html.HiddenFor(model => model.StudentsCouncilId)
-                @Html.HiddenFor(model => model.StudentsCouncil.Id)
                 <div class="form-group">
                     @Html.LabelFor(model => model.StudentsCouncil.Surname)
                     @Html.EditorFor(model => model.StudentsCouncil.Surname, new { htmlAttributes = new { @class = "form-control" } })
