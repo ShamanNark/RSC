@@ -22,7 +22,10 @@ namespace RSC.Controllers
         {
             db = context;
             _userManager = userManager;
-            //Mapper.Initialize();
+            Mapper.Initialize( cfg => 
+            {
+                cfg.CreateMap<EventCreateViewModel, Data.DbModels.Event>();
+            });
         }
 
         public IActionResult Index()
@@ -45,7 +48,10 @@ namespace RSC.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View();
+                var dbEvent = Mapper.Map<EventCreateViewModel, Data.DbModels.Event>(model);
+                db.Events.Add(dbEvent);
+                db.SaveChanges();
+                return RedirectToAction("Index", "PRDSO");
             }
             model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
             model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id, Name = direct.Name }).ToList(), "Id", "Name");

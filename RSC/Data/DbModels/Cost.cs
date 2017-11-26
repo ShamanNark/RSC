@@ -17,5 +17,8 @@ namespace RSC.Data.DbModels
 
         public int СostDivisionId { get; set; }
         public virtual СostDivision СostDivision { get; set; }
+
+        public int EventId { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

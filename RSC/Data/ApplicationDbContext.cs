@@ -34,6 +34,9 @@ namespace RSC.Data
         public DbSet<CostSection> CostSections { get; set; }
         public DbSet<СostDivision> CostDivisions { get; set; }
         public DbSet<EventDirection> EventDirections { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<TargetIndicator> TargetIndicators { get; set; }
+        public DbSet<PrdsoType> PrdsoTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

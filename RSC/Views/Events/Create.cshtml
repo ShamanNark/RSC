@@ -105,7 +105,9 @@
 
             var conversionElements = function () { 
                 $(".CostsElement").each(function (index) {
-                    $(this).parent().find(".costDivisionId").attr("id", "Costs_" + index + "__СostDivisionId").attr("name", "Costs[" + index + "].СostDivisionId")
+                    $(this).parent().find(".costDivisionId")
+                        .attr("id", "Costs_" + index + "__СostDivisionId")
+                        .attr("name", "Costs[" + index + "].СostDivisionId")                        
                     //directioncost
                     assignAttributes($(this), ".directionOfCost", "Costs_" + index + "__DirectionCost", "Costs[" + index + "].DirectionOfCost")
                     //unit

@@ -13,9 +13,10 @@ using System;
 namespace RSC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171126161753_AddedEventsAndTargetIndicatorsTables")]
+    partial class AddedEventsAndTargetIndicatorsTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,9 +235,7 @@ namespace RSC.Data.Migrations
                     b.Property<string>("OrderOfEventManagement")
                         .IsRequired();
 
-                    b.Property<int>("PrdsoId");
-
-                    b.Property<int>("PrdsoTypeId");
+                    b.Property<int>("PRDSOId");
 
                     b.Property<string>("PurposeOfTheEvent")
                         .IsRequired();
@@ -252,8 +251,6 @@ namespace RSC.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EventDirectionId");
-
-                    b.HasIndex("PrdsoTypeId");
 
                     b.HasIndex("RegionId");
 
@@ -297,18 +294,6 @@ namespace RSC.Data.Migrations
                     b.HasIndex("NewsRubricId");
 
                     b.ToTable("ListObjectNewsNewsRubric");
-                });
-
-            modelBuilder.Entity("RSC.Data.DbModels.PrdsoType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PrdsoTypes");
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.Region", b =>
@@ -629,11 +614,6 @@ namespace RSC.Data.Migrations
                     b.HasOne("RSC.Data.DbModels.EventDirection", "EventDirection")
                         .WithMany()
                         .HasForeignKey("EventDirectionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("RSC.Data.DbModels.PrdsoType", "PrdsoType")
-                        .WithMany()
-                        .HasForeignKey("PrdsoTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("RSC.Data.DbModels.Region", "Region")

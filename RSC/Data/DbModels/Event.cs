@@ -1,18 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using RSC.Data.DbModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RSC.Controllers.Models.EventsViewModels
+namespace RSC.Data.DbModels
 {
-    public class EventCreateViewModel
+    public class Event
     {
-        #region property 
+        public int Id { get; set; }
 
+        public int PrdsoId { get; set; }
         public int PrdsoTypeId { get; set; }
+        public virtual PrdsoType PrdsoType { get; set; }
 
         [Required]
         [Display(Name = "Наименование мероприятия")]
@@ -74,39 +74,17 @@ namespace RSC.Controllers.Models.EventsViewModels
         [Display(Name = "Меры по обеспечению публичности хода и результатов реализации Мероприятия(краткое описание)")]
         public string MeasuresToEnsurePublicityEvent { get; set; }
 
-        #endregion
-
-        #region property type SelectList 
-
         [Required]
         [Display(Name = "Направление мероприятия")]
         public int EventDirectionId { get; set; }
-        public SelectList EventDirections { get; set; }
+        public virtual EventDirection EventDirection { get; set; }
 
         [Required]
         [Display(Name = "Регионы")]
         public int RegionId { get; set; }
-        public SelectList Regions { get; set; }
+        public virtual Region Region { get; set; }
 
-        #endregion
-
-        #region property type list
-
-        public List<Data.DbModels.TargetIndicator> TargetIndicators { get; set; }
-        public List<Cost> Costs { get; set; }
-        public List<CostSection> CostSections { get; set; }
-
-        #endregion
-
-        #region default constuctor
-
-        public EventCreateViewModel()
-        {
-            TargetIndicators = new List<Data.DbModels.TargetIndicator>();
-            Costs = new List<Cost>();
-            CostSections = new List<CostSection>();
-        }
-
-        #endregion
+        public virtual List<TargetIndicator> TargetIndicators { get; set; }
+        public virtual List<Cost> Costs { get; set; }
     }
 }
