@@ -43,22 +43,21 @@
         $(document).ready(function () {
             $('#StartDateTime').datetimepicker({
                 locale: 'ru',
-                useCurrent: false
+                useCurrent: true,
+                date: new Date()
             });
             $('#StopDateTime').datetimepicker({
                 locale: 'ru',
-                useCurrent: false
+                date: new Date()
             });
             $("#StartDateTime").on("dp.change",
                 function (e) {
-                    $('#StopDateTime').data("DateTimePicker").minDate(e.date);
-                    GetNews();
+                    $('#StopDateTime').data("DateTimePicker").minDate(e.date);                 
                 });
 
             $("#StopDateTime").on("dp.change",
                 function (e) {
                     $('#StartDateTime').data("DateTimePicker").maxDate(e.date);
-                    GetNews();
                 });
 
 
