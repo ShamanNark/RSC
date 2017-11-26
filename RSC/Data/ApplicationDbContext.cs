@@ -36,7 +36,9 @@ namespace RSC.Data
         public DbSet<EventDirection> EventDirections { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<TargetIndicator> TargetIndicators { get; set; }
-        public DbSet<PrdsoType> PrdsoTypes { get; set; }
+        public DbSet<EventType> PrdsoTypes { get; set; }
+        public DbSet<FileModel> Files { get; set; }
+        public DbSet<Prdso> PrdsoList { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

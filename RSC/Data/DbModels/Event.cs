@@ -11,8 +11,10 @@ namespace RSC.Data.DbModels
         public int Id { get; set; }
 
         public int PrdsoId { get; set; }
-        public int PrdsoTypeId { get; set; }
-        public virtual PrdsoType PrdsoType { get; set; }
+        public virtual Prdso Prdso { get; set; }
+
+        public int EventTypeId { get; set; }
+        public virtual EventType EventType { get; set; }
 
         [Required]
         [Display(Name = "Наименование мероприятия")]

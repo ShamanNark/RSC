@@ -31,6 +31,10 @@
             {
                 <li><a href="@Url.Action("Index","Profile")">Личный кабнет</a></li>
             }
+            @if (User.IsInRole("admin"))
+            {
+                <li><a href="@Url.Action("Create","PRDSO")">Cоздать ПРДСО</a></li>
+            }
             <li> <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
                     
                      <button type="submit">ВЫЙТИ</button>

@@ -452,13 +452,13 @@ new UniversityData{RegionId=8  ,UniversityShortName="ФГБОУ ВО «ГГНТ�
 
             if(!context.PrdsoTypes.Any())
             {
-                var PrdsoTypes = new PrdsoType[]
+                var PrdsoTypes = new EventType[]
                 {
-                    new PrdsoType { Id = 1, Name = "Международные мероприятия"},
-                    new PrdsoType { Id = 2, Name = "Всеросийские мероприятия"},
-                    new PrdsoType { Id = 3, Name = "Межригеональный уровень"},
-                    new PrdsoType { Id = 4, Name = "Региональный уровень"},
-                    new PrdsoType { Id = 5, Name = "Внутривузовский уровень"}
+                    new EventType { Id = 1, Name = "Международные мероприятия"},
+                    new EventType { Id = 2, Name = "Всеросийские мероприятия"},
+                    new EventType { Id = 3, Name = "Межригеональный уровень"},
+                    new EventType { Id = 4, Name = "Региональный уровень"},
+                    new EventType { Id = 5, Name = "Внутривузовский уровень"}
                 };
                 foreach (var prdsoType in PrdsoTypes)
                 {

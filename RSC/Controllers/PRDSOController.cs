@@ -10,6 +10,7 @@ using RSC.Models;
 using AutoMapper;
 using RSC.Data.DbModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace RSC.Controllers
 {
@@ -22,9 +23,6 @@ namespace RSC.Controllers
         {
             db = context;
             _userManager = userManager;
-            //Mapper.Initialize(cfg => {
-            //                            cfg.CreateMap<University, UniversityViewModel>();
-            //                         });
         }
 
         public IActionResult Index()
@@ -33,32 +31,36 @@ namespace RSC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create(int id)
+        public async Task<IActionResult> Create()
         {
             var user = await _userManager.GetUserAsync(User);
-            var OOBO = db.Universities.Include(university => university.ApplicationUser)
+            var oovo = db.Universities.Include(university => university.ApplicationUser)
+                                      .Include(university => university.UniversityData)
                                       .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
-            if(OOBO == null)
-            {
+            if (oovo == null && oovo.ApplicationUser.Status == ApplicationUserStatus.Approved)
+            { 
                 return RedirectToAction("Index", "Home");
             }
 
-            //Надо будет сделать
-            //var student = db.StudentsCouncils.Where(council => council.UniversityId == OOBO.Id).FirstOrDefault();
-
-            //var model = new CreatePRDSOViewModel
-            //{
-            //    Leaeder = Mapper.Map<UniversityViewModel>(OOBO),
-            //};
-            //model.Leaeder.Email = OOBO.ApplicationUser.Email;
-
-            return View();
+            var model = new Prdso
+            {
+                UniversityId = oovo.Id,
+                University = oovo
+            };
+            ViewBag.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
+            ViewBag.UniversityDatas = new SelectList(db.UniversityDatas.Select(uny => new { Id = uny.Id, Name = uny.UniversityName }), "Id", "Name");
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Create(CreatePRDSOViewModel model)
+        public IActionResult Create(Data.DbModels.Prdso model)
         {
-            return View();
+            if(ModelState.IsValid)
+            {
+                db.PrdsoList.Add(model);
+                db.SaveChanges();
+            }
+            return View(model);
         }
     }
 }

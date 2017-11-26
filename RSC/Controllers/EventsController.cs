@@ -51,7 +51,7 @@ namespace RSC.Controllers
                 var dbEvent = Mapper.Map<EventCreateViewModel, Data.DbModels.Event>(model);
                 db.Events.Add(dbEvent);
                 db.SaveChanges();
-                return RedirectToAction("Index", "PRDSO");
+                return RedirectToAction("Index", "Profile");
             }
             model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
             model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id, Name = direct.Name }).ToList(), "Id", "Name");

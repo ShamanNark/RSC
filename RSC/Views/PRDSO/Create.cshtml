@@ -1,11 +1,200 @@
-﻿@model RSC.Controllers.Models.PRDSOViewModels.CreatePRDSOViewModel
+﻿@model RSC.Data.DbModels.Prdso
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Создать</h2>
 
+<h4>ПРДСО</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-12">
+                <h4>Сведения об ООВО</h4>
+                <div class="form-group">
+                    <label asp-for="OGRN" class="control-label"></label>
+                    <input asp-for="OGRN" class="form-control" />
+                    <span asp-validation-for="OGRN" class="text-danger"></span>
+                </div>
 
+                <div class="form-group">
+                    <label asp-for="INN" class="control-label"></label>
+                    <input asp-for="INN" class="form-control" />
+                    <span asp-validation-for="INN" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OKPO" class="control-label"></label>
+                    <input asp-for="OKPO" class="form-control" />
+                    <span asp-validation-for="OKPO" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="KPP" class="control-label"></label>
+                    <input asp-for="KPP" class="form-control" />
+                    <span asp-validation-for="KPP" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UrAddress" class="control-label"></label>
+                    <input asp-for="UrAddress" class="form-control" />
+                    <span asp-validation-for="UrAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MailAddress" class="control-label"></label>
+                    <input asp-for="MailAddress" class="form-control" />
+                    <span asp-validation-for="MailAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="WebSite" class="control-label"></label>
+                    <input asp-for="WebSite" class="form-control" />
+                    <span asp-validation-for="WebSite" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StudentsCount" class="control-label"></label>
+                    <input asp-for="StudentsCount" class="form-control" />
+                    <span asp-validation-for="StudentsCount" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-12">
+                <h4>Руководитель ООВО</h4>
+                <div class="form-group">
+                    <label asp-for="Surname" class="control-label"></label>
+                    <input asp-for="Surname" class="form-control" />
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MiddleName" class="control-label"></label>
+                    <input asp-for="MiddleName" class="form-control" />
+                    <span asp-validation-for="MiddleName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Position" class="control-label"></label>
+                    <input asp-for="Position" class="form-control" />
+                    <span asp-validation-for="Position" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Fax" class="control-label"></label>
+                    <input asp-for="Fax" class="form-control" />
+                    <span asp-validation-for="Fax" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+          
+            <div>
+                <h4>Уполномоченное лицо</h4>
+                @Html.HiddenFor(model => model.UniversityId)
+                @Html.HiddenFor(model => model.University.Id)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.University.Surname)
+                    @Html.EditorFor(model => model.University.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.University.Surname)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.University.Name)
+                    @Html.EditorFor(model => model.University.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.University.Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.University.MiddleName)
+                    @Html.EditorFor(model => model.University.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.University.MiddleName)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.University.JobPhoneNumber)
+                    @Html.EditorFor(model => model.University.JobPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.University.JobPhoneNumber)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.University.Fax)
+                    @Html.EditorFor(model => model.University.Fax, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.University.Fax)
+                </div>
+                @Html.HiddenFor(model => model.University.RegionId)
+                @Html.HiddenFor(model => model.University.UniversityDataId)
+            </div>
+            <hr />
+            <div class="form-group">
+                <h4>Руководитель СО </h4>
+                @Html.HiddenFor(model => model.StudentsCouncilId)
+                @Html.HiddenFor(model => model.StudentsCouncil.Id)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StudentsCouncil.Surname)
+                    @Html.EditorFor(model => model.StudentsCouncil.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StudentsCouncil.Surname)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StudentsCouncil.Name)
+                    @Html.EditorFor(model => model.StudentsCouncil.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StudentsCouncil.Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StudentsCouncil.MiddleName)
+                    @Html.EditorFor(model => model.StudentsCouncil.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StudentsCouncil.MiddleName)
+                </div>
+                <div class="form-group">
+                    <input id="StudentsCouncil_RegionId" name="StudentsCouncil.RegionId" value="1"/>
+                    <input id="StudentsCouncil_EducationalOrganizationId" name="StudentsCouncil.EducationalOrganizationId" value="1" />
+                    @*@Html.DropDownList("StudentsCouncil.RegionId", ViewBag.Regions as SelectList)
+                    @Html.DropDownList("StudentsCouncil.EducationalOrganizationId", ViewBag.UniversityDatas as SelectList)*@
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-12">
+                <h4>Банковские реквизиты </h4>
+                <div class="form-group">
+                    <label asp-for="BankINN" class="control-label"></label>
+                    <input asp-for="BankINN" class="form-control" />
+                    <span asp-validation-for="BankINN" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BankKPP" class="control-label"></label>
+                    <input asp-for="BankKPP" class="form-control" />
+                    <span asp-validation-for="BankKPP" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BankName" class="control-label"></label>
+                    <input asp-for="BankName" class="form-control" />
+                    <span asp-validation-for="BankName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CheckingAccount" class="control-label"></label>
+                    <input asp-for="CheckingAccount" class="form-control" />
+                    <span asp-validation-for="CheckingAccount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CorrespondentAccount" class="control-label"></label>
+                    <input asp-for="CorrespondentAccount" class="form-control" />
+                    <span asp-validation-for="CorrespondentAccount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BICCode" class="control-label"></label>
+                    <input asp-for="BICCode" class="form-control" />
+                    <span asp-validation-for="BICCode" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 

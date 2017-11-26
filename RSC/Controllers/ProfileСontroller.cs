@@ -38,10 +38,17 @@ namespace RSC.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            var prdso = db.PrdsoList.Where(p => p.UniversityId == oovo.Id).FirstOrDefault();
+            if (prdso == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var model = new ProfileViewModel
             {
                 University = oovo,
-                PrdsoTypes = db.PrdsoTypes.ToList()
+                PrdsoTypes = db.PrdsoTypes.ToList(),
+                Events = db.Events.Where(e => e.PrdsoId == prdso.Id).ToList()
             };
             return View(model);
         }
