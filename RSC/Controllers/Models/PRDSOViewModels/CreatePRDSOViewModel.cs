@@ -94,7 +94,9 @@ namespace RSC.Controllers.Models.PRDSOViewModels
         #endregion
         
         public UniversityViewModel UniversityViewModel { get; set; }
-                
+
+
+        public int StudentsCouncilId { get; set; }        
         public StudentsCouncilViewModel StudentsCouncilViewModel { get; set; }
 
         #endregion
