@@ -21,7 +21,7 @@ namespace RSC.Models.AccountViewModels
         [Required]
         [Display(Name = "Повторить пароль")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
 
         public string ApplicationUserId { get; set; }

@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using RSC.Controllers.Models.PRDSOViewModels;
 using Microsoft.AspNetCore.Identity;
 using RSC.Data;
 using RSC.Models;
-using AutoMapper;
 using RSC.Data.DbModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RSC.Controllers.Models.PRDSOViewModels;
+using AutoMapper;
+using System.Collections.Generic;
 
 namespace RSC.Controllers
 {
@@ -23,13 +22,18 @@ namespace RSC.Controllers
         {
             db = context;
             _userManager = userManager;
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<University, UniversityViewModel>();
+                cfg.CreateMap<StudentsCouncil, StudentsCouncilViewModel>();
+            });
         }
 
         public IActionResult Index()
         {
             return View();
         }
-
+        
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -38,26 +42,26 @@ namespace RSC.Controllers
                                       .Include(university => university.UniversityData)
                                       .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
             if (oovo == null && oovo.ApplicationUser.Status == ApplicationUserStatus.Approved)
-            { 
+            {
                 return RedirectToAction("Index", "Home");
             }
 
-            var model = new Prdso
+            var model = new CreatePRDSOViewModel
             {
-                UniversityId = oovo.Id,
-                University = oovo
+                University = Mapper.Map<University, UniversityViewModel>(oovo),
+                Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name"),
+                UniversityDatas = new SelectList(db.UniversityDatas.Select(uny => new { Id = uny.Id, Name = uny.UniversityName }), "Id", "Name"),
+                StudentCouncils = Mapper.Map<List<StudentsCouncilViewModel>>(db.StudentsCouncils.Where(sc => sc.EducationalOrganizationId == oovo.UniversityDataId).ToList()),
             };
-            ViewBag.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
-            ViewBag.UniversityDatas = new SelectList(db.UniversityDatas.Select(uny => new { Id = uny.Id, Name = uny.UniversityName }), "Id", "Name");
             return View(model);
         }
-
+        
         [HttpPost]
-        public IActionResult Create(Data.DbModels.Prdso model)
+        public IActionResult Create(CreatePRDSOViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                db.PrdsoList.Add(model);
+                //db.PrdsoList.Add(model);
                 db.SaveChanges();
             }
             return View(model);

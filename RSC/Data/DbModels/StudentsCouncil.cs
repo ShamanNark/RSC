@@ -13,6 +13,10 @@ namespace RSC.Data.DbModels
         public string Surname { get; set; }
         public string Name { get; set; }
         public string MiddleName { get; set; }
+        public string JobPhone { get; set; }
+        public string MobilePhone { get; set; }
+        public string Fax { get; set; }
+
         public int RegionId { get; set; }
         public virtual Region Region { get; set; }
 
