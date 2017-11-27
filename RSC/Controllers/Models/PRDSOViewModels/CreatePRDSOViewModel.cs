@@ -49,7 +49,7 @@ namespace RSC.Controllers.Models.PRDSOViewModels
         public string WebSite { get; set; }
 
 
-        [Required]
+        //[Required]
         [Display(Name = "ЕГРЮЛ ")]
         public FileModel EGRUL { get; set; }
 
@@ -87,16 +87,15 @@ namespace RSC.Controllers.Models.PRDSOViewModels
         [Required]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
-
-        [Required]
+        
         [Display(Name = "Приказ об утверждении (назначении) ректора ")]
         public FileModel OrderApprovalRector { get; set; }
 
         #endregion
         
-        public UniversityViewModel University { get; set; }
+        public UniversityViewModel UniversityViewModel { get; set; }
                 
-        public StudentsCouncilViewModel StudentsCouncil { get; set; }
+        public StudentsCouncilViewModel StudentsCouncilViewModel { get; set; }
 
         #endregion
 

@@ -50,13 +50,10 @@ namespace RSC.Controllers.Models.PRDSOViewModels
 
         [Required]
         [Display(Name = "Пароль")]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
         [Display(Name = "Повторить пароль")]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
     }
 }

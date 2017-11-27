@@ -9,24 +9,19 @@ namespace RSC.Controllers.Models.PRDSOViewModels
     public class UniversityViewModel
     {
         public int Id { get; set; }
-
-        [Required]
+        
         [Display(Name="")]
         public string UniversityForm { get; set; }
         
-        [Required]
         [Display(Name="Фамилия*")]
         public string MiddleName { get; set; }
-
-        [Required]
+        
         [Display(Name ="Имя*")]
         public string Name { get; set; }
-
-        [Required]
+        
         [Display(Name ="Отчество*")]
         public string Surname { get; set; }
-
-        [Required]
+        
         [Display(Name = "Рабочий номер*")]
         public string JobPhoneNumber { get; set; }
 

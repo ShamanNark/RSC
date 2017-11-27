@@ -12,17 +12,18 @@
 <h4>ПРДСО</h4>
 <hr />
 <div class="row">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#oovo" aria-controls="oovo" role="tab" data-toggle="tab">Сведения об ООВО</a></li>
         <li role="presentation"><a href="#headoovo" aria-controls="headoovo" role="tab" data-toggle="tab">Руководитель ООВО</a></li>
-        <li role="presentation"><a href="#authorizedPerson" aria-controls="authorizedPerson" role="tab" data-toggle="tab">Уполномоченное лицо</a></li>
+        <li role="presentation"><a href="#ap" aria-controls="ap" role="tab" data-toggle="tab">Уполномоченное лицо</a></li>
         <li role="presentation"><a href="#headco" aria-controls="headco" role="tab" data-toggle="tab">Руководитель СО </a></li>
         <li role="presentation"><a href="#bank" aria-controls="bank" role="tab" data-toggle="tab">Банковские реквизиты  </a></li>
     </ul>
 
     <div class="col-md-6 paddingcontent">
-        <form asp-action="Create">
+        @using (Html.BeginForm())
+        {
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="oovo">
@@ -104,42 +105,42 @@
                         </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="authorizedPerson">
+                <div role="tabpanel" class="tab-pane" id="ap">
                     <div class="col-md-12">
-                        @Html.HiddenFor(model => model.University.Id)
+                        @Html.HiddenFor(model => model.UniversityViewModel.Id)
                         <div class="form-group">
-                            @Html.LabelFor(model => model.University.Surname)
-                            @Html.EditorFor(model => model.University.Surname, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.University.Surname)
+                            @Html.LabelFor(model => model.UniversityViewModel.Surname)
+                            @Html.EditorFor(model => model.UniversityViewModel.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UniversityViewModel.Surname)
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.University.Name)
-                            @Html.EditorFor(model => model.University.Name, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.University.Name)
+                            @Html.LabelFor(model => model.UniversityViewModel.Name)
+                            @Html.EditorFor(model => model.UniversityViewModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UniversityViewModel.Name)
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.University.MiddleName)
-                            @Html.EditorFor(model => model.University.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.University.MiddleName)
+                            @Html.LabelFor(model => model.UniversityViewModel.MiddleName)
+                            @Html.EditorFor(model => model.UniversityViewModel.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UniversityViewModel.MiddleName)
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.University.JobPhoneNumber)
-                            @Html.EditorFor(model => model.University.JobPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.University.JobPhoneNumber)
+                            @Html.LabelFor(model => model.UniversityViewModel.JobPhoneNumber)
+                            @Html.EditorFor(model => model.UniversityViewModel.JobPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UniversityViewModel.JobPhoneNumber)
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.University.Fax)
-                            @Html.EditorFor(model => model.University.Fax, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.University.Fax)
+                            @Html.LabelFor(model => model.UniversityViewModel.Fax)
+                            @Html.EditorFor(model => model.UniversityViewModel.Fax, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UniversityViewModel.Fax)
                         </div>
-                        @Html.HiddenFor(model => model.University.RegionId)
-                        @Html.HiddenFor(model => model.University.UniversityDataId)
+                        @Html.HiddenFor(model => model.UniversityViewModel.RegionId)
+                        @Html.HiddenFor(model => model.UniversityViewModel.UniversityDataId)
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="headco">
                     <div class="form-group col-md-12">
                         <div class="form-group">
-                            <select id="StudentsCouncil_Id" name="StudentsCouncil.Id" class="form-control">
+                            <select id="StudentsCouncilViewModel_Id" name="StudentsCouncilViewModel.Id" class="form-control">
                                 @foreach (var item in @Model.StudentCouncils)
                                 {
                                     <option value="@item.Id">@item.Surname @item.Name @item.MiddleName</option>
@@ -150,55 +151,53 @@
                         <div class="form-group">
                             <div class="checkbox">
                                 <label data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    <input type="checkbox" id="CreateStudentCouncil" name="CreateStudentCouncil" /> Не нашел, хочу зарегистрировать сам.
+                                    @Html.CheckBoxFor(model => model.CreateStudentCouncil) Не нашел, хочу зарегистрировать сам.
                                 </label>
                             </div>
                         </div>
                         <div id="collapseOne" aria-expanded="false" class="collapse">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.StudentsCouncil.Surname)
-                                @Html.EditorFor(model => model.StudentsCouncil.Surname, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.StudentsCouncil.Surname)
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.Surname)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.Surname)
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.StudentsCouncil.Name)
-                                @Html.EditorFor(model => model.StudentsCouncil.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.StudentsCouncil.Name)
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.Name)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.Name)
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.StudentsCouncil.MiddleName)
-                                @Html.EditorFor(model => model.StudentsCouncil.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.StudentsCouncil.MiddleName)
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.MiddleName)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.MiddleName)
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.StudentsCouncil.JobPhone)
-                                @Html.EditorFor(model => model.StudentsCouncil.JobPhone, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
-                                @Html.ValidationMessageFor(model => model.StudentsCouncil.JobPhone)
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.JobPhone)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.JobPhone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.JobPhone)
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.StudentsCouncil.MobilePhone)
-                                @Html.EditorFor(model => model.StudentsCouncil.MobilePhone, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
-                                @Html.ValidationMessageFor(model => model.StudentsCouncil.MobilePhone)
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.MobilePhone)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.MobilePhone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.MobilePhone)
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.StudentsCouncil.Fax)
-                                @Html.EditorFor(model => model.StudentsCouncil.Fax, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
-                                @Html.ValidationMessageFor(model => model.StudentsCouncil.Fax)
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.Fax)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.Fax, new { htmlAttributes = new { @class = "form-control"} })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.Fax)
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.StudentsCouncil.Email)
-                                @Html.EditorFor(model => model.StudentsCouncil.Email, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
-                                @Html.ValidationMessageFor(model => model.StudentsCouncil.Email)
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.Email)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.Email, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.Email)
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.StudentsCouncil.Password)
-                                @Html.EditorFor(model => model.StudentsCouncil.Password)
-                                @Html.ValidationMessageFor(model => model.StudentsCouncil.Password)
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.Password)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.Password, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.StudentsCouncil.ConfirmPassword)
-                                @Html.EditorFor(model => model.StudentsCouncil.ConfirmPassword)
-                                @Html.ValidationMessageFor(model => model.StudentsCouncil.ConfirmPassword)
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.ConfirmPassword)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
                     </div>
@@ -241,7 +240,7 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
-        </form>
+        }
     </div>
 </div>
 <div>
