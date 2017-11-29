@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,7 +36,9 @@ namespace RSC.Data.DbModels
         public string WebSite { get; set; }
 
         [Display(Name = "ЕГРЮЛ ")]
-        public FileModel EGRUL { get; set; }
+        public int EGRULId { get; set; }
+        [ForeignKey("EGRULId")]
+        public virtual FileModel EGRUL { get; set; }
 
         [Display(Name = "Численность обучающихся по очной форме обучения, включая филиалы, чел.")]
         public int StudentsCount { get; set; }
@@ -59,7 +62,9 @@ namespace RSC.Data.DbModels
         [Display(Name = "E-mail")]
         public string Email { get; set; }
         [Display(Name = "Приказ об утверждении (назначении) ректора ")]
-        public FileModel OrderApprovalRector { get; set; }
+        public int OderApprovalRectorId { get; set; }
+        [ForeignKey("OderApprovalRectorId")]
+        public virtual FileModel OrderApprovalRector { get; set; }
 
         #endregion
 

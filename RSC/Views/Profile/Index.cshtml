@@ -248,12 +248,19 @@
                     <h2>Мероприятия</h2>
                 </div>
                 <div class="col-md-12" style="margin-top: 25px; padding-left:0px; padding-right:0px;">
-                    <a href="/events/create" class="btn-red">+ Добавить мероприятие</a>
+                    <a href="@Url.Action("Create","Events", new { id = Model.PrdsoId})" class="btn-red">+ Добавить мероприятие</a>
                 </div>
-                @foreach (var item in Model.PrdsoTypes)
+                @foreach (var item in Model.EventTypes)
                 {
                     <div class="col-md-12 lot">
                         <h5>Лот <@item.Name></h5>
+                        @foreach (var eventun in Model.Events)
+                        {
+                            @if (item.Id == eventun.EventTypeId)
+                            {
+                                <div col-md-12>@eventun.NameEvent</div>
+                            }
+                        }                        
                     </div>
                 }
                 <div class="col-md-12 accept-prdso">

@@ -36,7 +36,10 @@ namespace RSC.Controllers
         [HttpGet]
         public IActionResult Create(int id)
         {
-            var model = new EventCreateViewModel();            
+            var model = new EventCreateViewModel()
+            {
+                PrdsoId = id
+            };            
             model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id" , "Name");
             model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id , Name = direct.Name}).ToList(), "Id", "Name");
             model.CostSections = db.CostSections.Include(section => section.CostDivisions).ToList();

@@ -18,6 +18,7 @@ using RSC.Data;
 using RSC.Data.DbModels;
 using AutoMapper;
 using RSC.Controllers.Models.AccountViewModels;
+using Microsoft.AspNetCore.Hosting;
 
 namespace RSC.Controllers
 {
@@ -29,18 +30,22 @@ namespace RSC.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        IHostingEnvironment _appEnvironment;
         private readonly ApplicationDbContext db;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger, ApplicationDbContext context)
+            ILogger<AccountController> logger,
+            IHostingEnvironment appEnvironment,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _appEnvironment = appEnvironment;
             db = context;
             Mapper.Initialize(cfg => { cfg.CreateMap<RegisterAssessorViewModel, Assessor>();
                                        cfg.CreateMap<RegisterStudentViewModel, Student>();
@@ -619,9 +624,16 @@ namespace RSC.Controllers
             db.SaveChanges();
         }
 
-        private void RegisterUniversityDb(RegisterUniversityViewModel model)
+        private async void RegisterUniversityDb(RegisterUniversityViewModel model)
         {
             var universityDb = Mapper.Map<University>(model);
+            var downloadfile = new Helper.DownloadFiles(db, _appEnvironment);
+            var nameFile = db.UniversityDatas.Where(u => u.Id == model.UniversityDataId).First();
+            var powerofAttorneyId = await downloadfile.AddFile(model.PowerOfAttorneyFile, "/Доверенность/" + nameFile.UniversityName, model.PowerOfAttorneyFile.FileName);
+            if(powerofAttorneyId != null)
+            {
+                universityDb.PowerOfAttorneyId = powerofAttorneyId ?? 0;
+            }
             db.Universities.Add(universityDb);
             db.SaveChanges();
             universityDb.ApplicationUser.UserType = ApplicationUserTypes.University;
@@ -635,7 +647,6 @@ namespace RSC.Controllers
             db.SaveChanges();
             studentCouncilDb.ApplicationUser.UserType = ApplicationUserTypes.StudentCouncil;
             db.SaveChanges();
-
         }
 
         private void RegisterStudentDb(RegisterStudentViewModel model)
@@ -667,7 +678,28 @@ namespace RSC.Controllers
             }
 
             AddErrors(result);
-            return View();
+
+            ViewBag.Ganders = new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Selected = true, Text = "Мужской", Value = "0"},
+                new SelectListItem { Selected = false, Text = "Женкский", Value = "1"},
+            }, "Value", "Text", 0);
+            ViewBag.Regions = new SelectList(db.Regions.Select(b => new { Id = b.Id, Name = b.RegionName }), "Id", "Name");
+
+            ViewBag.Degress = new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Selected = true, Text = "Магистр", Value = "0"},
+                new SelectListItem { Selected = false, Text = "Среднее образование", Value = "1"},
+                new SelectListItem { Selected = false, Text = "Общее образование", Value = "2"},
+            }, "Value", "Text", 0);
+            ViewBag.UniversityDatas = db.UniversityDatas.Select(u => new UniversityDatasViewModel
+            {
+                Id = u.Id,
+                Name = u.UniversityName,
+                ShortName = u.UniversityShortName
+            }).ToList();
+
+            return View(model);
         }
 
         #endregion

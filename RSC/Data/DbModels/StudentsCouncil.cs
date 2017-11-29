@@ -17,6 +17,18 @@ namespace RSC.Data.DbModels
         public string MobilePhone { get; set; }
         public string Fax { get; set; }
 
+        public int ConferenceProtocolId { get; set; }
+        [ForeignKey("ConferenceProtocolId")]
+        public virtual FileModel ConferenceProtocol { get; set; }
+
+        public int OrderCreationCouncilOfLearnersId { get; set; }
+        [ForeignKey("OrderCreationCouncilOfLearnersId")]
+        public virtual FileModel OrderCreationCouncilOfLearners { get; set; }
+
+        public int ProtocolApprovalStudentAssociationsId { get; set; }
+        [ForeignKey("ProtocolApprovalStudentAssociationsId")]
+        public virtual FileModel ProtocolApprovalStudentAssociations { get; set; }
+
         public int RegionId { get; set; }
         public virtual Region Region { get; set; }
 

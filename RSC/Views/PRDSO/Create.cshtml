@@ -21,8 +21,7 @@
     </ul>
 
     <div class="col-md-6 paddingcontent">
-        @using (Html.BeginForm())
-        {
+        <form asp-action="Create" asp-controller="PRDSO" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -33,7 +32,6 @@
                             <input asp-for="OGRN" class="form-control" />
                             <span asp-validation-for="OGRN" class="text-danger"></span>
                         </div>
-
                         <div class="form-group">
                             <label asp-for="INN" class="control-label"></label>
                             <input asp-for="INN" class="form-control" />
@@ -65,6 +63,11 @@
                             <span asp-validation-for="WebSite" class="text-danger"></span>
                         </div>
                         <div class="form-group">
+                            <label asp-for="EGRULfile" class="control-label"></label>
+                            <input asp-for="EGRULfile" type="file" class="form-control" />
+                            <span asp-validation-for="EGRULfile" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
                             <label asp-for="StudentsCount" class="control-label"></label>
                             <input asp-for="StudentsCount" class="form-control" />
                             <span asp-validation-for="StudentsCount" class="text-danger"></span>
@@ -94,6 +97,11 @@
                             <span asp-validation-for="Position" class="text-danger"></span>
                         </div>
                         <div class="form-group">
+                            <label asp-for="PhoneNummber" class="control-label"></label>
+                            <input asp-for="PhoneNummber" class="form-control" />
+                            <span asp-validation-for="PhoneNummber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
                             <label asp-for="Fax" class="control-label"></label>
                             <input asp-for="Fax" class="form-control" />
                             <span asp-validation-for="Fax" class="text-danger"></span>
@@ -102,6 +110,11 @@
                             <label asp-for="Email" class="control-label"></label>
                             <input asp-for="Email" class="form-control" />
                             <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="OderApprovalRectorFile" class="control-label"></label>
+                            <input asp-for="OderApprovalRectorFile" class="form-control"/>
+                            <span asp-validation-for="OderApprovalRectorFile" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -132,6 +145,11 @@
                             @Html.LabelFor(model => model.UniversityViewModel.Fax)
                             @Html.EditorFor(model => model.UniversityViewModel.Fax, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.UniversityViewModel.Fax)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UniversityViewModel.PowerOfAttorneyFile)
+                            @Html.EditorFor(model => model.UniversityViewModel.PowerOfAttorneyFile, new { htmlAttributes = new { @class = "form-control", type="file"} })
+                            @Html.ValidationMessageFor(model => model.UniversityViewModel.PowerOfAttorneyFile)
                         </div>
                         @Html.HiddenFor(model => model.UniversityViewModel.RegionId)
                         @Html.HiddenFor(model => model.UniversityViewModel.UniversityDataId)
@@ -183,7 +201,7 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.StudentsCouncilViewModel.Fax)
-                                @Html.EditorFor(model => model.StudentsCouncilViewModel.Fax, new { htmlAttributes = new { @class = "form-control"} })
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.Fax, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.Fax)
                             </div>
                             <div class="form-group">
@@ -194,10 +212,27 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.StudentsCouncilViewModel.Password)
                                 @Html.EditorFor(model => model.StudentsCouncilViewModel.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.Password)
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.StudentsCouncilViewModel.ConfirmPassword)
                                 @Html.EditorFor(model => model.StudentsCouncilViewModel.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.ConfirmPassword)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.OrderCreationCouncilOfLearnersFile)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.OrderCreationCouncilOfLearnersFile, new { htmlAttributes = new { @class = "form-control", @type="file" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.OrderCreationCouncilOfLearnersFile)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.ProtocolApprovalStudentAssociationsFile)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.ProtocolApprovalStudentAssociationsFile, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.ProtocolApprovalStudentAssociationsFile)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.StudentsCouncilViewModel.ConferenceProtocolFile)
+                                @Html.EditorFor(model => model.StudentsCouncilViewModel.ConferenceProtocolFile, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                                @Html.ValidationMessageFor(model => model.StudentsCouncilViewModel.ConferenceProtocolFile)
                             </div>
                         </div>
                     </div>
@@ -240,9 +275,13 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
-        }
+        </form>
     </div>
 </div>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+@section Scripts{ 
+@await Html.PartialAsync("_ValidationScriptsPartial")
+
+}
