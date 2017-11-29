@@ -1,0 +1,103 @@
+﻿@model RSC.Controllers.Models.EventsViewModels.EventCreateViewModel
+
+<div class="paddingMainblock">
+    <h2>Описание мероприятия</h2>
+    <div class="col-md-5">
+            <div class="form-group">
+                <label asp-for="EventTypeId" class="control-label"></label>
+                <input asp-for="EventTypeId" class="form-control" />
+                <span asp-validation-for="EventTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameEvent" class="control-label"></label>
+                <input asp-for="NameEvent" class="form-control" />
+                <span asp-validation-for="NameEvent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDirectionId" class="control-label"></label>
+                @Html.DropDownList("EventDirectionId", Model.EventDirections, new { @class = "form-control" })
+                <span asp-validation-for="EventDirectionId" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="RegionId" class="control-label"></label>
+                @Html.DropDownList("RegionId", @Model.Regions , new { @class="form-control" })
+                <span asp-validation-for="RegionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurposeOfTheEvent" class="control-label"></label>
+                <input asp-for="PurposeOfTheEvent" class="form-control" />
+                <span asp-validation-for="PurposeOfTheEvent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpectedEffectsOfTheEvent" class="control-label"></label>
+                <input asp-for="ExpectedEffectsOfTheEvent" class="form-control" />
+                <span asp-validation-for="ExpectedEffectsOfTheEvent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDateTime" class="control-label"></label>
+                <input asp-for="StartDateTime" type="text" class="form-control" />
+                <span asp-validation-for="StartDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StopDateTime" class="control-label"></label>
+                <input asp-for="StopDateTime" type="text" class="form-control" />
+                <span asp-validation-for="StopDateTime" class="text-danger"></span>
+            </div>
+
+            <h2>Участники</h2>
+
+            <div class="form-group">
+                <label asp-for="CountOOVO" class="control-label"></label>
+                <input asp-for="CountOOVO" type="number" class="form-control" />
+                <span asp-validation-for="CountOOVO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalNumberOfParticipants" class="control-label"></label>
+                <input asp-for="TotalNumberOfParticipants" type="number" class="form-control" />
+                <span asp-validation-for="TotalNumberOfParticipants" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfParticipantsInThisOOVO" class="control-label"></label>
+                <input asp-for="NumberOfParticipantsInThisOOVO" type="number" class="form-control" />
+                <span asp-validation-for="NumberOfParticipantsInThisOOVO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfParticipantsWithSubsidies" class="control-label"></label>
+                <input asp-for="NumberOfParticipantsWithSubsidies" type="number" class="form-control" />
+                <span asp-validation-for="NumberOfParticipantsWithSubsidies" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfParticipantsWithoutSubsidy" class="control-label"></label>
+                <input asp-for="NumberOfParticipantsWithoutSubsidy" type="number" class="form-control" />
+                <span asp-validation-for="NumberOfParticipantsWithoutSubsidy" class="text-danger"></span>
+            </div>
+
+            <h2>Реализация</h2>
+
+            <div class="form-group">
+                <label asp-for="ImplementationPlan" class="control-label"></label>
+                <input asp-for="ImplementationPlan" class="form-control" />
+                <span asp-validation-for="ImplementationPlan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountImplementaionEvents" class="control-label"></label>
+                <input asp-for="CountImplementaionEvents" type="number" class="form-control" />
+                <span asp-validation-for="CountImplementaionEvents" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImplementationEventsShotInfo" class="control-label"></label>
+                <input asp-for="ImplementationEventsShotInfo" class="form-control" />
+                <span asp-validation-for="ImplementationEventsShotInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderOfEventManagement" class="control-label"></label>
+                <input asp-for="OrderOfEventManagement" class="form-control" />
+                <span asp-validation-for="OrderOfEventManagement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MeasuresToEnsurePublicityEvent" class="control-label"></label>
+                <input asp-for="MeasuresToEnsurePublicityEvent" class="form-control" />
+                <span asp-validation-for="MeasuresToEnsurePublicityEvent" class="text-danger"></span>
+            </div>
+    </div>
+</div>

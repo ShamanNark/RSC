@@ -1,0 +1,33 @@
+﻿@model RSC.Models.NewsViewModels.DetailsNewsViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены что хотите удалить?</h3>
+<div>
+    <h3>@Html.DisplayFor(model => model.Title)</h3>
+    <hr />
+
+    <p><img style="max-height:300px;" src="@Url.Content(Model.MainImagePath)"></p>
+    <hr />
+
+    <div>
+        <p>
+            @Html.Raw(Model.Text)
+        </p>
+    </div>
+    
+    <form asp-action="Delete">
+        @Html.HiddenFor(model => model.Id)
+        <input type="submit" value="Удалить" class="btn btn-default" /> |
+        @if (this.User.IsInRole("admin"))
+        {
+            <a asp-action="Index">Вернуться к списку</a> <br />
+        }
+        <a asp-action="NewsBoard">Вернуться к новостой стене</a>
+    </form>
+</div>

@@ -1,0 +1,55 @@
+﻿@model List<RSC.Controllers.Models.AccountViewModels.ConfirmationUsersViewModel>
+
+@{
+    ViewData["Title"] = "СonfirmationUsers";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Потверждение юзер</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Имя 
+                </th>
+                <th>
+                    email
+                </th>
+                <th>
+                    номер телефона
+                </th>
+                <th>
+                    Статут
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>s
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "EditStatusUser", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

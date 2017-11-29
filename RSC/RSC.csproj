@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>aspnet-RSC-47C6E1B2-39A0-4D28-B40F-949E4C53B2B8</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
+    <Content Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
+    <EmbeddedResource Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
+    <None Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" PrivateAssets="All" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Profile\" />
+    <Folder Include="wwwroot\files\EGRUL\" />
+    <Folder Include="wwwroot\files\Приказ об утверждении %28назначении%29 ректора\" />
+    <Folder Include="wwwroot\files\Приказ о создании Совета обучающихся\" />
+    <Folder Include="wwwroot\files\Протокол отчетно-выборной конференции СО\" />
+    <Folder Include="wwwroot\files\Доверенность\" />
+    <Folder Include="wwwroot\files\Протокол СО об утверждении\" />
+    <Folder Include="wwwroot\images\HomePageImages\" />
+    <Folder Include="wwwroot\images\MainImages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="wwwroot\css\styles.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20171118215158_AddedRegions.Designer.cs" />
+    <Compile Remove="Data\Migrations\20171118215158_AddedRegions.cs" />
+    <Compile Remove="Data\Migrations\20171118224921_AddedRegions.Designer.cs" />
+    <Compile Remove="Data\Migrations\20171118224921_AddedRegions.cs" />
+    <Compile Remove="Data\Migrations\20171118225347_AddedRegions.cs" />
+    <Compile Remove="Data\Migrations\20171118225347_AddedRegions.Designer.cs" />
+  </ItemGroup>
+</Project>
