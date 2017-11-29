@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RSC.Data.DbModels;
 using System;
 using System.Collections.Generic;
@@ -15,46 +16,38 @@ namespace RSC.Controllers.Models.PRDSOViewModels
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "ОГРН")]
+        [Display(Name = "ОГРН *")]
         public string OGRN { get; set; }
 
-
         [Required]
-        [Display(Name = "ИНН")]
+        [Display(Name = "ИНН *")]
         public string INN { get; set; }
 
-
         [Required]
-        [Display(Name = "ОКПО")]
+        [Display(Name = "ОКПО *")]
         public string OKPO { get; set; }
 
-
         [Required]
-        [Display(Name = "КПП")]
+        [Display(Name = "КПП *")]
         public string KPP { get; set; }
 
-
         [Required]
-        [Display(Name = "Юридический адрес")]
+        [Display(Name = "Юридический адрес *")]
+        [DataType(DataType.Text)]
         public string UrAddress { get; set; }
 
-
         [Required]
-        [Display(Name = "Почтовый адрес")]
+        [Display(Name = "Почтовый адрес *")]
         public string MailAddress { get; set; }
-
-
-        [Required]
+        
         [Display(Name = "Web-сайт образовательной организации")]
+        [DataType(DataType.Url)]
         public string WebSite { get; set; }
-
-
-        //[Required]
-        [Display(Name = "ЕГРЮЛ ")]
-        public FileModel EGRUL { get; set; }
-
-
+        
         [Required]
+        [Display(Name = "ЕГРЮЛ *")]
+        public IFormFile EGRULfile { get; set; }
+
         [Display(Name = "Численность обучающихся по очной форме обучения, включая филиалы, чел.")]
         public int StudentsCount { get; set; }
 
@@ -64,32 +57,36 @@ namespace RSC.Controllers.Models.PRDSOViewModels
 
         #region Master head
         [Required]
-        [Display(Name = "Фамилия")]
+        [Display(Name = "Фамилия *")]
         public string Surname { get; set; }
-
-
+        
         [Required]
-        [Display(Name = "Имя")]
+        [Display(Name = "Имя *")]
         public string Name { get; set; }
         
         [Required]
-        [Display(Name = "Отчество")]
+        [Display(Name = "Отчество *")]
         public string MiddleName { get; set; }
 
         [Required]
-        [Display(Name = "Должность")]
+        [Display(Name = "Должность *")]
         public string Position { get; set; }
-
-        [Required]
+        
         [Display(Name = "Факс")]
         public string Fax { get; set; }
 
         [Required]
+        [Display(Name = "Телефон *")]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNummber { get; set; }
+        
         [Display(Name = "E-mail")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         
-        [Display(Name = "Приказ об утверждении (назначении) ректора ")]
-        public FileModel OrderApprovalRector { get; set; }
+        [Required]
+        [Display(Name = "Приказ об утверждении (назначении) ректора *")]
+        public IFormFile OderApprovalRectorFile { get; set; }
 
         #endregion
         
@@ -105,27 +102,29 @@ namespace RSC.Controllers.Models.PRDSOViewModels
 
 
         [Required]
-        [Display(Name = "ИНН банка")]
+        [Display(Name = "ИНН банка *")]
         public string BankINN { get; set; }
 
 
         [Required]
-        [Display(Name = "КПП банка")]
+        [Display(Name = "КПП банка *")]
         public string BankKPP { get; set; }
 
 
         [Required]
-        [Display(Name = "Наименование обслуживающего банка")]
+        [Display(Name = "Наименование обслуживающего банка *")]
         public string BankName { get; set; }
 
 
         [Required]
-        [Display(Name = "Расчетный счет")]
+        [Display(Name = "Расчетный счет *")]
+        [DataType(DataType.CreditCard)]
         public string CheckingAccount { get; set; }
 
 
         [Required]
-        [Display(Name = "Корреспондентский счет")]
+        [Display(Name = "Корреспондентский счет *")]
+        [DataType(DataType.CreditCard)]
         public string CorrespondentAccount { get; set; }
 
 

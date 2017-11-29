@@ -46,8 +46,9 @@ namespace RSC.Controllers
 
             var model = new ProfileViewModel
             {
+                PrdsoId = prdso.Id,
                 University = oovo,
-                PrdsoTypes = db.PrdsoTypes.ToList(),
+                EventTypes = db.PrdsoTypes.ToList(),
                 Events = db.Events.Where(e => e.PrdsoId == prdso.Id).ToList()
             };
             return View(model);

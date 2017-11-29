@@ -8,8 +8,9 @@ namespace RSC.Controllers.Models.ProfileViewModels
 {
     public class ProfileViewModel
     {
+        public int PrdsoId { get; set; }
         public University University { get; set; }
-        public List<EventType> PrdsoTypes { get; set; }
+        public List<EventType> EventTypes { get; set; }
         public List<Event> Events { get; set; }
     }
 }

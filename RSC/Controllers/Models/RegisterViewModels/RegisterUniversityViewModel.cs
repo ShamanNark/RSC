@@ -1,4 +1,5 @@
-﻿using RSC.Models.AccountViewModels;
+﻿using Microsoft.AspNetCore.Http;
+using RSC.Models.AccountViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,5 +35,7 @@ namespace RSC.Models.RegisterViewModels
         [Required]
         [Display(Name = "Телефон рабочий")]
         public string JobPhoneNumber { get; set; }
+        [Display(Name = "Доверенность *")]
+        public IFormFile PowerOfAttorneyFile { get; set; }
     }
 }

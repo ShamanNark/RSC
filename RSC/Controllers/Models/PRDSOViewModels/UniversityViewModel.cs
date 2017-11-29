@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,15 +14,19 @@ namespace RSC.Controllers.Models.PRDSOViewModels
         [Display(Name="")]
         public string UniversityForm { get; set; }
         
+        [Required]
         [Display(Name="Фамилия*")]
         public string MiddleName { get; set; }
         
+        [Required]
         [Display(Name ="Имя*")]
         public string Name { get; set; }
         
+        [Required]
         [Display(Name ="Отчество*")]
         public string Surname { get; set; }
         
+        [Required]
         [Display(Name = "Рабочий номер*")]
         public string JobPhoneNumber { get; set; }
 
@@ -33,7 +38,9 @@ namespace RSC.Controllers.Models.PRDSOViewModels
 
         [Display(Name = "Университет")]
         public int UniversityDataId { get; set; }
-
+        
+        [Display(Name = "Доверенность *")]
+        public IFormFile PowerOfAttorneyFile { get; set; }
         
         public string ApplicationUserId { get; set; }
     }

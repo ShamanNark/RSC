@@ -18,6 +18,10 @@ namespace RSC.Data.DbModels
         public string JobPhoneNumber { get; set; }
         public string Fax { get; set; }
 
+        public int PowerOfAttorneyId { get; set; }
+        [ForeignKey("PowerOfAttorneyId")]
+        public virtual FileModel PowerOfAttorney { get; set; }
+
         public int RegionId { get; set; }
         public virtual Region Region { get; set; }
 

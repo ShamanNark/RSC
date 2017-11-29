@@ -13,9 +13,10 @@ using System;
 namespace RSC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171128190440_PrdsoSaveFileId")]
+    partial class PrdsoSaveFileId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -380,7 +381,7 @@ namespace RSC.Migrations
 
                     b.Property<string>("OKPO");
 
-                    b.Property<int>("OderApprovalRectorId");
+                    b.Property<int?>("OrderApprovalRectorId");
 
                     b.Property<string>("Position");
 
@@ -400,7 +401,7 @@ namespace RSC.Migrations
 
                     b.HasIndex("EGRULId");
 
-                    b.HasIndex("OderApprovalRectorId");
+                    b.HasIndex("OrderApprovalRectorId");
 
                     b.HasIndex("StudentsCouncilId");
 
@@ -462,8 +463,6 @@ namespace RSC.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<int>("ConferenceProtocolId");
-
                     b.Property<int>("EducationalOrganizationId");
 
                     b.Property<string>("Fax");
@@ -476,10 +475,6 @@ namespace RSC.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("OrderCreationCouncilOfLearnersId");
-
-                    b.Property<int>("ProtocolApprovalStudentAssociationsId");
-
                     b.Property<int>("RegionId");
 
                     b.Property<string>("Surname");
@@ -488,13 +483,7 @@ namespace RSC.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("ConferenceProtocolId");
-
                     b.HasIndex("EducationalOrganizationId");
-
-                    b.HasIndex("OrderCreationCouncilOfLearnersId");
-
-                    b.HasIndex("ProtocolApprovalStudentAssociationsId");
 
                     b.HasIndex("RegionId");
 
@@ -538,8 +527,6 @@ namespace RSC.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("PowerOfAttorneyId");
-
                     b.Property<int>("RegionId");
 
                     b.Property<string>("Surname");
@@ -553,8 +540,6 @@ namespace RSC.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("PowerOfAttorneyId");
 
                     b.HasIndex("RegionId");
 
@@ -779,8 +764,7 @@ namespace RSC.Migrations
 
                     b.HasOne("RSC.Data.DbModels.FileModel", "OrderApprovalRector")
                         .WithMany()
-                        .HasForeignKey("OderApprovalRectorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OrderApprovalRectorId");
 
                     b.HasOne("RSC.Data.DbModels.StudentsCouncil", "StudentsCouncil")
                         .WithMany()
@@ -816,24 +800,9 @@ namespace RSC.Migrations
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("RSC.Data.DbModels.FileModel", "ConferenceProtocol")
-                        .WithMany()
-                        .HasForeignKey("ConferenceProtocolId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("RSC.Data.DbModels.UniversityData", "University")
                         .WithMany()
                         .HasForeignKey("EducationalOrganizationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("RSC.Data.DbModels.FileModel", "OrderCreationCouncilOfLearners")
-                        .WithMany()
-                        .HasForeignKey("OrderCreationCouncilOfLearnersId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("RSC.Data.DbModels.FileModel", "ProtocolApprovalStudentAssociations")
-                        .WithMany()
-                        .HasForeignKey("ProtocolApprovalStudentAssociationsId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("RSC.Data.DbModels.Region", "Region")
@@ -855,11 +824,6 @@ namespace RSC.Migrations
                     b.HasOne("RSC.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("RSC.Data.DbModels.FileModel", "PowerOfAttorney")
-                        .WithMany()
-                        .HasForeignKey("PowerOfAttorneyId")
-                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("RSC.Data.DbModels.Region", "Region")
                         .WithMany()

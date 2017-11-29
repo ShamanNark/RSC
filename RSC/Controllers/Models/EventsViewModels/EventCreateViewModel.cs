@@ -12,7 +12,8 @@ namespace RSC.Controllers.Models.EventsViewModels
     {
         #region property 
 
-        public int PrdsoTypeId { get; set; }
+        public int PrdsoId { get; set; }
+        public int EventTypeId { get; set; }
 
         [Required]
         [Display(Name = "Наименование мероприятия")]

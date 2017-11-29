@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,50 +11,54 @@ namespace RSC.Controllers.Models.PRDSOViewModels
     {
         public int Id { get; set; }
         public string ApplicationUserId { get; set; }
-
-        [Required]
-        [Display(Name = "Фамилия")]
+        
+        [Display(Name = "Фамилия *")]
         public string Surname { get; set; }
-
-        [Required]
-        [Display(Name = "Имя")]
+                
+        [Display(Name = "Имя *")]
         public string Name { get; set; }
 
-        [Required]
-        [Display(Name = "Отчество")]
+        [Display(Name = "Отчество *")]
         public string MiddleName { get; set; }
-
-        [Required]
-        [Display(Name ="Рабочий телефон")]
+        
+        [Display(Name ="Рабочий телефон *")]
+        [DataType(DataType.PhoneNumber)]
         public string JobPhone { get; set; }
-
-        [Required]
-        [Display(Name = "Мобильный телефон")]
+        
+        [Display(Name = "Мобильный телефон *")]
+        [DataType(DataType.PhoneNumber)]
         public string MobilePhone { get; set; }
-
-        [Required]
+        
         [Display(Name = "Факс")]
         public string Fax { get; set; }
-
-        [Required]
+        
         [Display(Name = "Регион")]
         public int RegionId { get; set; }
-
-        [Required]
+        
         [Display(Name = "Высшее оброзовательное учереждение")]
         public int EducationalOrganizationId { get; set; }
-
-        [Required]
+        
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email *")]
         public string Email { get; set; }
-
-        [Required]
-        [Display(Name = "Пароль")]
+        
+        [Display(Name = "Пароль *")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [Required]
-        [Display(Name = "Повторить пароль")]
+        
+        [Display(Name = "Повторить пароль *")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Протокол отчетно-выборной конференции СО *")]
+        public IFormFile ConferenceProtocolFile { get; set; }
+
+        [Display(Name = "Приказ о создании Совета обучающихся *")]
+        public IFormFile OrderCreationCouncilOfLearnersFile { get; set; }
+
+        [Display(Name = "Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО *")]
+        public IFormFile ProtocolApprovalStudentAssociationsFile { get; set; }
+
     }
 }
