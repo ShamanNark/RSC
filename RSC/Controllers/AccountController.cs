@@ -629,7 +629,7 @@ namespace RSC.Controllers
             var universityDb = Mapper.Map<University>(model);
             var downloadfile = new Helper.DownloadFiles(db, _appEnvironment);
             var nameFile = db.UniversityDatas.Where(u => u.Id == model.UniversityDataId).First();
-            var powerofAttorneyId = await downloadfile.AddFile(model.PowerOfAttorneyFile, "Доверенность/" + nameFile.UniversityName, model.PowerOfAttorneyFile.FileName);
+            var powerofAttorneyId = await downloadfile.AddFile(model.PowerOfAttorneyFile, "/Доверенность/" + nameFile.UniversityShortName, model.PowerOfAttorneyFile.FileName);
             if(powerofAttorneyId != null)
             {
                 universityDb.PowerOfAttorneyId = powerofAttorneyId ?? 0;

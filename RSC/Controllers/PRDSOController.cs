@@ -125,7 +125,7 @@ namespace RSC.Controllers
                     var dbCouncil = Mapper.Map<Data.DbModels.StudentsCouncil>(model.StudentsCouncilViewModel);
                     var orderCreationCouncilOfLearnersId = await dowloadFiles.AddFile
                         (model.StudentsCouncilViewModel.OrderCreationCouncilOfLearnersFile,
-                        "Приказ о создании Совета обучающихся/" + dbUviversity.UniversityData.UniversityName,
+                        "/Приказ о создании Совета обучающихся/" + dbUviversity.UniversityData.UniversityShortName,
                         model.StudentsCouncilViewModel.OrderCreationCouncilOfLearnersFile.FileName);
                     if (orderCreationCouncilOfLearnersId != null)
                     {
@@ -134,7 +134,7 @@ namespace RSC.Controllers
 
                     var protocolApprovalStudentAssociationsId = await dowloadFiles.AddFile
                         (model.StudentsCouncilViewModel.ProtocolApprovalStudentAssociationsFile,
-                        "Протокол СО об утверждении/" + dbUviversity.UniversityData.UniversityName,
+                        "/Протокол СО об утверждении/" + dbUviversity.UniversityData.UniversityShortName,
                         model.StudentsCouncilViewModel.ProtocolApprovalStudentAssociationsFile.FileName);
                     if (protocolApprovalStudentAssociationsId != null)
                     {
@@ -143,7 +143,7 @@ namespace RSC.Controllers
 
                     var conferenceProtocolId = await dowloadFiles.AddFile
                         (model.StudentsCouncilViewModel.ConferenceProtocolFile,
-                        "Протокол отчетно-выборной конференции СО/" + dbUviversity.UniversityData.UniversityName,
+                        "/Протокол отчетно-выборной конференции СО/" + dbUviversity.UniversityData.UniversityShortName,
                         model.StudentsCouncilViewModel.ConferenceProtocolFile.FileName);
                     if (conferenceProtocolId != null)
                     {
@@ -156,13 +156,13 @@ namespace RSC.Controllers
                     db.SaveChanges();
                     prdso.StudentsCouncilId = dbCouncil.Id;
                 }
-                var fileid = await dowloadFiles.AddFile(model.EGRULfile, "EGRUL/" + dbUviversity.UniversityData.UniversityName , model.EGRULfile.FileName);
+                var fileid = await dowloadFiles.AddFile(model.EGRULfile, "/EGRUL/" + dbUviversity.UniversityData.UniversityShortName, model.EGRULfile.FileName);
                 if(fileid != null)
                 {
                     prdso.EGRULId = fileid ?? 0;
                 }
 
-                var oderApprovalRectorId = await dowloadFiles.AddFile(model.OderApprovalRectorFile, "Приказ об утверждении (назначении) ректора/" + dbUviversity.UniversityData.UniversityName, model.OderApprovalRectorFile.FileName);
+                var oderApprovalRectorId = await dowloadFiles.AddFile(model.OderApprovalRectorFile, "/Приказ об утверждении (назначении) ректора/" + dbUviversity.UniversityData.UniversityShortName, model.OderApprovalRectorFile.FileName);
                 if (fileid != null)
                 {
                     prdso.OderApprovalRectorId = oderApprovalRectorId ?? 0;

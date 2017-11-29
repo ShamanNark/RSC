@@ -34,6 +34,7 @@
     <Folder Include="wwwroot\files\Приказ о создании Совета обучающихся\" />
     <Folder Include="wwwroot\files\Протокол отчетно-выборной конференции СО\" />
     <Folder Include="wwwroot\files\Доверенность\" />
+    <Folder Include="wwwroot\files\Протокол СО об утверждении\" />
     <Folder Include="wwwroot\images\HomePageImages\" />
     <Folder Include="wwwroot\images\MainImages\" />
   </ItemGroup>
