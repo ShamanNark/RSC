@@ -24,240 +24,138 @@
     </environment>
 </head>
 <body>
+    <nav class="container navbar-default navbar-fixed-top">
+        
+            
+            <a href="/"><img src="~/img/logo.png" alt="Росстуденчество"></a>
+            
+            <ul class="nav-right-links">
+                <li>
+                    <input id="searchinput" name="searchinput" class="enjoy-css" type="text">
+                </li>
+                <li><i class="fa fa-search  fa-flip-horizontal lupa-icon" aria-hidden="true"></i></li>
+                <li>
+                    <a href="/manage/index/" id="user-login-circle"><i class="fa fa-user-circle-o" aria-hidden="true"></a></i>
+                </li>
+                @await Html.PartialAsync("_LoginPartial")
+            </ul>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                        aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/"><img src="~/img/logo.png" alt="Росстуденчество"></a>
-            </div>
+
+           
+
+       
+        </nav>
+
+
+        <nav class="navbar container navbar-default navbar-fixed-top nav2">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown active">
-                        <a href="/about/index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            О НАС
-
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="/about/rosstudenchestvo">Росстуденчество</a>
-                                <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="#">Документы</a></li>
-                                    <li><a href="#">Задачи</a></li>
-                                    <li><a href="#">Миссия</a></li>
-                                    <li><a tabindex="-1" href="#">Направления</a></li>
-                                    <li><a href="#">Отделы</a></li>
-                                    <li><a href="#">Программы</a></li>
-
-                                    <li><a href="#">Цели</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="/about/ourteam">Наша команда</a>
-                                <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="/about/otdeli">Отделы</a></li>
-                                    <li><a href="/about/rukovodstvo">Руководство</a></li>
-                                    <li><a href="/about/ekspertniysovet">Экспертный совет</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">Контакты</a>
-                                <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="#">Second level</a></li>
-                                    <li><a href="#">Second level</a></li>
-                                    <li><a href="#">Second level</a></li>
-                                    <li><a tabindex="-1" href="#">Second level</a></li>
-                                    <li><a href="#">Second level</a></li>
-                                    <li><a href="#">Second level</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    </li>
-
-
-                    <li>
-                        <a href="/about/index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            СТУДЕНТУ
-                        </a>
-                    </li>
-
-                    
-
-                    <li>
-                        <a href="#contact">СОВЕТАМ</a>
-                    </li>
-
-
-
-
-                    <li>
-                        <a href="/about/index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            ПРДСО
-
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">О конкурсе</a>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">Календарь ПРДСО</a>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">Направления</a>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">Лучшие мероприятия</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#contact">АБИТУРИЕНТУ</a>
-                    </li>
-
-
-
-
-
-                    <li>
-                        <a href="/about/index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            В УЧЕБЕ
-
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">Универсариум </a>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">База научных работ</a>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">Конструктор ССУ</a>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">Школа лидера</a>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">Методология</a>
-                            </li>
-                        </ul>
-
-
-                    </li>
-                    <li>
-                        <form class="form-inline mt-2 mt-md-0"></form>
-                    </li>
-
-
-
-
+                <ul class="nav navbar-nav col-md-12">
+                    <li class="col-md-2 sec-nav-li"><a href="/about/index">О НАС</a></li>
+                    <li class="col-md-2 sec-nav-li"><a href="#">СТУДЕНТУ</a></li>
+                    <li class="col-md-2 sec-nav-li"><a href="#">СОВЕТАМ</a></li>
+                    <li class="col-md-2 sec-nav-li"><a href="#">ПРДСО</a></li>
+                    <li class="col-md-2 sec-nav-li"><a href="#">АБИТУРИЕНТУ</a></li>
+                    <li class="col-md-2 sec-nav-li"><a href="#">В УЧЕБЕ</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <input id="searchinput" name="searchinput" class="enjoy-css" type="text">
-                    </li>
-                    <li><i class="fa fa-search  fa-flip-horizontal lupa-icon" aria-hidden="true"></i></li>
-                    <li>
-                        <a href="/manage/index/" id="user-login-circle"><i class="fa fa-user-circle-o" aria-hidden="true"></a></i>
-                    </li>
-                    @*<li><a  id="login-word" href="/Account/Login">ВОЙТИ</a></li>*@
-                    @await Html.PartialAsync("_LoginPartial")
-
-                </ul>
+                
 
             </div>
+        </nav>
+
+
+
+
+
+
+
+
+        <div role="main" class="container main">
+            @RenderBody()
         </div>
-    </nav>
-    <div role="main" class="container main">
-        @RenderBody()
-    </div>
-    <div class="container">
-        <div class="footer">
+        <div class="container">
+            <div class="footer">
 
 
-            <div class="col-md-12 footer-logo">
-                <a href="/">
-                    <img src="img/logowhite.png" alt="Росстуденчество">
-                </a>
-                <p>Российский студенческий центр «Росстуденчество»</p>
-                <hr class="footer-hr" />
-            </div>
-
-
-
-            <div class="footer-info">
-                <div class="col-md-4">
-                    <p>Горячая линия по вопросам социальной и правовой помощи обучающимся:</p>
-                    <p><a href="tel:+7(800)555-23-90">+7 800 555 2390</a> </p>
-                    <p>По другим вопросам:</p>
-                    <p><a href="tel:+7(495)915-56-14">+7 495 915-56-14</a></p>
-                    <p>
-                        <a href="mailto:pravo@russtudcenter.ru">pravo@russtudcenter.ru</a>
-                    </p>
+                <div class="col-md-12 footer-logo">
+                    <a href="/">
+                        <img src="img/logowhite.png" alt="Росстуденчество">
+                    </a>
+                    <p>Российский студенческий центр «Росстуденчество»</p>
+                    <hr class="footer-hr" />
                 </div>
-                <div class="col-md-4">
-                    <p>Отдел ПРДСО:</p>
-                    <p>
-                        <a href="tel:+7(495)915-26-02">+7 495 915-26-02</a>
-                    </p>
-                    <p>
-                        <a href="mailto:prdso@russtudcenter.ru">prdso@russtudcenter.ru</a>
-                    </p>
 
-                    <br>
 
-                </div>
-                <div class="col-md-4">
-                    <div class="five-icons">
-                        <i class="fa fa-vk soc-pad" aria-hidden="true"></i>
-                        <i class="fa fa-instagram soc-pad" aria-hidden="true"></i>
-                        <i class="fa fa-facebook soc-pad" aria-hidden="true"></i>
-                        <i class="fa fa-twitter soc-pad" aria-hidden="true"></i>
-                        <i class="fa fa-telegram soc-pad" aria-hidden="true"></i>
+
+                <div class="footer-info">
+                    <div class="col-md-4">
+                        <p>Горячая линия по вопросам социальной и правовой помощи обучающимся:</p>
+                        <p><a href="tel:+7(800)555-23-90">+7 800 555 2390</a> </p>
+                        <p>По другим вопросам:</p>
+                        <p><a href="tel:+7(495)915-56-14">+7 495 915-56-14</a></p>
+                        <p>
+                            <a href="mailto:pravo@russtudcenter.ru">pravo@russtudcenter.ru</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Отдел ПРДСО:</p>
+                        <p>
+                            <a href="tel:+7(495)915-26-02">+7 495 915-26-02</a>
+                        </p>
+                        <p>
+                            <a href="mailto:prdso@russtudcenter.ru">prdso@russtudcenter.ru</a>
+                        </p>
+
+                        <br>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="five-icons">
+                            <i class="fa fa-vk soc-pad" aria-hidden="true"></i>
+                            <i class="fa fa-instagram soc-pad" aria-hidden="true"></i>
+                            <i class="fa fa-facebook soc-pad" aria-hidden="true"></i>
+                            <i class="fa fa-twitter soc-pad" aria-hidden="true"></i>
+                            <i class="fa fa-telegram soc-pad" aria-hidden="true"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="social-icons col-md-12" style="text-align:center;">
-                <p style="float:left;padding-top: 8px;">Соглашение о пользовании информационной системой</p>
-                <p class="adress">109240, ул. Николоямская, д. 11, стр. 1, Москва</p>
+                <div class="social-icons col-md-12" style="text-align:center;">
+                    <p style="float:left;padding-top: 8px;">Соглашение о пользовании информационной системой</p>
+                    <p class="adress">109240, ул. Николоямская, д. 11, стр. 1, Москва</p>
+                </div>
             </div>
         </div>
-    </div>
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="~/assets/js/vendor/popper.min.js"></script>
-        <script src="~/dist/main.js"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="~/assets/js/vendor/popper.min.js"></script>
-        <script src="~/dist/main.js"></script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            <script src="~/assets/js/vendor/popper.min.js"></script>
+            <script src="~/dist/main.js"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="~/assets/js/vendor/popper.min.js"></script>
+            <script src="~/dist/main.js"></script>
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
 
-    @RenderSection("Scripts", required: false)
+        @RenderSection("Scripts", required: false)
 </body>
 </html>

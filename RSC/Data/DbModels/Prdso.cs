@@ -93,6 +93,8 @@ namespace RSC.Data.DbModels
 
         #endregion
 
+
+                        
         public virtual List<Event> Events { get; set; }
     }
 }
