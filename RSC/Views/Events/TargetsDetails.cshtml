@@ -7,24 +7,24 @@
         {
             <div>
                 <div class="form-group col-md-6" >
-                    @Html.LabelFor(model => target.Name, new { @class = "control-label" })
-                    @Html.EditorFor(model => target.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled"} })
-                    @Html.ValidationMessageFor(model => target.Name)
+                    @Html.LabelFor(model => @target.Name, new { @class = "control-label" })
+                    @Html.EditorFor(model => @target.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled"} })
+                    @Html.ValidationMessageFor(model => @target.Name)
                 </div>
                 <div class="form-group col-md-2">
-                    @Html.LabelFor(model => target.Unit, new { @class = "control-label" })
-                    @Html.EditorFor(model => target.Unit, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    @Html.ValidationMessageFor(model => target.Unit)
+                    @Html.LabelFor(model => @target.Unit, new { @class = "control-label" })
+                    @Html.EditorFor(model => @target.Unit, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => @target.Unit)
                 </div>
                 <div class="form-group col-md-2">
-                    @Html.LabelFor(model => target.BasicValue, new { @class = "control-label" })
-                    @Html.EditorFor(model => target.BasicValue, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    @Html.ValidationMessageFor(model => target.BasicValue)
+                    @Html.LabelFor(model => @target.BasicValue, new { @class = "control-label" })
+                    @Html.EditorFor(model => @target.BasicValue, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => @target.BasicValue)
                 </div>
                 <div class="form-group col-md-2">
-                    @Html.LabelFor(model => target.PlannedValue, new { @class = "control-label" })
-                    @Html.EditorFor(model => target.PlannedValue, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    @Html.ValidationMessageFor(model => target.PlannedValue)
+                    @Html.LabelFor(model => @target.PlannedValue, new { @class = "control-label" })
+                    @Html.EditorFor(model => @target.PlannedValue, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => @target.PlannedValue)
                 </div>
             </div>
         }
