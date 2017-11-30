@@ -594,7 +594,7 @@ namespace RSC.Controllers
             }
         }
 
-        private void RegisterFactory(object T)
+        private async Task<bool> RegisterFactory(object T)
         {
             switch (T.GetType().Name)
             {
@@ -605,7 +605,7 @@ namespace RSC.Controllers
                     RegisterStudentCouncilDb(T as RegisterStudentCouncilViewModel);
                     break;
                 case "RegisterUniversityViewModel":
-                    RegisterUniversityDb(T as RegisterUniversityViewModel);
+                    await RegisterUniversityDb(T as RegisterUniversityViewModel);
                     break;
                 case "RegisterAssessorViewModel":
                     RegisterAssessorDb(T as RegisterAssessorViewModel);
@@ -613,6 +613,7 @@ namespace RSC.Controllers
                 default:
                     break;
             }
+            return true;
         }
 
         private void RegisterAssessorDb(RegisterAssessorViewModel model)
@@ -625,7 +626,7 @@ namespace RSC.Controllers
             db.SaveChanges();
         }
 
-        private async void RegisterUniversityDb(RegisterUniversityViewModel model)
+        private async Task<bool> RegisterUniversityDb(RegisterUniversityViewModel model)
         {
             var universityDb = Mapper.Map<University>(model);
             var downloadfile = new Helper.DownloadFiles(db, _appEnvironment);
@@ -640,6 +641,7 @@ namespace RSC.Controllers
             universityDb.ApplicationUser.UserType = ApplicationUserTypes.University;
             await _userManager.AddToRoleAsync(universityDb.ApplicationUser, "OOBO");
             db.SaveChanges();
+            return true;
         }
 
         private void RegisterStudentCouncilDb(RegisterStudentCouncilViewModel model)
@@ -677,7 +679,7 @@ namespace RSC.Controllers
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 _logger.LogInformation("User created a new account with password.");
                 model.ApplicationUserId = user.Id;
-                RegisterFactory(model);
+                await RegisterFactory(model);
                 return RedirectToAction("Login", "Account");
             }
 

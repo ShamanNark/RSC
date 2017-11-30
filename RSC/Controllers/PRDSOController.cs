@@ -56,7 +56,7 @@ namespace RSC.Controllers
             var oovo = db.Universities.Include(university => university.ApplicationUser)
                                       .Include(university => university.UniversityData)
                                       .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
-            if (oovo == null && oovo.ApplicationUser.Status == ApplicationUserStatus.Approved)
+            if (oovo == null || oovo.ApplicationUser.Status != ApplicationUserStatus.Approved)
             {
                 return RedirectToAction("Index", "Home");
             }
