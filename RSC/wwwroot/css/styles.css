@@ -478,10 +478,10 @@ h3{
 
 
 .slider {
-    min-height: 670px;
-    
-    background-image: url(../../img/sliderbackground.png);
-    background-size: 1140px 670px;
+    min-height: 472px;
+    margin-top: 50px;
+    /*background-image: url(../../img/sliderbackground.png);*/
+    background-size: 1140px 472px;
     background-repeat: no-repeat;
     background-position-x: 0px;
 
@@ -521,8 +521,9 @@ h3{
 }
 
 .calendar {
-    min-height: 770px;
-    background: url(../../img/squares.png) 10px 10px no-repeat, linear-gradient(to right, #e55727 3%, #e21c25) 0 0 no-repeat;
+    min-height: 710px;
+    margin-top: 60px;
+    background: url(../../img/squares.png) 10px 10px no-repeat, linear-gradient(to right, #9DC8DA 3%, #90ACC8) 0 0 no-repeat;
 }
 
 .calendar h2{
@@ -582,6 +583,7 @@ h3{
 
 .studstarter{
     min-height: 700px;
+    margin-top: 60px;
     background-color: none;
 
 }
@@ -619,15 +621,18 @@ h3{
     text-align: center;
 }
 
-.studstarter-buttons .btn-transparent-red {
+.studstarter-buttons .btn-blue {
     padding-left: 40px;
     padding-right: 40px;
 }
 
-.prdso{
+.prdso {
     min-height: 700px;
+    margin-top: 60px;
     background-color: none;
-
+    -webkit-box-shadow: 0px 4px 17px -4px rgba(0,0,0,0.62);
+    -moz-box-shadow: 0px 4px 17px -4px rgba(0,0,0,0.62);
+    box-shadow: 0px 4px 17px -4px rgba(0,0,0,0.62);
 }
 
 .prdso h1{
@@ -667,6 +672,7 @@ h3{
     background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,linear-gradient(to right, #e55727 3%, #e21c25) 0 0 no-repeat;
     padding-left: 100px;
     padding-right: 100px;
+    
 }
 
 .prdso-banner h1 {
@@ -676,7 +682,9 @@ h3{
 
 .one-prdso-block{
     min-height: 350px;
-    
+    border-bottom: 5px solid;
+    border-right: 5px solid;
+    border-color: white;
 }
 
     .one-prdso-block h5 {
@@ -726,6 +734,7 @@ h3{
     -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
+    
 }
 
 .prdso .one-prdso-block:nth-child(3) {
@@ -736,6 +745,7 @@ h3{
     -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
+    border-right: none;
 }
 .prdso .one-prdso-block:nth-child(4) {
     min-height: 350px;
@@ -745,6 +755,7 @@ h3{
     -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
+    border-bottom: none;
 }
 .prdso .one-prdso-block:nth-child(5) {
     min-height: 350px;
@@ -754,6 +765,8 @@ h3{
     -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
+    border-bottom: none;
+
 }
 
 .prdso .one-prdso-block:nth-child(6) {
@@ -764,6 +777,8 @@ h3{
     -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
+    border-bottom: none;
+    border-right: none;
 }
 
 .prdso .one-prdso-block:nth-child(7) {
@@ -787,7 +802,7 @@ h3{
 
 .news-block{
     min-height: 700px;
-
+    margin-top: 60px;
     -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
@@ -848,6 +863,9 @@ h3{
     background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,linear-gradient(to right, #00a6c5 0%, #1976a6 100%);
     padding-left: 100px;
     padding-right: 100px;
+    border-bottom: 5px solid;
+    border-right: 5px solid;
+    border-color: white;
 }
 
 .news-banner h1 {
@@ -861,26 +879,33 @@ h3{
 }
 
 
-.news-buttons .btn-transparent {
+.news-buttons .btn-red {
     padding-left: 50px;
     padding-right: 50px;
 }
 
+.footer-main-block {
+    min-height: 230px;
+    background-color: #333;
+    margin-top: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
 
 
 .footer {
-    min-height: 240px;
-    background-color: #333;
+    
 }
 
 .footer p {
     font-size:12px;
     font-weight: bold;
     margin-bottom: 5px;
+    color: white;
 }
 
     .footer a {
-        color: lightgray;
+        color: white;
     }
 
 .soc-pad{
@@ -889,18 +914,22 @@ h3{
 
 }
 
-.footer-logo{
+.footer-logo {
     margin-top: 10px;
-    min-height:66px;
-    
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+    border-color: white;
     
 }
 
     .footer-logo p {
-        color: lightgray;
-        float: right;
+        color: white;
+        float: left;
         margin-bottom: 0px;
         padding-top: 10px;
+
     }
 
 
@@ -908,7 +937,20 @@ h3{
         height: 40px;
     }
 
-.footer-hr{
+
+.footer-logo .btn-transparent{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    float: right;
+    font-size: 12px;
+    color: lightgray;
+} 
+
+
+
+.footer-hr {
     border-top: solid 1px;
     border-top-color: #434343;
     margin-top: 5px;
@@ -919,14 +961,28 @@ h3{
 .footer-info {
    
     color: lightgray;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
+    .footer-info .col-md-4 {
+        padding-top: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+
+    }
 
 
-.social-icons {
+    .social-icons {
+    
     color: lightgray;
     background-color: #262626;
-    height:34px;
+    min-height:34px;
+}
+
+.social-icons p{
+    margin-bottom: 0px;
+    padding-bottom: 10px;
 }
 
     .social-icons .adress {
