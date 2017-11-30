@@ -8,19 +8,23 @@ using RSC.Data;
 using RSC.Models;
 using RSC.Models.HomeViewModels;
 using RSC.Models.NewsViewModels;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace RSC.Controllers
 {
     public class HomeController : Controller
     {
         private ApplicationDbContext db;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             db = context;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var viewModel = new HomeIndexViewModel
             {
@@ -34,6 +38,19 @@ namespace RSC.Controllers
                     CreateDateTime = n.ObjectNews.CreateDateTime
                 }).OrderByDescending(n => n.CreateDateTime).Take(6).ToList(),
             };
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                ViewBag.Status = user.Status == ApplicationUserStatus.Approved ? "Approved" : "Not";
+                var prdsoobj = db.PrdsoList.Where(prdso => prdso.University.ApplicationUserId == user.Id || prdso.StudentsCouncil.ApplicationUserId == user.Id).FirstOrDefault();
+                ViewBag.HasPrdso = prdsoobj != null ? "True" : "False";
+            }
+            else
+            {
+                ViewBag.Status = "Not";
+                ViewBag.HasPrdso = "False";
+            }
             return View(viewModel);
         }
 

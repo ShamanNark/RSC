@@ -23,15 +23,15 @@
         <ul class="dropdown-menu">
             <li><a href="/manage/index/">@UserManager.GetUserName(User)</a></li>
             <li role="separator" class="divider"></li>
-            @if (User.IsInRole("admin"))
+            @if (User.IsInRole("ADMIN") || User.IsInRole("OPERATOR"))
             {
                 <li><a href="@Url.Action("Index","Admin")">Админ панель</a></li>
             }
-            @if (User.Identity.IsAuthenticated)
+            @if ((User.IsInRole("OOBO") || User.IsInRole("ADMIN") || User.IsInRole("CO")) && ViewBag.HasPrdso == "True" )
             {
                 <li><a href="@Url.Action("Index","Profile")">Личный кабнет</a></li>
             }
-            @if (User.IsInRole("admin"))
+            @if ((User.IsInRole("OOBO") || User.IsInRole("ADMIN")) && (ViewBag.Status == "Approved" && ViewBag.HasPrdso != "True") )
             {
                 <li><a href="@Url.Action("Create","PRDSO")">Cоздать ПРДСО</a></li>
             }

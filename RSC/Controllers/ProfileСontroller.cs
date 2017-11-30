@@ -51,6 +51,19 @@ namespace RSC.Controllers
                 EventTypes = db.PrdsoTypes.ToList(),
                 Events = db.Events.Where(e => e.PrdsoId == prdso.Id).ToList()
             };
+
+            
+            if (user != null)
+            {
+                ViewBag.Status = user.Status == ApplicationUserStatus.Approved ? "Approved" : "Not";
+                ViewBag.HasPrdso = prdso != null ? "True" : "False";
+            }
+            else
+            {
+                ViewBag.Status = "Not";
+                ViewBag.HasPrdso = "False";
+            }
+
             return View(model);
         }
     }

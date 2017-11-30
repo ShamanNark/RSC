@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using RSC.Data.DbModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace RSC.Data
 {
@@ -9,6 +10,25 @@ namespace RSC.Data
         public static void Initialize(ApplicationDbContext context)
         {
             context.Database.EnsureCreated();
+            if (!context.Roles.Any())
+            {
+                var roles = new IdentityRole[]
+                {
+                    new IdentityRole { Name = "ADMIN", NormalizedName = "ADMIN" },
+                    new IdentityRole { Name = "OPERATOR", NormalizedName = "OPERATOR"},
+                    new IdentityRole { Name = "OOBO", NormalizedName = "OOBO"},
+                    new IdentityRole { Name = "CO", NormalizedName = "CO" },
+                    new IdentityRole { Name = "ASSESSOR", NormalizedName = "ASSESSOR" },
+                    new IdentityRole { Name = "STUDENT", NormalizedName = "STUDENT"}
+                };
+
+                foreach (var s in roles)
+                {
+                    context.Roles.Add(s);
+                }
+                context.SaveChanges();
+            }
+
             // Look for any students.
             if (!context.Regions.Any())
             {

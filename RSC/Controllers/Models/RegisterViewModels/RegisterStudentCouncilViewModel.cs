@@ -1,4 +1,5 @@
-﻿using RSC.Models.AccountViewModels;
+﻿using Microsoft.AspNetCore.Http;
+using RSC.Models.AccountViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,9 +22,18 @@ namespace RSC.Models.RegisterViewModels
         public string MiddleName { get; set; }
         [Required]
         [Display(Name = "Наименование образовательной организации")]
-        public int EducationalOrganizationIdCouncil { get; set; }
+        public int EducationalOrganizationId { get; set; }
         [Required]
         [Display(Name = "Регион")]
         public int RegionId { get; set; }
+        [Required]
+        [Display(Name = "Приказ создания совета обучающихся *")]
+        public IFormFile OrderCreationCouncilOfLearnersFile { get; set; }
+        [Required]
+        [Display(Name = "Протокол отчетно-выборной конфернеции СО *")]
+        public IFormFile ConferenceProtocolFile { get; set; }
+        [Required]
+        [Display(Name = "Протокол СО об утверждении Программы развитиядеятельности студенческих объединений ООВО *")]
+        public IFormFile ProtocolApprovalStudentAssociationsFile { get; set; }
     }
 }
