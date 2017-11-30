@@ -27,11 +27,11 @@
             {
                 <li><a href="@Url.Action("Index","Admin")">Админ панель</a></li>
             }
-            @if (User.IsInRole("OOBO") || User.IsInRole("ADMIN"))
+            @if ((User.IsInRole("OOBO") || User.IsInRole("ADMIN")) && ViewBag.HasPrdso == "True" )
             {
                 <li><a href="@Url.Action("Index","Profile")">Личный кабнет</a></li>
             }
-            @if (User.IsInRole("OOBO") || User.IsInRole("ADMIN"))
+            @if ((User.IsInRole("OOBO") || User.IsInRole("ADMIN")) && (ViewBag.Status == "Approved" && ViewBag.HasPrdso != "True") )
             {
                 <li><a href="@Url.Action("Create","PRDSO")">Cоздать ПРДСО</a></li>
             }

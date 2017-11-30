@@ -68,6 +68,21 @@ namespace RSC.Controllers
                 UniversityDatas = new SelectList(db.UniversityDatas.Select(uny => new { Id = uny.Id, Name = uny.UniversityName }), "Id", "Name"),
                 StudentCouncils = Mapper.Map<List<StudentsCouncilViewModel>>(db.StudentsCouncils.Where(sc => sc.EducationalOrganizationId == oovo.UniversityDataId).ToList()),
             };
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                ViewBag.Status = user.Status == ApplicationUserStatus.Approved ? "Approved" : "Not";
+                var prdsoobj = db.PrdsoList.Where(prdso => prdso.University.ApplicationUserId == user.Id || prdso.StudentsCouncil.ApplicationUserId == user.Id).FirstOrDefault();
+                ViewBag.HasPrdso = prdsoobj != null ? "True" : "False";
+            }
+            else
+            {
+                ViewBag.Status = "Not";
+                ViewBag.HasPrdso = "False";
+            }
+
+
             return View(model);
         }
         

@@ -238,7 +238,7 @@ namespace RSC.Controllers
                 new SelectListItem { Selected = true, Text = "Мужской", Value = "0"},
                 new SelectListItem { Selected = false, Text = "Женкский", Value = "1"},
             }, "Value", "Text", 0);
-            ViewBag.Regions = new SelectList(db.Regions.Select(b => new { Id = b.Id, Name = b.RegionName }), "Id", "Name");
+            ViewBag.Regions = new SelectList(db.Regions.Select(b => new { Id = b.Id, Name = b.RegionName }).ToList(), "Id", "Name");
           
             ViewBag.Degress = new SelectList(new List<SelectListItem>
             {
@@ -594,36 +594,35 @@ namespace RSC.Controllers
             }
         }
 
-        private async Task<bool> RegisterFactory(object T)
+        private async Task RegisterFactory(object T)
         {
             switch (T.GetType().Name)
             {
                 case "RegisterStudentViewModel":
-                    RegisterStudentDb(T as RegisterStudentViewModel);
+                    await RegisterStudentDb(T as RegisterStudentViewModel);
                     break;
                 case "RegisterStudentCouncilViewModel":
-                    RegisterStudentCouncilDb(T as RegisterStudentCouncilViewModel);
+                    await RegisterStudentCouncilDb(T as RegisterStudentCouncilViewModel);
                     break;
                 case "RegisterUniversityViewModel":
                     await RegisterUniversityDb(T as RegisterUniversityViewModel);
                     break;
                 case "RegisterAssessorViewModel":
-                    RegisterAssessorDb(T as RegisterAssessorViewModel);
+                    await RegisterAssessorDb(T as RegisterAssessorViewModel);
                     break;
                 default:
                     break;
             }
-            return true;
         }
 
-        private void RegisterAssessorDb(RegisterAssessorViewModel model)
+        private async Task RegisterAssessorDb(RegisterAssessorViewModel model)
         {
             var assessorDb = Mapper.Map<Assessor>(model);
             db.Asssessors.Add(assessorDb);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             assessorDb.ApplicationUser.UserType = ApplicationUserTypes.Assessor;
-            _userManager.AddToRoleAsync(assessorDb.ApplicationUser, "ASSESSOR");
-            db.SaveChanges();
+            await _userManager.AddToRoleAsync(assessorDb.ApplicationUser, "ASSESSOR");
+            await db.SaveChangesAsync();
         }
 
         private async Task<bool> RegisterUniversityDb(RegisterUniversityViewModel model)
@@ -644,17 +643,47 @@ namespace RSC.Controllers
             return true;
         }
 
-        private void RegisterStudentCouncilDb(RegisterStudentCouncilViewModel model)
+        private async Task RegisterStudentCouncilDb(RegisterStudentCouncilViewModel model)
         {
             var studentCouncilDb = Mapper.Map<StudentsCouncil>(model);
+            var nameFile = db.UniversityDatas.Where(u => u.Id == model.EducationalOrganizationId).First();
+            var downloadFiles = new Helper.DownloadFiles(db, _appEnvironment);
+
+            var orderCreationCouncilOfLearnersId = await downloadFiles.AddFile
+                (model.OrderCreationCouncilOfLearnersFile,
+                "/Приказ о создании Совета обучающихся/" + nameFile.UniversityShortName,
+                model.OrderCreationCouncilOfLearnersFile.FileName);
+            if (orderCreationCouncilOfLearnersId != null)
+            {
+                studentCouncilDb.OrderCreationCouncilOfLearnersId = orderCreationCouncilOfLearnersId ?? 0;
+            }
+
+            var protocolApprovalStudentAssociationsId = await downloadFiles.AddFile
+                (model.ProtocolApprovalStudentAssociationsFile,
+                "/Протокол СО об утверждении/" + nameFile.UniversityShortName,
+                model.ProtocolApprovalStudentAssociationsFile.FileName);
+            if (protocolApprovalStudentAssociationsId != null)
+            {
+                studentCouncilDb.ProtocolApprovalStudentAssociationsId = protocolApprovalStudentAssociationsId ?? 0;
+            }
+
+            var conferenceProtocolId = await downloadFiles.AddFile
+                (model.ConferenceProtocolFile,
+                "/Протокол отчетно-выборной конференции СО/" + nameFile.UniversityShortName,
+                model.ConferenceProtocolFile.FileName);
+            if (conferenceProtocolId != null)
+            {
+                studentCouncilDb.ConferenceProtocolId = conferenceProtocolId ?? 0;
+            }
+
             db.StudentsCouncils.Add(studentCouncilDb);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             studentCouncilDb.ApplicationUser.UserType = ApplicationUserTypes.StudentCouncil;
-            _userManager.AddToRoleAsync(studentCouncilDb.ApplicationUser, "CO");
-            db.SaveChanges();
+            await _userManager.AddToRoleAsync(studentCouncilDb.ApplicationUser, "CO");
+            await db.SaveChangesAsync();
         }
 
-        private async void RegisterStudentDb(RegisterStudentViewModel model)
+        private async Task RegisterStudentDb(RegisterStudentViewModel model)
         {
             var studentDb = Mapper.Map<Student>(model);
             db.Students.Add(studentDb);
