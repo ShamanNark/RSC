@@ -12,6 +12,7 @@ namespace RSC.Controllers.Models.EventsViewModels
     {
         #region property 
 
+        public int Id { get; set; }
         public int PrdsoId { get; set; }
         public int EventTypeId { get; set; }
 

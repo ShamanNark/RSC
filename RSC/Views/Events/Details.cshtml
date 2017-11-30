@@ -1,0 +1,57 @@
+﻿@model RSC.Controllers.Models.EventsViewModels.EventCreateViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<style>
+    .paddingMainblock {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+</style>
+<h2>Details</h2>
+
+<div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#event1" aria-controls="home" role="tab" data-toggle="tab">Описание мероприятия</a></li>
+        <li role="presentation"><a href="#event2" aria-controls="event2" role="tab" data-toggle="tab">Targets</a></li>
+        <li role="presentation"><a href="#event3" aria-controls="event3" role="tab" data-toggle="tab">ФЭО</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="event1">@Html.Partial("DescriptionOfTheEvenetDetails", @Model)</div>
+        <div role="tabpanel" class="tab-pane" id="event2">@Html.Partial("TargetsDetails", @Model)</div>
+        <div role="tabpanel" class="tab-pane" id="event3">@Html.Partial("FEODetails", @Model)</div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/moment-with-locales.js"></script>
+    <script src="~/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#StartDateTime').datetimepicker({
+                locale: 'ru',
+                useCurrent: true,
+                date: new Date()
+            });
+            $('#StopDateTime').datetimepicker({
+                locale: 'ru',
+                date: new Date()
+            });
+            $("#StartDateTime").on("dp.change",
+                function (e) {
+                    $('#StopDateTime').data("DateTimePicker").minDate(e.date);
+                });
+
+            $("#StopDateTime").on("dp.change",
+                function (e) {
+                    $('#StartDateTime').data("DateTimePicker").maxDate(e.date);
+                });
+        });
+    </script>
+}
