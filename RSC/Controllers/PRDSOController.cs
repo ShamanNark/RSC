@@ -154,6 +154,7 @@ namespace RSC.Controllers
                     dbCouncil.EducationalOrganizationId = dbUviversity.UniversityDataId;
                     db.StudentsCouncils.Add(dbCouncil);
                     db.SaveChanges();
+                    await _userManager.AddToRoleAsync(user, "CO");
                     prdso.StudentsCouncilId = dbCouncil.Id;
                 }
                 var fileid = await dowloadFiles.AddFile(model.EGRULfile, "/EGRUL/" + dbUviversity.UniversityData.UniversityShortName, model.EGRULfile.FileName);

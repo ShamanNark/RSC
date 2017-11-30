@@ -621,6 +621,7 @@ namespace RSC.Controllers
             db.Asssessors.Add(assessorDb);
             db.SaveChanges();
             assessorDb.ApplicationUser.UserType = ApplicationUserTypes.Assessor;
+            _userManager.AddToRoleAsync(assessorDb.ApplicationUser, "ASSESSOR");
             db.SaveChanges();
         }
 
@@ -637,6 +638,7 @@ namespace RSC.Controllers
             db.Universities.Add(universityDb);
             db.SaveChanges();
             universityDb.ApplicationUser.UserType = ApplicationUserTypes.University;
+            await _userManager.AddToRoleAsync(universityDb.ApplicationUser, "OOBO");
             db.SaveChanges();
         }
 
@@ -646,16 +648,18 @@ namespace RSC.Controllers
             db.StudentsCouncils.Add(studentCouncilDb);
             db.SaveChanges();
             studentCouncilDb.ApplicationUser.UserType = ApplicationUserTypes.StudentCouncil;
+            _userManager.AddToRoleAsync(studentCouncilDb.ApplicationUser, "CO");
             db.SaveChanges();
         }
 
-        private void RegisterStudentDb(RegisterStudentViewModel model)
+        private async void RegisterStudentDb(RegisterStudentViewModel model)
         {
             var studentDb = Mapper.Map<Student>(model);
             db.Students.Add(studentDb);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             studentDb.ApplicationUser.UserType = ApplicationUserTypes.Student;
-            db.SaveChanges();
+            await _userManager.AddToRoleAsync(studentDb.ApplicationUser, "STUDENT");
+            await db.SaveChangesAsync();
         }
 
         private async Task<IActionResult> RegisterApplicationUser<T>(T model) where T: RegisterViewModel
