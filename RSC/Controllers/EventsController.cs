@@ -87,8 +87,26 @@ namespace RSC.Controllers
                 var dbEvent = db.Events.Where(e => e.Id == model.Id).FirstOrDefault();
                 if(dbEvent != null)
                 {
-                    dbEvent = Mapper.Map<Data.DbModels.Event>(model);
-                    db.Update(dbEvent);
+                    dbEvent.CountImplementaionEvents = model.CountImplementaionEvents;
+                    dbEvent.CountOOVO = model.CountOOVO;
+                    dbEvent.EventDirectionId = model.EventDirectionId;
+                    dbEvent.EventTypeId = model.EventTypeId;
+                    dbEvent.ExpectedEffectsOfTheEvent = model.ExpectedEffectsOfTheEvent;
+                    dbEvent.ImplementationEventsShotInfo = model.ImplementationEventsShotInfo;
+                    dbEvent.ImplementationPlan = model.ImplementationPlan;
+                    dbEvent.MeasuresToEnsurePublicityEvent = model.MeasuresToEnsurePublicityEvent;
+                    dbEvent.NameEvent = model.NameEvent;
+                    dbEvent.NumberOfParticipantsInThisOOVO = model.NumberOfParticipantsInThisOOVO;
+                    dbEvent.NumberOfParticipantsWithoutSubsidy = model.NumberOfParticipantsWithoutSubsidy;
+                    dbEvent.NumberOfParticipantsWithSubsidies = model.NumberOfParticipantsWithSubsidies;
+                    dbEvent.OrderOfEventManagement = model.OrderOfEventManagement;
+                    dbEvent.PurposeOfTheEvent = model.PurposeOfTheEvent;
+                    dbEvent.RegionId = model.RegionId;
+                    dbEvent.StartDateTime = model.StartDateTime;
+                    dbEvent.StopDateTime = model.StopDateTime;
+                    dbEvent.TotalNumberOfParticipants = model.TotalNumberOfParticipants;
+                    dbEvent.Costs = model.Costs;
+                    dbEvent.ImplementationEventsShotInfo = model.ImplementationEventsShotInfo;
                     db.SaveChanges();
                     return RedirectToAction("Index", "Profile");
                 }
