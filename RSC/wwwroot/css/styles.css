@@ -20,7 +20,7 @@ body {
 
 .main {
     margin-top: 60px;
-    min-height: 510px;
+    min-height: 610px;
 }
 
 input, textarea {
@@ -110,15 +110,19 @@ h3{
 /*SIDE NAV*/
 
 .group {
-    background: yellow;
-    width: 200px;
-    height: 500px;
+    
+    
+    
 }
 
-    .group .subgroup {
-        background: orange;
-        width: 150px;
-        height: 200px;
+    .group h3 {
+        color: #23527c;
+    }
+
+    .group .subgroup h3{
+        
+        
+       
     }
 
 .fixed {
@@ -1174,3 +1178,6 @@ h3{
         -webkit-filter: blur(0px);
         visibility: visible;
     }
+
+
+

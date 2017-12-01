@@ -1,6 +1,7 @@
 ﻿@model RSC.Controllers.Models.ProfileViewModels.ProfileViewModel
 @{
     ViewData["Title"] = "Index";
+    
 }
 <style>
     .prdso-main {
@@ -13,11 +14,23 @@
 
     .prdso-header {
         min-height: 100px;
-        background-color: lightcoral;
+        background: #ff8861;
+        background-image: -webkit-linear-gradient(left, #ff8861, #ff474f);
+        background-image: -moz-linear-gradient(right, #ff8861, #ff474f);
+        background-image: -ms-linear-gradient(left, #ff8861, #ff474f);
+        background-image: -o-linear-gradient(right, #ff8861, #ff474f);
+        background-image: linear-gradient(to right, #ff8861, #ff474f);
     }
+
+        .prdso-header h2,
+        .prdso-header h4 {
+            color: white;
+        }
 
         .prdso-header .prdso-username {
             float: right;
+            margin-top: 23px;
+            color: white;
         }
 
 
@@ -195,6 +208,7 @@
         margin-top: 20px;
         padding-left: 0px;
         padding-right: 0px;
+        padding-bottom: 30px;
     }
 </style>
 
@@ -205,13 +219,14 @@
             <h4>@Model.University.UniversityData.UniversityShortName</h4>
         </div>
         <div class="col-md-6">
-            <h4 class="prdso-username">@Model.University.MiddleName @Model.University.Name @Model.University.Surname </h4>
+            
+            <h4 class="prdso-username">@Model.University.MiddleName @Model.University.Name @Model.University.Surname </h4><i class="fa fa-user-circle-o" aria-hidden="true" style="float: right; margin-top: 25px; padding-right: 5px; color: white;"></i>
         </div>
 
     </div>
-    <div class="col-md-12 prdso-calendar">
+    @*<div class="col-md-12 prdso-calendar">
 
-    </div>
+    </div>*@
     <div class="col-md-12 prdso-dashboard">
         <div class="col-md-4 prdso-dashboard-left">
             <div class="col-md-12 prdso-dashboard-left-content">
@@ -219,7 +234,7 @@
                     <h4>Меню пользователя</h4>
                     <ul>
                         <li><a href="#">Положение о конкурсе</a></li>
-                        <li><a href="#">Профиль ООВО</a></li>
+                        <li><a href="/manage/index/">Профиль ООВО</a></li>
                         <li><a href="#">Мероприятия</a></li>
                         <li><a href="#">Печать заявки</a></li>
                         <li><a href="#">Обратная связь</a></li>
@@ -228,7 +243,9 @@
                 <div class="prdso-dashboard-left-application">
                     <h4>Заявка ПСО-2018-43</h4>
                     <ul>
-                        <li><a href="#">Статус заявки</a></li>
+                        <li><a href="#">Статус заявки</a>
+                        <p style="float:right; padding-right: 10px; color: navajowhite; font-weight: bold; ">Подготовка</p>
+                        </li>
                         <li><a href="#">Количество мероприятий</a></li>
                         <li><a href="#">Объем субсидий</a></li>
                         <li><a href="#">Объем софинансирования</a></li>
@@ -253,7 +270,7 @@
                 @foreach (var item in Model.EventTypes)
                 {
                     <div class="col-md-12 lot">
-                        <h5>Лот <@item.Name></h5>
+                        <h5 style="font-weight: bold; font-size:14px;">Лот <@item.Name></h5>
                         @foreach (var eventun in Model.Events)
                         {
                             @if (item.Id == eventun.EventTypeId)
@@ -265,6 +282,7 @@
                                     <div class="col-sm-6" style="text-align:right;">
                                         @if (User.IsInRole("OOBO") || User.IsInRole("ADMIN"))
                                         {
+                                            
                                             @Html.ActionLink("Изменить", "Edit", "Events", new { id = eventun.Id })
                                             @Html.ActionLink("Удалить", "Delete", "Events", new { id = eventun.Id })
                                         }
