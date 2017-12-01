@@ -546,6 +546,11 @@ h3{
             border-radius: 6px 0 6px 6px;
         }
 
+.open > .cabinet-dropdown {
+    display: inline-block;
+    left: -100px;
+    width: 150px;
+}
 
 
 

@@ -20,7 +20,7 @@
 
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="cabinet-link">КАБИНЕТ</a>
-        <ul class="dropdown-menu" style="left: -430px; width: 500px;">
+        <ul class="dropdown-menu cabinet-dropdown">
             <li><a href="/manage/index/">@UserManager.GetUserName(User)</a></li>
             <li role="separator" class="divider"></li>
             @if (User.IsInRole("ADMIN") || User.IsInRole("OPERATOR"))
@@ -37,7 +37,7 @@
             }
             <li> <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
                     
-                     <button class="btn-red" style="padding-left: 10px; padding-right: 10px; padding-top: 3px; padding-bottom: 3px;" type="submit">ВЫЙТИ</button>
+                     <button class="btn-red" style="margin-left:20px; margin-top:10px; padding-left: 20px; padding-right: 20px; padding-top: 3px; padding-bottom: 3px;" type="submit">ВЫЙТИ</button>
                 </form>
             </li>
            

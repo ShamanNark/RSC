@@ -1,8 +1,17 @@
 ﻿@model RSC.Models.NewsViewModels.DetailsNewsViewModel
 
+
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var rosstud = "http://rosstudtsentr.ru";
+    var facebookShareLink  = "https://www.facebook.com/sharer/sharer.php?u=";
+    var vkShareLink = "https://vk.com/share.php?url=";
+    var twitterShareLink = "https://twitter.com/intent/tweet?url=";
+    var telegramShareLink = "https://t.me/share/url?url=";
+
+
+
 }
 
 <style>
@@ -57,10 +66,10 @@
     
     <div class="col-md-12 news-share">
         <h4>Поделиться:</h4>
-        <a href="http://facebook.com"><i class="fa fa-facebook fa-2x"></i></a>
-        <a href="http://vk.com"><i class="fa fa-vk fa-2x"></i></a>
-        <a href="http://twitter.com"><i class="fa fa-twitter fa-2x"></i></a>
-        <a href="http://telegram.org"><i class="fa fa-telegram fa-2x"></i></a>
+        <a href="@facebookShareLink@rosstud@Url.Action("Details","News")" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
+        <a href="@vkShareLink@rosstud@Url.Action("Details","News")" target="_blank"><i class="fa fa-vk fa-2x"></i></a>
+        <a href="@twitterShareLink@rosstud@Url.Action("Details","News")" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+        <a href="@telegramShareLink@rosstud@Url.Action("Details","News")" target="_blank"><i class="fa fa-telegram fa-2x"></i></a>
 
     </div>
 
