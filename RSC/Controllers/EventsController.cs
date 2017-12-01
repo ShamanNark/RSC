@@ -44,6 +44,7 @@ namespace RSC.Controllers
             model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id" , "Name");
             model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id , Name = direct.Name}).ToList(), "Id", "Name");
             model.CostSections = db.CostSections.Include(section => section.CostDivisions).ToList();
+            model.EventTypes = new SelectList(db.PrdsoTypes.Select(prdso => new { Id = prdso.Id, Name = prdso.Name }).ToList(), "Id", "Name");
             return View(model);
         }
 
@@ -61,6 +62,7 @@ namespace RSC.Controllers
             model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
             model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id, Name = direct.Name }).ToList(), "Id", "Name");
             model.CostSections = db.CostSections.Include(section => section.CostDivisions).ToList();
+            model.EventTypes = new SelectList(db.PrdsoTypes.Select(prdso => new { Id = prdso.Id, Name = prdso.Name }).ToList(), "Id", "Name");
             return View(model);
         }
 
@@ -74,6 +76,7 @@ namespace RSC.Controllers
                 model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
                 model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id, Name = direct.Name }).ToList(), "Id", "Name");
                 model.CostSections = db.CostSections.Include(section => section.CostDivisions).ToList();
+                model.EventTypes = new SelectList(db.PrdsoTypes.Select(prdso => new { Id = prdso.Id, Name = prdso.Name }).ToList(), "Id", "Name");
                 return View(model);
             }
             return RedirectToAction("Index", "Profile");
@@ -84,7 +87,7 @@ namespace RSC.Controllers
         {
             if(ModelState.IsValid)
             {
-                var dbEvent = db.Events.Where(e => e.Id == model.Id).FirstOrDefault();
+                var dbEvent = db.Events.Include(e => e.Costs).Include(e => e.TargetIndicators).Where(e => e.Id == model.Id).FirstOrDefault();
                 if(dbEvent != null)
                 {
                     dbEvent.CountImplementaionEvents = model.CountImplementaionEvents;
@@ -105,8 +108,62 @@ namespace RSC.Controllers
                     dbEvent.StartDateTime = model.StartDateTime;
                     dbEvent.StopDateTime = model.StopDateTime;
                     dbEvent.TotalNumberOfParticipants = model.TotalNumberOfParticipants;
-                    dbEvent.Costs = model.Costs;
                     dbEvent.ImplementationEventsShotInfo = model.ImplementationEventsShotInfo;
+
+
+                    var allCosts = dbEvent.Costs.ToList();
+                    var addCosts = model.Costs.Where(cost => cost.Id == 0);
+                    var exitCosts = model.Costs.Where(cost => cost.Id > 0);
+                    var removeCosts = allCosts.Where(cost => !exitCosts.Select(c => c.Id).Contains(cost.Id) );
+
+                    db.Costs.AddRange(addCosts.Select(cost => new Data.DbModels.Cost
+                    {
+                        EventId = model.Id,
+                        СostDivisionId = cost.СostDivisionId,
+                        Unit = cost.Unit,
+                        UnitPrice = cost.UnitPrice,
+                        Note = cost.Note,
+                        AmountCost = cost.AmountCost,
+                        Count = cost.Count,
+                        DirectionOfCost = cost.DirectionOfCost                        
+                    }).ToList());
+
+                    db.Costs.RemoveRange(removeCosts);
+                    foreach (var exitCost in exitCosts)
+                    {
+                        var editCost = db.Costs.Where(cost => cost.Id == exitCost.Id).FirstOrDefault();
+                        editCost.AmountCost = exitCost.AmountCost;
+                        editCost.Count = exitCost.Count;
+                        editCost.DirectionOfCost = exitCost.DirectionOfCost;
+                        editCost.Note = exitCost.Note;
+                        editCost.Unit = exitCost.Unit;
+                        editCost.UnitPrice = exitCost.UnitPrice;
+                    }
+
+                    var allIndicators = dbEvent.TargetIndicators.ToList();
+                    var addIndicators = model.TargetIndicators.Where(target => target.Id == 0);
+                    var exitIndicators = model.TargetIndicators.Where(target => target.Id > 0);
+                    var removeIndicators = allIndicators.Where(indicator => !exitIndicators.Select(ei => ei.Id).Contains(indicator.Id));
+
+                    db.TargetIndicators.AddRange(addIndicators.Select(indicator => new Data.DbModels.TargetIndicator
+                    {
+                        EventId = model.Id,
+                        Name = indicator.Name,
+                        PlannedValue = indicator.PlannedValue,
+                        BasicValue = indicator.BasicValue,
+                        Unit = indicator.Unit
+                    }).ToList());
+
+                    db.TargetIndicators.RemoveRange(removeIndicators);
+                    foreach (var exitIndicator in exitIndicators)
+                    {
+                        var editIndicator = db.TargetIndicators.Where(ti => ti.Id == exitIndicator.Id).FirstOrDefault();
+                        editIndicator.BasicValue = exitIndicator.BasicValue;
+                        editIndicator.Name = exitIndicator.Name;
+                        exitIndicator.PlannedValue = exitIndicator.PlannedValue;
+                        exitIndicator.Unit = exitIndicator.Unit;
+                    }
+
                     db.SaveChanges();
                     return RedirectToAction("Index", "Profile");
                 }
@@ -114,6 +171,7 @@ namespace RSC.Controllers
             model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
             model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id, Name = direct.Name }).ToList(), "Id", "Name");
             model.CostSections = db.CostSections.Include(section => section.CostDivisions).ToList();
+            model.EventTypes = new SelectList(db.PrdsoTypes.Select(prdso => new { Id = prdso.Id, Name = prdso.Name }).ToList(), "Id", "Name");
             return View(model);
         }
 
@@ -128,6 +186,7 @@ namespace RSC.Controllers
                 model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
                 model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id, Name = direct.Name }).ToList(), "Id", "Name");
                 model.CostSections = db.CostSections.Include(section => section.CostDivisions).ToList();
+                model.EventTypes = new SelectList(db.PrdsoTypes.Select(prdso => new { Id = prdso.Id, Name = prdso.Name }).ToList(), "Id", "Name");
                 return View(model);
             }
             return RedirectToAction("Index", "Profile");
@@ -141,11 +200,6 @@ namespace RSC.Controllers
             {
                 db.Events.Remove(dbmodel);
                 db.SaveChanges();
-                //var model = Mapper.Map<EventCreateViewModel>(dbmodel);
-                //model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
-                //model.EventDirections = new SelectList(db.EventDirections.Select(direct => new { Id = direct.Id, Name = direct.Name }).ToList(), "Id", "Name");
-                //model.CostSections = db.CostSections.Include(section => section.CostDivisions).ToList();
-                //return View(model);
             }
             return RedirectToAction("Index", "Profile");
         }

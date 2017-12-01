@@ -277,16 +277,16 @@
                             {
                                 <div col-md-12>
                                     <div class="col-sm-6">
-                                        @eventun.NameEvent
+                                        <label style="color:black; font-size:16px;">@eventun.NameEvent</label>
                                     </div>
                                     <div class="col-sm-6" style="text-align:right;">
                                         @if (User.IsInRole("OOBO") || User.IsInRole("ADMIN"))
                                         {
                                             
-                                            @Html.ActionLink("Изменить", "Edit", "Events", new { id = eventun.Id })
-                                            @Html.ActionLink("Удалить", "Delete", "Events", new { id = eventun.Id })
+                                            @Html.ActionLink("Изменить", "Edit", "Events", new { id = eventun.Id}, new { @class="btn btn-default" })
+                                            @Html.ActionLink("Удалить", "Delete", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
                                         }
-                                        @Html.ActionLink("Подробнее", "Details", "Events", new { id = eventun.Id })
+                                        @Html.ActionLink("Подробнее", "Details", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
                                     </div>
                                 </div>
                             }

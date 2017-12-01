@@ -5,7 +5,8 @@
     <div class="targets">
         @for (var i = 0; i < Model.TargetIndicators.Count(); i++)
         {
-            <div id="addrow@i">
+            <div id="addrow_@i" class="targetevent">
+                @Html.HiddenFor(model => Model.TargetIndicators[i].Id)
                 <div class="form-group col-md-6">
                     @Html.LabelFor(model => Model.TargetIndicators[i].Name, new { @class = "control-label" })
                     @Html.EditorFor(model => Model.TargetIndicators[i].Name, new { htmlAttributes = new { @class = "form-control" } })

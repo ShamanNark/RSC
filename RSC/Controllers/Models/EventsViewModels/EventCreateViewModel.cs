@@ -14,7 +14,6 @@ namespace RSC.Controllers.Models.EventsViewModels
 
         public int Id { get; set; }
         public int PrdsoId { get; set; }
-        public int EventTypeId { get; set; }
 
         [Required]
         [Display(Name = "Наименование мероприятия")]
@@ -79,6 +78,11 @@ namespace RSC.Controllers.Models.EventsViewModels
         #endregion
 
         #region property type SelectList 
+
+        [Required]
+        [Display(Name = "Тип мероприятия")]
+        public int EventTypeId { get; set; }
+        public SelectList EventTypes { get; set; }
 
         [Required]
         [Display(Name = "Направление мероприятия")]

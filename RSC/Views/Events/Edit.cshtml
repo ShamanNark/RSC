@@ -24,6 +24,8 @@
             <li role="presentation"><a href="#event3" aria-controls="event3" role="tab" data-toggle="tab">ФЭО</a></li>
         </ul>
 
+        <div asp-validation-summary="All" class="text-danger"></div>
+
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="event1">@Html.Partial("DescriptionOfTheEventEdit", @Model)</div>
@@ -61,41 +63,38 @@
                 function (e) {
                     $('#StartDateTime').data("DateTimePicker").maxDate(e.date);
                 });
-
-
-            var i = 0;
-            $("#add_row").click(function () {
-                var element = '<div id="addrow' + i + '">' +
+            
+            $("#add_row").click(function (e) {
+                var elementsCount = $(".targets").find(".targetevent").length;
+                var element = '<div id="addrow_' + elementsCount + '" class="targetevent">' +
                     '<div class="form-group col-md-6" >' +
                     '<label class="control-label">Название</label>' +
-                    '<input class="form-control" id="TargetIndicators_' + i + '__Name" name="TargetIndicators[' + i + '].Name" value="" type="text">' +
-                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + i + '].Name" data-valmsg-replace="true"></span>' +
+                    '<input class="form-control" id="TargetIndicators_' + elementsCount + '__Name" name="TargetIndicators[' + elementsCount + '].Name" value="" type="text">' +
+                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + elementsCount + '].Name" data-valmsg-replace="true"></span>' +
                     '</div>' +
                     '<div class="form-group col-md-2">' +
                     '<label class="control-label">Единица измерения</label>' +
-                    '<input class="form-control" id="TargetIndicators_' + i + '__Unit" name="TargetIndicators[' + i + '].Unit" value="" type="text">' +
-                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + i + '].Unit" data-valmsg-replace="true"></span>' +
+                    '<input class="form-control" id="TargetIndicators_' + elementsCount + '__Unit" name="TargetIndicators[' + elementsCount + '].Unit" value="" type="text">' +
+                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + elementsCount + '].Unit" data-valmsg-replace="true"></span>' +
                     '</div>' +
                     '<div class="form-group col-md-2">' +
                     '<label class="control-label">Базовое значение</label>' +
-                    '<input class="form-control" data-val="true" data-val-required="The BasicValue field is required." id="TargetIndicators_' + i + '__BasicValue" name="TargetIndicators[' + i + '].BasicValue" value="" type="number">' +
-                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + i + '].BasicValue" data-valmsg-replace="true"></span>' +
+                    '<input class="form-control" data-val="true" data-val-required="The BasicValue field is required." id="TargetIndicators_' + elementsCount + '__BasicValue" name="TargetIndicators[' + elementsCount + '].BasicValue" value="" type="number">' +
+                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + elementsCount + '].BasicValue" data-valmsg-replace="true"></span>' +
                     '</div>' +
                     '<div class="form-group col-md-2">' +
                     '<label class="control-label">Плановое значение</label>' +
-                    '<input class="form-control" data-val="true" data-val-required="The PlannedValue field is required." id="TargetIndicators_' + i + '__PlannedValue" name="TargetIndicators[' + i + '].PlannedValue" value="" type="number">' +
-                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + i + '].PlannedValue" data-valmsg-replace="true"></span>' +
+                    '<input class="form-control" data-val="true" data-val-required="The PlannedValue field is required." id="TargetIndicators_' + elementsCount + '__PlannedValue" name="TargetIndicators[' + elementsCount + '].PlannedValue" value="" type="number">' +
+                    '<span class="text-danger field-validation-valid" data-valmsg-for="TargetIndicators[' + elementsCount + '].PlannedValue" data-valmsg-replace="true"></span>' +
                     '</div>' +
                     '</div>';
                 $('.targets').append(element).change();
-                i++;
-                return false;
+                e.preventDefault();
+                return false;                
             });
             $("#delete_row").click(function () {
-                if (i > 0) {
-                    $("#addrow" + (i - 1)).html('');
-                    i--;
-                }
+                var elementsCount = $(".targets").find(".targetevent").length;
+                $("#addrow_" + (elementsCount - 1)).remove().change();
                 return false;
             });
 
@@ -106,9 +105,9 @@
 
             var conversionElements = function () {
                 $(".CostsElement").each(function (index) {
-                    $(this).parent().find(".costDivisionId")
+                    $(this).find(".costDivisionId")
                         .attr("id", "Costs_" + index + "__СostDivisionId")
-                        .attr("name", "Costs[" + index + "].СostDivisionId")
+                        .attr("name", "Costs[" + index + "].СostDivisionId").change()
                     //directioncost
                     assignAttributes($(this), ".directionOfCost", "Costs_" + index + "__DirectionCost", "Costs[" + index + "].DirectionOfCost")
                     //unit
@@ -126,7 +125,7 @@
 
             $(".addCosts").click(function (e) {
                 var divisionId = $(this).data("divisionsid");
-                var elementsCount = $(this).parent().find(".CostsList").find(".CostsElement").length;
+                var elementsCount = $(this).closest(".costSections").find(".CostsElement").length;
                 var element = ['<div class="CostsElement num' + elementsCount + '">',
                         '<input class="costDivisionId" type="hidden" value="' + divisionId + '">',
                         '<div class="form-group directionOfCost col-md-3">',
@@ -179,6 +178,7 @@
                     return false;
                 });
             }
+            updateAction();
 
         });
     </script>
