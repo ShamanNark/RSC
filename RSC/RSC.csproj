@@ -28,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Profile\" />
     <Folder Include="wwwroot\files\EGRUL\" />
     <Folder Include="wwwroot\files\Приказ об утверждении %28назначении%29 ректора\" />
     <Folder Include="wwwroot\files\Приказ о создании Совета обучающихся\" />

@@ -66,5 +66,18 @@ namespace RSC.Controllers
 
             return View(model);
         }
+
+        public IActionResult ProfileList()
+        {
+            var IndexModel = db.PrdsoList.Select(prdso => new ProfileViewModel
+            {
+                PrdsoId = prdso.Id,
+                University = prdso.University
+            }).ToList();
+            return View(IndexModel);
+        }
+
+
+        
     }
 }

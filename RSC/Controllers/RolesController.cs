@@ -9,7 +9,7 @@ using RSC.Models.RoleViewModels;
 
 namespace RSC.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "ADMIN")]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;

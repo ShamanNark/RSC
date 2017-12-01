@@ -348,6 +348,8 @@ h3{
     }
 
     .sec-nav-li a {
+        
+        
         text-align: center;
         margin-top: 10px;
         background-color: transparent !important;
@@ -440,6 +442,10 @@ h3{
     box-shadow: unset;
 }
 
+.menu2 a{
+    font-size: 11px;
+}
+
 .menu3 {
     left: -380px;
     top: 90%;
@@ -473,7 +479,10 @@ h3{
     box-shadow: unset;
 }
 
-.menu6 {
+    .menu5  a {
+        font-size: 12px;
+    }
+    .menu6 {
     left: -950px;
     top: 90%;
     padding-left: 0px;
