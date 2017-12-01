@@ -88,8 +88,9 @@ namespace RSC.Controllers
                 if(dbEvent != null)
                 {
                     dbEvent = Mapper.Map<Data.DbModels.Event>(model);
+                    db.Update(dbEvent);
                     db.SaveChanges();
-                return RedirectToAction("Index", "Profile");
+                    return RedirectToAction("Index", "Profile");
                 }
             }
             model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
