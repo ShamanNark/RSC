@@ -102,7 +102,7 @@ namespace RSC.Controllers
         public IActionResult Details(int id)
         {
 
-            var dbmodel = db.Events.Where(e => e.Id == id).FirstOrDefault();
+            var dbmodel = db.Events.Include(e => e.TargetIndicators).Include(e => e.Costs).Where(e => e.Id == id).FirstOrDefault();
             if (dbmodel != null)
             {
                 var model = Mapper.Map<EventCreateViewModel>(dbmodel);
