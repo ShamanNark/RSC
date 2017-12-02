@@ -13,9 +13,10 @@ using System;
 namespace RSC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171202162855_AddFieldSubmittedInPrdso")]
+    partial class AddFieldSubmittedInPrdso
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -384,10 +385,6 @@ namespace RSC.Migrations
 
                     b.Property<string>("Position");
 
-                    b.Property<string>("PrdsoStatusComment");
-
-                    b.Property<int>("StatusId");
-
                     b.Property<bool>("StudentCouncilApproved");
 
                     b.Property<int>("StudentsCouncilId");
@@ -412,25 +409,11 @@ namespace RSC.Migrations
 
                     b.HasIndex("OderApprovalRectorId");
 
-                    b.HasIndex("StatusId");
-
                     b.HasIndex("StudentsCouncilId");
 
                     b.HasIndex("UniversityId");
 
                     b.ToTable("PrdsoList");
-                });
-
-            modelBuilder.Entity("RSC.Data.DbModels.PrdsoStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PrdsoStatuses");
                 });
 
             modelBuilder.Entity("RSC.Data.DbModels.Region", b =>
@@ -804,11 +787,6 @@ namespace RSC.Migrations
                     b.HasOne("RSC.Data.DbModels.FileModel", "OrderApprovalRector")
                         .WithMany()
                         .HasForeignKey("OderApprovalRectorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("RSC.Data.DbModels.PrdsoStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("RSC.Data.DbModels.StudentsCouncil", "StudentsCouncil")

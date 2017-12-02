@@ -27,22 +27,35 @@ namespace RSC.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
-            var user = await _userManager.GetUserAsync(User);
-            var oovo = db.Universities.Include(university => university.ApplicationUser)
-                                      .Include(university => university.UniversityData)
-                                      .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
-            var co = db.StudentsCouncils.Include(so => so.ApplicationUser)
+            Prdso prdso;
+            ApplicationUser user = null;
+            University oovo = null;
+            StudentsCouncil co = null;
+            if (id == 0)
+            {
+                user = await _userManager.GetUserAsync(User);
+                oovo = db.Universities.Include(university => university.ApplicationUser)
+                                          .Include(university => university.UniversityData)
+                                          .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
+                co = db.StudentsCouncils.Include(so => so.ApplicationUser)
                                         .Include(so => so.University)
                                         .Where(so => so.ApplicationUserId == user.Id).FirstOrDefault();
-            if (oovo == null && co == null)
+
+                if (oovo == null && co == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                prdso = oovo != null ? db.PrdsoList.Where(p => p.UniversityId == oovo.Id).FirstOrDefault() :
+                                       db.PrdsoList.Include(p => p.University).Where(p => p.University.UniversityDataId == co.EducationalOrganizationId).FirstOrDefault();
+            }
+            else
             {
-                return RedirectToAction("Index", "Home");
+                prdso = db.PrdsoList.Include(p => p.University).Where(p => p.Id == id).FirstOrDefault(); 
             }
 
-            var prdso = oovo != null ? db.PrdsoList.Where(p => p.UniversityId == oovo.Id).FirstOrDefault() :
-                                             db.PrdsoList.Include(p => p.University).Where(p => p.University.UniversityDataId == co.EducationalOrganizationId).FirstOrDefault();
             if (prdso == null )
             {
                 return RedirectToAction("Index", "Home");
@@ -76,10 +89,11 @@ namespace RSC.Controllers
 
         public IActionResult ProfileList()
         {
-            var IndexModel = db.PrdsoList.Select(prdso => new ProfileViewModel
+            var prdsoList = db.PrdsoList.Include(p => p.University).Include(p => p.University.UniversityData).ToList();   
+            var IndexModel = prdsoList.Select(prdso => new ProfileViewModel
             {
                 PrdsoId = prdso.Id,
-                University = prdso.University
+                Prdso = prdso
             }).ToList();
             return View(IndexModel);
         }
@@ -93,6 +107,17 @@ namespace RSC.Controllers
                 prdsoModel.UniversityApproved = universityApproved;
             }
             db.SaveChanges();
+        }
+
+        public IActionResult SendPrdso(int prdsoid)
+        {
+            var prdsoModel= db.PrdsoList.Where(prdso => prdso.Id == prdsoid).FirstOrDefault();
+            if(prdsoModel != null)
+            {
+                prdsoModel.Submitted = true;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index", "Profile");
         }
     }
 }

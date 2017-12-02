@@ -39,6 +39,7 @@ namespace RSC.Data
         public DbSet<EventType> PrdsoTypes { get; set; }
         public DbSet<FileModel> Files { get; set; }
         public DbSet<Prdso> PrdsoList { get; set; }
+        public DbSet<PrdsoStatus> PrdsoStatuses { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

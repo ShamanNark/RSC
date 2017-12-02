@@ -10,6 +10,7 @@ namespace RSC.Data
         public static void Initialize(ApplicationDbContext context)
         {
             context.Database.EnsureCreated();
+
             if (!context.Roles.Any())
             {
                 var roles = new IdentityRole[]
@@ -28,6 +29,22 @@ namespace RSC.Data
                 }
                 context.SaveChanges();
             }
+
+            if(!context.PrdsoStatuses.Any())
+            {
+                var statuses = new PrdsoStatus[]
+                {
+                    new PrdsoStatus { Id = 1, Name = "Approved" },
+                    new PrdsoStatus { Id = 1, Name = "Submitted" },
+                    new PrdsoStatus { Id = 1, Name = "Rejected" }
+                };
+
+                foreach (var s in statuses)
+                {
+                    context.PrdsoStatuses.Add(s);
+                }
+                context.SaveChanges();
+            };
 
             // Look for any students.
             if (!context.Regions.Any())
