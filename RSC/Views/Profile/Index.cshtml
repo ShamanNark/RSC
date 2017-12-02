@@ -327,10 +327,14 @@
                         }
                     </div>
                 }
-                <div class="col-md-12 accept-prdso">
-                    <div class="col-md-12 accept-prdso-inner-one"><a href="#">С положением о конкурсе ПРДСО ознакомлен</a></div>
-                    <div class="col-md-12 accept-prdso-inner-two"><a href="#" class="btn-blue">Отправить заявку</a></div>
-                </div>
+
+                @if (User.IsInRole("OOBO"))
+                {
+                    <div class="col-md-12 accept-prdso">
+                        <div class="col-md-12 accept-prdso-inner-one"><a href="#">С положением о конкурсе ПРДСО ознакомлен</a></div>
+                        <div class="col-md-12 accept-prdso-inner-two"><a href="#" class="btn-blue">Отправить заявку</a></div>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -338,6 +342,16 @@
 
 @section Scripts {
     <script>
+        var showAcceptPrdso = function () { 
+            if ($("#Prdso_StudentCouncilApproved").prop('checked') && $("#Prdso_UniversityApproved").prop('checked')) {
+                $(".accept-prdso").show();
+            }
+            else {
+                $(".accept-prdso").hide();
+            }
+        }
+        showAcceptPrdso();
+
         $("#Prdso_StudentCouncilApproved, #Prdso_UniversityApproved").click(function ()
         {
             $.ajax({
@@ -348,7 +362,12 @@
                     universityApproved: $("#Prdso_UniversityApproved").prop('checked'),
                     prdsoId : $("#PrdsoId").val()
                 }
-            }).success(function () { }).error(function () { })
+            }).success(function () {
+
+            }).error(function () { 
+
+            })
+            showAcceptPrdso();
         });
 </script>
 }
