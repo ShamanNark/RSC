@@ -415,12 +415,12 @@ h3{
 
 
 
-.dropdown-menu {
+.menu-all {
     border-radius: 0px;
     width: 1140px;
 }
 
-.open > .dropdown-menu {
+.open > .menu-all {
     display: inline-flex;
 }
 

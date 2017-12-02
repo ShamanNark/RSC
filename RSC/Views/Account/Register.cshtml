@@ -33,8 +33,11 @@
     <script type="text/javascript" src="~/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
     <script>
         $(".singleselect").multiselect({
+            maxHeight: 200,
+            buttonWidth: '400px',
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
+            filterPlaceholder: 'Поиск',
             buttonText: function (options, select) {
                 if (options.length === 0) {
                     return 'Ничего не выбранно';
