@@ -27,7 +27,7 @@
             {
                 <li><a href="@Url.Action("Index","Admin")">Админ панель</a></li>
             }
-            @if ((User.IsInRole("OOBO") || User.IsInRole("ADMIN") || User.IsInRole("CO")) && ViewBag.HasPrdso == "True" )
+            @if (( User.IsInRole("OOBO") || User.IsInRole("ADMIN") || User.IsInRole("CO") ) && ViewBag.HasPrdso == "True" )
             {
                 <li><a href="@Url.Action("Index","Profile")">Личный кабнет</a></li>
             }

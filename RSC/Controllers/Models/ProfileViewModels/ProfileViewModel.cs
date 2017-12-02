@@ -10,6 +10,8 @@ namespace RSC.Controllers.Models.ProfileViewModels
     {
         public int PrdsoId { get; set; }
         public University University { get; set; }
+        public StudentsCouncil CO { get; set; }
+        public Prdso Prdso { get; set; }
         public List<EventType> EventTypes { get; set; }
         public List<Event> Events { get; set; }
     }

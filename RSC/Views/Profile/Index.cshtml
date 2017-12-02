@@ -1,7 +1,7 @@
 ﻿@model RSC.Controllers.Models.ProfileViewModels.ProfileViewModel
 @{
     ViewData["Title"] = "Index";
-    
+
 }
 <style>
     .prdso-main {
@@ -160,9 +160,6 @@
             border-top: none;
         }
 
-
-
-
     .prdso-dashboard-main {
         padding-right: 0px;
         min-height: 900px;
@@ -212,21 +209,23 @@
     }
 </style>
 
+@Html.HiddenFor(model => model.PrdsoId)
+
 <div class="col-md-12 prdso-main">
     <div class="col-md-12 prdso-header">
-        <div class="col-md-6">
-            <h2>ПРДСО</h2>
-            <h4>@Model.University.UniversityData.UniversityShortName</h4>
-        </div>
-        <div class="col-md-6">
-            
-            <h4 class="prdso-username">@Model.University.MiddleName @Model.University.Name @Model.University.Surname </h4><i class="fa fa-user-circle-o" aria-hidden="true" style="float: right; margin-top: 25px; padding-right: 5px; color: white;"></i>
-        </div>
-
+        @if (Model.University != null)
+        {
+            <div class="col-md-6">
+                <h2>ПРДСО</h2>
+                <h4>@Model.University.UniversityData.UniversityShortName</h4>
+            </div>
+            <div class="col-md-6">
+                <h4 class="prdso-username">@Model.University.MiddleName @Model.University.Name @Model.University.Surname </h4>
+                <i class="fa fa-user-circle-o" aria-hidden="true" style="float: right; margin-top: 25px; padding-right: 5px; color: white;"></i>
+            </div>
+        }
     </div>
-    @*<div class="col-md-12 prdso-calendar">
 
-    </div>*@
     <div class="col-md-12 prdso-dashboard">
         <div class="col-md-4 prdso-dashboard-left">
             <div class="col-md-12 prdso-dashboard-left-content">
@@ -243,8 +242,9 @@
                 <div class="prdso-dashboard-left-application">
                     <h4>Заявка ПСО-2018-43</h4>
                     <ul>
-                        <li><a href="#">Статус заявки</a>
-                        <p style="float:right; padding-right: 10px; color: navajowhite; font-weight: bold; ">Подготовка</p>
+                        <li>
+                            <a href="#">Статус заявки</a>
+                            <p style="float:right; padding-right: 10px; color: navajowhite; font-weight: bold; ">Подготовка</p>
                         </li>
                         <li><a href="#">Количество мероприятий</a></li>
                         <li><a href="#">Объем субсидий</a></li>
@@ -265,7 +265,41 @@
                     <h2>Мероприятия</h2>
                 </div>
                 <div class="col-md-12" style="margin-top: 25px; padding-left:0px; padding-right:0px;">
-                    <a href="@Url.Action("Create","Events", new { id = Model.PrdsoId})" class="btn-red">+ Добавить мероприятие</a>
+                    <a href="@Url.Action("Create","Events", new { id = Model.PrdsoId})" class="btn-red col-sm-4">+ Добавить мероприятие</a>
+                    @if (Model.University != null)
+                    {
+                        <div class="col-sm-5">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved, new { disabled = "disabled" })                                    
+                                </span>
+                                <input type="text" class="form-control" aria-label=" Подтвеждение СO" value=" Подтвеждение СO" disabled>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    @Html.CheckBoxFor(model => model.Prdso.UniversityApproved)
+                                </span>
+                                <input type="text" class="form-control" aria-label=" Подтвеждение СO"value="Подтвеждение OOBO" disabled>
+                            </div>                            
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-5">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved)
+                                </span>
+                                <input type="text" class="form-control" aria-label=" Подтвеждение СO" value=" Подтвеждение СO" disabled>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    @Html.CheckBoxFor(model => model.Prdso.UniversityApproved, new { disabled = "disabled" })
+                                </span>
+                                <input type="text" class="form-control" aria-label=" Подтвеждение СO" value="Подтвеждение OOBO" disabled>
+                            </div>
+                        </div>
+                    }
                 </div>
                 @foreach (var item in Model.EventTypes)
                 {
@@ -282,15 +316,15 @@
                                     <div class="col-sm-6" style="text-align:right;">
                                         @if (User.IsInRole("OOBO") || User.IsInRole("ADMIN"))
                                         {
-                                            
-                                            @Html.ActionLink("Изменить", "Edit", "Events", new { id = eventun.Id}, new { @class="btn btn-default" })
+
+                                            @Html.ActionLink("Изменить", "Edit", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
                                             @Html.ActionLink("Удалить", "Delete", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
                                         }
                                         @Html.ActionLink("Подробнее", "Details", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
                                     </div>
                                 </div>
                             }
-                        }                        
+                        }
                     </div>
                 }
                 <div class="col-md-12 accept-prdso">
@@ -301,4 +335,21 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $("#Prdso_StudentCouncilApproved, #Prdso_UniversityApproved").click(function ()
+        {
+            $.ajax({
+                method: "GET",
+                url: "@Url.Action("ChangeApproved", "Profile")",
+                data: {
+                    studenApproved: $("#Prdso_StudentCouncilApproved").prop('checked'),
+                    universityApproved: $("#Prdso_UniversityApproved").prop('checked'),
+                    prdsoId : $("#PrdsoId").val()
+                }
+            }).success(function () { }).error(function () { })
+        });
+</script>
+}
 
