@@ -245,13 +245,25 @@
                     <ul>
                         <li>
                             <a href="#">Статус заявки</a>
-                            @if (!Model.Prdso.Submitted)
+
+                            @if (Model.Prdso.Status.Name == "None")
                             {
-                                <p style="float:right; padding-right: 10px; color: navajowhite; font-weight: bold; ">Подготовка</p>
+                                <p style="float:right; padding-right: 10px; color: navajowhite; font-weight: bold;">Подготовка</p>
                             }
-                            else
+
+                            @if(Model.Prdso.Status.Name == "Submitted")
                             {
-                                <p style="float:right; padding-right: 10px; color: lightgreen; font-weight: bold; ">На рассмотрении</p>
+                                <p style="float:right; padding-right: 10px; color: lightgreen; font-weight: bold;">На рассмотрении</p>
+                            }
+
+                            @if (Model.Prdso.Status.Name == "Approved")
+                            {
+                                <p style="float:right; padding-right: 10px; color: lawngreen; font-weight: bold;">Подтверждено</p>
+                            }
+
+                            @if (Model.Prdso.Status.Name == "Rejected")
+                            {
+                                <p style="float:right; padding-right: 10px; color: lightcoral; font-weight: bold;">Отказано</p>
                             }
                         </li>
                         <li><a href="#">Количество мероприятий</a></li>
@@ -273,7 +285,12 @@
                     <h2>Мероприятия</h2>
                 </div>
                 <div class="col-md-12" style="margin-top: 25px; padding-left:0px; padding-right:0px;">
-                    @if (!Model.Prdso.Submitted)
+                    @if(Model.Prdso.Status.Name == "Rejected")
+                    {
+                        <label class="col-md-12" style="color:lightcoral">@Model.Prdso.PrdsoStatusComment</label>
+                    }
+
+                    @if (Model.Prdso.Status.Name != "Approved" && Model.Prdso.Status.Name != "Submitted")
                     {
                         <a href="@Url.Action("Create","Events", new { id = Model.PrdsoId})" class="btn-red col-sm-4">+ Добавить мероприятие</a>
                         @if (Model.University != null)
@@ -299,12 +316,12 @@
                             </div>
                         }
                     }
-                    else
+                    
+                    @if(Model.Prdso.Status.Name == "Submitted")
                     {
                         <div>
-                            <h4>Заявка ПРДСО отправленна расмотрение</h4>
+                            <h4>Заявка ПРДСО отправленна на  расмотрение</h4>
                         </div>
-
                     }
                 </div>
                 @foreach (var item in Model.EventTypes)
@@ -334,7 +351,7 @@
                     </div>
                 }
 
-                @if (User.IsInRole("OOBO") && !Model.Prdso.Submitted)
+                @if (User.IsInRole("OOBO") && Model.Prdso.Status.Name != "Approved" && Model.Prdso.Status.Name != "Submitted")
                 {
                     <div class="col-md-12 ">
                         <div class="input-group">

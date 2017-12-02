@@ -92,6 +92,8 @@ namespace RSC.Controllers
 
                 var dowloadFiles = new Helper.DownloadFiles(db, _appEnvironment);
                 var prdso = Mapper.Map<Prdso>(model);
+                var prdsoStatus = db.PrdsoStatuses.Where(status => status.Name == "None").FirstOrDefault();
+                prdso.StatusId = prdsoStatus.Id;
                 var dbUviversity = db.Universities.Include(university => university.UniversityData).Where(university => university.Id == model.UniversityViewModel.Id).FirstOrDefault();
                 if (dbUviversity != null)
                 {

@@ -146,11 +146,6 @@
                             @Html.EditorFor(model => model.UniversityViewModel.Fax, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.UniversityViewModel.Fax)
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.UniversityViewModel.PowerOfAttorneyFile)
-                            @Html.EditorFor(model => model.UniversityViewModel.PowerOfAttorneyFile, new { htmlAttributes = new { @class = "form-control", type="file"} })
-                            @Html.ValidationMessageFor(model => model.UniversityViewModel.PowerOfAttorneyFile)
-                        </div>
                         @Html.HiddenFor(model => model.UniversityViewModel.RegionId)
                         @Html.HiddenFor(model => model.UniversityViewModel.UniversityDataId)
                     </div>

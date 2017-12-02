@@ -22,14 +22,15 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="prdso row">
+                @Html.HiddenFor(modelItem => item.PrdsoId)
                 <td>
                     @Html.DisplayFor(modelItem => item.PrdsoId)
                 </td>
-                <td>
+                <td class="col-md-4">
                     @Html.DisplayFor(modelItem => @item.Prdso.University.UniversityData.UniversityName)
                 </td>
-                <td>
+                <td class="col-md-1">
                     @if (item.Prdso.Submitted)
                     {
                         <label style="color:lightslategrey">НА расмотрении</label>
@@ -39,20 +40,40 @@
                         <label style="color:lightcoral">НЕ отправленна</label>
                     }
                 </td>
-                <td>
+                <td class="col-md-1">
                     @Html.ActionLink("Посмотреть", "Index", "Profile", new { id = item.PrdsoId })                    
                 </td>
-                <td>
-                    <select>
-                        <option>Потвердить</option>
-                        <option>Отказать</option>
-                    </select>
+                <td class="col-md-3">
+                    @Html.DropDownListFor(modelItem => item.Prdso.StatusId, ViewBag.PrdsoStatuses as SelectList, new { @class="form-control" })
+                    @Html.TextArea("StatusComment", "" , new {@clss="form-control", placeholder = "Status comment", rows = 4, style="width:100%" })
                 </td>
-                <td>
-                    <button class="btn btn-sm">Submit</button>
+                <td class="col-md-1">
+                    <button class="btn btn-sm submit">Submit</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
+@section Scripts {
+
+<script>
+    $(".submit").click(function ()
+    {
+        $.ajax({
+            method: "GET",
+            url: "@Url.Action("ChangeStatusPrdso", "Profile")",
+            data: {
+                prdsoId: $(this).closest(".prdso").find("#item_PrdsoId").val(), 
+                statusId: $(this).closest(".prdso").find("#item_Prdso_StatusId").val(),
+                prdsoStatusComment: $(this).closest(".prdso").find("#StatusComment").val(),
+            },
+        }).success(function (res) { 
+            location.reload();
+        }).error(function () { 
+
+        })
+    })
+
+</script>
+}

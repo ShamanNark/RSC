@@ -12,6 +12,7 @@ using RSC.Controllers.Models.PRDSOViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using RSC.Controllers.Models.ProfileViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace RSC.Controllers
 {
@@ -48,8 +49,8 @@ namespace RSC.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                prdso = oovo != null ? db.PrdsoList.Where(p => p.UniversityId == oovo.Id).FirstOrDefault() :
-                                       db.PrdsoList.Include(p => p.University).Where(p => p.University.UniversityDataId == co.EducationalOrganizationId).FirstOrDefault();
+                prdso = oovo != null ? db.PrdsoList.Include(p => p.University).Include(p => p.Status).Where(p => p.UniversityId == oovo.Id).FirstOrDefault() :
+                                       db.PrdsoList.Include(p => p.University).Include(p => p.Status).Where(p => p.University.UniversityDataId == co.EducationalOrganizationId).FirstOrDefault();
             }
             else
             {
@@ -89,12 +90,16 @@ namespace RSC.Controllers
 
         public IActionResult ProfileList()
         {
-            var prdsoList = db.PrdsoList.Include(p => p.University).Include(p => p.University.UniversityData).ToList();   
+            var prdsoList = db.PrdsoList.Include(p => p.University)
+                                        .Include(p => p.Status)
+                                        .Include(p => p.University.UniversityData)
+                                        .Where(p => p.StatusId > 1).ToList();
             var IndexModel = prdsoList.Select(prdso => new ProfileViewModel
             {
                 PrdsoId = prdso.Id,
                 Prdso = prdso
             }).ToList();
+            ViewBag.PrdsoStatuses = new SelectList(db.PrdsoStatuses.Select(status => new { Id = status.Id, Name = status.Name} ), "Id", "Name");
             return View(IndexModel);
         }
 
@@ -115,9 +120,22 @@ namespace RSC.Controllers
             if(prdsoModel != null)
             {
                 prdsoModel.Submitted = true;
+                var prdsostatus = db.PrdsoStatuses.Where(status => status.Name == "Submitted").First();
+                prdsoModel.StatusId = prdsostatus.Id; 
                 db.SaveChanges();
             }
             return RedirectToAction("Index", "Profile");
+        }
+
+        public void ChangeStatusPrdso(int prdsoId , int statusId, string prdsoStatusComment)
+        {
+            var prdsoModel = db.PrdsoList.Where(prdso => prdso.Id == prdsoId).FirstOrDefault();
+            if(prdsoModel != null)
+            {
+                prdsoModel.StatusId = statusId;
+                prdsoModel.PrdsoStatusComment = prdsoStatusComment;
+                db.SaveChanges();
+            }
         }
     }
 }
