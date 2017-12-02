@@ -34,9 +34,10 @@ namespace RSC.Data
             {
                 var statuses = new PrdsoStatus[]
                 {
-                    new PrdsoStatus { Id = 1, Name = "Approved" },
-                    new PrdsoStatus { Id = 1, Name = "Submitted" },
-                    new PrdsoStatus { Id = 1, Name = "Rejected" }
+                    new PrdsoStatus { Id = 1, Name = "None" },
+                    new PrdsoStatus { Id = 2, Name = "Approved" },
+                    new PrdsoStatus { Id = 3, Name = "Submitted" },
+                    new PrdsoStatus { Id = 4, Name = "Rejected" }
                 };
 
                 foreach (var s in statuses)
