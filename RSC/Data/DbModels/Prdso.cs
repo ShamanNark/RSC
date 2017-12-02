@@ -43,6 +43,10 @@ namespace RSC.Data.DbModels
         [Display(Name = "Численность обучающихся по очной форме обучения, включая филиалы, чел.")]
         public int StudentsCount { get; set; }
 
+        public bool UniversityApproved { get; set; } = false;
+
+        public bool StudentCouncilApproved { get; set; } = false;
+
         #endregion
 
         #region Heads OOVO
@@ -97,8 +101,6 @@ namespace RSC.Data.DbModels
         public string BICCode { get; set; }
 
         #endregion
-
-
                         
         public virtual List<Event> Events { get; set; }
     }

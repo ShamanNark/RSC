@@ -33,23 +33,30 @@ namespace RSC.Controllers
             var oovo = db.Universities.Include(university => university.ApplicationUser)
                                       .Include(university => university.UniversityData)
                                       .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
-            if (oovo == null)
+            var co = db.StudentsCouncils.Include(so => so.ApplicationUser)
+                                        .Include(so => so.University)
+                                        .Where(so => so.ApplicationUserId == user.Id).FirstOrDefault();
+            if (oovo == null && co == null)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            var prdso = db.PrdsoList.Where(p => p.UniversityId == oovo.Id).FirstOrDefault();
-            if (prdso == null)
+            var prdso = oovo != null ? db.PrdsoList.Where(p => p.UniversityId == oovo.Id).FirstOrDefault() :
+                                             db.PrdsoList.Include(p => p.University).Where(p => p.University.UniversityDataId == co.EducationalOrganizationId).FirstOrDefault();
+            if (prdso == null )
             {
                 return RedirectToAction("Index", "Home");
             }
+
 
             var model = new ProfileViewModel
             {
                 PrdsoId = prdso.Id,
                 University = oovo,
+                CO = co,
+                Prdso = prdso,
                 EventTypes = db.PrdsoTypes.ToList(),
-                Events = db.Events.Where(e => e.PrdsoId == prdso.Id).ToList()
+                Events =  db.Events.Where(e => e.PrdsoId == prdso.Id).ToList()
             };
 
             
@@ -77,7 +84,18 @@ namespace RSC.Controllers
             return View(IndexModel);
         }
 
+        public void ChangeApproved(bool studenApproved, bool universityApproved, int prdsoId)
+        {
+            var prdsoModel = db.PrdsoList.Where(prdso => prdso.Id == prdsoId).FirstOrDefault();
+            if(prdsoModel != null)
+            {
+                prdsoModel.StudentCouncilApproved = studenApproved;
+                prdsoModel.UniversityApproved = universityApproved;
+            }
+            db.SaveChanges();
+        }
 
-        
+
+
     }
 }
