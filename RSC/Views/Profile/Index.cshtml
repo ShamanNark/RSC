@@ -245,7 +245,14 @@
                     <ul>
                         <li>
                             <a href="#">Статус заявки</a>
-                            <p style="float:right; padding-right: 10px; color: navajowhite; font-weight: bold; ">Подготовка</p>
+                            @if (!Model.Prdso.Submitted)
+                            {
+                                <p style="float:right; padding-right: 10px; color: navajowhite; font-weight: bold; ">Подготовка</p>
+                            }
+                            else
+                            {
+                                <p style="float:right; padding-right: 10px; color: lightgreen; font-weight: bold; ">На рассмотрении</p>
+                            }
                         </li>
                         <li><a href="#">Количество мероприятий</a></li>
                         <li><a href="#">Объем субсидий</a></li>
@@ -266,28 +273,38 @@
                     <h2>Мероприятия</h2>
                 </div>
                 <div class="col-md-12" style="margin-top: 25px; padding-left:0px; padding-right:0px;">
-                    <a href="@Url.Action("Create","Events", new { id = Model.PrdsoId})" class="btn-red col-sm-4">+ Добавить мероприятие</a>
-                    @if (Model.University != null)
+                    @if (!Model.Prdso.Submitted)
                     {
-                        <div class="col-sm-5">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved, new { disabled = "disabled" })                                    
-                                </span>
-                                <input type="text" class="form-control" aria-label=" Подтвеждение СO" value="Подтвеждение СO" disabled>
-                            </div>                     
-                        </div>
+                        <a href="@Url.Action("Create","Events", new { id = Model.PrdsoId})" class="btn-red col-sm-4">+ Добавить мероприятие</a>
+                        @if (Model.University != null)
+                        {
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved, new { disabled = "disabled" })                                    
+                                    </span>
+                                    <input type="text" class="form-control" aria-label=" Подтвеждение СO" value="Подтвеждение СO" disabled>
+                                </div>                     
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved)
+                                    </span>
+                                    <input type="text" class="form-control" aria-label=" Подтвеждение СO" value="Подтвеждение СO" disabled>
+                                </div>
+                            </div>
+                        }
                     }
                     else
                     {
-                        <div class="col-sm-5">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved)
-                                </span>
-                                <input type="text" class="form-control" aria-label=" Подтвеждение СO" value="Подтвеждение СO" disabled>
-                            </div>
+                        <div>
+                            <h4>Заявка ПРДСО отправленна расмотрение</h4>
                         </div>
+
                     }
                 </div>
                 @foreach (var item in Model.EventTypes)
@@ -303,7 +320,7 @@
                                         <label style="color:black; font-size:16px;">@eventun.NameEvent</label>
                                     </div>
                                     <div class="col-sm-6" style="text-align:right;">
-                                        @if (User.IsInRole("OOBO") || User.IsInRole("ADMIN"))
+                                        @if ( ( User.IsInRole("OOBO") || User.IsInRole("ADMIN") ) && !Model.Prdso.Submitted) 
                                         {
 
                                             @Html.ActionLink("Изменить", "Edit", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
@@ -317,17 +334,16 @@
                     </div>
                 }
 
-                @if (User.IsInRole("OOBO"))
+                @if (User.IsInRole("OOBO") && !Model.Prdso.Submitted)
                 {
-                    <div class="col-md-12 accept-prdso">
-
+                    <div class="col-md-12 ">
                         <div class="input-group">
                             <span class="input-group-addon">
                                 @Html.CheckBoxFor(model => model.Prdso.UniversityApproved)
                             </span>
                             <input type="text" class="form-control" aria-label="С положением о конкурсе ПРДСО ознакомлен" value="С положением о конкурсе ПРДСО ознакомлен" disabled>
                         </div>       
-                        <div class="col-md-12 accept-prdso-inner-two"><a href="#" class="btn-blue">Отправить заявку</a></div>
+                        <div class="col-md-12 accept-prdso-inner-two accept-prdso"><a href="@Url.Action("SendPrdso", "Profile", new { prdsoid = Model.Prdso.Id })" class="btn-blue">Отправить заявку</a></div>
                     </div>
                 }
             </div>
@@ -363,7 +379,7 @@
 
             })
             showAcceptPrdso();
-        });
+        });        
 </script>
 }
 

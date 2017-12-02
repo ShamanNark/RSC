@@ -27,11 +27,29 @@
                     @Html.DisplayFor(modelItem => item.PrdsoId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.University)
+                    @Html.DisplayFor(modelItem => @item.Prdso.University.UniversityData.UniversityName)
                 </td>
                 <td>
-                    @Html.ActionLink("Посмотреть", "View", new { id = item.PrdsoId }) |
-                    @Html.ActionLink("Удалить", "Delete", new { id = item.PrdsoId })
+                    @if (item.Prdso.Submitted)
+                    {
+                        <label style="color:lightslategrey">НА расмотрении</label>
+                    }
+                    else
+                    {
+                        <label style="color:lightcoral">НЕ отправленна</label>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Посмотреть", "Index", "Profile", new { id = item.PrdsoId })                    
+                </td>
+                <td>
+                    <select>
+                        <option>Потвердить</option>
+                        <option>Отказать</option>
+                    </select>
+                </td>
+                <td>
+                    <button class="btn btn-sm">Submit</button>
                 </td>
             </tr>
         }

@@ -47,6 +47,14 @@ namespace RSC.Data.DbModels
 
         public bool StudentCouncilApproved { get; set; } = false;
 
+        public bool Submitted { get; set; } = false; 
+
+        [Display(Name = "Статус")]
+        public int StatusId { get; set; }
+        public PrdsoStatus Status { get; set; }
+
+        public string PrdsoStatusComment { get; set; }
+
         #endregion
 
         #region Heads OOVO
