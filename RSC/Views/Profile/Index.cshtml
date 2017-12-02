@@ -274,14 +274,8 @@
                                 <span class="input-group-addon">
                                     @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved, new { disabled = "disabled" })                                    
                                 </span>
-                                <input type="text" class="form-control" aria-label=" Подтвеждение СO" value=" Подтвеждение СO" disabled>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    @Html.CheckBoxFor(model => model.Prdso.UniversityApproved)
-                                </span>
-                                <input type="text" class="form-control" aria-label=" Подтвеждение СO"value="Подтвеждение OOBO" disabled>
-                            </div>                            
+                                <input type="text" class="form-control" aria-label=" Подтвеждение СO" value="Подтвеждение СO" disabled>
+                            </div>                     
                         </div>
                     }
                     else
@@ -291,13 +285,7 @@
                                 <span class="input-group-addon">
                                     @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved)
                                 </span>
-                                <input type="text" class="form-control" aria-label=" Подтвеждение СO" value=" Подтвеждение СO" disabled>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    @Html.CheckBoxFor(model => model.Prdso.UniversityApproved, new { disabled = "disabled" })
-                                </span>
-                                <input type="text" class="form-control" aria-label=" Подтвеждение СO" value="Подтвеждение OOBO" disabled>
+                                <input type="text" class="form-control" aria-label=" Подтвеждение СO" value="Подтвеждение СO" disabled>
                             </div>
                         </div>
                     }
@@ -332,7 +320,13 @@
                 @if (User.IsInRole("OOBO"))
                 {
                     <div class="col-md-12 accept-prdso">
-                        <div class="col-md-12 accept-prdso-inner-one"><a href="#">С положением о конкурсе ПРДСО ознакомлен</a></div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                @Html.CheckBoxFor(model => model.Prdso.UniversityApproved)
+                            </span>
+                            <input type="text" class="form-control" aria-label="С положением о конкурсе ПРДСО ознакомлен" value="С положением о конкурсе ПРДСО ознакомлен" disabled>
+                        </div>       
                         <div class="col-md-12 accept-prdso-inner-two"><a href="#" class="btn-blue">Отправить заявку</a></div>
                     </div>
                 }
