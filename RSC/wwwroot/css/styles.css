@@ -253,11 +253,12 @@ h3{
     border: none;
     text-decoration: none;
     background: #ff8861;
-    background-image: -webkit-linear-gradient(left, #ff8861, #ff474f);
-    background-image: -moz-linear-gradient(right, #ff8861, #ff474f);
-    background-image: -ms-linear-gradient(left, #ff8861, #ff474f);
-    background-image: -o-linear-gradient(right, #ff8861, #ff474f);
-    background-image: linear-gradient(to right, #ff8861, #ff474f);
+    background: linear-gradient(to right, #e55727 9%, #e21c25) 0 0 no-repeat;
+    background: -webkit-linear-gradient(left, #e55727 9%, #e21c25) 0 0 no-repeat;
+    background: -moz-linear-gradient(right, #e55727 9%, #e21c25) 0 0 no-repeat;
+    background: -ms-linear-gradient(left, #e55727 9%, #e21c25) 0 0 no-repeat;
+    background: -o-linear-gradient(right, #e55727 9%, #e21c25) 0 0 no-repeat;
+    background: linear-gradient(to right, #e55727 9%, #e21c25) 0 0 no-repeat;
     text-decoration: none;
 }
 
