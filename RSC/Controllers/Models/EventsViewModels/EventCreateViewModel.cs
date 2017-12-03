@@ -88,6 +88,18 @@ namespace RSC.Controllers.Models.EventsViewModels
         [Display(Name = "Направление мероприятия")]
         public int EventDirectionId { get; set; }
         public SelectList EventDirections { get; set; }
+        
+        [Required]
+        [Display(Name = "Объем запрашиваемой субсидии")]
+        public decimal AmountOfTheRequestedSubsidy { get; set; }
+
+        [Required]
+        [Display(Name = "Объем собственных денежных средств")]
+        public decimal AmountOfOwnSubsidy { get; set; }
+
+        [Required]
+        [Display(Name = "Объем  привлеченных денежных средств")]
+        public decimal AmountOfAttractedSubsidy { get; set; }
 
         [Required]
         [Display(Name = "Регионы")]

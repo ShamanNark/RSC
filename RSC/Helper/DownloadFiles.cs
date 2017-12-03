@@ -39,7 +39,7 @@ namespace RSC.Helper
                 }
                 return null;
             }
-            catch(Exception exc)
+            catch
             {
                 return null;
             }

@@ -23,16 +23,20 @@
             @Html.DisplayFor(model => model.MiddleName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.EducationalOrganization)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EducationalOrganization)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.RegionId)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.RegionId)
+        </dd>
+        <dd>
+            <p>
+                <a href="@Model.OrderCreationCouncilOfLearners.Path" class="button" download><i class="fa fa-download"></i>Download Order</a>
+            </p>
+        </dd>
+        <dd>
+            <p>
+                <a href="@Model.ProtocolApprovalStudentAssociations.Path" class="button" download><i class="fa fa-download"></i>Download Protocol</a>
+            </p>
         </dd>
     </dl>
 </div>

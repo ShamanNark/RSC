@@ -109,7 +109,9 @@ namespace RSC.Controllers
                     dbEvent.StopDateTime = model.StopDateTime;
                     dbEvent.TotalNumberOfParticipants = model.TotalNumberOfParticipants;
                     dbEvent.ImplementationEventsShotInfo = model.ImplementationEventsShotInfo;
-
+                    dbEvent.AmountOfAttractedSubsidy = model.AmountOfAttractedSubsidy;
+                    dbEvent.AmountOfOwnSubsidy = model.AmountOfOwnSubsidy;
+                    dbEvent.AmountOfTheRequestedSubsidy = model.AmountOfTheRequestedSubsidy;
 
                     var allCosts = dbEvent.Costs.ToList();
                     var addCosts = model.Costs.Where(cost => cost.Id == 0);

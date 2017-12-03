@@ -82,6 +82,18 @@ namespace RSC.Data.DbModels
         public virtual EventDirection EventDirection { get; set; }
 
         [Required]
+        [Display(Name = "Объем запрашиваемой субсидии")]
+        public decimal AmountOfTheRequestedSubsidy { get; set; }
+
+        [Required]
+        [Display(Name = "Объем собственных денежных средств")]
+        public decimal AmountOfOwnSubsidy { get; set; }
+
+        [Required]
+        [Display(Name = "Объем  привлеченных денежных средств")]
+        public decimal AmountOfAttractedSubsidy { get; set; }
+
+        [Required]
         [Display(Name = "Регионы")]
         public int RegionId { get; set; }
         public virtual Region Region { get; set; }

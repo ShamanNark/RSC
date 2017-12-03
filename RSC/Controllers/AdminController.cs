@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AutoMapper;
 using RSC.Controllers.Models.AccountViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace RSC.Controllers
 {
@@ -84,7 +85,12 @@ namespace RSC.Controllers
                     item.AdditionInfo = Mapper.Map<AdditionInfo>(assessordb);
                     break;
                 case ApplicationUserTypes.StudentCouncil:
-                    var councildb = db.StudentsCouncils.Where(council => council.ApplicationUserId == user.Id).FirstOrDefault();
+                    var councildb = db.StudentsCouncils.Include(council => council.Region)
+                                                       .Include(council => council.University)
+                                                       .Include(council => council.ConferenceProtocol)
+                                                       .Include(council => council.OrderCreationCouncilOfLearners)
+                                                       .Include(council => council.ProtocolApprovalStudentAssociations)
+                                                       .Where(council => council.ApplicationUserId == user.Id).FirstOrDefault();
                     item.AdditionInfoType = "StudentCouncil";
                     item.AdditionInfo = Mapper.Map<AdditionInfo>(councildb);
                     break;

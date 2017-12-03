@@ -11,6 +11,8 @@ namespace RSC.Controllers.Models.AccountViewModels
         public string Name { get; set; }
         public string MiddleName { get; set; }
         public string Surname { get; set; }
+        public Region Region { get; set; }
+
         //student
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
@@ -24,7 +26,16 @@ namespace RSC.Controllers.Models.AccountViewModels
         public string JobPhoneNumber { get; set; }
         public bool ExperienceOfParticipation { get; set; }
         //studentcouncil
-        public string EducationalOrganization { get; set; }
+        
+        public int Id { get; set; }
+        public string JobPhone { get; set; }
+        public string MobilePhone { get; set; }
+        public string Fax { get; set; }
+        public FileModel ConferenceProtocol { get; set; }
+        public FileModel OrderCreationCouncilOfLearners { get; set; }
+        public FileModel ProtocolApprovalStudentAssociations { get; set; }
+        public UniversityData University { get; set; }
+
         //university
         public string UniversityForm { get; set; }
         public string UniversityName { get; set; }
