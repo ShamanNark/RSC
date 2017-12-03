@@ -374,7 +374,7 @@
                         {
                             @if (item.Id == eventun.EventTypeId)
                             {
-                                <div col-md-12>
+                                <a href="@Url.Action("Details","Events", new { id = @eventun.Id })" class="col-md-12">
                                     <div class="col-sm-6">
                                         <label style="color:black; font-size:16px;">@eventun.NameEvent</label>
                                     </div>
@@ -386,7 +386,7 @@
                                         }
                                         @Html.ActionLink("Подробнее", "Details", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
                                     </div>
-                                </div>
+                                </a>
                             }
                         }
                     </div>
