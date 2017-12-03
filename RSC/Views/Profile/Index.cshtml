@@ -237,7 +237,6 @@
                     <h4>Файлы</h4>
                     <ul>
                         <li>
-
                             <a href="@Model.Prdso.OrderApprovalRector.Path" download>
                                 <i class="fa fa-download"></i>Приказ об утверждении (назначении) ректора
                             </a>
@@ -275,16 +274,38 @@
                                 <p style="float:right; padding-right: 10px; color: lightcoral; font-weight: bold;">Отказано</p>
                             }
                         </li>
-                        <li><a href="#">Количество мероприятий</a></li>
-                        <li><a href="#">Объем субсидий</a></li>
-                        <li><a href="#">Объем софинансирования</a></li>
-                        <li><a href="#">Объем привлеченных средств</a></li>
-                        <li><a href="#">По лотам</a></li>
-                        <li><a href="#">Всероссийские мероприятия</a></li>
-                        <li><a href="#">Межрегиональные(межвузовские) мероприятия</a></li>
-                        <li><a href="#">Региональные мероприятия</a></li>
-                        <li><a href="#">Международные мероприятия</a></li>
-
+                        <li class="col-md-12"><a href="#">Количество мероприятий</a><label class="pull-right">@Model.Events.Count()</label></li>
+                        <li class="col-md-12"><a href="#">Объем субсидий</a><label class="pull-right">@Model.Events.Sum(e => e.AmountOfAttractedSubsidy)</label></li>
+                        <li class="col-md-12">
+                            <a href="#">Объем софинансирования</a>
+                                <label class="pull-right">@(@Model.Events.Sum(e => e.AmountOfAttractedSubsidy) + 
+                                                          @Model.Events.Sum(e => e.AmountOfOwnSubsidy) + 
+                                                          @Model.Events.Sum(e => e.AmountOfTheRequestedSubsidy))
+                                </label>
+                        </li>
+                        <li class="col-md-12">
+                            <a href="#">Объем привлеченных средств</a>
+                            <label class="pull-right">@Model.Events.Sum(e => e.AmountOfOwnSubsidy)</label>
+                        </li>
+                        <li class="col-md-12">
+                            <a href="#">По лотам</a>
+                        </li>
+                        <li class="col-md-12">
+                            <a href="#">Всероссийские мероприятия</a>
+                            <label class="pull-right">@Model.Events.Count(e => e.EventType.Name == "Всероссийские мероприятия")</label>
+                        </li>
+                        <li class="col-md-12">
+                            <a href="#">Межрегиональные(межвузовские) мероприятия</a>
+                            <label class="pull-right">@Model.Events.Count(e => e.EventType.Name == "Межрегиональные(межвузовские) мероприятия")</label>
+                        </li>
+                        <li class="col-md-12">
+                            <a href="#">Региональные мероприятия</a>
+                            <label class="pull-right">@Model.Events.Count(e => e.EventType.Name == "Региональные мероприятия")</label>
+                        </li>
+                        <li class="col-md-12">
+                            <a href="#">Международные мероприятия</a>
+                            <label class="pull-right">@Model.Events.Count(e => e.EventType.Name == "Международные мероприятия")</label>
+                        </li>
                     </ul>
                 </div>
             </div>
