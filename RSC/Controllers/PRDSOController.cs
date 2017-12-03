@@ -97,9 +97,9 @@ namespace RSC.Controllers
 
                 var dowloadFiles = new Helper.DownloadFiles(db, _appEnvironment);
                 var prdso = Mapper.Map<Prdso>(model);
-                var prdsoStatus = db.PrdsoStatuses.Where(status => status.Name == "None").FirstOrDefault();
+                var prdsoStatus = db.PrdsoStatuses.FirstOrDefault(status => status.Name == "None");
                 prdso.StatusId = prdsoStatus.Id;
-                var dbUviversity = db.Universities.Include(university => university.UniversityData).Where(university => university.Id == model.UniversityViewModel.Id).FirstOrDefault();
+                var dbUviversity = db.Universities.Include(university => university.UniversityData).FirstOrDefault(university => university.Id == model.UniversityViewModel.Id);
                 if (dbUviversity != null)
                 {
                     dbUviversity.Name = model.UniversityViewModel.Name;
@@ -131,7 +131,7 @@ namespace RSC.Controllers
                         _logger.LogInformation("User created a new account with password.");
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                        await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                        await _emailSender.SendEmailConfirmationAsync(model.StudentsCouncilViewModel.Email, callbackUrl);
                         //await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation("User created a new account with password.");
                     }

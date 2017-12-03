@@ -52,11 +52,13 @@ namespace RSC.Controllers
                 }
 
                 prdso = oovo != null ? db.PrdsoList.Include(p => p.University)
+                                                   .Include(p => p.University.UniversityData)  
                                                    .Include(p => p.Status)
                                                    .Include(p => p.OrderApprovalRector)
                                                    .Include(p => p.EGRUL)
                                                    .Where(p => p.UniversityId == oovo.Id).FirstOrDefault() :
                                        db.PrdsoList.Include(p => p.University)
+                                                   .Include(p => p.University.UniversityData)
                                                    .Include(p => p.Status)
                                                    .Include(p => p.OrderApprovalRector)
                                                    .Include(p => p.EGRUL)
@@ -65,6 +67,7 @@ namespace RSC.Controllers
             else
             {
                 prdso = db.PrdsoList.Include(p => p.University)
+                                    .Include(p => p.University.UniversityData)
                                     .Include(p => p.Status)
                                     .Include(p => p.OrderApprovalRector)
                                     .Include(p => p.EGRUL)
