@@ -287,8 +287,12 @@
 
                     @if (Model.Prdso.Status.Name != "Approved" && Model.Prdso.Status.Name != "Submitted")
                     {
-                        <a href="@Url.Action("Create","Events", new { id = Model.PrdsoId})" class="btn-red col-sm-4">+ Добавить мероприятие</a>
-                        @if (Model.University != null)
+                        @if (User.IsInRole("OOBO"))
+                        {
+                            <a href="@Url.Action("Create", "Events", new { id = Model.PrdsoId })" class="btn-red col-sm-4">+ Добавить мероприятие</a>
+                        }
+
+                        @if (User.IsInRole("CO"))
                         {
                             <div class="col-sm-5">
                                 <div class="input-group">
@@ -332,7 +336,7 @@
                                         <label style="color:black; font-size:16px;">@eventun.NameEvent</label>
                                     </div>
                                     <div class="col-sm-6" style="text-align:right;">
-                                        @if ( ( User.IsInRole("OOBO") || User.IsInRole("ADMIN") ) && Model.Prdso.Status.Name == "None") 
+                                        @if ( ( User.IsInRole("OOBO") || User.IsInRole("ADMIN") ) && Model.Prdso.Status.Name != "Approved" && Model.Prdso.Status.Name != "Submitted")
                                         {
                                             @Html.ActionLink("Изменить", "Edit", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
                                             @Html.ActionLink("Удалить", "Delete", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
