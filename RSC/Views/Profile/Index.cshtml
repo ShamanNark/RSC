@@ -207,17 +207,18 @@
 
 <div class="col-md-12 prdso-main">
     <div class="col-md-12 prdso-header">
-        @if (Model.University != null)
-        {
-            <div class="col-md-6">
-                <h2>ПРДСО</h2>
-                <h4>@Model.University.UniversityData.UniversityShortName</h4>
-            </div>
-            <div class="col-md-6">
+       
+        <div class="col-md-6">
+            <h2>ПРДСО</h2>
+            <h4>@Model.Prdso.University.UniversityData.UniversityShortName</h4>
+        </div>
+        <div class="col-md-6">
+            @if (Model.University != null)
+            {
                 <h4 class="prdso-username">@Model.University.MiddleName @Model.University.Name @Model.University.Surname </h4>
                 <i class="fa fa-user-circle-o" aria-hidden="true" style="float: right; margin-top: 25px; padding-right: 5px; color: white;"></i>
-            </div>
-        }
+            }
+        </div>
     </div>
 
     <div class="col-md-12 prdso-dashboard">
