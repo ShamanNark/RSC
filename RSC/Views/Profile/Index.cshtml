@@ -10,8 +10,6 @@
         min-height: 1200px;
     }
 
-
-
     .prdso-header {
         min-height: 100px;
         background: #ff8861;
@@ -23,17 +21,16 @@
         background: linear-gradient(to right, #e55727 9%, #e21c25) 0 0 no-repeat;
     }
 
-        .prdso-header h2,
-        .prdso-header h4 {
-            color: white;
-        }
+    .prdso-header h2,
+    .prdso-header h4 {
+        color: white;
+    }
 
-        .prdso-header .prdso-username {
-            float: right;
-            margin-top: 23px;
-            color: white;
-        }
-
+    .prdso-header .prdso-username {
+        float: right;
+        margin-top: 23px;
+        color: white;
+    }
 
     .prdso-calendar {
         min-height: 300px;
@@ -48,7 +45,6 @@
         min-height: 900px;
     }
 
-
     .prdso-dashboard-left {
         padding: 0px;
         min-height: 900px;
@@ -60,7 +56,6 @@
         padding-left: 0px;
     }
 
-
     .prdso-dashboard-left-menu {
         padding-left: 0px;
         padding-right: 0px;
@@ -68,46 +63,46 @@
         background-color: lightblue;
     }
 
-        .prdso-dashboard-left-menu h4 {
-            margin-top: 0px;
-            margin-bottom: 0px;
-            height: 50px;
-            padding-top: 15px;
-            padding-left: 15px;
-            color: white;
-            background: lightblue;
-            background: -webkit-linear-gradient(left, rgb(97,162,194), rgb(77,121,170));
-            background: -o-linear-gradient(right, rgb(97,162,194), rgb(77,121,170));
-            background: -moz-linear-gradient(right, rgb(97,162,194), rgb(77,121,170));
-            background: linear-gradient(to right, rgb(97,162,194), rgb(77,121,170));
-        }
+    .prdso-dashboard-left-menu h4 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        height: 50px;
+        padding-top: 15px;
+        padding-left: 15px;
+        color: white;
+        background: lightblue;
+        background: -webkit-linear-gradient(left, rgb(97,162,194), rgb(77,121,170));
+        background: -o-linear-gradient(right, rgb(97,162,194), rgb(77,121,170));
+        background: -moz-linear-gradient(right, rgb(97,162,194), rgb(77,121,170));
+        background: linear-gradient(to right, rgb(97,162,194), rgb(77,121,170));
+    }
 
-        .prdso-dashboard-left-menu ul {
-            padding: 0px;
-            list-style-type: none;
-        }
+    .prdso-dashboard-left-menu ul {
+        padding: 0px;
+        list-style-type: none;
+    }
 
-            .prdso-dashboard-left-menu ul a {
-                color: dimgrey;
-                font-weight: 600;
-            }
+    .prdso-dashboard-left-menu ul a {
+        color: dimgrey;
+        font-weight: 600;
+    }
 
-                .prdso-dashboard-left-menu ul a:hover {
-                    color: #337ab7;
-                    text-decoration: none;
-                }
+    .prdso-dashboard-left-menu ul a:hover {
+        color: #337ab7;
+        text-decoration: none;
+    }
 
-        .prdso-dashboard-left-menu li {
-            margin-top: 0px;
-            margin-bottom: 0px;
-            height: 50px;
-            padding-top: 15px;
-            padding-left: 15px;
-            color: black;
-            background-color: white;
-            border: 1px solid lightgray;
-            border-top: none;
-        }
+    .prdso-dashboard-left-menu li {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        height: 50px;
+        padding-top: 15px;
+        padding-left: 15px;
+        color: black;
+        background-color: white;
+        border: 1px solid lightgray;
+        border-top: none;
+    }
 
     .prdso-dashboard-left-application {
         padding-left: 0px;
@@ -337,9 +332,8 @@
                                         <label style="color:black; font-size:16px;">@eventun.NameEvent</label>
                                     </div>
                                     <div class="col-sm-6" style="text-align:right;">
-                                        @if ( ( User.IsInRole("OOBO") || User.IsInRole("ADMIN") ) && !Model.Prdso.Submitted) 
+                                        @if ( ( User.IsInRole("OOBO") || User.IsInRole("ADMIN") ) && Model.Prdso.Status.Name == "None") 
                                         {
-
                                             @Html.ActionLink("Изменить", "Edit", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
                                             @Html.ActionLink("Удалить", "Delete", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
                                         }

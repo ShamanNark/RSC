@@ -54,7 +54,7 @@ namespace RSC.Controllers
             }
             else
             {
-                prdso = db.PrdsoList.Include(p => p.University).Where(p => p.Id == id).FirstOrDefault(); 
+                prdso = db.PrdsoList.Include(p => p.University).Include(p => p.Status).Where(p => p.Id == id).FirstOrDefault(); 
             }
 
             if (prdso == null )
@@ -119,7 +119,6 @@ namespace RSC.Controllers
             var prdsoModel= db.PrdsoList.Where(prdso => prdso.Id == prdsoid).FirstOrDefault();
             if(prdsoModel != null)
             {
-                prdsoModel.Submitted = true;
                 var prdsostatus = db.PrdsoStatuses.Where(status => status.Name == "Submitted").First();
                 prdsoModel.StatusId = prdsostatus.Id; 
                 db.SaveChanges();

@@ -46,9 +46,7 @@ namespace RSC.Data.DbModels
         public bool UniversityApproved { get; set; } = false;
 
         public bool StudentCouncilApproved { get; set; } = false;
-
-        public bool Submitted { get; set; } = false; 
-
+        
         [Display(Name = "Статус")]
         public int StatusId { get; set; }
         public PrdsoStatus Status { get; set; }
