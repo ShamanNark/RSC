@@ -1,6 +1,7 @@
 ﻿using RSC.Data.DbModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,17 +15,21 @@ namespace RSC.Controllers.Models.AccountViewModels
         public Region Region { get; set; }
 
         //student
+
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
         public int RegionId { get; set; }
         public Degrees CategoryId { get; set; }
         public int EducationalOrganizationId { get; set; }
         public string EducationalOrganizationName { get; set; }
+        
         //assessor
+
         public string Job { get; set; }
         public string JobPosition { get; set; }
         public string JobPhoneNumber { get; set; }
         public bool ExperienceOfParticipation { get; set; }
+
         //studentcouncil
         
         public int Id { get; set; }
@@ -34,6 +39,7 @@ namespace RSC.Controllers.Models.AccountViewModels
         public FileModel ConferenceProtocol { get; set; }
         public FileModel OrderCreationCouncilOfLearners { get; set; }
         public FileModel ProtocolApprovalStudentAssociations { get; set; }
+        [Display(Name ="Университет")]
         public UniversityData University { get; set; }
 
         //university

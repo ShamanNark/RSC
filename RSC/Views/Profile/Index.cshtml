@@ -59,8 +59,6 @@
     .prdso-dashboard-left-menu {
         padding-left: 0px;
         padding-right: 0px;
-        min-height: 300px;
-        background-color: lightblue;
     }
 
     .prdso-dashboard-left-menu h4 {
@@ -232,7 +230,23 @@
                         <li><a href="/manage/index/">Профиль ООВО</a></li>
                         <li><a href="#">Мероприятия</a></li>
                         <li><a href="#">Печать заявки</a></li>
-                        <li><a href="/about/contacts">Обратная связь</a></li>
+                        <li><a href="/about/contacts">Обратная связь</a></li>                      
+                    </ul>
+                </div>
+                <div class="prdso-dashboard-left-menu">
+                    <h4>Файлы</h4>
+                    <ul>
+                        <li>
+
+                            <a href="@Model.Prdso.OrderApprovalRector.Path" download>
+                                <i class="fa fa-download"></i>Приказ об утверждении (назначении) ректора
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Model.Prdso.EGRUL.Path" download>
+                                <i class="fa fa-download"></i>ЕГРЮЛ
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="prdso-dashboard-left-application">
@@ -270,6 +284,7 @@
                         <li><a href="#">Межрегиональные(межвузовские) мероприятия</a></li>
                         <li><a href="#">Региональные мероприятия</a></li>
                         <li><a href="#">Международные мероприятия</a></li>
+
                     </ul>
                 </div>
             </div>

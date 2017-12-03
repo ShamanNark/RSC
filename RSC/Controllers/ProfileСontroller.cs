@@ -38,8 +38,8 @@ namespace RSC.Controllers
             {
                 user = await _userManager.GetUserAsync(User);
                 oovo = db.Universities.Include(university => university.ApplicationUser)
-                                          .Include(university => university.UniversityData)
-                                          .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
+                                      .Include(university => university.UniversityData)
+                                      .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
                 co = db.StudentsCouncils.Include(so => so.ApplicationUser)
                                         .Include(so => so.University)
                                         .Where(so => so.ApplicationUserId == user.Id).FirstOrDefault();
@@ -49,19 +49,30 @@ namespace RSC.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                prdso = oovo != null ? db.PrdsoList.Include(p => p.University).Include(p => p.Status).Where(p => p.UniversityId == oovo.Id).FirstOrDefault() :
-                                       db.PrdsoList.Include(p => p.University).Include(p => p.Status).Where(p => p.University.UniversityDataId == co.EducationalOrganizationId).FirstOrDefault();
+                prdso = oovo != null ? db.PrdsoList.Include(p => p.University)
+                                                   .Include(p => p.Status)
+                                                   .Include(p => p.OrderApprovalRector)
+                                                   .Include(p => p.EGRUL)
+                                                   .Where(p => p.UniversityId == oovo.Id).FirstOrDefault() :
+                                       db.PrdsoList.Include(p => p.University)
+                                                   .Include(p => p.Status)
+                                                   .Include(p => p.OrderApprovalRector)
+                                                   .Include(p => p.EGRUL)
+                                                   .Where(p => p.University.UniversityDataId == co.EducationalOrganizationId).FirstOrDefault();
             }
             else
             {
-                prdso = db.PrdsoList.Include(p => p.University).Include(p => p.Status).Where(p => p.Id == id).FirstOrDefault(); 
+                prdso = db.PrdsoList.Include(p => p.University)
+                                    .Include(p => p.Status)
+                                    .Include(p => p.OrderApprovalRector)
+                                    .Include(p => p.EGRUL)
+                                    .Where(p => p.Id == id).FirstOrDefault(); 
             }
 
             if (prdso == null )
             {
                 return RedirectToAction("Index", "Home");
             }
-
 
             var model = new ProfileViewModel
             {
@@ -72,7 +83,6 @@ namespace RSC.Controllers
                 EventTypes = db.PrdsoTypes.ToList(),
                 Events =  db.Events.Where(e => e.PrdsoId == prdso.Id).ToList()
             };
-
             
             if (user != null)
             {
