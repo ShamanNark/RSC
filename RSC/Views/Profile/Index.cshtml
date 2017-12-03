@@ -306,6 +306,11 @@
                             <a href="#">Международные мероприятия</a>
                             <label class="pull-right">@Model.Events.Count(e => e.EventType.Name == "Международные мероприятия")</label>
                         </li>
+
+                        <li class="col-md-12">
+                            <a href="#">Внутривузовский уровень</a>
+                            <label class="pull-right">@Model.Events.Count(e => e.EventType.Name == "Внутривузовский уровень")</label>
+                        </li>
                     </ul>
                 </div>
             </div>
