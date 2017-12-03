@@ -34,7 +34,7 @@ namespace RSC.Services
             using (var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp.yandex.ru", 25, false);
-                await client.AuthenticateAsync("yur-kuznocov@yandex.ru", "0910kaa65*");
+                await client.AuthenticateAsync("yur-kuznocov@yandex.ru", "********");
                 await client.SendAsync(emailMessage);
 
                 await client.DisconnectAsync(true);
