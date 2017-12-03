@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using AutoMapper;
 using RSC.Controllers.Models.AccountViewModels;
 using Microsoft.EntityFrameworkCore;
+using RSC.Services;
 
 namespace RSC.Controllers
 {
@@ -40,9 +41,10 @@ namespace RSC.Controllers
             var users = _userManager.Users.ToList();
             foreach(var user in users)
             {
-                var item = TypingUser(user);
+                var item = GetUserInfoById(user);
                 model.Add(item);                
             }
+            model = model.OrderBy(m => m.Status).ToList();
             return View(model);
         }
 
@@ -56,7 +58,7 @@ namespace RSC.Controllers
                 new SelectListItem { Selected = false, Text = "Потверждено", Value = "1"},
                 new SelectListItem { Selected = false, Text = "Отказано", Value = "2"},
             }, "Value", "Text", 0);
-            return View(TypingUser(user));
+            return View(GetUserInfoById(user));
         }
 
         [HttpPost]
@@ -65,10 +67,15 @@ namespace RSC.Controllers
             var userdb = await _userManager.FindByIdAsync(user.Id);
             userdb.Status = user.Status;
             await db.SaveChangesAsync();
+            if (user.Status == ApplicationUserStatus.Approved)
+            {
+                EmailSender emailSender = new EmailSender();
+                await emailSender.SendEmailAsync(userdb.Email, "Администрация сайта", "Ваша регистрация потвержденна!");
+            }
             return RedirectToAction("СonfirmationUsers", "Admin");
         }
 
-        private ConfirmationUsersViewModel TypingUser(ApplicationUser user)
+        private ConfirmationUsersViewModel GetUserInfoById(ApplicationUser user)
         {
             var item = Mapper.Map<ApplicationUser, ConfirmationUsersViewModel> (user);
             switch (user.UserType)

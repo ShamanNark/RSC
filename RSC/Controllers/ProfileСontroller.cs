@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace RSC.Controllers
 {
+
+    [Authorize(Roles = "ADMIN, OOBO, CO, OPERATOR")]
     public class ProfileController : Controller
     {
         private readonly ApplicationDbContext db;
@@ -98,6 +100,7 @@ namespace RSC.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "ADMIN, OPERATOR")]
         public IActionResult ProfileList()
         {
             var prdsoList = db.PrdsoList.Include(p => p.University)
@@ -115,7 +118,7 @@ namespace RSC.Controllers
 
         public void ChangeApproved(bool studenApproved, bool universityApproved, int prdsoId)
         {
-            var prdsoModel = db.PrdsoList.Where(prdso => prdso.Id == prdsoId).FirstOrDefault();
+            var prdsoModel = db.PrdsoList.FirstOrDefault(prdso => prdso.Id == prdsoId);
             if(prdsoModel != null)
             {
                 prdsoModel.StudentCouncilApproved = studenApproved;
@@ -124,6 +127,7 @@ namespace RSC.Controllers
             db.SaveChanges();
         }
 
+        [Authorize(Roles = "ADMIN, OOBO")]
         public IActionResult SendPrdso(int prdsoid)
         {
             var prdsoModel= db.PrdsoList.Where(prdso => prdso.Id == prdsoid).FirstOrDefault();
@@ -136,6 +140,7 @@ namespace RSC.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
+        [Authorize(Roles = "ADMIN, OPERATOR")]
         public void ChangeStatusPrdso(int prdsoId , int statusId, string prdsoStatusComment)
         {
             var prdsoModel = db.PrdsoList.Where(prdso => prdso.Id == prdsoId).FirstOrDefault();
