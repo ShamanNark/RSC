@@ -28,6 +28,11 @@
         <dd>
             @Html.DisplayFor(model => model.RegionId)
         </dd>
+		
+		<dt>
+            @Html.DisplayNameFor(model => model.University)
+        </dt>
+		<dd>@Html.DisplayFor(model => model.University.UniversityName)</dd>
         <dd>
             <p>
                 <a href="@Model.OrderCreationCouncilOfLearners.Path" class="button" download><i class="fa fa-download"></i>Download Order</a>

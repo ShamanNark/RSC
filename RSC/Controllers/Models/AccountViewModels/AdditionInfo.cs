@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace RSC.Controllers.Models.AccountViewModels
 {
@@ -34,6 +35,7 @@ namespace RSC.Controllers.Models.AccountViewModels
         public FileModel ConferenceProtocol { get; set; }
         public FileModel OrderCreationCouncilOfLearners { get; set; }
         public FileModel ProtocolApprovalStudentAssociations { get; set; }
+        [Display(Name="Университет")]
         public UniversityData University { get; set; }
 
         //university
