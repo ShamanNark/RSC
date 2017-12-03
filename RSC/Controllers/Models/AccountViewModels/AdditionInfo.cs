@@ -46,7 +46,7 @@ namespace RSC.Controllers.Models.AccountViewModels
         public FileModel OrderCreationCouncilOfLearners { get; set; }
         public FileModel ProtocolApprovalStudentAssociations { get; set; }
         [Display(Name="Университет")]
-        public UniversityData University { get; set; }
+        public UniversityData UniversityData { get; set; }
 
         //university
         public string UniversityForm { get; set; }

@@ -66,7 +66,7 @@ namespace RSC.Controllers
                 UniversityViewModel = Mapper.Map<University, UniversityViewModel>(oovo),
                 Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name"),
                 UniversityDatas = new SelectList(db.UniversityDatas.Select(uny => new { Id = uny.Id, Name = uny.UniversityName }), "Id", "Name"),
-                StudentCouncils = Mapper.Map<List<StudentsCouncilViewModel>>(db.StudentsCouncils.Where(sc => sc.EducationalOrganizationId == oovo.UniversityDataId).ToList()),
+                StudentCouncils = Mapper.Map<List<StudentsCouncilViewModel>>(db.StudentsCouncils.Where(sc => sc.UniversityDataId == oovo.UniversityDataId).ToList()),
             };
             
             if (user != null)
@@ -166,7 +166,7 @@ namespace RSC.Controllers
                     }
                     dbCouncil.ApplicationUserId = user.Id;
                     dbCouncil.RegionId = dbUviversity.RegionId;
-                    dbCouncil.EducationalOrganizationId = dbUviversity.UniversityDataId;
+                    dbCouncil.UniversityDataId = dbUviversity.UniversityDataId;
                     db.StudentsCouncils.Add(dbCouncil);
                     db.SaveChanges();
                     await _userManager.AddToRoleAsync(user, "CO");
@@ -191,7 +191,7 @@ namespace RSC.Controllers
 
             model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
             model.UniversityDatas = new SelectList(db.UniversityDatas.Select(uny => new { Id = uny.Id, Name = uny.UniversityName }), "Id", "Name");
-            model.StudentCouncils = Mapper.Map<List<StudentsCouncilViewModel>>(db.StudentsCouncils.Where(sc => sc.EducationalOrganizationId == model.UniversityViewModel.UniversityDataId).ToList());
+            model.StudentCouncils = Mapper.Map<List<StudentsCouncilViewModel>>(db.StudentsCouncils.Where(sc => sc.UniversityDataId == model.UniversityViewModel.UniversityDataId).ToList());
             return View(model);
         }
     }

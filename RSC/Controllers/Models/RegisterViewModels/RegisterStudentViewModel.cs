@@ -34,6 +34,6 @@ namespace RSC.Models.RegisterViewModels
         public int CategoryId { get; set; }
         [Required]
         [Display(Name = "Институт")]
-        public int EducationalOrganizationId { get; set; }
+        public int UniversityDataId { get; set; }
     }
 }
