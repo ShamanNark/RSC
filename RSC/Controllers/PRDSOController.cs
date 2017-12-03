@@ -131,7 +131,7 @@ namespace RSC.Controllers
                         _logger.LogInformation("User created a new account with password.");
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                        await _emailSender.SendEmailConfirmationAsync(model.StudentsCouncilViewModel.Email, callbackUrl);
+                        _emailSender.SendEmailConfirmationAsync(model.StudentsCouncilViewModel.Email, callbackUrl);
                         //await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation("User created a new account with password.");
                     }
