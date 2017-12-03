@@ -42,8 +42,7 @@ namespace RSC.Controllers
             {
                 var item = TypingUser(user);
                 model.Add(item);                
-            }           
-            
+            }
             return View(model);
         }
 
@@ -54,8 +53,8 @@ namespace RSC.Controllers
             ViewBag.Statuses = new SelectList(new List<SelectListItem>
             {
                 new SelectListItem { Selected = true, Text = "Ожидание", Value = "0"},
-                new SelectListItem { Selected = false, Text = "Потвержденно", Value = "1"},
-                new SelectListItem { Selected = false, Text = "Отказанно", Value = "2"},
+                new SelectListItem { Selected = false, Text = "Потверждено", Value = "1"},
+                new SelectListItem { Selected = false, Text = "Отказано", Value = "2"},
             }, "Value", "Text", 0);
             return View(TypingUser(user));
         }
@@ -97,8 +96,9 @@ namespace RSC.Controllers
                 case ApplicationUserTypes.University:
                     var universitydb = db.Universities.Include(council => council.Region)
                                                        .Include(council => council.UniversityData)
+                                                       .Include(council => council.PowerOfAttorney)
                                                        .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
-                    item.AdditionInfoType = "UniversityData";
+                    item.AdditionInfoType = "University";
                     item.AdditionInfo = Mapper.Map<AdditionInfo>(universitydb);
                     break;
                 default:

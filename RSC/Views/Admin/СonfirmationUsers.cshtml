@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Потверждение пользователей</h2>
+<h2>Подтверждение пользователей</h2>
 
 <table class="table">
     <thead>
@@ -44,7 +44,7 @@
                 @Html.DisplayFor(modelItem => item.AdditionInfo.UniversityData.UniversityShortName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+               @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                 @Html.ActionLink("Изменить", "EditStatusUser", new { id = item.Id })

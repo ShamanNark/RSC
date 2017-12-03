@@ -1,7 +1,7 @@
 ﻿@model RSC.Controllers.Models.AccountViewModels.ConfirmationUsersViewModel
 
 @{
-    ViewData["Title"] = "EditStatusUser";
+    ViewData["Title"] = "Изменение статуса пользователя";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -46,9 +46,9 @@
             {
                 @Html.Partial("StudentsCouncilPartialView", Model.AdditionInfo)
             }
-            @if(Model.AdditionInfoType == "")
+            @if(Model.AdditionInfoType == "University")
             {
-                @Html.Partial("UniversityPartialModel", Model.AdditionInfo)
+                @Html.Partial("UniversityPartialView", Model.AdditionInfo)
             }
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>

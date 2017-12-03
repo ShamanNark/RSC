@@ -33,14 +33,18 @@ namespace RSC.Controllers.Models.AccountViewModels
 
         public string Job { get; set; }
         public string JobPosition { get; set; }
+        [Display(Name = "Телефон")]
         public string JobPhoneNumber { get; set; }
         public bool ExperienceOfParticipation { get; set; }
 
         //studentcouncil
         
         public int Id { get; set; }
+        [Display(Name = "Телефон")]
         public string JobPhone { get; set; }
+        [Display(Name = "Мобильный Телефон")]
         public string MobilePhone { get; set; }
+        [Display(Name = "Факс")]
         public string Fax { get; set; }
         public FileModel ConferenceProtocol { get; set; }
         public FileModel OrderCreationCouncilOfLearners { get; set; }
@@ -49,9 +53,12 @@ namespace RSC.Controllers.Models.AccountViewModels
         public UniversityData UniversityData { get; set; }
 
         //university
+        [Display(Name = "Форма ООВО")]
         public string UniversityForm { get; set; }
         [Display(Name = "Название ООВО")]
         public string UniversityName { get; set; }
+        [Display(Name = "Доверенность")]
+        public FileModel PowerOfAttorney { get; set; }
         //public string JobPhoneNumber { get; set; }
     }
 }
