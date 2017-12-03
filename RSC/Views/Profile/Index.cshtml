@@ -294,13 +294,14 @@
 
                         @if (User.IsInRole("CO"))
                         {
+
                             <div class="col-sm-5">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved, new { disabled = "disabled" })                                    
+                                        @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved)
                                     </span>
                                     <input type="text" class="form-control" aria-label=" Подтвеждение СO" value="Подтвеждение СO" disabled>
-                                </div>                     
+                                </div>
                             </div>
                         }
                         else
@@ -308,7 +309,7 @@
                             <div class="col-sm-5">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved)
+                                        @Html.CheckBoxFor(model => model.Prdso.StudentCouncilApproved, new { disabled = "disabled" })
                                     </span>
                                     <input type="text" class="form-control" aria-label=" Подтвеждение СO" value="Подтвеждение СO" disabled>
                                 </div>
