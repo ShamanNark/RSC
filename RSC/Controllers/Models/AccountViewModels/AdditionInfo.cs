@@ -9,18 +9,24 @@ namespace RSC.Controllers.Models.AccountViewModels
 {
     public class AdditionInfo
     {
+        [Display(Name = "Имя")]
         public string Name { get; set; }
+        [Display(Name = "Отчество")]
         public string MiddleName { get; set; }
+        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
+        [Display(Name = "Регион")]
         public Region Region { get; set; }
 
         //student
-
+        [Display(Name = "Дата рождения")]
         public DateTime DateOfBirth { get; set; }
+        [Display(Name = "Пол")]
         public Gender Gender { get; set; }
         public int RegionId { get; set; }
         public Degrees CategoryId { get; set; }
         public int EducationalOrganizationId { get; set; }
+        [Display(Name = "Название ООВО")]
         public string EducationalOrganizationName { get; set; }
         
         //assessor
@@ -44,6 +50,7 @@ namespace RSC.Controllers.Models.AccountViewModels
 
         //university
         public string UniversityForm { get; set; }
+        [Display(Name = "Название ООВО")]
         public string UniversityName { get; set; }
         //public string JobPhoneNumber { get; set; }
     }

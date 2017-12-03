@@ -1,11 +1,11 @@
 ﻿@model List<RSC.Controllers.Models.AccountViewModels.ConfirmationUsersViewModel>
 
 @{
-    ViewData["Title"] = "СonfirmationUsers";
+    ViewData["Title"] = "Потверждение пользователей";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Потверждение юзер</h2>
+<h2>Потверждение пользователей</h2>
 
 <table class="table">
     <thead>
@@ -20,7 +20,7 @@
                     email
                 </th>
                 <th>
-                    номер телефона
+                    ООВО
                 </th>
                 <th>
                     Статут
@@ -41,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                @Html.DisplayFor(modelItem => item.AdditionInfo.University.UniversityShortName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)

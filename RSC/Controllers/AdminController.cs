@@ -95,7 +95,9 @@ namespace RSC.Controllers
                     item.AdditionInfo = Mapper.Map<AdditionInfo>(councildb);
                     break;
                 case ApplicationUserTypes.University:
-                    var universitydb = db.Universities.Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
+                    var universitydb = db.Universities.Include(council => council.Region)
+                                                       .Include(council => council.UniversityData)
+                                                       .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
                     item.AdditionInfoType = "University";
                     item.AdditionInfo = Mapper.Map<AdditionInfo>(universitydb);
                     break;
