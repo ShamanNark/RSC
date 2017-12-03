@@ -45,7 +45,7 @@
                 </td>
                 <td class="col-md-3">
                     @Html.DropDownListFor(modelItem => item.Prdso.StatusId, ViewBag.PrdsoStatuses as SelectList, new { @class="form-control" })
-                    @Html.TextArea("StatusComment", "" , new {@clss="form-control", placeholder = "Status comment", rows = 4, style="width:100%" })
+                    @Html.TextArea("StatusComment", "" , new {@clss="form-control", placeholder = "Комментарий", rows = 4, style="width:100%" })
                 </td>
                 <td class="col-md-1">
                     <button class="btn btn-sm submit">Submit</button>
