@@ -41,7 +41,7 @@
                     <a class="nav-link active" href="@Url.Action("Index", "Admin")">Админ панель<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-            @(User.IsInRole("OPERATOR"))
+            @if(User.IsInRole("OPERATOR"))
             {
             <ul class="nav nav-pills flex-column">
               
@@ -54,7 +54,7 @@
                 
             </ul>
             }
-            @(User.IsInRole("ADMIN"))
+            @if(User.IsInRole("ADMIN"))
             {
                 <ul  class="nav nav-pills flex-column">
                     <li class="nav-item">
