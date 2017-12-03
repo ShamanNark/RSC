@@ -41,10 +41,10 @@ namespace RSC.Controllers
             var users = _userManager.Users.ToList();
             foreach(var user in users)
             {
-                var item = TypingUser(user);
+                var item = GetUserInfoById(user);
                 model.Add(item);                
-            }           
-            
+            }
+            model = model.OrderBy(m => m.Status).ToList();
             return View(model);
         }
 
@@ -58,7 +58,7 @@ namespace RSC.Controllers
                 new SelectListItem { Selected = false, Text = "Потвержденно", Value = "1"},
                 new SelectListItem { Selected = false, Text = "Отказанно", Value = "2"},
             }, "Value", "Text", 0);
-            return View(TypingUser(user));
+            return View(GetUserInfoById(user));
         }
 
         [HttpPost]
@@ -75,7 +75,7 @@ namespace RSC.Controllers
             return RedirectToAction("СonfirmationUsers", "Admin");
         }
 
-        private ConfirmationUsersViewModel TypingUser(ApplicationUser user)
+        private ConfirmationUsersViewModel GetUserInfoById(ApplicationUser user)
         {
             var item = Mapper.Map<ApplicationUser, ConfirmationUsersViewModel> (user);
             switch (user.UserType)
