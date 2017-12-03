@@ -36,7 +36,7 @@ namespace RSC.Controllers.Models.PRDSOViewModels
         public int RegionId { get; set; }
         
         [Display(Name = "Высшее оброзовательное учереждение")]
-        public int EducationalOrganizationId { get; set; }
+        public int UniversityDataId { get; set; }
         
         [EmailAddress]
         [Display(Name = "Email *")]

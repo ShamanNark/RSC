@@ -41,7 +41,7 @@ namespace RSC.Controllers
                                       .Include(university => university.UniversityData)
                                       .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
                 co = db.StudentsCouncils.Include(so => so.ApplicationUser)
-                                        .Include(so => so.University)
+                                        .Include(so => so.UniversityData)
                                         .Where(so => so.ApplicationUserId == user.Id).FirstOrDefault();
 
                 if (oovo == null && co == null)
@@ -58,7 +58,7 @@ namespace RSC.Controllers
                                                    .Include(p => p.Status)
                                                    .Include(p => p.OrderApprovalRector)
                                                    .Include(p => p.EGRUL)
-                                                   .Where(p => p.University.UniversityDataId == co.EducationalOrganizationId).FirstOrDefault();
+                                                   .Where(p => p.University.UniversityDataId == co.UniversityDataId).FirstOrDefault();
             }
             else
             {

@@ -646,7 +646,7 @@ namespace RSC.Controllers
         private async Task RegisterStudentCouncilDb(RegisterStudentCouncilViewModel model)
         {
             var studentCouncilDb = Mapper.Map<StudentsCouncil>(model);
-            var nameFile = db.UniversityDatas.Where(u => u.Id == model.EducationalOrganizationId).First();
+            var nameFile = db.UniversityDatas.Where(u => u.Id == model.UniversityDataId).First();
             var downloadFiles = new Helper.DownloadFiles(db, _appEnvironment);
 
             var orderCreationCouncilOfLearnersId = await downloadFiles.AddFile
