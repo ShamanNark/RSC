@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using AutoMapper;
 using RSC.Controllers.Models.AccountViewModels;
 using Microsoft.EntityFrameworkCore;
+using RSC.Services;
 
 namespace RSC.Controllers
 {
@@ -66,6 +67,11 @@ namespace RSC.Controllers
             var userdb = await _userManager.FindByIdAsync(user.Id);
             userdb.Status = user.Status;
             await db.SaveChangesAsync();
+            if (user.Status == ApplicationUserStatus.Approved)
+            {
+                EmailSender emailSender = new EmailSender();
+                await emailSender.SendEmailAsync(userdb.Email, "Администрация сайта", "Ваша регистрация потвержденна!");
+            }
             return RedirectToAction("СonfirmationUsers", "Admin");
         }
 

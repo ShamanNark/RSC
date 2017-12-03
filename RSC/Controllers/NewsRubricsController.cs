@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace RSC.Controllers
 {
-    [Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN, OPERATOR")]
     public class NewsRubricsController : Controller
     {
         private ApplicationDbContext db;

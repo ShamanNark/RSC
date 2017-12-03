@@ -10,12 +10,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using RSC.Controllers.Models.PRDSOViewModels;
 using AutoMapper;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using RSC.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 
 namespace RSC.Controllers
 {
+    [Authorize(Roles = "ADMIN, OOBO, CO, OPERATOR")]
     public class PRDSOController : Controller
     {
         private readonly ApplicationDbContext db;
@@ -50,6 +52,8 @@ namespace RSC.Controllers
         }
         
         [HttpGet]
+
+        [Authorize(Roles = "ADMIN, OOBO")]
         public async Task<IActionResult> Create()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -85,6 +89,7 @@ namespace RSC.Controllers
         }
         
         [HttpPost]
+        [Authorize(Roles = "ADMIN, OOBO")]
         public async  Task<IActionResult> Create(CreatePRDSOViewModel model)
         {
             if (ModelState.IsValid)
