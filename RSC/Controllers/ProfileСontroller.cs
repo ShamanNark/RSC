@@ -132,6 +132,13 @@ namespace RSC.Controllers
             if(prdsoModel != null)
             {
                 prdsoModel.StatusId = statusId;
+                var statusReject = db.PrdsoStatuses.Where(status => status.Name == "Rejected").FirstOrDefault();
+                if(statusReject.Id == statusId)
+                {
+                    prdsoModel.StudentCouncilApproved = false;
+                    prdsoModel.UniversityApproved = false;
+                }
+
                 prdsoModel.PrdsoStatusComment = prdsoStatusComment;
                 db.SaveChanges();
             }
