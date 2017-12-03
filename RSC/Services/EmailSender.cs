@@ -23,7 +23,7 @@ namespace RSC.Services
         {
             var emailMessage = new MimeMessage();
 
-            emailMessage.From.Add(new MailboxAddress("Администрация сайта", "yur-kuznocov@yandex.ru"));
+            emailMessage.From.Add(new MailboxAddress("Росстудцентр", "testrosstud@yandex.ru"));
             emailMessage.To.Add(new MailboxAddress("", email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -34,7 +34,7 @@ namespace RSC.Services
             using (var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp.yandex.ru", 25, false);
-                await client.AuthenticateAsync("yur-kuznocov@yandex.ru", "********");
+                await client.AuthenticateAsync("testrosstud@yandex.ru", "Password1*");
                 await client.SendAsync(emailMessage);
 
                 await client.DisconnectAsync(true);
