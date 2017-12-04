@@ -42,6 +42,7 @@
         background: linear-gradient(to right, #5ca4c2, #4674a3 98%) 0 0 no-repeat;
         padding-top:10px;
         padding-bottom:10px;
+        min-height:50px;
     }
 
     .newslink {
@@ -135,13 +136,14 @@
         }
 
         var startDateTime = new Date();
+        var stopDateTime = new Date();
         $('#StartDateTime').datetimepicker({
             locale: 'ru',
             defaultDate: startDateTime.setMonth(startDateTime.getMonth() - 3)
         });
         $('#StopDateTime').datetimepicker({
             locale: 'ru',
-            defaultDate : Date.now(),
+            defaultDate: stopDateTime.setDate(stopDateTime.getDate() + 1),
             useCurrent: false
         });
         $("#StartDateTime").on("dp.change",
