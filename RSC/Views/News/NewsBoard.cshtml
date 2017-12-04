@@ -136,13 +136,14 @@
         }
 
         var startDateTime = new Date();
+        var stopDateTime = new Date();
         $('#StartDateTime').datetimepicker({
             locale: 'ru',
             defaultDate: startDateTime.setMonth(startDateTime.getMonth() - 3)
         });
         $('#StopDateTime').datetimepicker({
             locale: 'ru',
-            defaultDate : Date.now(),
+            defaultDate: stopDateTime.setDate(stopDateTime.getDate() + 1),
             useCurrent: false
         });
         $("#StartDateTime").on("dp.change",
