@@ -55,7 +55,7 @@
             <div class="form-group">
                 <label asp-for="UniversityDataId" class="control-label"></label>
                 @*@Html.DropDownList("UniversityDataId", ViewBag.UniversityDatas as SelectList, htmlAttributes: new { @class= "form-control singleselect" })*@
-                <select id="EducationalOrganizationId" name="EducationalOrganizationId" class="form-control singleselect">
+                <select id="UniversityDataId" name="UniversityDataId" class="form-control singleselect">
                    @if (ViewBag.UniversityDatas != null)
                    {
                        foreach (UniversityDatasViewModel item in @ViewBag.UniversityDatas)
