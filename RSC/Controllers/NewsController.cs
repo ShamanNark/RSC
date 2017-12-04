@@ -68,18 +68,23 @@ namespace RSC.Controllers
         [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Create(CreateNewsViewModel model)
         {
-            var maxId = db.News.Max(n => n.Id) + 1;
-            var dbmodel = db.News.Add(new ObjectNews
+            var maxId = 1;
+            if (db.News.Any())
+            {
+                maxId = db.News.Max(n => n.Id) + 1;
+            }
+
+            db.News.Add(new ObjectNews
             {
                 Id = model.Id,
                 MainImage = await SaveFile(model.MainImage, maxId.ToString()),
                 HomePageImage = SaveImageFromBase64String(model.HomePageImage, maxId.ToString()),
                 Text = model.Text,
                 Title = model.Title,
-                ListObjectNewsNewsRubric = model.SelectedRubrics != null ? model.SelectedRubrics.Select(rubric => new Data.DbModels.ObjectNewsNewsRubric
+                ListObjectNewsNewsRubric = model.SelectedRubrics?.Select(rubric => new Data.DbModels.ObjectNewsNewsRubric
                 {
                     NewsRubricId = rubric
-                }).ToList() : new List<ObjectNewsNewsRubric> { new ObjectNewsNewsRubric { NewsRubricId = 1 } },
+                }).ToList() ?? new List<ObjectNewsNewsRubric> { new ObjectNewsNewsRubric { NewsRubricId = 1 } },
                 CreateDateTime = DateTime.Now,
                 UpdateDateTime = DateTime.Now
             });            
@@ -178,7 +183,7 @@ namespace RSC.Controllers
         [Authorize(Roles = "ADMIN")]
         public IActionResult Delete(DetailsNewsViewModel model)
         {
-            var dbModel = db.News.Where(n => n.Id == model.Id).FirstOrDefault();
+            var dbModel = db.News.FirstOrDefault(n => n.Id == model.Id);
             db.News.Remove(dbModel);
             db.SaveChanges();
             return RedirectToAction("Index");

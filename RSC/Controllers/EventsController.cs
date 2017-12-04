@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using RSC.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.IsisMtt.X509;
+using Remotion.Linq.Clauses;
 
 namespace RSC.Controllers
 {
@@ -206,5 +208,16 @@ namespace RSC.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
+        [HttpGet]
+        public IActionResult AddAdditionalInfo(int id)
+        {
+            return null;
+        }
+
+        [HttpPost]
+        public IActionResult AddAdditionalInfo(AdditionalEventInfo model)
+        {
+            return null;
+        }
     }
 }
