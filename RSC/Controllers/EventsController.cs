@@ -215,7 +215,7 @@ namespace RSC.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAdditionalInfo(AdditionalEventInfo model)
+        public IActionResult AddAdditionalInfo(AdditionalEventInfoViewMovel model)
         {
             return null;
         }

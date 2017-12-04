@@ -98,6 +98,10 @@ namespace RSC.Data.DbModels
         public int RegionId { get; set; }
         public virtual Region Region { get; set; }
 
+        [Display(Name="Статус")]
+        public int EventStatusId { get; set; }
+        public EventStatus EventStatus { get; set; }
+
         public virtual List<TargetIndicator> TargetIndicators { get; set; }
         public virtual List<Cost> Costs { get; set; }
     }

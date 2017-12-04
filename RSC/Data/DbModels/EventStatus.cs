@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace RSC.Data.DbModels
 {
-    public class PrdsoStatus
+    public class EventStatus
     {
         public int Id { get; set; }
-
-        public string Name { get; set; }
+        public string CodeName { get; set; }
+        public string StatusName { get; set; } 
     }
 }
