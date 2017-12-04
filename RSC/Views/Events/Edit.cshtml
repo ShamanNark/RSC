@@ -4,7 +4,6 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <style>
     .paddingMainblock {
         padding-top: 10px;
@@ -41,29 +40,8 @@
 </form>
 
 @section Scripts{
-    <script src="~/js/moment-with-locales.js"></script>
-    <script src="~/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#StartDateTime').datetimepicker({
-                locale: 'ru',
-                useCurrent: true,
-                date: new Date()
-            });
-            $('#StopDateTime').datetimepicker({
-                locale: 'ru',
-                date: new Date()
-            });
-            $("#StartDateTime").on("dp.change",
-                function (e) {
-                    $('#StopDateTime').data("DateTimePicker").minDate(e.date);
-                });
-
-            $("#StopDateTime").on("dp.change",
-                function (e) {
-                    $('#StartDateTime').data("DateTimePicker").maxDate(e.date);
-                });
-            
             $("#add_row").click(function (e) {
                 var elementsCount = $(".targets").find(".targetevent").length;
                 var element = '<div id="addrow_' + elementsCount + '" class="targetevent">' +
