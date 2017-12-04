@@ -382,7 +382,7 @@
                                     </div>
                                     <div class="col-sm-6" style="text-align: right;">
                                         
-                                        @if((User.IsInRole("OOBOO") || User.IsInRole("ADMIN")) && Model.Prdso.Status.Name == "Approved")
+                                        @if((User.IsInRole("OOBO") || User.IsInRole("ADMIN")) && Model.Prdso.Status.Name == "Approved")
                                         {
                                             @Html.ActionLink("Добавить доп. информацию о Мероприятии", "AddAdditionalInfo", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
                                             <select class="form-control">
