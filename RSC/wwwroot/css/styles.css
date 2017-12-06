@@ -651,7 +651,7 @@ h3{
 .calendar {
     min-height: 710px;
     margin-top: 60px;
-    background: url(../../img/squares.png) 10px 10px no-repeat, linear-gradient(to right, rgb(157,200,218,0.7),rgb(144,172,200)) 0 no-repeat;
+    background: url(../../img/squares.png) 10px 10px no-repeat, linear-gradient(to right, rgba(157,200,218,0.7),rgb(144,172,200)) 0 no-repeat;
 }
 
     .calendar h2 {
