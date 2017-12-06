@@ -208,16 +208,18 @@ namespace RSC.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
-        [HttpGet]
-        public IActionResult AddAdditionalInfo(int id)
-        {
-            return null;
-        }
-
         [HttpPost]
-        public IActionResult AddAdditionalInfo(AdditionalEventInfoViewMovel model)
+        public IActionResult ChangeStatusEvent(int eventId, int eventStatusId)
         {
-            return null;
+            var eventdb = db.Events.Include(e => e.Prdso.Status).Where(e => e.Id == eventId).FirstOrDefault();
+            if(eventdb.Prdso.Status.Name != "Approved")
+            {
+                return RedirectToAction("Index", "Profile");
+            }
+
+            eventdb.EventStatusId = eventStatusId;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Prodile");
         }
     }
 }

@@ -240,6 +240,12 @@ namespace RSC.Controllers
             return PartialView("PartialViewNews", viewModel);
         }
 
+        public IActionResult GetAdditionalInfoEvent(int eventId)
+        {
+
+            return View();
+        }
+
         private async Task<string> SaveFile(IFormFile uploadedFile, string FileName)
         {
             if (uploadedFile != null && (uploadedFile.ContentType == "image/png" || uploadedFile.ContentType == "image/jpeg"))

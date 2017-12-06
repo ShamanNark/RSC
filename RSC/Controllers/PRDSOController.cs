@@ -52,7 +52,6 @@ namespace RSC.Controllers
         }
         
         [HttpGet]
-
         [Authorize(Roles = "ADMIN, OOBO")]
         public async Task<IActionResult> Create()
         {

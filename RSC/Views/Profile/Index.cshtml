@@ -384,10 +384,10 @@
                                         
                                         @if((User.IsInRole("OOBO") || User.IsInRole("ADMIN")) && Model.Prdso.Status.Name == "Approved")
                                         {
-                                            @Html.ActionLink("Добавить доп. информацию о Мероприятии", "AddAdditionalInfo", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })
-                                            <select class="form-control">
-                                                <option>Подтверждаю</option>
-                                                <option>Отказываюсь</option>
+                                            @Html.ActionLink("Добавить доп. информацию о Мероприятии", "Edit", "AdditionalNewInfo", new { eventId = eventun.Id }, new { @class = "btn btn-default" })
+                                            <select class="form-controle eventstatus" data-eventId="@eventun.Id">
+                                                <option value="1">Подтверждаю</option>
+                                                <option value="2">Отказываюсь</option>
                                             </select>
                                         }
 
@@ -451,6 +451,18 @@
             })
             showAcceptPrdso();
         });        
+
+        $(".eventstatus").change(function () {
+            $.ajax({
+                method: "POST",
+                url: "@Url.Action("ChangeStatusEvent", "Events")",
+                data: { eventId: $(this).attr("data-eventId"), eventStatusId: $(this).val() }
+            }).success(function (res) { 
+                
+            }).error(function (res) {
+                
+            })
+        });
 </script>
 }
 

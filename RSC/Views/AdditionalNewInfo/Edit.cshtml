@@ -1,0 +1,99 @@
+﻿@model RSC.Data.DbModels.PublicEventInformation
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Edit</h2>
+<h4>Публичную информация</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(modelItem => Model.Id)
+            @Html.HiddenFor(modelItem => Model.EventId)
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="VideoLink" class="control-label"></label>
+                        <input asp-for="VideoLink" class="form-control" />
+                        <span asp-validation-for="VideoLink" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EventWebSite" class="control-label"></label>
+                        <input asp-for="EventWebSite" class="form-control" />
+                        <span asp-validation-for="EventWebSite" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OOVOWebSite" class="control-label"></label>
+                        <input asp-for="OOVOWebSite" class="form-control" />
+                        <span asp-validation-for="OOVOWebSite" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EventHashTags" class="control-label"></label>
+                        <input asp-for="EventHashTags" class="form-control" />
+                        <span asp-validation-for="EventHashTags" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VideoEsse" class="control-label"></label>
+                        <input asp-for="VideoEsse" class="form-control" />
+                        <span asp-validation-for="VideoEsse" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VKGroup" class="control-label"></label>
+                        <input asp-for="VKGroup" class="form-control" />
+                        <span asp-validation-for="VKGroup" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FacebookGroup" class="control-label"></label>
+                        <input asp-for="FacebookGroup" class="form-control" />
+                        <span asp-validation-for="FacebookGroup" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="InstagramGroup" class="control-label"></label>
+                        <input asp-for="InstagramGroup" class="form-control" />
+                        <span asp-validation-for="InstagramGroup" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ResultVideo" class="control-label"></label>
+                        <input asp-for="ResultVideo" class="form-control" />
+                        <span asp-validation-for="ResultVideo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FederalSMI" class="control-label"></label>
+                        <input asp-for="FederalSMI" class="form-control" />
+                        <span asp-validation-for="FederalSMI" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RegionalSMI" class="control-label"></label>
+                        <input asp-for="RegionalSMI" class="form-control" />
+                        <span asp-validation-for="RegionalSMI" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DistricSMI" class="control-label"></label>
+                        <input asp-for="DistricSMI" class="form-control" />
+                        <span asp-validation-for="DistricSMI" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StudentSMI" class="control-label"></label>
+                        <input asp-for="StudentSMI" class="form-control" />
+                        <span asp-validation-for="StudentSMI" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            @Html.HiddenFor(modelItem => Model.Likes)
+            @Html.HiddenFor(modelItem => Model.Likes)
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" asp-controller="Profile">Вернуться в личный кабинет</a>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
