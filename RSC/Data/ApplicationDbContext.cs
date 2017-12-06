@@ -41,6 +41,7 @@ namespace RSC.Data
         public DbSet<Prdso> PrdsoList { get; set; }
         public DbSet<PrdsoStatus> PrdsoStatuses { get; set; } 
         public DbSet<PublicEventInformation> PublicEventInformations { get; set; }
+        public DbSet<EventStatus> EventStatuses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

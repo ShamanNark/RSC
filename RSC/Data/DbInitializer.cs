@@ -11,6 +11,21 @@ namespace RSC.Data
         {
             context.Database.EnsureCreated();
 
+            if (!context.EventStatuses.Any())
+            {
+                var eventStatuses = new EventStatus[]
+                {
+                    new EventStatus { CodeName = "Approved", StatusName = "Потверждаю"},
+                    new EventStatus { CodeName = "Rejected", StatusName = "Отказываюсь"},
+                };
+
+                foreach (var s in eventStatuses)
+                {
+                    context.EventStatuses.Add(s);
+                }
+                context.SaveChanges();
+            }
+
             if (!context.Roles.Any())
             {
                 var roles = new IdentityRole[]
