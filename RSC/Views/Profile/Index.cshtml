@@ -386,8 +386,10 @@
                                         {
                                             @Html.ActionLink("Добавить доп. информацию о Мероприятии", "Edit", "AdditionalNewInfo", new { eventId = eventun.Id }, new { @class = "btn btn-default" })
                                             <select class="form-controle eventstatus" data-eventId="@eventun.Id">
-                                                <option value="1">Подтверждаю</option>
-                                                <option value="2">Отказываюсь</option>
+                                                @foreach (var status in Model.EventStatuses)
+                                                {
+                                                    <option value="@status.Id">@status.StatusName</option>
+                                                }
                                             </select>
                                         }
 

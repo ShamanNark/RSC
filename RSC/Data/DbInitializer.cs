@@ -15,9 +15,9 @@ namespace RSC.Data
             {
                 var eventStatuses = new EventStatus[]
                 {
-                    new EventStatus { CodeName = "Approved", StatusName = "Потверждаю"},
-                    new EventStatus { CodeName = "Rejected", StatusName = "Отказываюсь"},
-                };
+                    new EventStatus { Id = 1, CodeName = "Approved", StatusName = "Потверждаю"},
+                    new EventStatus { Id = 2, CodeName = "Rejected", StatusName = "Отказываюсь"},
+                };  
 
                 foreach (var s in eventStatuses)
                 {

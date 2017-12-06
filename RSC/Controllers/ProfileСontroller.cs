@@ -40,29 +40,25 @@ namespace RSC.Controllers
             {
                 user = await _userManager.GetUserAsync(User);
                 oovo = db.Universities.Include(university => university.ApplicationUser)
-                                      .Include(university => university.UniversityData)
-                                      .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
+                                      .Include(university => university.UniversityData).FirstOrDefault(university => university.ApplicationUserId == user.Id);
                 co = db.StudentsCouncils.Include(so => so.ApplicationUser)
-                                        .Include(so => so.UniversityData)
-                                        .Where(so => so.ApplicationUserId == user.Id).FirstOrDefault();
+                                        .Include(so => so.UniversityData).FirstOrDefault(so => so.ApplicationUserId == user.Id);
 
                 if (oovo == null && co == null)
                 {
                     return RedirectToAction("Index", "Home");
                 }
 
-                prdso = oovo != null ? db.PrdsoList.Include(p => p.University)
-                                                   .Include(p => p.University.UniversityData)  
+                prdso = oovo != null ? db.PrdsoList.Include(p => p.University)  
+                                                   .Include(p => p.University.UniversityData)
                                                    .Include(p => p.Status)
                                                    .Include(p => p.OrderApprovalRector)
-                                                   .Include(p => p.EGRUL)
-                                                   .Where(p => p.UniversityId == oovo.Id).FirstOrDefault() :
+                                                   .Include(p => p.EGRUL).FirstOrDefault(p => p.UniversityId == oovo.Id) :
                                        db.PrdsoList.Include(p => p.University)
                                                    .Include(p => p.University.UniversityData)
                                                    .Include(p => p.Status)
                                                    .Include(p => p.OrderApprovalRector)
-                                                   .Include(p => p.EGRUL)
-                                                   .Where(p => p.University.UniversityDataId == co.UniversityDataId).FirstOrDefault();
+                                                   .Include(p => p.EGRUL).FirstOrDefault(p => p.University.UniversityDataId == co.UniversityDataId);
             }
             else
             {
@@ -70,8 +66,7 @@ namespace RSC.Controllers
                                     .Include(p => p.University.UniversityData)
                                     .Include(p => p.Status)
                                     .Include(p => p.OrderApprovalRector)
-                                    .Include(p => p.EGRUL)
-                                    .Where(p => p.Id == id).FirstOrDefault(); 
+                                    .Include(p => p.EGRUL).FirstOrDefault(p => p.Id == id); 
             }
 
             if (prdso == null )
@@ -86,7 +81,8 @@ namespace RSC.Controllers
                 CO = co,
                 Prdso = prdso,
                 EventTypes = db.PrdsoTypes.ToList(),
-                Events =  db.Events.Where(e => e.PrdsoId == prdso.Id).ToList()
+                Events =  db.Events.Where(e => e.PrdsoId == prdso.Id).ToList(),
+                EventStatuses = db.EventStatuses.ToList()
             };
             
             if (user != null)
