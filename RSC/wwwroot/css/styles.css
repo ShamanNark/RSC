@@ -649,14 +649,14 @@ h3{
 }
 
 .calendar {
-    min-height: 710px;
+    min-height: 740px;
     margin-top: 60px;
-    background: url(../../img/squares.png) 10px 10px no-repeat, linear-gradient(to right, rgba(157,200,218,0.7),rgb(144,172,200)) 0 no-repeat;
+    background: url(../../img/calendar-dots.png) 10px 10px no-repeat, linear-gradient(to right, rgba(157,200,218,0.7),rgb(144,172,200)) 0 no-repeat;
 }
 
     .calendar h2 {
         margin: 0;
-        font-size: 135px;
+        font-size: 155px;
         font-weight: 900;
         letter-spacing: 11px;
         text-align: center;
@@ -672,7 +672,8 @@ h3{
         margin-bottom: 0;
         top: -122px;
         color: #FFF;
-        font-weight: 400;
+        font-weight: 600;
+        font-size: 40px;
     }
 
 
@@ -684,7 +685,7 @@ h3{
 
 .calendar-buttons {
     text-align: center;
-    padding-top: 40px;
+    padding-top: 25px;
 }
 
 .find-your {
@@ -711,15 +712,18 @@ h3{
 
 .studstarter {
     min-height: 700px;
-    margin-top: 60px;
+    margin-top: 62px;
+    padding-left: 0px;
+    padding-right: 0px;
     background-color: none;
+    box-shadow: none;
 }
 
 
     .studstarter h2 {
         margin: 0;
-        font-size: 125px;
-        font-weight: 700;
+        font-size: 135px;
+        font-weight: 900;
         letter-spacing: 11px;
         text-align: center;
         color: rgba(53, 53, 53, 0.05);
@@ -732,9 +736,10 @@ h3{
         position: relative;
         margin-top: 0;
         margin-bottom: 0;
-        top: -122px;
+        top: -102px;
         color: black;
-        font-weight: 400;
+        font-weight: 600;
+        font-size: 35px;
     }
 
 
@@ -744,7 +749,7 @@ h3{
 }
 
 .studstarter-buttons {
-    padding-top: 400px;
+    padding-top: 360px;
     text-align: center;
 }
 
@@ -757,9 +762,7 @@ h3{
     min-height: 700px;
     margin-top: 60px;
     background-color: none;
-    -webkit-box-shadow: 0px 4px 17px -4px rgba(0,0,0,0.62);
-    -moz-box-shadow: 0px 4px 17px -4px rgba(0,0,0,0.62);
-    box-shadow: 0px 4px 17px -4px rgba(0,0,0,0.62);
+    
 }
 
     .prdso h1 {
