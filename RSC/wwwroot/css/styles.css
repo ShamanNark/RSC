@@ -110,19 +110,13 @@ h3{
 /*SIDE NAV*/
 
 .group {
-    
-    
-    
 }
 
     .group h3 {
         color: #23527c;
     }
 
-    .group .subgroup h3{
-        
-        
-       
+    .group .subgroup h3 {
     }
 
 .fixed {
@@ -196,6 +190,7 @@ h3{
     width: 100%;
     border: none;
     border-radius: 0px;
+    background-color: rgb(240,240,240);
 }
 
 
@@ -343,7 +338,6 @@ h3{
     border-right: solid 5px;
     border-right-color: white;
     height: 45px;
-    
     text-align: center;
     background-color: rgb(240,240,240);
 }
@@ -353,8 +347,6 @@ h3{
     }
 
     .sec-nav-li a {
-        
-        
         text-align: center;
         margin-top: 10px;
         background-color: transparent !important;
@@ -417,7 +409,7 @@ h3{
 
 .menu-all {
     border-radius: 0px;
-    padding-left:0px;
+    padding-left: 0px;
     padding-right: 30px;
 }
 
@@ -427,7 +419,6 @@ h3{
 
 
 .menu1 {
-   
     top: 90%;
     padding-left: 0px;
     padding-right: 30px;
@@ -448,12 +439,13 @@ h3{
     box-shadow: unset;
 }
 
-    @media (max-width: 1215px) {
-        .menu2 { left: -157px;}
-        
+@media (max-width: 1215px) {
+    .menu2 {
+        left: -157px;
     }
+}
 
-.menu2 a{
+.menu2 a {
     font-size: 11px;
 }
 
@@ -508,9 +500,9 @@ h3{
     }
 }
 
-    .menu5  a {
-        font-size: 12px;
-    }
+.menu5 a {
+    font-size: 12px;
+}
 
 .menu6 {
     left: -1013px;
@@ -690,26 +682,41 @@ h3{
 }
 
     .calendar h2 {
-        margin: 0;
-        font-size: 155px;
+        padding-top: 20px;
+        font-size: 152px;
         font-weight: 900;
         letter-spacing: 11px;
         text-align: center;
-        color: rgba(53, 53, 53, 0.05);
+        color: rgba(255, 255, 255, 0.13);
         text-transform: uppercase;
     }
 
-
-    .calendar h3 {
-        text-align: center;
-        position: relative;
-        margin-top: 0;
-        margin-bottom: 0;
-        top: -122px;
-        color: #FFF;
-        font-weight: 600;
-        font-size: 40px;
+@media (max-width: 1215px) {
+    .calendar h2 {
+        font-size: 120px;
     }
+}
+
+
+
+
+.calendar h3 {
+    text-align: center;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 0;
+    top: -122px;
+    color: #FFF;
+    font-weight: 600;
+    font-size: 40px;
+}
+
+
+@media (max-width: 1215px) {
+    .calendar h3 {
+        top: -110px;
+    }
+}
 
 
 
@@ -717,6 +724,10 @@ h3{
     max-width: 95%;
     text-align: center;
 }
+
+    .tags img {
+        height: 380px;
+    }
 
 .calendar-buttons {
     text-align: center;
@@ -757,7 +768,7 @@ h3{
 
     .studstarter h2 {
         margin: 0;
-        font-size: 135px;
+        font-size: 133px;
         font-weight: 900;
         letter-spacing: 11px;
         text-align: center;
@@ -766,16 +777,31 @@ h3{
     }
 
 
-    .studstarter h3 {
-        text-align: center;
-        position: relative;
-        margin-top: 0;
-        margin-bottom: 0;
-        top: -102px;
-        color: black;
-        font-weight: 600;
-        font-size: 35px;
+@media (max-width: 1215px) {
+    .studstarter h2 {
+        font-size: 100px;
     }
+}
+
+
+.studstarter h3 {
+    text-align: center;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 0;
+    top: -102px;
+    color: black;
+    font-weight: 600;
+    font-size: 35px;
+}
+
+
+@media (max-width: 1215px) {
+    .studstarter h3 {
+        font-size: 30px;
+        top: -85px;
+    }
+}
 
 
 
@@ -799,7 +825,6 @@ h3{
     background-color: none;
     padding-left: 0px;
     padding-right: 0px;
-    
 }
 
     .prdso h1 {
@@ -833,7 +858,7 @@ h3{
 
 
 
-.prdso-banner{
+.prdso-banner {
     min-height: 350px;
     background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,linear-gradient(to right, #00a6c5 0%, #1976a6 100%);
     padding-left: 100px;
@@ -900,7 +925,22 @@ h3{
     -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
+    filter: grayscale(100%);
 }
+
+    .prdso .one-prdso-block:nth-child(2):hover {
+        filter: none;
+    }
+
+
+        .prdso .one-prdso-block:nth-child(2):hover h4,
+        .prdso .one-prdso-block:nth-child(2):hover h3,
+        .prdso .one-prdso-block:nth-child(2):hover h5 {
+            filter: blur(2px);
+        }
+
+
+
 
 .prdso .one-prdso-block:nth-child(3) {
     min-height: 350px;
@@ -911,7 +951,20 @@ h3{
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
     border-right: none;
+    filter: grayscale(100%);
 }
+
+
+    .prdso .one-prdso-block:nth-child(3):hover {
+        filter: none;
+    }
+
+        .prdso .one-prdso-block:nth-child(3):hover h4,
+        .prdso .one-prdso-block:nth-child(3):hover h3,
+        .prdso .one-prdso-block:nth-child(3):hover h5 {
+            filter: blur(2px);
+        }
+
 
 .prdso .one-prdso-block:nth-child(4) {
     min-height: 350px;
@@ -922,7 +975,19 @@ h3{
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
     border-bottom: none;
+    filter: grayscale(100%);
 }
+
+    .prdso .one-prdso-block:nth-child(4):hover {
+        filter: none;
+    }
+
+
+        .prdso .one-prdso-block:nth-child(4):hover h4,
+        .prdso .one-prdso-block:nth-child(4):hover h3,
+        .prdso .one-prdso-block:nth-child(4):hover h5 {
+            filter: blur(2px);
+        }
 
 .prdso .one-prdso-block:nth-child(5) {
     min-height: 350px;
@@ -933,7 +998,19 @@ h3{
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
     border-bottom: none;
+    filter: grayscale(100%);
 }
+
+    .prdso .one-prdso-block:nth-child(5):hover {
+        filter: none;
+    }
+
+        .prdso .one-prdso-block:nth-child(5):hover h4,
+        .prdso .one-prdso-block:nth-child(5):hover h3,
+        .prdso .one-prdso-block:nth-child(5):hover h5 {
+            filter: blur(2px);
+        }
+
 
 .prdso .one-prdso-block:nth-child(6) {
     min-height: 350px;
@@ -945,7 +1022,19 @@ h3{
     text-align: center;
     border-bottom: none;
     border-right: none;
+    filter: grayscale(100%);
 }
+
+    .prdso .one-prdso-block:nth-child(6):hover {
+        filter: none;
+    }
+
+        .prdso .one-prdso-block:nth-child(6):hover h4,
+        .prdso .one-prdso-block:nth-child(6):hover h3,
+        .prdso .one-prdso-block:nth-child(6):hover h5 {
+            filter: blur(2px);
+        }
+
 
 .prdso .one-prdso-block:nth-child(7) {
     min-height: 350px;
@@ -955,7 +1044,18 @@ h3{
     -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     text-align: center;
+    filter: grayscale(100%);
 }
+
+    .prdso .one-prdso-block:nth-child(7):hover {
+        filter: none;
+    }
+
+        .prdso .one-prdso-block:nth-child(7):hover h4,
+        .prdso .one-prdso-block:nth-child(7):hover h3,
+        .prdso .one-prdso-block:nth-child(7):hover h5 {
+            filter: blur(2px);
+        }
 
 
 
@@ -1228,6 +1328,3 @@ h3{
         -webkit-filter: blur(0px);
         visibility: visible;
     }
-
-
-

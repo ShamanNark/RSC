@@ -144,7 +144,7 @@
             <a href="@Url.Action("NewsBoard","News")" class="btn-red">ПОСМОТРЕТЬ ВСЕ</a>
         </div>
     </div>
-    @foreach (var item in Model.News)
+    @*@foreach (var item in Model.News)
     {
         <a href="@Url.Action("Details","News",new {id = @item.Id})">
             <div class="col-md-3 one-news-block" style="background-image: url(@Url.Content(item.HomePageImagePath)); -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24); -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24); box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);">
@@ -160,6 +160,37 @@
                 <h4>читать далее>></h4>
             </div>
         </a>
-    }
+    }*@
+
+    <div class="col-md-3 one-news-block">
+        <i class="fa fa-flask"></i>
+        <h3>НОВОСТИ НАУКИ</h3>
+
+    </div>
+
+    <div class="col-md-3 one-news-block">
+
+
+    </div>
+
+
+
+
+    <div class="col-md-6 one-news-block">
+
+
+    </div>
+
+
+    <div class="col-md-3 one-news-block">
+
+
+    </div>
+
+    <div class="col-md-3 one-news-block">
+
+
+    </div>
+
 </div>
 
