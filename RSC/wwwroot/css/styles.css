@@ -343,7 +343,7 @@ h3{
     border-right: solid 5px;
     border-right-color: white;
     height: 45px;
-    width: 190px !important;
+    
     text-align: center;
     background-color: rgb(240,240,240);
 }
@@ -417,7 +417,8 @@ h3{
 
 .menu-all {
     border-radius: 0px;
-    width: 1140px;
+    padding-left:0px;
+    padding-right: 30px;
 }
 
 .open > .menu-all {
@@ -429,7 +430,7 @@ h3{
    
     top: 90%;
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 30px;
     padding-bottom: 5px;
     text-align: center;
     border: none;
@@ -437,65 +438,95 @@ h3{
 }
 
 .menu2 {
-    left: -190px;
+    left: -203px;
     top: 90%;
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 30px;
     padding-bottom: 5px;
     text-align: center;
     border: none;
     box-shadow: unset;
 }
+
+    @media (max-width: 1215px) {
+        .menu2 { left: -157px;}
+        
+    }
 
 .menu2 a{
     font-size: 11px;
 }
 
 .menu3 {
-    left: -380px;
+    left: -405px;
     top: 90%;
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 30px;
     padding-bottom: 5px;
     text-align: center;
     border: none;
     box-shadow: unset;
+}
+
+@media (max-width: 1215px) {
+    .menu3 {
+        left: -313px;
+    }
 }
 
 .menu4 {
-    left: -570px;
+    left: -608px;
     top: 90%;
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 30px;
     padding-bottom: 5px;
     text-align: center;
     border: none;
     box-shadow: unset;
 }
 
+@media (max-width: 1215px) {
+    .menu4 {
+        left: -470px;
+    }
+}
+
 .menu5 {
-    left: -760px;
+    left: -810px;
     top: 90%;
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 30px;
     padding-bottom: 5px;
     text-align: center;
     border: none;
     box-shadow: unset;
+}
+
+@media (max-width: 1215px) {
+    .menu5 {
+        left: -627px;
+    }
 }
 
     .menu5  a {
         font-size: 12px;
     }
-    .menu6 {
-    left: -950px;
+
+.menu6 {
+    left: -1013px;
     top: 90%;
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 30px;
     padding-bottom: 5px;
     text-align: center;
     border: none;
     box-shadow: unset;
+}
+
+@media (max-width: 1215px) {
+    .menu6 {
+        left: -783px;
+    }
 }
 
 
