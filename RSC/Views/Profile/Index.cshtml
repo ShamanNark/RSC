@@ -384,7 +384,7 @@
                                         
                                         @if((User.IsInRole("OOBO") || User.IsInRole("ADMIN")) && Model.Prdso.Status.Name == "Approved")
                                         {
-                                            @Html.ActionLink("Добавить доп. информацию о Мероприятии", "Edit", "AdditionalNewInfo", new { eventId = eventun.Id }, new { @class = "btn btn-default" })
+                                            @Html.ActionLink("Добавить доп. информацию о Мероприятии", "Edit", "PublicNewsInfo", new { eventId = eventun.Id }, new { @class = "btn btn-default" })
                                             <select class="form-controle eventstatus" data-eventId="@eventun.Id">
                                                 @foreach (var status in Model.EventStatuses)
                                                 {

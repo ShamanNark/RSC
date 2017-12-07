@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using RSC.Data.DbModels;
 
-namespace RSC.Data.DbModels
+namespace RSC.Controllers.Models.PublicNewsInfoViewModels
 {
-    public class PublicEventInformation
+    public class PublicNewsInfoViewModel
     {
         public int Id { get; set; }
 
@@ -15,15 +17,13 @@ namespace RSC.Data.DbModels
 
         [Display(Name = "Видеопрезентация/видеооткрытка на ресурсе видео хостинга")]
         [DataType(DataType.Url)]
-        public string VideoLink { get; set; } 
+        public string VideoLink { get; set; }
 
         [Display(Name = "Фото мероприятия для анонса")]
-        public int FotoId { get; set; }
-        public virtual FileModel Foto { get; set; }
+        public IFormFile FotoFile { get; set; }
 
         [Display(Name = "Фото мероприятия для главной страницы")]
-        public int SmallFotoId { get; set; }
-        public virtual FileModel SmallFoto { get; set; }
+        public IFormFile SmallFotoFile { get; set; }
 
         [Display(Name = "Сайт мероприятия (при наличии)")]
         [DataType(DataType.Url)]
@@ -71,13 +71,6 @@ namespace RSC.Data.DbModels
         [Display(Name = "Студенческие")]
         [DataType(DataType.Url)]
         public string StudentSMI { get; set; }
-        
-        [Display(Name = "Положительные")]
-        public int Likes { get; set; }
-
-        [Display(Name = "Отрицательные")]
-        public int DisLikes { get; set; }
-
 
     }
 }
