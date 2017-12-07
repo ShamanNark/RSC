@@ -629,6 +629,8 @@ h3{
 .slider {
     min-height: 472px;
     margin-top: 50px;
+    padding-left: 0px;
+    padding-right: 0px;
     /*background-image: url(../../img/sliderbackground.png);*/
     background-size: 1140px 472px;
     background-repeat: no-repeat;
@@ -682,6 +684,8 @@ h3{
 .calendar {
     min-height: 740px;
     margin-top: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
     background: url(../../img/calendar-dots.png) 10px 10px no-repeat, linear-gradient(to right, rgba(157,200,218,0.7),rgb(144,172,200)) 0 no-repeat;
 }
 
@@ -793,6 +797,8 @@ h3{
     min-height: 700px;
     margin-top: 60px;
     background-color: none;
+    padding-left: 0px;
+    padding-right: 0px;
     
 }
 
@@ -827,12 +833,14 @@ h3{
 
 
 
-.prdso-banner {
+.prdso-banner{
     min-height: 350px;
-    /* background: linear-gradient(to right, #e55727 3%, #e21c25) 0 0 no-repeat; */
-    background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,linear-gradient(to right, #e55727 3%, #e21c25) 0 0 no-repeat;
+    background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,linear-gradient(to right, #00a6c5 0%, #1976a6 100%);
     padding-left: 100px;
     padding-right: 100px;
+    border-bottom: 5px solid;
+    border-right: 5px solid;
+    border-color: white;
 }
 
     .prdso-banner h1 {
@@ -958,8 +966,10 @@ h3{
 
 
 .news-block {
-    min-height: 700px;
     margin-top: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
+    min-height: 700px;
     -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
