@@ -82,6 +82,8 @@ namespace RSC.Controllers
                 }
             }
 
+            var eventState = db.EventStates.Where(e => e.CodeName == "Event").First();
+            eventdb.EventStateId = eventState.Id;
             db.PublicEventInformations.Update(dbmodel);
             db.SaveChanges();
             return RedirectToAction("Index", "Profile");

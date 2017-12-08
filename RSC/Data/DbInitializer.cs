@@ -11,6 +11,27 @@ namespace RSC.Data
         {
             context.Database.EnsureCreated();
 
+            #region Event states 
+
+            if (!context.EventStates.Any())
+            {
+                var eventStates= new EventState[]
+                {
+                    new EventState { Id = 1, CodeName = "Announcement", Name = "Анонс"},
+                    new EventState { Id = 2, CodeName = "Event", Name = "Мероприятие"},
+                };
+
+                foreach (var s in eventStates)
+                {
+                    context.EventStates.Add(s);
+                }
+                context.SaveChanges();
+            }
+
+            #endregion
+
+            #region  Event statuses
+
             if (!context.EventStatuses.Any())
             {
                 var eventStatuses = new EventStatus[]
@@ -25,6 +46,10 @@ namespace RSC.Data
                 }
                 context.SaveChanges();
             }
+
+            #endregion
+
+            #region Roles 
 
             if (!context.Roles.Any())
             {
@@ -45,6 +70,10 @@ namespace RSC.Data
                 context.SaveChanges();
             }
 
+            #endregion 
+
+            #region Prdso statuses 
+
             if(!context.PrdsoStatuses.Any())
             {
                 var statuses = new PrdsoStatus[]
@@ -61,6 +90,10 @@ namespace RSC.Data
                 }
                 context.SaveChanges();
             };
+
+            #endregion
+
+            #region Regions 
 
             // Look for any students.
             if (!context.Regions.Any())
@@ -84,6 +117,10 @@ namespace RSC.Data
                 }
                 context.SaveChanges();
             }
+
+            #endregion
+
+            #region University datas 
 
             // Look for any students.
             if (!context.UniversityDatas.Any())
@@ -437,6 +474,10 @@ new UniversityData{RegionId=8  ,UniversityShortName="ФГБОУ ВО «ГГНТ�
                 context.SaveChanges();
             }
 
+            #endregion
+
+            #region Event Costs
+
             if(!context.CostSections.Any())
             {
                 var costSections = new CostSection[]
@@ -489,6 +530,11 @@ new UniversityData{RegionId=8  ,UniversityShortName="ФГБОУ ВО «ГГНТ�
                 }
                 context.SaveChanges();
             }
+
+            #endregion
+
+            #region Event directions 
+
             if (!context.EventDirections.Any())
             {
                 var eventDirections = new EventDirection[]
@@ -502,6 +548,10 @@ new UniversityData{RegionId=8  ,UniversityShortName="ФГБОУ ВО «ГГНТ�
                 }
                 context.SaveChanges();
             }
+
+            #endregion
+
+            #region Prdso types
 
             if(!context.PrdsoTypes.Any())
             {
@@ -519,6 +569,8 @@ new UniversityData{RegionId=8  ,UniversityShortName="ФГБОУ ВО «ГГНТ�
                 }
                 context.SaveChanges();
             }
+            
+            #endregion
         }
     }
 }

@@ -142,15 +142,24 @@ namespace RSC.Controllers
         [Authorize(Roles = "ADMIN, OPERATOR")]
         public void ChangeStatusPrdso(int prdsoId , int statusId, string prdsoStatusComment)
         {
-            var prdsoModel = db.PrdsoList.Where(prdso => prdso.Id == prdsoId).FirstOrDefault();
+            var prdsoModel = db.PrdsoList.Include(prdso => prdso.Events).Where(prdso => prdso.Id == prdsoId).FirstOrDefault();
             if(prdsoModel != null)
             {
                 prdsoModel.StatusId = statusId;
                 var statusReject = db.PrdsoStatuses.Where(status => status.Name == "Rejected").FirstOrDefault();
-                if(statusReject.Id == statusId)
+                var statusApproved = db.PrdsoStatuses.Where(status => status.Name == "Approved").FirstOrDefault();
+
+                if (statusReject.Id == statusId)
                 {
                     prdsoModel.StudentCouncilApproved = false;
                     prdsoModel.UniversityApproved = false;
+                    prdsoModel.Events.ForEach(e => e.EventStateId = null);
+                }
+
+                if(statusApproved.Id == statusId)
+                {
+                    var eventState = db.EventStates.Where(e => e.CodeName == "Announcement").First();
+                    prdsoModel.Events.ForEach(e => e.EventStateId = eventState.Id);
                 }
 
                 prdsoModel.PrdsoStatusComment = prdsoStatusComment;
