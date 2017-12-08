@@ -15,13 +15,18 @@ namespace RSC.Controllers.Models.PublicNewsInfoViewModels
         public int EventId { get; set; }
         public virtual Event Event { get; set; }
 
+        [Display(Name = "Информация о мероприятии")]
+        public string TextForDetailsView { get; set; }
+
         [Display(Name = "Видеопрезентация/видеооткрытка на ресурсе видео хостинга")]
         [DataType(DataType.Url)]
         public string VideoLink { get; set; }
 
+        public int FotoId { get; set; }
         [Display(Name = "Фото мероприятия для анонса")]
         public IFormFile FotoFile { get; set; }
 
+        public int SmallFotoId { get; set; }
         [Display(Name = "Фото мероприятия для главной страницы")]
         public IFormFile SmallFotoFile { get; set; }
 

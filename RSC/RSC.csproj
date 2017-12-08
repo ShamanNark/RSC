@@ -37,6 +37,8 @@
     <Folder Include="wwwroot\files\Протокол СО об утверждении\" />
     <Folder Include="wwwroot\images\HomePageImages\" />
     <Folder Include="wwwroot\images\MainImages\" />
+    <Folder Include="wwwroot\images\EventPublicFotos\" />
+    <Folder Include="wwwroot\images\EventPublicSmallFotos\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="wwwroot\css\styles.css">

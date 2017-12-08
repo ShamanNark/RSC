@@ -12,6 +12,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(modelItem => Model.Id)
             @Html.HiddenFor(modelItem => Model.EventId)
+            @Html.HiddenFor(modelItem => Model.FotoId)
+            @Html.HiddenFor(modelItem => Model.SmallFotoId)
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -48,6 +50,11 @@
                         <label asp-for="FacebookGroup" class="control-label"></label>
                         <input asp-for="FacebookGroup" class="form-control" />
                         <span asp-validation-for="FacebookGroup" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TextForDetailsView" class="control-label"></label>
+                        @Html.TextAreaFor(modelItem => Model.TextForDetailsView, new { @class="form-control", placeholder="Текст о мероприятии", cols = 5 })
+                        <span asp-validation-for="TextForDetailsView" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">

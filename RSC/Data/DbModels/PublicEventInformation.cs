@@ -13,6 +13,9 @@ namespace RSC.Data.DbModels
         public int EventId { get; set; }
         public virtual Event Event { get; set; }
 
+        [Display(Name = "Информация о мероприятии")]
+        public string TextForDetailsView { get; set; }
+
         [Display(Name = "Видеопрезентация/видеооткрытка на ресурсе видео хостинга")]
         [DataType(DataType.Url)]
         public string VideoLink { get; set; } 

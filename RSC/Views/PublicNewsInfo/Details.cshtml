@@ -1,0 +1,123 @@
+﻿@model RSC.Data.DbModels.PublicEventInformation
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Aнонс</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Event.NameEvent)</h4>
+    <hr />
+    <div class="rs-news__title">@Html.Raw(@Model.Event.EventType.Name)</div>
+    @*@Html.EditorFor(modelItem => Model.Event.StartDateTime,  new { @class = "form-control", disabled = "disabled" } }) - @Html.EditorFor(modelItem => Model.Event.StopDateTime, new { @class = "form-control", disabled = "disabled" })*@
+    <div class="form-control">@Model.Event.StartDateTime - @Model.Event.StopDateTime</div>
+    <div class="col-md-12">
+        <p style="word-wrap:break-word"><img src="@Url.Content(Model.Foto.Path)" alt="Лейтенант Бокатуев" class="leftimg"> @Html.Raw(@Model.TextForDetailsView)</p>
+        <hr />
+    </div>
+
+    <div class="col-md-12 news-share">
+        <h4>Cылки на группу:</h4>
+        <a href="@Model.FacebookGroup" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
+        <a href="@Model.VKGroup" target="_blank"><i class="fa fa-vk fa-2x"></i></a>
+    </div>
+    <dl class="dl-horizontal">
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VideoLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventWebSite)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventWebSite)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OOVOWebSite)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OOVOWebSite)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EventHashTags)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EventHashTags)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoEsse)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VideoEsse)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VKGroup)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VKGroup)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FacebookGroup)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FacebookGroup)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstagramGroup)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstagramGroup)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ResultVideo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ResultVideo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FederalSMI)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FederalSMI)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegionalSMI)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegionalSMI)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DistricSMI)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DistricSMI)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentSMI)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StudentSMI)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Likes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Likes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DisLikes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DisLikes)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

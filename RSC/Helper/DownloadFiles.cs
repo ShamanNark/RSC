@@ -43,6 +43,30 @@ namespace RSC.Helper
             {
                 return null;
             }
-        }        
+        }
+
+        public async Task<int?> AddImages(IFormFile uploadedFile, string fileName, string oldFileNameWithFormat)
+        {
+            try
+            {
+                if (uploadedFile != null)
+                {
+                    string path = "/images/" + fileName + Path.GetExtension(oldFileNameWithFormat).ToLowerInvariant();
+                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await uploadedFile.CopyToAsync(fileStream);
+                    }
+                    FileModel file = new FileModel { Name = fileName, Path = path };
+                    _context.Files.Add(file);
+                    _context.SaveChanges();
+                    return file.Id;
+                }
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

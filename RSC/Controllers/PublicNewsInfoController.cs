@@ -66,8 +66,7 @@ namespace RSC.Controllers
             var dowloadFiles = new Helper.DownloadFiles(db, _appEnvironment);
             if (model.FotoFile != null)
             {
-                var fotoFileId = await dowloadFiles.AddFile(model.FotoFile, "/Приказ о создании Совета обучающихся/" + eventdb.NameEvent,
-                                                        model.FotoFile.FileName);
+                var fotoFileId = await dowloadFiles.AddImages(model.FotoFile, "/EventPublicFotos/" + eventdb.NameEvent, model.FotoFile.FileName);
                 if (fotoFileId != null)
                 {
                     dbmodel.FotoId = fotoFileId ?? 0;
@@ -76,14 +75,14 @@ namespace RSC.Controllers
 
             if (model.SmallFotoFile != null)
             {
-                var smallFileId = await dowloadFiles.AddFile(model.SmallFotoFile, "/Приказ о создании Совета обучающихся/" + eventdb.NameEvent,
-                    model.SmallFotoFile.FileName);
+                var smallFileId = await dowloadFiles.AddImages(model.SmallFotoFile, "/EventPublicSmallFotos/" + eventdb.NameEvent, model.SmallFotoFile.FileName);
                 if (smallFileId != null)
                 {
                     dbmodel.SmallFotoId = smallFileId ?? 0;
                 }
             }
 
+            db.PublicEventInformations.Update(dbmodel);
             db.SaveChanges();
             return RedirectToAction("Index", "Profile");
         }
@@ -91,7 +90,10 @@ namespace RSC.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var eventdb = db.PublicEventInformations.Include(e => e.Event).FirstOrDefault(e => e.EventId == id);
+            var eventdb = db.PublicEventInformations.Include(e => e.Foto)
+                                                    .Include(e => e.Event)
+                                                    .Include(e => e.Event.EventType)
+                                                    .FirstOrDefault(e => e.EventId == id);
             if (eventdb == null)
             {
                 return RedirectToAction("Index", "PublicNewsInfo");
