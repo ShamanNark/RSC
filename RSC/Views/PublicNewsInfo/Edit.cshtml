@@ -1,4 +1,4 @@
-﻿@model RSC.Data.DbModels.PublicEventInformation
+﻿@model RSC.Controllers.Models.PublicNewsInfoViewModels.PublicNewsInfoViewModel
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +8,7 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(modelItem => Model.Id)
             @Html.HiddenFor(modelItem => Model.EventId)
@@ -81,10 +81,18 @@
                         <input asp-for="StudentSMI" class="form-control" />
                         <span asp-validation-for="StudentSMI" class="text-danger"></span>
                     </div>
+                    <div class="form-group">
+                        <label asp-for="FotoFile" class="control-label"></label>
+                        <input asp-for="FotoFile" class="form-control" />
+                        <span asp-validation-for="FotoFile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SmallFotoFile" class="control-label"></label>
+                        <input asp-for="SmallFotoFile" class="form-control" />
+                        <span asp-validation-for="SmallFotoFile" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
-            @Html.HiddenFor(modelItem => Model.Likes)
-            @Html.HiddenFor(modelItem => Model.Likes)
             <div class="form-group">
                 <input type="submit" value="Сохранить" class="btn btn-default" />
             </div>
