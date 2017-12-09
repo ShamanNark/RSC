@@ -82,7 +82,8 @@ namespace RSC.Controllers
                 Prdso = prdso,
                 EventTypes = db.PrdsoTypes.ToList(),
                 Events =  db.Events.Where(e => e.PrdsoId == prdso.Id).ToList(),
-                EventStatuses = db.EventStatuses.ToList()
+                EventStatuses = db.EventStatuses.ToList(),
+                EventStates = db.EventStates.ToList()
             };
             
             if (user != null)
@@ -153,8 +154,15 @@ namespace RSC.Controllers
                 {
                     prdsoModel.StudentCouncilApproved = false;
                     prdsoModel.UniversityApproved = false;
+                    prdsoModel.Events.ForEach(e => e.EventStateId = null);
                 }
-                
+
+                if (statusApproved.Id == statusId)
+                {
+                    var eventState = db.EventStates.Where(e => e.CodeName == "Announcement").First();
+                    prdsoModel.Events.ForEach(e => e.EventStateId = eventState.Id);
+                }
+
                 prdsoModel.PrdsoStatusComment = prdsoStatusComment;
                 db.SaveChanges();
             }

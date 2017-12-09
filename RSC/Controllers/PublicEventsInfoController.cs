@@ -13,11 +13,11 @@ using RSC.Data.DbModels;
 
 namespace RSC.Controllers
 {
-    public class PublicNewsInfoController : Controller
+    public class PublicEventsInfoController : Controller
     {
         private ApplicationDbContext db;
         private readonly IHostingEnvironment _appEnvironment;
-        public PublicNewsInfoController(ApplicationDbContext context, IHostingEnvironment appEnvironment)
+        public PublicEventsInfoController(ApplicationDbContext context, IHostingEnvironment appEnvironment)
         {
             db = context;
             _appEnvironment = appEnvironment;
@@ -100,6 +100,12 @@ namespace RSC.Controllers
                 return RedirectToAction("Index", "PublicNewsInfo");
             }
             return View(eventdb);
+        }
+
+        [HttpGet]
+        public IActionResult AnnouncementsBoard(int EventDirectionId = 1, int page = 1)
+        {
+
         }
     }
 }

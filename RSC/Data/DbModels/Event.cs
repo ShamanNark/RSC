@@ -36,6 +36,8 @@ namespace RSC.Data.DbModels
         [Display(Name = "До")]
         public DateTime StopDateTime { get; set; }
 
+        public DateTime CreateDateTime { get; set; }
+
         [Required]
         [Display(Name="Место проведения мероприятия")]
         public string Adress { get; set; }

@@ -81,7 +81,7 @@
             @for (var i = 0; i < Model.NewsRubrics.Count(); i++)
             {
                 <li class="tabs-controllers__item  col-md-3 " data-class="">
-                    <a class="newslink @(@i == 0 ? "tabs-controllers__item-active" : "")" data-value="@Model.NewsRubrics[i].Id">@Model.NewsRubrics[i].Name</a>
+                    <a class="newslink @(@Model.NewsRubrics[i].Id == Model.SelectedNewsRubricId ? "tabs-controllers__item-active" : "")" data-value="@Model.NewsRubrics[i].Id">@Model.NewsRubrics[i].Name</a>
                 </li>
 
             }

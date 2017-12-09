@@ -12,11 +12,13 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Asn1.IsisMtt.X509;
 using Remotion.Linq.Clauses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RSC.Controllers
 {
     public class EventsController : Controller
     {
+        private int pageSize = 10;
         private readonly ApplicationDbContext db;
         UserManager<ApplicationUser> _userManager;
 
@@ -31,9 +33,26 @@ namespace RSC.Controllers
             });
         }
 
-        public IActionResult Index()
+        [Authorize(Roles = "ADMIN, OPERATOR")]
+        public IActionResult Index(int page = 1 )
         {
-            return View();
+            var count = db.Events.Count();
+            var viewModel = new IndexEventsViewModel
+            {
+                Events = db.Events.Select(e => new RowEventViewModel
+                {
+                    Id = e.Id,
+                    NameEvent = e.NameEvent,
+                    UniversityShortName = e.Prdso.University.UniversityData.UniversityShortName,
+                    CreateDateTime = e.CreateDateTime,
+                    StartDateTime = e.StartDateTime,
+                    StopDateTime = e.StopDateTime,
+                    IsPublic = e.EventState.CodeName == "Announcement" || e.EventState.CodeName == "Event",
+                }).OrderByDescending(e => e.CreateDateTime).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                EventStates = db.EventStates.ToList(),
+                PageViewModel = new PageViewModel(count, page, pageSize),
+            };
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -223,6 +242,28 @@ namespace RSC.Controllers
             eventdb.EventStatusId = eventStatusId;
             db.SaveChanges();
             return RedirectToAction("Index", "Prodile");
+        }
+
+        [HttpPut]
+        public JsonResult ChangePublicationEvent(int eventId, bool publicEvent)
+        {
+            var eventModel = db.Events.Where(e => e.Id == eventId).FirstOrDefault();
+            if (eventModel != null)
+            {
+                if (publicEvent)
+                {
+                    var stateDb = db.EventStates.Where(state => state.CodeName == "Announcement").FirstOrDefault();
+                    eventModel.EventStateId = stateDb.Id;
+                }
+                else
+                {
+                    //var stateDb = db.EventStates.Where(state => state.CodeName == "None").FirstOrDefault();
+                    eventModel.EventStateId = null;
+                }
+                db.SaveChanges();
+            }
+            
+            return new JsonResult("OK");
         }
     }
 }
