@@ -102,10 +102,10 @@ namespace RSC.Controllers
             return View(eventdb);
         }
 
-        [HttpGet]
-        public IActionResult AnnouncementsBoard(int EventDirectionId = 1, int page = 1)
-        {
+        //[HttpGet]
+        //public IActionResult AnnouncementsBoard(int EventDirectionId = 1, int page = 1)
+        //{
 
-        }
+        //}
     }
 }
