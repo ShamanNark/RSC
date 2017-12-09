@@ -39,6 +39,7 @@
     <Folder Include="wwwroot\images\MainImages\" />
     <Folder Include="wwwroot\images\EventPublicFotos\" />
     <Folder Include="wwwroot\images\EventPublicSmallFotos\" />
+    <Folder Include="wwwroot\pg-calendar-master\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="wwwroot\css\styles.css">

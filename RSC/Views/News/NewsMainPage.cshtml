@@ -57,8 +57,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8 image">
-            <img class="colmd-8" src="@Url.Content( @Model.News.Select(n => n.ObjectNews.MainImage).FirstOrDefault())">     
+        <div class="col-md-8">
+            <img class="col-md-8" src="@Url.Content( @Model.News.Select(n => n.ObjectNews.MainImage).FirstOrDefault())">     
             <h4 class="titleimage">@Model.News.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>
         </div>
     </div>
@@ -171,7 +171,7 @@
             </div>
         </div>
         <div class="col-md-8 image">
-            <img class="colmd-8" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())">
+            <img class="col-md-8" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())">
             <h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>
         </div>
     </div>

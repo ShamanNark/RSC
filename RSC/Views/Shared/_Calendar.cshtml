@@ -1,0 +1,35 @@
+﻿<link rel="stylesheet" href="~/pg-calendar-master/dist/css/pignose.calendar.min.css" />
+
+<div class="pgcalendar"></div>
+
+@section Scripts{
+    <script src="~/pg-calendar-master/dist/js/pignose.calendar.full.js"></script>
+    <script>
+        $(function () {
+            $('.pgcalendar').pignoseCalendar({
+                lang: 'ru',
+                week: 1,
+                scheduleOptions: {
+                    colors: {
+                        annonce: 'lightgreen',
+                        news: '#2fabb7',
+                        event: '#5c6270'
+                    }
+                },
+                schedules: [{
+                    name: 'annonce',
+                    date: '2017-12-08'
+                }, {
+                    name: 'news',
+                    date: '2017-12-10'
+                }, {
+                    name: 'event',
+                    date: '2017-12-11',
+                }],
+                select: function (date, context) {
+                    console.log('events for this date', context.storage.schedules);
+                }
+            });
+        });
+    </script>
+}
