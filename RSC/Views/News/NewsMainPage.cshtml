@@ -45,7 +45,7 @@
         @if (Model.Announs.Select(a => a.PublicEventInformation).FirstOrDefault() != null)
         {
             <img class="col-md-12 imagehead" src="@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).FirstOrDefault())">
-            <a href="@Url.Action("NewsBoard","Events")" class="linkImage"><h3>АНОНСЫ</h3></a>
+            <a href="@Url.Action("AnnouncementsBoard", "PublicEventsInfo")" class="linkImage"><h3>АНОНСЫ</h3></a>
             <h4 class="titleimage">@Model.Announs.Select(a => a.NameEvent).FirstOrDefault()</h4>
         }
     </div>

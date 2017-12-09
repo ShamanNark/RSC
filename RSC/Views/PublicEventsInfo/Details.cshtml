@@ -14,7 +14,7 @@
     @*@Html.EditorFor(modelItem => Model.Event.StartDateTime,  new { @class = "form-control", disabled = "disabled" } }) - @Html.EditorFor(modelItem => Model.Event.StopDateTime, new { @class = "form-control", disabled = "disabled" })*@
     <div class="form-control">@Model.Event.StartDateTime - @Model.Event.StopDateTime</div>
     <div class="col-md-12">
-        <p style="word-wrap:break-word"><img src="@Url.Content(Model.Foto.Path)" alt="Лейтенант Бокатуев" class="leftimg"> @Html.Raw(@Model.TextForDetailsView)</p>
+        <p style="word-wrap:break-word"><img src="@Url.Content(Model.Foto.Path)" class="leftimg"> @Html.Raw(@Model.TextForDetailsView)</p>
         <hr />
     </div>
 

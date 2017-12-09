@@ -266,6 +266,7 @@ namespace RSC.Controllers
             var count = dbQuery.Count();
             var viewModel = new IndexNewsViewModel
             {
+                SelectedNewsRubricId = id,
                 News = dbQuery.Select(n => new DetailsNewsViewModel
                 {
                     Id = n.ObjectNews.Id,

@@ -10,11 +10,13 @@ using RSC.Data;
 using Microsoft.EntityFrameworkCore;
 using RSC.Controllers.Models.PublicNewsInfoViewModels;
 using RSC.Data.DbModels;
+using RSC.Models;
 
 namespace RSC.Controllers
 {
     public class PublicEventsInfoController : Controller
     {
+        private int pageSize = 10;
         private ApplicationDbContext db;
         private readonly IHostingEnvironment _appEnvironment;
         public PublicEventsInfoController(ApplicationDbContext context, IHostingEnvironment appEnvironment)
@@ -97,7 +99,7 @@ namespace RSC.Controllers
                                                     .FirstOrDefault(e => e.EventId == id);
             if (eventdb == null)
             {
-                return RedirectToAction("Index", "PublicNewsInfo");
+                return RedirectToAction("Index", "PublicEventsInfo");
             }
             return View(eventdb);
         }
@@ -105,7 +107,61 @@ namespace RSC.Controllers
         [HttpGet]
         public IActionResult AnnouncementsBoard(int EventDirectionId = 1, int page = 1)
         {
+            var dbQuery = db.Events.Where(e => e.EventStateId > 0)
+                                   .Where(e => e.EventDirectionId == EventDirectionId)
+                                   .Include(e => e.PublicEventInformation)
+                                   .Include(e => e.PublicEventInformation.SmallFoto)
+                                   .AsQueryable();
+            var count = dbQuery.Count();
+            var viewModel = new IndexAnnouncesViewModel
+            {
+                SelectedEventDirectionId = EventDirectionId,
+                Events = dbQuery.Select(e => new СellAnnonceViewModel
+                {
+                    Id = e.Id,
+                    StartDateTime = e.StartDateTime,
+                    StopDateTime = e.StopDateTime,
+                    NameEvent = e.NameEvent,
+                    Adress = e.Adress,
+                    Contacts = e.Contacts,
+                    TicketPrice = e.TicketPrice,
+                    SmallFotoPath = e.PublicEventInformation.SmallFoto.Path
+                }).OrderByDescending(n => n.StartDateTime).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                EventDirections = db.EventDirections.Select(n => new EventDirection
+                {
+                    Id = n.Id,
+                    Name = n.Name
+                }).ToList(),
+                PageViewModel = new PageViewModel(count, page, pageSize)
+            };
 
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult GetAnnouncesByDirectionId(int id, DateTime startDateTime, DateTime stopDateTime, int page = 1)
+        {
+            var dbQuery = db.Events.Where(e => e.EventDirectionId == id)
+                .Where(e => e.StartDateTime >= startDateTime && e.StopDateTime <= stopDateTime)
+                .AsQueryable();
+            var count = dbQuery.Count();
+            var viewModel = new IndexAnnouncesViewModel
+            {
+                SelectedEventDirectionId = id,
+                Events = dbQuery.Select(e => new СellAnnonceViewModel
+                {
+                    Id = e.Id,
+                    StartDateTime = e.StartDateTime,
+                    StopDateTime = e.StopDateTime,
+                    NameEvent = e.NameEvent,
+                    Adress = e.Adress,
+                    Contacts = e.Contacts,
+                    TicketPrice = e.TicketPrice,
+                    SmallFotoPath = e.PublicEventInformation.SmallFoto.Path
+                }).OrderByDescending(n => n.StartDateTime).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                PageViewModel = new PageViewModel(count, page, pageSize)
+            };
+            return PartialView("AnnouncesPartialView", viewModel);
         }
     }
 }
