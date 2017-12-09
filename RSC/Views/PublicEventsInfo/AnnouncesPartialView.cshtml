@@ -1,0 +1,24 @@
+﻿@model RSC.Controllers.Models.PublicNewsInfoViewModels.IndexAnnouncesViewModel
+@addTagHelper "*, RSC"
+
+@foreach (var item in Model.Events)
+{
+    <div class="col-md-6 blocknews">
+        <div class="borderblock col-md-12">
+            <div class="col-md-4 imagenews" style="background-image: url(@Url.Content(item.SmallFotoPath))"></div>
+            <div class="col-md-8">
+                <p>@Html.DisplayFor(modelItem => item.NameEvent)</p>
+                <p>@Html.DisplayFor(modelItem => item.StartDateTime) - @Html.DisplayFor(modelItem => item.StopDateTime)</p>
+                <a href="@Url.Action("Details","PublicEventsInfo", new { id = @item.Id })" class="btn btn-default" role="button">Читать далее</a>
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+<div class="col-md-12">
+    <page-link partial id="pagination" page-model="@Model.PageViewModel"
+               page-url-startdatetime="@Model.StartDateTime"
+               page-url-stopdatetime="@Model.StopDateTime">
+    </page-link>
+</div>
