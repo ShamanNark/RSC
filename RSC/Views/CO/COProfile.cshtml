@@ -1,0 +1,237 @@
+﻿
+@{
+    ViewData["Title"] = "Личный кабинет СО";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/pg-calendar-master/dist/css/pignose.calendar.min.css" />
+<style>
+    .comain {
+        padding-left: 0px;
+        padding-right: 0px;
+
+    } .coheader {
+        
+        min-height: 80px;
+        background-color: lightseagreen;
+    }
+
+    .coheader h3{
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+
+    }
+    .coinfo {
+        min-height: 440px;
+    }
+
+    .pg-main {
+        min-height: 800px;
+        background-color: lightpink;
+    }
+
+    .info-blocks {
+        padding-left: 0px;
+        padding-right: 0px;
+        min-height: 900px;
+        
+    }
+
+    .one-info-block {
+        padding-left: 0px;
+        padding-right: 0px;
+        background-color: aquamarine;
+        height: 450px;
+    }
+
+    .oib-links {
+        
+    }
+
+    .oib-links h2{
+        text-align: center;
+    }
+
+        .oib-links ul {
+            text-align: center;
+        }
+
+    .oib-links li{
+        
+    }
+    
+    .oib-studstarter {
+    }
+    .oib-studstarter h2 {
+        text-align: center;
+        } 
+        
+    .oib-co-members {
+    }
+
+    .oib-co-members h2{
+        text-align: center;
+    }
+
+    .oib-students {
+        
+    }
+
+        .oib-students h2 {
+            padding-top: 15%;
+            padding-left: 10%;
+        }
+
+    .oib-events {
+        
+    }
+        .oib-events h2 {
+            text-align: center;
+        }
+
+    
+
+    .oib-prdso {
+        
+    }
+
+        .oib-prdso h2 {
+            text-align: center;
+        }
+
+    .links-block {
+        min-height: 530px;
+        background-color: lightpink;
+    }
+
+    .cal-filters {
+        background-color: white;
+    }
+
+</style>
+
+<div class="comain col-md-12">
+    <div class="coheader col-md-12">
+        <div style="float: right;">
+        <h3 style="display: inline-block">Заявка</h3>
+        <h3 style="display: inline-block">Правитель СО</h3>
+        <h3 style="display: inline-block">Имя Фамилия</h3>
+        <h3 style="display: inline-block">Выти</h3>
+        </div>
+
+    </div>
+
+    <div class="coinfo col-md-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+           Рейтинг 
+        </div>
+        <div class="col-md-6">
+            
+            <p>Полное наименование университета</p>
+            <p>ссылка на универ</p>
+            <p>ссылки соц сети</p>
+            <p>адрес универа</p>
+            <p>телефон универа</p>
+        </div>
+        <div class="col-md-2"></div>
+
+
+
+    </div>
+
+
+
+    
+    <div class="pg-main col-md-12">
+        <div class="col-md-2"></div>
+
+        <div class="pgcalendar col-md-4"></div>
+        <div class="cal-filters col-md-4">
+            Фильтр:
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="info-blocks col-md-12">
+        <div class="one-info-block oib-links col-md-6">
+            <h2>Ссылки:</h2>
+            <ul>
+                <li>Ссылка один</li>
+                <li>Ссылка два</li>
+                <li>Ссылка три</li>
+                <li>Ссылка четыре</li>
+                <li>Ссылка пять</li>
+            </ul>
+        </div>
+        <div class="one-info-block oib-studstarter col-md-3">
+            <h2>Студстартер</h2>
+        </div>
+        <div class="one-info-block oib-co-members col-md-3">
+            <h2>Члены совета обучающихся</h2>
+        </div>
+        
+        <div class="one-info-block oib-students col-md-6">
+            <h2>Студенты</h2>
+        </div>
+        <div class="one-info-block oib-events col-md-3">
+            <h2>Мероприятия</h2>
+        </div>
+        <div class="one-info-block oib-prdso col-md-3">
+            <h2>ПРДСО</h2>
+        </div>
+
+    </div>
+
+    <div class="links-block col-md-12">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h2>Документы самоуправления</h2>
+            
+            <ul>
+                <li>Ссылки</li>
+                <li>Ссылки</li>
+                <li>Ссылки</li>
+                <li>Ссылки</li>
+                <li>Ссылки</li>
+            </ul>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+</div>
+
+
+
+@section Scripts{
+    <script src="~/pg-calendar-master/dist/js/pignose.calendar.full.js"></script>
+    <script>
+        $(function () {
+            $('.pgcalendar').pignoseCalendar({
+                lang: 'ru',
+                week: 1,
+                scheduleOptions: {
+                    colors: {
+                        annonce: 'lightgreen',
+                        news: '#2fabb7',
+                        event: '#5c6270'
+                    }
+                },
+                schedules: [{
+                    name: 'annonce',
+                    date: '2017-12-08'
+                }, {
+                    name: 'news',
+                    date: '2017-12-10'
+                }, {
+                    name: 'event',
+                    date: '2017-12-11'
+                }],
+                select: function (date, context) {
+                    console.log('events for this date', context.storage.schedules);
+                }
+            });
+        });
+    </script>
+}

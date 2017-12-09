@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
+namespace RSC.Controllers
+{
+    public class COController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+
+
+        public IActionResult COProfile()
+        {
+            return View();
+        }
+
+
+    }
+}
