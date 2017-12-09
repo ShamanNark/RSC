@@ -9,7 +9,8 @@ namespace RSC.Controllers.Models.EventsViewModels
     {
         public int Id { get; set; }
         public string NameEvent { get; set; }
-        public string UniversityShortName { get; set; } 
+        public string UniversityShortName { get; set; }
+        public bool IsPublic { get; set; }
         public DateTime CreateDateTime { get; set; } 
         public DateTime StartDateTime { get; set; }
         public DateTime StopDateTime { get; set; }

@@ -14,6 +14,7 @@
             <th>Название мероприятия</th>
             <th>Имя универа</th>
             <th>Сроки</th>
+            <th>Опубликовано</th>
             <th></th>
         </tr>
     </thead>
@@ -24,9 +25,12 @@
                 <td>@item.Id</td>
                 <td>@item.NameEvent</td>
                 <td>@item.UniversityShortName</td>
-                <td>@item.StartDateTime - @item.StopDateTime</td>
+                <td>@item.StartDateTime - @item.StopDateTime</td>          
                 <td>
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                    @Html.CheckBoxFor(modelItem => item.IsPublic, new { @class="changeProperties", data_eventid = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Подробнее", "Details", new { id=item.Id })
                 </td>
             </tr>
     }
@@ -34,3 +38,18 @@
 </table>
 
 <page-link action page-model="@Model.PageViewModel" page-action="Index"></page-link>
+
+@section Scripts {
+    <script>  
+        $(document).ready(function () {
+            $(".changeProperties").click(function () { 
+                $.ajax({
+                    method: "PUT",
+                    url: "@Url.Action("ChangePublicationEvent", "Events")",
+                    data: { eventId: $(this).data("eventid"), publicEvent: $(this).is(':checked') },
+                }).success(function () { }).error(function () { })
+            })
+        }) 
+    </script>
+
+}

@@ -215,7 +215,7 @@ namespace RSC.Controllers
 
             var announs = db.Events.Include(e => e.PublicEventInformation)
                                    .Include(e => e.PublicEventInformation.SmallFoto)
-                                   .Where(e => e.EventState.CodeName == "Announcement")
+                                   .Where(e => e.EventState.CodeName == "Announcement" || e.EventState.CodeName == "Event")
                                    .Take(3)
                                    .ToList();
 
@@ -236,6 +236,7 @@ namespace RSC.Controllers
             var count = dbQuery.Count();
             var viewModel = new IndexNewsViewModel
             {
+                SelectedNewsRubricId = newsRubricId,
                 News = dbQuery.Select(n => new DetailsNewsViewModel
                 {
                     Id = n.ObjectNews.Id,

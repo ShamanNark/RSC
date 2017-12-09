@@ -8,6 +8,7 @@ namespace RSC.Models.NewsViewModels
 {
     public class IndexNewsViewModel
     {
+        public int SelectedNewsRubricId { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime StopDateTime { get; set; }
         public List<DetailsNewsViewModel> News { get; set; }
