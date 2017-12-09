@@ -1302,16 +1302,18 @@ h3{
 
 .footer-main-block {
     min-height: 220px;
-    background-color: #333;
+    
     margin-top: 60px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 
 .footer {
+    background-color: #333;
     padding-right: 50px;
     padding-left: 50px;
+    padding-top: 1px;
 }
 
     .footer p {
@@ -1400,7 +1402,7 @@ h3{
 }
 
 .social-icons {
-    margin-top: 20px;
+    
     padding-left: 50px;
     padding-right: 50px;
     color: lightgray;
