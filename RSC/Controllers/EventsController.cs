@@ -12,11 +12,13 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Asn1.IsisMtt.X509;
 using Remotion.Linq.Clauses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RSC.Controllers
 {
     public class EventsController : Controller
     {
+        private int pageSize = 10;
         private readonly ApplicationDbContext db;
         UserManager<ApplicationUser> _userManager;
 
@@ -31,9 +33,24 @@ namespace RSC.Controllers
             });
         }
 
-        public IActionResult Index()
+        [Authorize(Roles = "ADMIN, OPERATOR")]
+        public IActionResult Index(int page = 1 )
         {
-            return View();
+            var count = db.Events.Where(e => e.Prdso.Status.Name == "Approved").Count();
+            var viewModel = new IndexEventsViewModel
+            {
+                Events = db.Events.Where(e => e.Prdso.Status.Name == "Approved").Select(e => new RowEventViewModel
+                {
+                   Id = e.Id,
+                   NameEvent = e.NameEvent,
+                   UniversityShortName = e.Prdso.University.UniversityData.UniversityShortName, 
+                   CreateDateTime = e.CreateDateTime, 
+                   StartDateTime = e.StartDateTime,
+                   StopDateTime = e.StopDateTime,
+                }).OrderByDescending(e => e.CreateDateTime).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                PageViewModel = new PageViewModel(count, page, pageSize)
+            };
+            return View(viewModel);
         }
 
         [HttpGet]

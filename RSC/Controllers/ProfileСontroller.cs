@@ -82,7 +82,8 @@ namespace RSC.Controllers
                 Prdso = prdso,
                 EventTypes = db.PrdsoTypes.ToList(),
                 Events =  db.Events.Where(e => e.PrdsoId == prdso.Id).ToList(),
-                EventStatuses = db.EventStatuses.ToList()
+                EventStatuses = db.EventStatuses.ToList(),
+                EventStates = db.EventStates.ToList()
             };
             
             if (user != null)

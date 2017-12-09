@@ -1,0 +1,36 @@
+﻿@model RSC.Controllers.Models.EventsViewModels.IndexEventsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Мероприятия</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Название мероприятия</th>
+            <th>Имя универа</th>
+            <th>Сроки</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Events)
+    {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.NameEvent</td>
+                <td>@item.UniversityShortName</td>
+                <td>@item.StartDateTime - @item.StopDateTime</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+    }
+    </tbody>
+</table>
+
+<page-link action page-model="@Model.PageViewModel" page-action="Index"></page-link>

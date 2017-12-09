@@ -381,6 +381,15 @@
                                         </label>
                                     </div>
                                     <div class="col-sm-6" style="text-align: right;">
+                                        @*@if( (User.IsInRole("OPERATOR") || User.IsInRole("ADMIN")))
+                                        {
+                                            <select class="form-control" data-eventId="@eventun.Id">
+                                                @foreach (var state in Model.EventStates)
+                                                {
+                                                    <option value="@state.Id">@state.Name</option>
+                                                }
+                                            </select>
+                                        }*@
                                         
                                         @if((User.IsInRole("OOBO") || User.IsInRole("ADMIN")) && Model.Prdso.Status.Name == "Approved")
                                         {
@@ -397,9 +406,7 @@
                                         {
                                             @Html.ActionLink("Изменить", "Edit", "Events", new {id = eventun.Id}, new {@class = "btn btn-default"})
                                             @Html.ActionLink("Удалить", "Delete", "Events", new {id = eventun.Id}, new {@class = "btn btn-default"})
-                                        }
-
-                                        @*@Html.ActionLink("Подробнее", "Details", "Events", new { id = eventun.Id }, new { @class = "btn btn-default" })*@
+                                        }                                        
                                     </div>
                                 </div>
                             }

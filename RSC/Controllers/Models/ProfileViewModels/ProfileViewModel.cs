@@ -15,5 +15,6 @@ namespace RSC.Controllers.Models.ProfileViewModels
         public List<EventType> EventTypes { get; set; }
         public List<Event> Events { get; set; }
         public List<EventStatus> EventStatuses { get; set; }
+        public List<EventState> EventStates { get; set; }
     }
 }
