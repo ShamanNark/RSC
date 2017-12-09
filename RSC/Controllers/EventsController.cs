@@ -114,6 +114,9 @@ namespace RSC.Controllers
                     dbEvent.AmountOfAttractedSubsidy = model.AmountOfAttractedSubsidy;
                     dbEvent.AmountOfOwnSubsidy = model.AmountOfOwnSubsidy;
                     dbEvent.AmountOfTheRequestedSubsidy = model.AmountOfTheRequestedSubsidy;
+                    dbEvent.Adress = model.Adress;
+                    dbEvent.Contacts = model.Contacts;
+                    dbEvent.TicketPrice = model.TicketPrice;
 
                     var allCosts = dbEvent.Costs.ToList();
                     var addCosts = model.Costs.Where(cost => cost.Id == 0);

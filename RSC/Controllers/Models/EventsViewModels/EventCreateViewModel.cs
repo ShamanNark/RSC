@@ -36,6 +36,18 @@ namespace RSC.Controllers.Models.EventsViewModels
         public DateTime StopDateTime { get; set; }
 
         [Required]
+        [Display(Name = "Место проведения мероприятия")]
+        public string Adress { get; set; }
+
+        [Required]
+        [Display(Name = "Контакты")]
+        public string Contacts { get; set; }
+
+        [Required]
+        [Display(Name = "Стоимость участия")]
+        public string TicketPrice { get; set; }
+
+        [Required]
         [Display(Name = "Количество ООВО")]
         public int CountOOVO { get; set; }
 
