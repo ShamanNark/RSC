@@ -153,15 +153,8 @@ namespace RSC.Controllers
                 {
                     prdsoModel.StudentCouncilApproved = false;
                     prdsoModel.UniversityApproved = false;
-                    prdsoModel.Events.ForEach(e => e.EventStateId = null);
                 }
-
-                if(statusApproved.Id == statusId)
-                {
-                    var eventState = db.EventStates.Where(e => e.CodeName == "Announcement").First();
-                    prdsoModel.Events.ForEach(e => e.EventStateId = eventState.Id);
-                }
-
+                
                 prdsoModel.PrdsoStatusComment = prdsoStatusComment;
                 db.SaveChanges();
             }

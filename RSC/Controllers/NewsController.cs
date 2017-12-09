@@ -16,6 +16,7 @@ using RSC.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Web;
 using System.Drawing;
+using RSC.Controllers.Models.NewsViewModels;
 
 namespace RSC.Controllers
 {
@@ -189,6 +190,44 @@ namespace RSC.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpGet]
+        public IActionResult NewsMainPage()
+        {
+            var interviews = db.ListObjectNewsNewsRubric.Include(n => n.NewsRubric)
+                                                        .Include(n => n.ObjectNews)
+                                                        .Where(n => n.NewsRubric.Name == "Интервью")
+                                                        .OrderByDescending(n => n.ObjectNews.UpdateDateTime)
+                                                        .Take(2)
+                                                        .ToList();
+            var blogs = db.ListObjectNewsNewsRubric.Include(n => n.NewsRubric)
+                                                   .Include(n => n.ObjectNews)
+                                                   .Where(n => n.NewsRubric.Name == "Блог")
+                                                   .OrderByDescending(n => n.ObjectNews.UpdateDateTime)
+                                                   .Take(5)
+                                                   .ToList();
+            var news = db.ListObjectNewsNewsRubric.Include(n => n.NewsRubric)
+                                                  .Include(n => n.ObjectNews)
+                                                  .Where(n => n.NewsRubric.Name == "Новости")
+                                                  .OrderByDescending(n => n.ObjectNews.UpdateDateTime)
+                                                  .Take(5)
+                                                  .ToList();
+
+            var announs = db.Events.Include(e => e.PublicEventInformation)
+                                   .Include(e => e.PublicEventInformation.SmallFoto)
+                                   .Where(e => e.EventState.CodeName == "Announcement")
+                                   .Take(3)
+                                   .ToList();
+
+            var model = new NewsMainPageViewModel
+            {
+                Interviews = interviews,
+                Blogs = blogs,
+                News = news,
+                Announs = announs
+            };
+            return View(model);
+        }
 
         [HttpGet]
         public IActionResult NewsBoard(int newsRubricId = 1, int page = 1)

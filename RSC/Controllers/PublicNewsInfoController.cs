@@ -44,6 +44,7 @@ namespace RSC.Controllers
                     return RedirectToAction("Index", "Profile");
                 }
             }
+
             var publicEvent = db.PublicEventInformations.FirstOrDefault(info => info.EventId == eventId);
             var model = publicEvent != null
                 ? Mapper.Map<PublicNewsInfoViewModel>(publicEvent)
@@ -81,9 +82,7 @@ namespace RSC.Controllers
                     dbmodel.SmallFotoId = smallFileId ?? 0;
                 }
             }
-
-            var eventState = db.EventStates.Where(e => e.CodeName == "Event").First();
-            eventdb.EventStateId = eventState.Id;
+            
             db.PublicEventInformations.Update(dbmodel);
             db.SaveChanges();
             return RedirectToAction("Index", "Profile");
