@@ -11,5 +11,6 @@ namespace RSC.Controllers.Models.CoProfileViewModels
         public StudentsCouncil StudentCouncil { get; set; }
         public List<Data.DbModels.EventDirection> EventDirections { get; set; }
         public List<Data.DbModels.Event> Events { get; set; }
+        public List<CoPersonalFile> Files { get; set; }
     }
 }

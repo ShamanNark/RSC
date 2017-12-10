@@ -207,12 +207,20 @@
             <h2>Документы самоуправления</h2>
             
             <ul>
-                <li>Ссылки</li>
-                <li>Ссылки</li>
-                <li>Ссылки</li>
-                <li>Ссылки</li>
-                <li>Ссылки</li>
+                @foreach (var file in Model.Files)
+                {
+                    <li>@file.File.Name
+                        <a href="@file.File.Path" download>
+                            <i class="fa fa-download"></i>Скачать
+                        </a>
+                    </li>
+                }
             </ul>
+            <h3>Выберите файл для загрузки</h3>
+            <form asp-action="AddFile" asp-controller="CO" method="post" enctype="multipart/form-data">
+                <input type="file" name="uploadedFile" /><br>
+                <input type="submit" value="Загрузить" />
+            </form>
         </div>
         <div class="col-md-3"></div>
     </div>
@@ -328,7 +336,6 @@
 
                 });
             });
-
         });
     </script>
 }

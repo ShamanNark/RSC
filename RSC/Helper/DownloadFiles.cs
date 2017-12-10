@@ -32,7 +32,7 @@ namespace RSC.Helper
                     {
                         await uploadedFile.CopyToAsync(fileStream);
                     }
-                    FileModel file = new FileModel { Name = fileName, Path = path };
+                    FileModel file = new FileModel { Name = oldFileNameWithFormat, Path = path };
                     _context.Files.Add(file);
                     _context.SaveChanges();
                     return file.Id;
