@@ -211,6 +211,9 @@
 </div>
 
 
+<div class="dopinfa">
+
+</div>
 
 @section Scripts{
     <script src="~/pg-calendar-master/dist/js/pignose.calendar.full.js"></script>
@@ -228,6 +231,7 @@
                 },
                 schedules: [{
                     name: 'annonce',
+                    eventid : 'asdasd',
                     date: '2017-12-08'
                 }, {
                     name: 'news',
@@ -237,7 +241,8 @@
                     date: '2017-12-11'
                 }],
                 select: function (date, context) {
-                    console.log('events for this date', context.storage.schedules);
+                    alert('events for this date ' + context.storage.schedules[0].eventid);
+                   // $(".dopinfa").append();
                 }
             });
         });

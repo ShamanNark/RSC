@@ -99,7 +99,7 @@ namespace RSC.Controllers
                                                     .FirstOrDefault(e => e.EventId == id);
             if (eventdb == null)
             {
-                return RedirectToAction("Index", "PublicEventsInfo");
+                return RedirectToAction("AnnouncementsBoard", "PublicEventsInfo");
             }
             return View(eventdb);
         }
@@ -138,6 +138,6 @@ namespace RSC.Controllers
             return View(viewModel);
         }
 
-        }
+        
     }
 }
