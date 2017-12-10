@@ -105,6 +105,31 @@
     }
 
 
+    .interview-main-block{
+        padding-left:0px;
+        padding-right: 0px;
+    }
+    .one-interview-block{
+        min-height: 300px;
+    }
+
+    .one-interview-block-text {
+        text-align: center;
+        
+        color: black;
+        font-weight: bold;
+        word-wrap: break-word;
+       
+    }
+        .one-interview-block-text h3 {
+            text-align: center;
+            text-transform: uppercase;
+            color: black;
+            font-weight: bold;
+            word-wrap: break-word;
+        }
+
+
 </style>
 <div class="col-md-12" style="padding-left: 0px; padding-right: 0px; margin-top: 60px;">
     <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.News.Select(n => n.ObjectNews.MainImage).FirstOrDefault() ?? "")) no-repeat; background-size:cover; background-position: center center;">
@@ -183,7 +208,7 @@
         </div>
     </div>
 </div>
-<div class="col-md-12">
+<div class="col-md-12" style="padding-left: 0px; padding-right:0px;">
     <a class="headerNewsMainPage" href="@Url.Action("AnnouncementsBoard","PublicEventsInfo")"><h3>АНОНСЫ</h3></a>
         <hr />
         <div class="row">
@@ -234,26 +259,26 @@
             </a>
         </div>
 </div>
-<div class="col-md-12">
+<div class="col-md-12" style="padding-left: 0px; padding-right:0px;">
     <a class="headerNewsMainPage" href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Interviews.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Интервью").Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})"><h3>ИНТЕРВЬЮ</h3></a>
         <hr />
-        <div class="row">
+        <div class="col-md-12 interview-main-block">
             <a href="@Url.Action("Details","News", new { id = @Model.Interviews.Select(n => n.ObjectNews.Id).FirstOrDefault() })" class="row">
-                <div class="col-md-6">
-                    <img class="col-md-8" src="@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault() ?? "")">
+                <div class="col-md-6 one-interview-block" style="background: url(@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault() ?? "")) no-repeat;background-size:cover; background-position: center center;">
+                    @*<img class="col-md-8" src="@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault())">*@
                 </div>
-                <div class="col-md-6">
-                    <h4>@Model.Interviews.Select(i => i.ObjectNews.Title).FirstOrDefault()</h4>
-                    @Model.Interviews.Select(i => i.ObjectNews.Text).FirstOrDefault()
+                <div class="col-md-6 one-interview-block-text">
+                    <h3>@Model.Interviews.Select(i => i.ObjectNews.Title).FirstOrDefault()</h3>
+                    <p>@Model.Interviews.Select(i => i.ObjectNews.Text).FirstOrDefault()</p>
                     <p style="color:lightgray">@Model.Interviews.Select(i => i.ObjectNews.UpdateDateTime).FirstOrDefault()</p>
                 </div>
             </a>
             <a href="@Url.Action("Details","News", new { id = @Model.Interviews.Select(n => n.ObjectNews.Id).Skip(1).FirstOrDefault() })"  class="row">
-                <div class="col-md-6">
-                    <img class="col-md-8" src="@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).Skip(1).FirstOrDefault() ?? "")">
+                <div class="col-md-6 one-interview-block" style="background: url(@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).Skip(1).FirstOrDefault() ?? "")) no-repeat;background-size:cover; background-position: center center;">
+                    @*<img class="col-md-8" src="@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).Skip(1).FirstOrDefault())">*@
                 </div>
-                <div class="col-md-6">
-                    <h4>@Model.Interviews.Select(i => i.ObjectNews.Title).Skip(1).FirstOrDefault()</h4>
+                <div class="col-md-6 one-interview-block-text">
+                    <h3>@Model.Interviews.Select(i => i.ObjectNews.Title).Skip(1).FirstOrDefault()</h3>
                     @Model.Interviews.Select(i => i.ObjectNews.Text).Skip(1).FirstOrDefault()
                     <p style="color:lightgray">@Model.Interviews.Select(i => i.ObjectNews.UpdateDateTime).FirstOrDefault()</p>
                 </div>
@@ -274,37 +299,40 @@
                         <div style="color:lightgray">@Model.Blogs.Skip(1).Select(n => n.ObjectNews.UpdateDateTime).FirstOrDefault()</div>
                     </div>
                 </a>
-                <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).Skip(2).FirstOrDefault() })" class="col-md-12" style="padding-left:0px; padding-right:0px;">
-                    <div class="col-md-4 one-mini-news" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.HomePageImage).Skip(2).FirstOrDefault() ?? "")) no-repeat;background-size:cover; background-position: center center;">
+                <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).Skip(2).FirstOrDefault() ?? ""})" class="col-md-12" style="padding-left:0px; padding-right:0px; margin-top:40px;">
+                    <div class="col-md-4 one-mini-news" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.HomePageImage).Skip(2).FirstOrDefault())) no-repeat;background-size:cover; background-position: center center;">
                         @*<img class="col-md-12" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.HomePageImage).Skip(2).FirstOrDefault())">*@
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8 one-mini-news-text">
                         <p style="font-weight: bold">@Model.Blogs.Skip(2).Select(n => n.ObjectNews.Title).FirstOrDefault()</p>
                         <div style="color:lightgray">@Model.Blogs.Skip(2).Select(n => n.ObjectNews.UpdateDateTime).FirstOrDefault()</div>
                     </div>
                 </a>
-                <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).Skip(3).FirstOrDefault() })" class="col-md-12" style="padding-left:0px; padding-right:0px;">
+                <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).Skip(3).FirstOrDefault() ?? "" })" class="col-md-12" style="padding-left:0px; padding-right:0px; margin-top:40px;">
                     <div class="col-md-4 one-mini-news" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.HomePageImage).Skip(3).FirstOrDefault() ?? "")) no-repeat;background-size:cover; background-position: center center;">
                         @*<img class="col-md-12" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.HomePageImage).Skip(3).FirstOrDefault())">*@
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8 one-mini-news-text">
                         <p style="font-weight: bold">@Model.Blogs.Skip(3).Select(n => n.ObjectNews.Title).FirstOrDefault()</p>
                         <div style="color:lightgray">@Model.Blogs.Skip(3).Select(n => n.ObjectNews.UpdateDateTime).FirstOrDefault()</div>
                     </div>
                 </a>
-                <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).Skip(4).FirstOrDefault() })" class="col-md-12" style="padding-left:0px; padding-right:0px;">
+                <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).Skip(4).FirstOrDefault() ?? ""})" class="col-md-12" style="padding-left:0px; padding-right:0px; margin-top:40px;">
                     <div class="col-md-4 one-mini-news" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.HomePageImage).Skip(4).FirstOrDefault() ?? "")) no-repeat;background-size:cover; background-position: center center;"  >
                         @*<img class="col-md-12" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.HomePageImage).Skip(4).FirstOrDefault())">*@
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8 one-mini-news-text">
                         <p style="font-weight: bold">@Model.Blogs.Skip(4).Select(n => n.ObjectNews.Title).FirstOrDefault()</p>
                         <div style="color:lightgray">@Model.Blogs.Skip(4).Select(n => n.ObjectNews.UpdateDateTime).FirstOrDefault()</div>
                     </div>
                 </a>
             </div>
-            <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).FirstOrDefault() })" class="col-md-8 image">
-                <img class="col-md-8" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault() ?? "")">
-                <h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>
-            </a>
-        </div>
+
+            <div class="col-md-8 big-news-block" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-size:cover; background-position: center center;">
+                <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).FirstOrDefault() ?? ""})">
+                    @*<img class="col-md-8" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault() ?? "")">*@
+                    <h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>
+                </a>
+            </div>
+            </div>
 </div>
