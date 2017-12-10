@@ -41,11 +41,20 @@ namespace RSC.Controllers
         public IActionResult COProfile()
         {
             var userId = _userManager.GetUserId(User);
-            var studentCouncilId = db.StudentsCouncils.Where(s => s.ApplicationUserId == userId).Select(s => s.Id).FirstOrDefault();
-            var prdsoEvents = db.Events.Include(e => e.Costs).Include(e => e.TargetIndicators).Where(e => e.Prdso.StudentsCouncilId == studentCouncilId).ToList();
+            var studentCouncil = db.StudentsCouncils.Include(s => s.UniversityData)
+                                                      .Include(s => s.OrderCreationCouncilOfLearners)
+                                                      .Include(s => s.ProtocolApprovalStudentAssociations)
+                                                      .FirstOrDefault(s => s.ApplicationUserId == userId);
+
+            var prdsoEvents = db.Events.Include(e => e.Costs)
+                                       .Include(e => e.TargetIndicators)
+                                       .Where(e => e.Prdso.StudentsCouncilId == studentCouncil.Id)
+                                       .ToList();
+
             var eventDirections = db.EventDirections.ToList();
             var model = new CoProfileViewModel
             {
+                StudentCouncil = studentCouncil,
                 EventDirections = eventDirections,
                 Events = prdsoEvents,
             };
