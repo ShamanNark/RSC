@@ -44,6 +44,7 @@ namespace RSC.Data
         public DbSet<EventStatus> EventStatuses { get; set; }
         public DbSet<EventState> EventStates { get; set; }
         public DbSet<CoMember> CoMembers { get; set; }
+        public DbSet<CoPersonalFile> CoPersonalFiles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
