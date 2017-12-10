@@ -269,7 +269,7 @@
                 </div>
                 <div class="col-md-6 one-interview-block-text">
                     <h3>@Model.Interviews.Select(i => i.ObjectNews.Title).FirstOrDefault()</h3>
-                    <p>@Model.Interviews.Select(i => i.ObjectNews.Text).FirstOrDefault()</p>
+                    <p>@Html.Raw(@Model.Interviews.Select(i => i.ObjectNews.Text).FirstOrDefault())</p>
                     <p style="color:lightgray">@Model.Interviews.Select(i => i.ObjectNews.UpdateDateTime).FirstOrDefault()</p>
                 </div>
             </a>
@@ -279,7 +279,7 @@
                 </div>
                 <div class="col-md-6 one-interview-block-text">
                     <h3>@Model.Interviews.Select(i => i.ObjectNews.Title).Skip(1).FirstOrDefault()</h3>
-                    @Model.Interviews.Select(i => i.ObjectNews.Text).Skip(1).FirstOrDefault()
+                    <p>@Html.Raw(@Model.Interviews.Select(i => i.ObjectNews.Text).Skip(1).FirstOrDefault())</p>
                     <p style="color:lightgray">@Model.Interviews.Select(i => i.ObjectNews.UpdateDateTime).FirstOrDefault()</p>
                 </div>
             </a>

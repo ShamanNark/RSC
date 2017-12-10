@@ -117,6 +117,19 @@
         </dd>
     </dl>
 </div>
+
+<div class="col-md-12 main-event-block">
+    <div class="col-md-3 event-left-info">
+        <img src="@Html.DisplayFor(model => model.SmallFoto.Path)"/>
+
+
+
+    </div>
+    <div class="col-md-9 event-full-info"></div>
+
+</div>
+
+
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>

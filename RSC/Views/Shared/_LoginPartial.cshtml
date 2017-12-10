@@ -19,7 +19,7 @@
 
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="cabinet-link">КАБИНЕТ</a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="cabinet-link"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true" style="padding-right:5px;font-size:1.6em;"></i></a>
         <ul class="dropdown-menu cabinet-dropdown">
             <li><a href="/manage/index/">@UserManager.GetUserName(User)</a></li>
             <li role="separator" class="divider"></li>
@@ -51,5 +51,5 @@
 else
 {
 
-    <li><a asp-area="" asp-controller="Account" asp-action="Login"  id="cabinet-link">ВОЙТИ</a></li>
+    <li><a asp-area="" asp-controller="Account" asp-action="Login"  id="cabinet-link"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true" style="padding-right:5px; font-size:1.6em;"></i></a></li>
 }

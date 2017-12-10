@@ -94,6 +94,7 @@ namespace RSC.Controllers
         public IActionResult Details(int id)
         {
             var eventdb = db.PublicEventInformations.Include(e => e.Foto)
+                                                    .Include(e => e.SmallFoto)
                                                     .Include(e => e.Event)
                                                     .Include(e => e.Event.EventType)
                                                     .FirstOrDefault(e => e.EventId == id);
