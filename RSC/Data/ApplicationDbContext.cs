@@ -43,6 +43,7 @@ namespace RSC.Data
         public DbSet<PublicEventInformation> PublicEventInformations { get; set; }
         public DbSet<EventStatus> EventStatuses { get; set; }
         public DbSet<EventState> EventStates { get; set; }
+        public DbSet<CoMember> CoMembers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

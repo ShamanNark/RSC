@@ -24,6 +24,10 @@ namespace RSC.Models.AccountViewModels
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
 
+        [Display(Name ="Номер телефона")]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+
         public string ApplicationUserId { get; set; }
     }
 }

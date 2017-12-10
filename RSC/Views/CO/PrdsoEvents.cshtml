@@ -1,0 +1,40 @@
+﻿@model List<RSC.Controllers.Models.EventsViewModels.EventCreateViewModel>
+
+@*@{
+    ViewData["Title"] = "PrdsoEvents";
+    Layout = "~/Views/Shared/_LoginPartial.cshtml";
+}*@
+
+<h2>ПРДСО МЕРОПРИЯТИЯ</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название мероприятия</th>
+            <th>Дата начало</th>
+            <th>Дата окончания</th>
+            <th>Адресс</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameEvent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StopDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </td>
+            <td>
+                @Html.ActionLink("Подробнее", "Details", "Events", new {  id=item.Id  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
