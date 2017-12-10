@@ -41,6 +41,7 @@
 
     .top-all-news {
         min-height: 400px;
+        border-right: solid 5px white;
     }
     .top-all-news .btn-transparent {
         margin-left: auto;
@@ -57,25 +58,25 @@
 
 </style>
 <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
-    <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.News.Select(n => n.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-position: center center;">
+    <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.News.Select(n => n.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-size:cover; background-position: center center;">
         @*<img class="col-md-12 imagehead" src="@Url.Content( @Model.News.Select(n => n.ObjectNews.MainImage).FirstOrDefault() )">*@
         <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.News.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">НОВОСТИ</a>
         @*<h4 class="titleimage">@Model.News.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>*@
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3  top-all-news" style="background: url(@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).FirstOrDefault())) no-repeat;background-size:cover;background-position: center center;">
         @if (Model.Announs.Select(a => a.PublicEventInformation).FirstOrDefault() != null)
         {
-            <img class="col-md-12 imagehead" src="@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).FirstOrDefault())">
-            <a href="@Url.Action("AnnouncementsBoard", "PublicEventsInfo")" class="linkImage"><h3>АНОНСЫ</h3></a>
-            <h4 class="titleimage">@Model.Announs.Select(a => a.NameEvent).FirstOrDefault()</h4>
+            
+            <a href="@Url.Action("AnnouncementsBoard", "PublicEventsInfo")" class="btn-transparent">АНОНСЫ</a>
+            @*<h4 class="titleimage">@Model.Announs.Select(a => a.NameEvent).FirstOrDefault()</h4>*@
         }
     </div>
-    <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-position: center center;">
+    <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-size:cover;background-position: center center;">
         @*<img class="col-md-12 top-all-news" src="@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault())">*@
         <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Interviews.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">ИНТЕРВЬЮ</a>
         @*<h4 class="titleimage">@Model.Interviews.Select(i => i.ObjectNews.Title).FirstOrDefault()</h4>*@
     </div>
-    <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-position: center center;">
+    <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-size:cover;background-position: center center;">
         @*<img class="col-md-12 imagehead" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())">*@
         <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Blogs.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">БЛОГ</a>
         @*<h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>*@
