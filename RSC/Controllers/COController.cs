@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RSC.Controllers.Models.PRDSOViewModels;
 using AutoMapper;
+using RSC.Controllers.Models.CoProfileViewModels;
 using RSC.Controllers.Models.EventsViewModels;
+using Event = RSC.Data.DbModels.Event;
 
 namespace RSC.Controllers
 {
@@ -38,23 +40,28 @@ namespace RSC.Controllers
 
         public IActionResult COProfile()
         {
-            return View();
+            var userId = _userManager.GetUserId(User);
+            var studentCouncilId = db.StudentsCouncils.Where(s => s.ApplicationUserId == userId).Select(s => s.Id).FirstOrDefault();
+            var prdsoEvents = db.Events.Include(e => e.Costs).Include(e => e.TargetIndicators).Where(e => e.Prdso.StudentsCouncilId == studentCouncilId).ToList();
+            var eventDirections = db.EventDirections.ToList();
+            var model = new CoProfileViewModel
+            {
+                EventDirections = eventDirections,
+                Events = prdsoEvents,
+            };
+            return View(model);
         }
 
-        public IActionResult StudStarter()
-        {
-            return View();
-        }
+        //public IActionResult StudStarter()
+        //{
+        //    return View();
+        //}
+        
 
-        public IActionResult COMembers()
-        {
-            return View();
-        }
-
-        public IActionResult Events()
-        {
-            return View();
-        }
+        //public IActionResult Events()
+        //{
+        //    return View();
+        //}
 
         public IActionResult Students()
         {
@@ -68,7 +75,9 @@ namespace RSC.Controllers
         {
             var userId = _userManager.GetUserId(User);
             var studentCouncilId = db.StudentsCouncils.Where(s => s.ApplicationUserId == userId).Select(s => s.Id).FirstOrDefault();
-            var prdsoEvents = db.Events.Include(e => e.Costs).Include(e => e.TargetIndicators).Where(e => e.Prdso.StudentsCouncilId == studentCouncilId).ToList();
+            var prdsoEvents = db.Events.Include(e => e.Costs)
+                                       .Include(e => e.TargetIndicators)
+                                       .Where(e => e.Prdso.StudentsCouncilId == studentCouncilId).ToList();
             var modelEvents = new List<EventCreateViewModel>();
             foreach (var prdsoevent in prdsoEvents)
             {
@@ -76,6 +85,39 @@ namespace RSC.Controllers
                 modelEvents.Add(mapperEvent);
             }
             return View(modelEvents);
+        }
+
+        public JsonResult GetEventByFilter(List<int> eventDirectionIds)
+        {
+            var userId = _userManager.GetUserId(User);
+            var studentCouncilId = db.StudentsCouncils.Where(s => s.ApplicationUserId == userId).Select(s => s.Id).FirstOrDefault();
+            List<Data.DbModels.Event> prdsoEvents;
+            if (eventDirectionIds.Any())
+            {
+                prdsoEvents = db.Events.Include(e => e.Costs)
+                    .Include(e => e.TargetIndicators)
+                    .Where(e => eventDirectionIds
+                        .Contains(e.EventDirectionId))
+                    .Where(e => e.Prdso.StudentsCouncilId == studentCouncilId)
+                    .ToList();
+            }
+            else
+            {
+                prdsoEvents = db.Events.Include(e => e.Costs)
+                    .Include(e => e.TargetIndicators)
+                    .Where(e => e.Prdso.StudentsCouncilId == studentCouncilId)
+                    .ToList();
+            }
+            var model = prdsoEvents.Select(item => new
+            {
+                eventid = item.Id,
+                name = "event",
+                date = item.StartDateTime.ToString("yyyy-MM-dd"),
+                startdatetime = item.StartDateTime,
+                stopdatetime = item.StopDateTime,
+                eventname = item.NameEvent
+            }).ToArray();
+            return new JsonResult(model);
         }
     }
 }

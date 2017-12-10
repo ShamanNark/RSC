@@ -1,4 +1,4 @@
-﻿
+﻿@model RSC.Controllers.Models.CoProfileViewModels.CoProfileViewModel
 @{
     ViewData["Title"] = "Личный кабинет СО";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -114,7 +114,20 @@
     }
 
     .cal-filters {
-        background-color: white;
+        width: 80%;
+        padding-left: 15px;
+        padding-right: 15px;
+        min-height: 451px;
+        max-width: 360px;
+        background-color: #fff;
+        border: 1px solid #d8d8d8;
+        font-size: 100%;
+        margin: 0 auto;
+        box-shadow: 0 3px 8px rgba(0,0,0,.25);
+    }
+
+    .active {
+        background-color: coral;
     }
 
 </style>
@@ -144,20 +157,19 @@
             <p>телефон универа</p>
         </div>
         <div class="col-md-2"></div>
-
-
-
     </div>
 
-
-
-    
     <div class="pg-main col-md-12">
         <div class="col-md-2"></div>
-
         <div class="pgcalendar col-md-4"></div>
         <div class="cal-filters col-md-4">
-            Фильтр:
+            <h4 style="font-family: 'Raleway','Open Sans','helvetica','sans-serif'; font-weight: bold">Фильтр:</h4>
+            @foreach (var item in @Model.EventDirections)
+            {
+                <input class="eventdirection form-control" type="button" data-directionid="@item.Id" value="@item.Name"/>   
+            }
+        </div>
+        <div id="infobycalendar">
         </div>
         <div class="col-md-2"></div>
     </div>
@@ -179,7 +191,6 @@
         <a href="@Url.Action("Index","CoMembers")" class="one-info-block oib-co-members col-md-3">
             <h2>Члены совета обучающихся</h2>
         </a>
-        
         <a href="@Url.Action("Students","CO")" class="one-info-block oib-students col-md-6">
             <h2>Студенты</h2>
         </a>
@@ -217,34 +228,109 @@
 
 @section Scripts{
     <script src="~/pg-calendar-master/dist/js/pignose.calendar.full.js"></script>
-    <script>
-        $(function () {
+    <script type="text/javascript">
+        $(function() {
+
+            var myArray = [];
+
+            @foreach (var item in @Model.Events)
+            {
+                @:myArray.push({ eventid: @item.Id, name: "event", date: "@item.StartDateTime.ToString("yyyy-MM-dd")", startdatetime: "@item.StartDateTime", stopdatetime: "@item.StopDateTime", eventname: "@item.NameEvent" });
+            }
+
             $('.pgcalendar').pignoseCalendar({
                 lang: 'ru',
                 week: 1,
                 scheduleOptions: {
                     colors: {
-                        annonce: 'lightgreen',
-                        news: '#2fabb7',
-                        event: '#5c6270'
+                        event: '#2fabb7'
                     }
                 },
-                schedules: [{
-                    name: 'annonce',
-                    eventid : 'asdasd',
-                    date: '2017-12-08'
-                }, {
-                    name: 'news',
-                    date: '2017-12-10'
-                }, {
-                    name: 'event',
-                    date: '2017-12-11'
-                }],
-                select: function (date, context) {
-                    alert('events for this date ' + context.storage.schedules[0].eventid);
-                   // $(".dopinfa").append();
+                format: "DD.MM.YYYY",
+                schedules: myArray,
+                select: function(date, context) {
+                    $("#infobycalendar").html("");
+
+                    if (context.storage.schedules.length > 0) {
+                        $("#infobycalendar").append("<p>Вы выбрали дату " + context.storage.schedules[0].date + "</p>");
+                        for (var i = 0; i < context.storage.schedules.length; i++) {
+                            $("#infobycalendar").append("<p>Название мероприятия " +
+                                context.storage.schedules[i].eventname +
+                                "</p>");
+                            $("#infobycalendar").append("<p>Диапозон " +
+                                context.storage.schedules[i].startdatetime +
+                                "-" +
+                                context.storage.schedules[i].stopdatetime +
+                                "</p>");
+                            $("#infobycalendar").append('<a href="/PublicEventsInfo/Details/' +
+                                context.storage.schedules[i].eventid +
+                                '" style="cursor:pointer;width:100%">Подробнее</a>');
+                        }
+                    }
                 }
             });
+
+            var initcalendar = function(eventarray) {
+                $('.pgcalendar').pignoseCalendar({
+                    lang: 'ru',
+                    week: 1,
+                    scheduleOptions: {
+                        colors: {
+                            event: '#2fabb7'
+                        }
+                    },
+                    format: "DD.MM.YYYY",
+                    schedules: eventarray,
+                    select: function(date, context) {
+                        $("#infobycalendar").html("");
+                        if (context.storage.schedules.length > 0) {
+                            $("#infobycalendar")
+                                .append("<p>Вы выбрали дату " + context.storage.schedules[0].date + "</p>");
+                            for (var i = 0; i < context.storage.schedules.length; i++) {
+                                $("#infobycalendar").append("<p>Название мероприятия " +
+                                    context.storage.schedules[i].eventname +
+                                    "</p>");
+                                $("#infobycalendar").append("<p>Диапозон " +
+                                    context.storage.schedules[i].startdatetime +
+                                    "-" +
+                                    context.storage.schedules[i].stopdatetime +
+                                    "</p>");
+                                $("#infobycalendar").append('<a href="/PublicEventsInfo/Details/' +
+                                    context.storage.schedules[i].eventid +
+                                    '" style="cursor:pointer;width:100%">Подробнее</a>');
+                            }
+                        }
+                    }
+                });
+            };
+
+            $(".eventdirection").click(function() {
+                var hasClass = this.classList.contains('active');
+                if (hasClass) {
+                    this.classList.remove("active");;
+                } else {
+                    this.className += " active";
+                }
+
+                var directions = [];
+                var activeFilterButtons = document.getElementsByClassName("eventdirection active");
+                for (var i = 0; i < activeFilterButtons.length; i++) {
+                    directions.push(activeFilterButtons[i].getAttribute('data-directionid'));
+                }
+
+                $.ajax({
+                    method: "GET",
+                    url: "@Url.Action("GetEventByFilter", "CO")",
+                    data: { eventDirectionIds: directions },
+                    datatype: "json",
+                    traditional: true,
+                }).success(function(res) {
+                    initcalendar(res);
+                }).error(function(res) {
+
+                });
+            });
+
         });
     </script>
 }
