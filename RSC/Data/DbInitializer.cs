@@ -539,8 +539,15 @@ new UniversityData{RegionId=8  ,UniversityShortName="ФГБОУ ВО «ГГНТ�
             {
                 var eventDirections = new EventDirection[]
                 {
-                    new EventDirection{ Id = 1, Name = "Наука"},
-                    new EventDirection{ Id = 2, Name = "Спорт"}
+                    new EventDirection{ Id = 1, Name = "Наука и иновации"},
+                    new EventDirection{ Id = 2, Name = "Спорт и здоровы образ жизни"},
+                    new EventDirection{ Id = 3, Name = "Профессиональные компетенции"},
+                    new EventDirection{ Id = 4, Name = "Информационные ресурсы"},
+                    new EventDirection{ Id = 5, Name = "Межкультурный диалог"},
+                    new EventDirection{ Id = 6, Name = "Историко-патриотическое воспитание"},
+                    new EventDirection{ Id = 7, Name = "Международное молодежное сотрудничество"},
+                    new EventDirection{ Id = 8, Name = "Культура и творчество"},
+                    new EventDirection{ Id = 9, Name = "Волонтерство и социальное проектирование"},
                 };
                 foreach (var eventDirection in eventDirections)
                 {
