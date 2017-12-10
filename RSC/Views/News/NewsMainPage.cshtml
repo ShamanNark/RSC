@@ -34,12 +34,33 @@
     .headerNewsMainPage{
         text-align:center;
     }
+
+    .image {
+        z-index: 9;  
+    }
+
+    .top-all-news {
+        min-height: 400px;
+    }
+    .top-all-news .btn-transparent {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        border: solid #ffffff 2px;
+        z-index: 10;
+        position: absolute;
+        width: 80%;
+        top: 70%;
+        left: 9%;
+    }
+
+
 </style>
-<div class="col-md-12">
-    <div class="col-md-3">
-        <img class="col-md-12 imagehead" src="@Url.Content( @Model.News.Select(n => n.ObjectNews.MainImage).FirstOrDefault() )">
-        <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.News.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="linkImage"><h3>НОВОСТИ</h3></a>
-        <h4 class="titleimage">@Model.News.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>
+<div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+    <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.News.Select(n => n.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-position: center center;">
+        @*<img class="col-md-12 imagehead" src="@Url.Content( @Model.News.Select(n => n.ObjectNews.MainImage).FirstOrDefault() )">*@
+        <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.News.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">НОВОСТИ</a>
+        @*<h4 class="titleimage">@Model.News.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>*@
     </div>
     <div class="col-md-3">
         @if (Model.Announs.Select(a => a.PublicEventInformation).FirstOrDefault() != null)
@@ -49,15 +70,15 @@
             <h4 class="titleimage">@Model.Announs.Select(a => a.NameEvent).FirstOrDefault()</h4>
         }
     </div>
-    <div class="col-md-3">
-        <img class="col-md-12 imagehead" src="@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault())">
-        <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Interviews.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="linkImage"><h3>ИНТЕРВЬЮ</h3></a>
-        <h4 class="titleimage">@Model.Interviews.Select(i => i.ObjectNews.Title).FirstOrDefault()</h4>
+    <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-position: center center;">
+        @*<img class="col-md-12 top-all-news" src="@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault())">*@
+        <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Interviews.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">ИНТЕРВЬЮ</a>
+        @*<h4 class="titleimage">@Model.Interviews.Select(i => i.ObjectNews.Title).FirstOrDefault()</h4>*@
     </div>
-    <div class="col-md-3">
-        <img class="col-md-12 imagehead" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())">
-        <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Blogs.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="linkImage"><h3>БЛОГ</h3></a>
-        <h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>
+    <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-position: center center;">
+        @*<img class="col-md-12 imagehead" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())">*@
+        <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Blogs.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">БЛОГ</a>
+        @*<h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>*@
     </div>
 </div>
 <div class="col-md-12">

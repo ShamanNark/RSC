@@ -137,7 +137,6 @@ namespace RSC.Controllers
 
             return View(viewModel);
         }
-
-        }
+        
     }
 }
