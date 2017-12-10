@@ -80,7 +80,5 @@ namespace RSC.Data.DbModels
 
         [Display(Name = "Отрицательные")]
         public int DisLikes { get; set; }
-
-
     }
 }

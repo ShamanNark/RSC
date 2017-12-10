@@ -688,6 +688,7 @@ namespace RSC.Controllers
             var studentDb = Mapper.Map<Student>(model);
             db.Students.Add(studentDb);
             await db.SaveChangesAsync();
+            studentDb.ApplicationUser.PhoneNumber = model.PhoneNumber;
             studentDb.ApplicationUser.UserType = ApplicationUserTypes.Student;
             await _userManager.AddToRoleAsync(studentDb.ApplicationUser, "STUDENT");
             await db.SaveChangesAsync();
