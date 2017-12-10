@@ -73,14 +73,12 @@
     </div>
     <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-position: center center;">
         @*<img class="col-md-12 top-all-news" src="@Url.Content( @Model.Interviews.Select(i => i.ObjectNews.MainImage).FirstOrDefault())">*@
-        <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Interviews.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Интервью")
-                                                                                                                                        .Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">ИНТЕРВЬЮ</a>
+        <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Interviews.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Интервью").Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">ИНТЕРВЬЮ</a>
         @*<h4 class="titleimage">@Model.Interviews.Select(i => i.ObjectNews.Title).FirstOrDefault()</h4>*@
     </div>
     <div class="col-md-3 top-all-news" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())) no-repeat;background-position: center center;">
         @*<img class="col-md-12 imagehead" src="@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault())">*@
-        <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Blogs.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Блог")
-                                                                                                                                   .Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">БЛОГ</a>
+        <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Blogs.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Блог").Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">БЛОГ</a>
         @*<h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>*@
     </div>
 </div>
@@ -184,7 +182,7 @@
         </div>
 </div>
 <div class="col-md-12">
-    <a class="headerNewsMainPage" href="@Url.Action("InterviewsBoard","Events")"><h3>ИНТЕРВЬЮ</h3></a>
+    <a class="headerNewsMainPage" href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Interviews.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Интервью").Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})"><h3>ИНТЕРВЬЮ</h3></a>
         <hr />
         <div class="row">
             <a href="@Url.Action("Details","News", new { id = @Model.Interviews.Select(n => n.ObjectNews.Id).FirstOrDefault() })" class="row">
@@ -210,7 +208,7 @@
         </div>
 </div>
 <div class="col-md-12">
-    <a class="headerNewsMainPage" href="@Url.Action("NewsBoard","News")"><h3>БЛОГ</h3></a>
+    <a class="headerNewsMainPage" href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Blogs.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Блог").Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})"><h3>БЛОГ</h3></a>
         <hr />
         <div class="row">
             <div class="col-md-4">
