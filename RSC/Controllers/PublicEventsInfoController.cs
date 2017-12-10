@@ -138,6 +138,39 @@ namespace RSC.Controllers
             return View(viewModel);
         }
 
-        
+        [HttpGet]
+        public IActionResult GetAnnouncesByDirectionId(int id, DateTime startDateTime, DateTime stopDateTime,
+            int page = 1)
+        {
+            var dbQuery = db.Events.Where(e => e.EventStateId > 0)
+                .Where(e => e.EventDirectionId == id)
+                .Include(e => e.PublicEventInformation)
+                .Include(e => e.PublicEventInformation.SmallFoto)
+                .AsQueryable();
+            var count = dbQuery.Count();
+            var viewModel = new IndexAnnouncesViewModel
+            {
+                SelectedEventDirectionId = id,
+                Events = dbQuery.Select(e => new СellAnnonceViewModel
+                {
+                    Id = e.Id,
+                    StartDateTime = e.StartDateTime,
+                    StopDateTime = e.StopDateTime,
+                    NameEvent = e.NameEvent,
+                    Adress = e.Adress,
+                    Contacts = e.Contacts,
+                    TicketPrice = e.TicketPrice,
+                    SmallFotoPath = e.PublicEventInformation.SmallFoto.Path
+                }).OrderByDescending(n => n.StartDateTime).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                EventDirections = db.EventDirections.Select(n => new EventDirection
+                {
+                    Id = n.Id,
+                    Name = n.Name
+                }).ToList(),
+                PageViewModel = new PageViewModel(count, page, pageSize)
+            };
+
+            return PartialView("AnnouncesPartialView", viewModel);
+        }
     }
 }

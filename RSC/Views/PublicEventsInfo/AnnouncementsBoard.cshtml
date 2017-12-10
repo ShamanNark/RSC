@@ -44,6 +44,8 @@
         padding-top: 10px;
         padding-bottom: 10px;
         min-height: 50px;
+        float: left;
+        width: 100%
     }
 
 
@@ -126,7 +128,7 @@
         var GetEvents = function () {
             var tab = $(".tabs-controllers__item-active").attr('data-value');
             $.ajax({
-                method: "POST",
+                method: "GET",
                 url: '@Url.Action("GetAnnouncesByDirectionId", "PublicEventsInfo")',
                 data: { id: tab, startDateTime: $("#StartDateTime").find("input").val(), stopDateTime: $("#StopDateTime").find("input").val() },
                 dataType: "html"
