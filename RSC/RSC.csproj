@@ -6,9 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\PublicNewsInfo\**" />
     <Compile Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
+    <Content Remove="Views\PublicNewsInfo\**" />
     <Content Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
+    <EmbeddedResource Remove="Views\PublicNewsInfo\**" />
     <EmbeddedResource Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
+    <None Remove="Views\PublicNewsInfo\**" />
     <None Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
   </ItemGroup>
 
@@ -29,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\PublicNewsInfo\" />
     <Folder Include="wwwroot\files\EGRUL\" />
     <Folder Include="wwwroot\files\Приказ об утверждении %28назначении%29 ректора\" />
     <Folder Include="wwwroot\files\Приказ о создании Совета обучающихся\" />
