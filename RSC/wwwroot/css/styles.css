@@ -380,9 +380,13 @@ h3{
     background-color: rgb(240,240,240);
 }
 
-    .sec-nav-li:hover {
-        background-color: lightgray;
-    }
+.activeHomeLink {
+    background-color: lightgray;
+}
+
+.sec-nav-li:hover {
+    background-color: lightgray;
+}
 
     .sec-nav-li a {
         text-align: center;
