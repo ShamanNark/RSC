@@ -247,12 +247,12 @@ namespace RSC.Controllers
         [HttpPut]
         public JsonResult ChangePublicationEvent(int eventId, bool publicEvent)
         {
-            var eventModel = db.Events.Where(e => e.Id == eventId).FirstOrDefault();
+            var eventModel = db.Events.FirstOrDefault(e => e.Id == eventId);
             if (eventModel != null)
             {
                 if (publicEvent)
                 {
-                    var stateDb = db.EventStates.Where(state => state.CodeName == "Announcement").FirstOrDefault();
+                    var stateDb = db.EventStates.FirstOrDefault(state => state.CodeName == "Announcement");
                     eventModel.EventStateId = stateDb.Id;
                 }
                 else
