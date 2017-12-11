@@ -136,7 +136,7 @@
         <a href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.News.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Новости")
                                                                                 .Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})" class="btn-transparent">НОВОСТИ</a>
     </div>
-    <div class="col-md-3  top-all-news" style="background: url(@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation).FirstOrDefault() != null ? @Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).FirstOrDefault() ?? "" : ""))) no-repeat;background-size:cover;background-position: center center;">
+    <div class="col-md-3  top-all-news" style="background: url(@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation).FirstOrDefault() != null ? @Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).FirstOrDefault() ?? "" : "")) no-repeat;background-size:cover;background-position: center center;">
         @if (Model.Announs.Select(a => a.PublicEventInformation).FirstOrDefault() != null)
         {
             
