@@ -10,8 +10,6 @@
         padding-bottom: 10px;
     }
 </style>
-<h2>Редактирование мероприятия</h2>
-
 <form asp-action="Edit" style="width:100%">
     @Html.HiddenFor(model => model.PrdsoId)
     @Html.HiddenFor(model => model.Id)
@@ -19,7 +17,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#event1" aria-controls="home" role="tab" data-toggle="tab">Описание мероприятия</a></li>
-            <li role="presentation"><a href="#event2" aria-controls="event2" role="tab" data-toggle="tab">Targets</a></li>
+            <li role="presentation"><a href="#event2" aria-controls="event2" role="tab" data-toggle="tab">Цели</a></li>
             <li role="presentation"><a href="#event3" aria-controls="event3" role="tab" data-toggle="tab">ФЭО</a></li>
         </ul>
 
@@ -32,8 +30,8 @@
             <div role="tabpanel" class="tab-pane" id="event3">@Html.Partial("FEOEdit", @Model)</div>
         </div>
 
-        <div class="col-md-12">
-            <button class="btn btn-sm btn-primary" type="submit">Сохранить</button>
+        <div class="col-md-12" style="padding-left:0px;">
+            <button class="btn btn-sm btn-primary btn-blue" type="submit" style="margin-top:20px;">Сохранить</button>
         </div>
     </div>
 </form>
