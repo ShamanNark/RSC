@@ -1384,7 +1384,8 @@ h3{
         padding-right: 25px;
         float: right;
         font-size: 12px;
-        color: lightgray;
+        color: white;
+        border-color: lightgrey;
     }
 
 

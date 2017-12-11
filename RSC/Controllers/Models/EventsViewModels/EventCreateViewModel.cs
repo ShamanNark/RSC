@@ -56,7 +56,7 @@ namespace RSC.Controllers.Models.EventsViewModels
         public int TotalNumberOfParticipants { get; set; }
 
         [Required]
-        [Display(Name = "Колияество участников из числа обучающихся в данной ООВО, чел")]
+        [Display(Name = "Количество участников из числа обучающихся в данной ООВО, чел")]
         public int NumberOfParticipantsInThisOOVO { get; set; }
 
         [Required]
@@ -102,15 +102,15 @@ namespace RSC.Controllers.Models.EventsViewModels
         public SelectList EventDirections { get; set; }
         
         [Required]
-        [Display(Name = "Объем запрашиваемой субсидии")]
+        [Display(Name = "Объем запрашиваемой субсидии, тыс.руб.")]
         public decimal AmountOfTheRequestedSubsidy { get; set; }
 
         [Required]
-        [Display(Name = "Объем собственных денежных средств")]
+        [Display(Name = "Объем собственных денежных средств, тыс.руб.")]
         public decimal AmountOfOwnSubsidy { get; set; }
 
         [Required]
-        [Display(Name = "Объем  привлеченных денежных средств")]
+        [Display(Name = "Объем  привлеченных денежных средств, тыс.руб.")]
         public decimal AmountOfAttractedSubsidy { get; set; }
 
         [Required]
