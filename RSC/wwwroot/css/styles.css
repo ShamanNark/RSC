@@ -381,9 +381,13 @@ h3{
 }
 
 .activeHomeLink {
-    background-color: lightgray;
+    background-image: linear-gradient(to right, rgb(91,165,194), rgb(68,116,164));
+    color:white;
 }
 
+    .activeHomeLink a {
+        color: white !important;
+    }
 .sec-nav-li:hover {
     background-color: lightgray;
 }
