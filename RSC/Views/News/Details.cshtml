@@ -59,9 +59,9 @@
         <img src="@Url.Content(Model.MainImagePath)">
     </div>*@
     
-    <div class="col-md-12">
+    <div class="col-md-12" style="padding-left:0px; border-bottom: solid 1px lightgray;">
         <p><img src="@Url.Content(Model.MainImagePath)" alt="Лейтенант Бокатуев" class="leftimg"> @Html.Raw(@Model.Text)</p>
-        <hr />
+       
     </div>
     
     <div class="col-md-12 news-share">
@@ -80,5 +80,5 @@
     {
         <a asp-action="Index">Вернуться к списку</a> <br />
     }
-    <a asp-action="NewsBoard">Вернуться к новостой стене</a>
+    @*<a asp-action="NewsBoard">Вернуться к новостой стене</a>*@
 </div>
