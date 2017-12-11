@@ -43,18 +43,21 @@
             </ul>
             @if(User.IsInRole("OPERATOR") || User.IsInRole("ADMIN"))
             {
-            <ul class="nav nav-pills flex-column">
+                <ul class="nav nav-pills flex-column">
               
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("СonfirmationUsers", "Admin")">Подтверждение юзеров</a>
-                </li>  
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Profilelist", "Profile")">Заявки ПРДСО</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Events")">Мероприятия</a>
-                </li>
-            </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("СonfirmationUsers", "Admin")">Подтверждение юзеров</a>
+                    </li>  
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Profilelist", "Profile")">Заявки ПРДСО</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Events")">Мероприятия</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" hed="@Url.Action("Index", "Admin")"></a>
+                    </li>
+                </ul>
             }
             @if(User.IsInRole("ADMIN"))
             {

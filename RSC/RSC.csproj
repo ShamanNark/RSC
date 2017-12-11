@@ -35,6 +35,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\files\EGRUL\" />
     <Folder Include="wwwroot\files\CoPrivateFiles\" />
+    <Folder Include="wwwroot\files\CoPrivateFiles\" />
     <Folder Include="wwwroot\files\Приказ об утверждении %28назначении%29 ректора\" />
     <Folder Include="wwwroot\files\Приказ о создании Совета обучающихся\" />
     <Folder Include="wwwroot\files\Протокол отчетно-выборной конференции СО\" />

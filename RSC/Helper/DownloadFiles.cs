@@ -28,6 +28,8 @@ namespace RSC.Helper
                 if (uploadedFile != null)
                 {
                     string path = "/files/" + fileName + Path.GetExtension(oldFileNameWithFormat).ToLowerInvariant();
+                    char[] charsToTrim = { ' ', '\t'};
+                    path = path.Trim(charsToTrim);
                     using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                     {
                         await uploadedFile.CopyToAsync(fileStream);
@@ -52,6 +54,8 @@ namespace RSC.Helper
                 if (uploadedFile != null)
                 {
                     string path = "/images/" + fileName + Path.GetExtension(oldFileNameWithFormat).ToLowerInvariant();
+                    char[] charsToTrim = { ' ', '\t' };
+                    path = path.Trim(charsToTrim);
                     using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                     {
                         await uploadedFile.CopyToAsync(fileStream);

@@ -200,12 +200,14 @@ namespace RSC.Controllers
                                                         .OrderByDescending(n => n.ObjectNews.UpdateDateTime)
                                                         .Take(2)
                                                         .ToList();
+
             var blogs = db.ListObjectNewsNewsRubric.Include(n => n.NewsRubric)
                                                    .Include(n => n.ObjectNews)
                                                    .Where(n => n.NewsRubric.Name == "Блог")
                                                    .OrderByDescending(n => n.ObjectNews.UpdateDateTime)
                                                    .Take(5)
                                                    .ToList();
+
             var news = db.ListObjectNewsNewsRubric.Include(n => n.NewsRubric)
                                                   .Include(n => n.ObjectNews)
                                                   .Where(n => n.NewsRubric.Name == "Новости")
@@ -287,12 +289,15 @@ namespace RSC.Controllers
             return View();
         }
 
+        //TODO: Change on DownloadFile helper
         private async Task<string> SaveFile(IFormFile uploadedFile, string FileName)
         {
             if (uploadedFile != null && (uploadedFile.ContentType == "image/png" || uploadedFile.ContentType == "image/jpeg"))
             {
                 string contentType = uploadedFile.ContentType == "image/png" ? ".png" : ".jpg"; 
                 string path = "/images/" + FileName + contentType;
+                char[] charsToTrim = { ' ', '\t' };
+                path = path.Trim(charsToTrim);
                 using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                 {
                     await uploadedFile.CopyToAsync(fileStream);

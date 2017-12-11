@@ -272,7 +272,7 @@ namespace RSC.Controllers
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
@@ -637,6 +637,7 @@ namespace RSC.Controllers
             }
             db.Universities.Add(universityDb);
             db.SaveChanges();
+            universityDb.UniversityData.UniversityWebSite = model.UniversityWebSite;
             universityDb.ApplicationUser.UserType = ApplicationUserTypes.University;
             await _userManager.AddToRoleAsync(universityDb.ApplicationUser, "OOBO");
             db.SaveChanges();

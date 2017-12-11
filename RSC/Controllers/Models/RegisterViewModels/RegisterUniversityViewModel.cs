@@ -35,6 +35,9 @@ namespace RSC.Models.RegisterViewModels
         [Required]
         [Display(Name = "Телефон рабочий")]
         public string JobPhoneNumber { get; set; }
+        [Required]
+        [Display(Name = "Веб-сайт ООВО")]
+        public string UniversityWebSite { get; set; }
         [Display(Name = "Доверенность *")]
         public IFormFile PowerOfAttorneyFile { get; set; }
     }
