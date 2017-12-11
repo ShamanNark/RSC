@@ -135,10 +135,15 @@
 <div class="comain col-md-12">
     <div class="coheader col-md-12">
         <div style="float: right;" class="coheader-links">
-        <h3 style="display: inline-block">Заявка</h3>
+        <h3 style="display: inline-block"><a href="@Url.Action("Index","Profile")" style="color:white;">Заявка</a></h3>
         <h3 style="display: inline-block">Представитель СО</h3>
         <h3 style="display: inline-block">@Model.StudentCouncil.Name @Model.StudentCouncil.Surname</h3>
-        <h3 href ="#" style="display: inline-block">Выйти</h3>
+
+            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" style=" display: inline-block;">
+
+                <button class="btn-red" style="margin-left:20px; margin-top:10px; padding-left: 20px; padding-right: 20px; padding-top: 3px; padding-bottom: 3px;" type="submit">ВЫЙТИ</button>
+            </form>
+        
         </div>
 
     </div>
@@ -150,9 +155,9 @@
         </div>
         <div class="col-md-6">
             
-            <p>Полное наименование университета : @Model.StudentCouncil.UniversityData.UniversityName</p>
-            <p>ссылка на универ : @Model.StudentCouncil.UniversityData.UniversityWebSite</p>
-            <p>адрес универа : @Model.StudentCouncil.UniversityData.UniversityAddress</p> 
+            <p>@Model.StudentCouncil.UniversityData.UniversityName</p>
+            <p>@Model.StudentCouncil.UniversityData.UniversityWebSite</p>
+            <p>@Model.StudentCouncil.UniversityData.UniversityAddress</p> 
         </div>
         <div class="col-md-2"></div>
     </div>

@@ -5,132 +5,94 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Aнонс</h2>
+<style>
+    .main-event-block{
+        margin-top: 60px;
+    }
+    .event-left-info {
+        text-align: center;
+        -webkit-box-shadow: -1px 9px 25px 1px rgba(0,0,0,0.58);
+        -moz-box-shadow: -1px 9px 25px 1px rgba(0,0,0,0.58);
+        box-shadow: -1px 9px 25px 1px rgba(0,0,0,0.58);
+    }
+    .event-full-info {
+        padding-bottom: 20px;
+        -webkit-box-shadow: -1px 9px 25px 1px rgba(0,0,0,0.58);
+        -moz-box-shadow: -1px 9px 25px 1px rgba(0,0,0,0.58);
+        box-shadow: -1px 9px 25px 1px rgba(0,0,0,0.58);
+    }
 
-<div>
-    <h4>@Html.DisplayFor(model => model.Event.NameEvent)</h4>
-    <hr />
-    <div class="rs-news__title">@Html.Raw(@Model.Event.EventType.Name)</div>
-    @*@Html.EditorFor(modelItem => Model.Event.StartDateTime,  new { @class = "form-control", disabled = "disabled" } }) - @Html.EditorFor(modelItem => Model.Event.StopDateTime, new { @class = "form-control", disabled = "disabled" })*@
-    <div class="form-control">@Model.Event.StartDateTime - @Model.Event.StopDateTime</div>
-    <div class="col-md-12">
-        <p style="word-wrap:break-word"><img src="@Url.Content(Model.Foto.Path)" class="leftimg"> @Html.Raw(@Model.TextForDetailsView)</p>
-        <hr />
-    </div>
 
-    <div class="col-md-12 news-share">
-        <h4>Cылки на группу:</h4>
-        <a href="@Model.FacebookGroup" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
-        <a href="@Model.VKGroup" target="_blank"><i class="fa fa-vk fa-2x"></i></a>
-    </div>
-    <dl class="dl-horizontal">
-       
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoLink)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.VideoLink)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EventWebSite)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EventWebSite)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OOVOWebSite)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OOVOWebSite)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EventHashTags)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EventHashTags)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoEsse)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.VideoEsse)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.VKGroup)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.VKGroup)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.FacebookGroup)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FacebookGroup)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.InstagramGroup)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.InstagramGroup)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ResultVideo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ResultVideo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.FederalSMI)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FederalSMI)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RegionalSMI)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RegionalSMI)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DistricSMI)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DistricSMI)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.StudentSMI)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.StudentSMI)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Likes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Likes)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DisLikes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DisLikes)
-        </dd>
-    </dl>
-</div>
+
+</style>
 
 <div class="col-md-12 main-event-block">
     <div class="col-md-3 event-left-info">
         <img src="@Html.DisplayFor(model => model.SmallFoto.Path)"/>
-
-
-
+        <h4>Проводится:</h4>
+        <p>@Html.DisplayFor(model => model.Event.StartDateTime) - @Html.DisplayFor(model => model.Event.StopDateTime)</p>
+        <h4>Адрес мероприятия:</h4>
+        <p>@Html.DisplayFor(model => model.Event.Adress)</p>
+        @*<a href="#" class="btn-red" style="padding-left:15px; padding-right:15px;">ПОДАТЬ ЗАЯВКУ</a>*@
     </div>
-    <div class="col-md-9 event-full-info"></div>
+    <div class="col-md-9" style="padding-left:30px;">
+        <div class="col-md-12 event-full-info">
+            <h1 style="padding-left:15px;">@Html.DisplayFor(model => model.Event.NameEvent)</h1>
+            <div class="col-md-12 event-about">
+                <h2>О МЕРОПРИЯТИИ</h2>
+                <h3>Описание:</h3>
+                <p style="word-wrap:break-word;">@Html.DisplayFor(model => model.Event.PublicEventInformation.TextForDetailsView)</p>
+
+                @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.VideoLink) != null)
+            {
+                    <h3>Видеопрезентация:</h3>
+                    <p>@Html.DisplayFor(model => model.Event.PublicEventInformation.VideoLink)</p>
+                }
+
+                @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.EventWebSite) != null)
+                {
+                    <h3>Сайт мероприятия:</h3>
+                    @Html.DisplayFor(model => model.Event.PublicEventInformation.EventWebSite)
+
+                }
+                @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.FacebookGroup) != null || @Html.DisplayFor(model => model.Event.PublicEventInformation.VKGroup) != null || @Html.DisplayFor(model => model.Event.PublicEventInformation.InstagramGroup) != null)
+            {
+                    <h3>Ссылки на социальные сети мероприятия:</h3>
+                    @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.FacebookGroup) != null)
+                    {
+
+                        @Html.DisplayFor(model => model.Event.PublicEventInformation.FacebookGroup)
+                        <br />
+
+
+
+                    }
+                    @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.VKGroup) != null)
+                {
+                        @Html.DisplayFor(model => model.Event.PublicEventInformation.VKGroup)
+                        <br />
+                    }
+                    @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.InstagramGroup) != null)
+                {
+                        @Html.DisplayFor(model => model.Event.PublicEventInformation.InstagramGroup)
+
+                    }
+
+
+
+
+                }
+
+
+            </div>
+        </div>
+    </div>
+
 
 </div>
 
 
-<div>
+@*<div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@

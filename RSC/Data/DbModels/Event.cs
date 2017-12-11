@@ -30,10 +30,12 @@ namespace RSC.Data.DbModels
 
         [Required]
         [Display(Name = "Период реализации мероприятия, с")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime StartDateTime { get; set; }
 
         [Required]
         [Display(Name = "До")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime StopDateTime { get; set; }
 
         public DateTime CreateDateTime { get; set; }
@@ -59,15 +61,15 @@ namespace RSC.Data.DbModels
         public int TotalNumberOfParticipants { get; set; }
 
         [Required]
-        [Display(Name = "Колияество участников из числа обучающихся в данной ООВО, чел")]
+        [Display(Name = "Количество участников из числа обучающихся в данной ООВО, чел")]
         public int NumberOfParticipantsInThisOOVO { get; set; }
 
         [Required]
-        [Display(Name = "Количество учатников за счет средств субсидииб чел")]
+        [Display(Name = "Количество участников за счет средств субсидии чел")]
         public int NumberOfParticipantsWithSubsidies { get; set; }
 
         [Required]
-        [Display(Name = "Количество участников без учета средств субсидииб чел")]
+        [Display(Name = "Количество участников без учета средств субсидии чел")]
         public int NumberOfParticipantsWithoutSubsidy { get; set; }
 
         [Required]

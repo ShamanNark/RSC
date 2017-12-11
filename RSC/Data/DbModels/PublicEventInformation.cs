@@ -20,7 +20,7 @@ namespace RSC.Data.DbModels
         [DataType(DataType.Url)]
         public string VideoLink { get; set; } 
 
-        [Display(Name = "Фото мероприятия для анонса")]
+        [Display(Name = "Логотип")]
         public int FotoId { get; set; }
         public virtual FileModel Foto { get; set; }
 
