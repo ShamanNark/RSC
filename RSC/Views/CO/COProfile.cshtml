@@ -6,32 +6,6 @@
 
 <link rel="stylesheet" href="~/pg-calendar-master/dist/css/pignose.calendar.min.css" />
 <style>
-    .tooltip {
-        position: relative;
-        display: inline-block;
-        border-bottom: 1px dotted black;
-    }
-
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: black;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            /* Position the tooltip */
-            position: absolute;
-            z-index: 1;
-            top: -5px;
-            left: 105%;
-        }
-
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-        }
-
-
     .pignose-calendar {
         width: 100%;
         max-width: 600px;
@@ -39,7 +13,24 @@
     }
 
 
-    .infobycalendar-block{
+    .infobycalendar {
+        width: 320px;
+        left: 50%;
+        margin-left: -60px;
+        background-color: white;
+        color: black;
+        border: solid 1px;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+    }
+
+
+
+    .infobycalendar-block {
         background-color: white;
     }
     
@@ -185,6 +176,12 @@
         background-color: coral;
     }
 
+    .detailsbutton{
+        width:150px;
+        text-align: center;
+        position:center;
+    }
+
 </style>
 
 <div class="comain col-md-12">
@@ -218,7 +215,7 @@
     </div>
 
     <div class="pg-main col-md-12">
-        <div id="infobycalendar" class="col-md-2  infobycalendar-block"></div>
+        @*<div id="infobycalendar" class="col-md-2  infobycalendar-block"></div>*@
         <div class="pgcalendar col-md-4" style="padding-left: 0px; padding-right: 0px;"></div>
         <div class="cal-filters col-md-4">
             <h4 style="font-family: 'Raleway','Open Sans','helvetica','sans-serif'; font-weight: bold">Фильтр:</h4>
@@ -227,20 +224,13 @@
                 <input class="eventdirection form-control" type="button" data-directionid="@item.Id" value="@item.Name"/>   
             }
         </div>
-        
-
-        
-
-
-            <div class="col-md-2"></div>
-        </div>
+    <div class="col-md-2"></div>
+</div>
 
     <div class="info-blocks col-md-12">
-        <div class=" oib-links col-md-6" style="text-align:center;">
-            
+        <div class=" oib-links col-md-6" style="text-align:center;">            
             <h2>Ссылки:</h2>
-            <ul style="
-    padding-left: 0pt;">
+            <ul style="padding-left: 0pt;">
                 <li>Ссылка один</li>
                 <li>Ссылка два</li>
                 <li>Ссылка три</li>
@@ -248,34 +238,27 @@
                 <li>Ссылка пять</li>
             </ul>
         </div>
-        <div class="one-info-block oib-studstarter col-md-3"         style="background: url('/img/studstarter.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
--moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
+        <div class="one-info-block oib-studstarter col-md-3" style="background: url('/img/studstarter.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
+-moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
             <h2>Студстартер</h2>
         </div>
         <a href="@Url.Action("Index","CoMembers")" class="one-info-block oib-co-members col-md-3" style="background: url('/img/sopeople.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
--moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
+-moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
             <h2>Члены совета обучающихся</h2>
         </a>
         <a href="@Url.Action("Students","CO")" class="one-info-block oib-students col-md-6" style="background: url('/img/students.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
--moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
+-moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
             <h2>Студенты</h2>
         </a>
         <div class="one-info-block oib-events col-md-3" style="background: url('/img/meropriyatia.jpg') no-repeat;background-size:cover; background-position: center center;-webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
--moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
+-moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
             <h2>Мероприятия</h2>
         </div>
         <a href="@Url.Action("PrdsoEvents","CO")" class="one-info-block oib-prdso col-md-3" style="background: url('/img/onevent.jpg') no-repeat;background-size:cover; background-position: center center;-webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
--moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
+-moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
             <h2>ПРДСО</h2>
         </a>
-
     </div>
-
     <div class="links-block col-md-12">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -316,7 +299,7 @@ box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
 
             @foreach (var item in @Model.Events)
             {
-                @:myArray.push({ eventid: @item.Id, name: "event", date: "@item.StartDateTime.ToString("yyyy-MM-dd")", startdatetime: "@item.StartDateTime", stopdatetime: "@item.StopDateTime", eventname: "@item.NameEvent" });
+                @:myArray.push({ eventid: @item.Id, name: "event", date: "@item.StartDateTime.ToString("yyyy-MM-dd")", startdatetime: "@item.StartDateTime.ToShortDateString()", stopdatetime: "@item.StopDateTime.ToShortDateString()", eventname: "@item.NameEvent" });
             }
 
             $('.pgcalendar').pignoseCalendar({
@@ -329,25 +312,20 @@ box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
                 },
                 format: "DD.MM.YYYY",
                 schedules: myArray,
-                select: function(date, context) {
-                    $("#infobycalendar").html("");
-
+                select: function (date, context) {
+                    $(".infobycalendar").remove();
                     if (context.storage.schedules.length > 0) {
-                        $("#infobycalendar").append("<p>Вы выбрали дату " + context.storage.schedules[0].date + "</p>");
+                        var messageAboutEvent = "";
+                        messageAboutEvent += "<div class='infobycalendar'><p>Вы выбрали дату " + context.storage.schedules[0].date + "</p>";
                         for (var i = 0; i < context.storage.schedules.length; i++) {
-                            $("#infobycalendar").append("<p>Название мероприятия " +
-                                context.storage.schedules[i].eventname +
-                                "</p>");
-                            $("#infobycalendar").append("<p>Диапозон " +
-                                context.storage.schedules[i].startdatetime +
-                                "-" +
-                                context.storage.schedules[i].stopdatetime +
-                                "</p>");
-                            $("#infobycalendar").append('<a href="/PublicEventsInfo/Details/' +
-                                context.storage.schedules[i].eventid +
-                                '" style="cursor:pointer;width:100%">Подробнее</a>');
+                            messageAboutEvent += "<p>Название мероприятия " + context.storage.schedules[i].eventname + "</p>";
+                            messageAboutEvent += "<p>Диапозон " + context.storage.schedules[i].startdatetime + "-" + context.storage.schedules[i].stopdatetime + "</p>";
+                            messageAboutEvent += '<a id="eventDetails" href="/PublicEventsInfo/Details/' + context.storage.schedules[i].eventid + '" style="cursor:pointer;width: 150px;border-radius: 7%;">Подробнее</a>';
                         }
+                        messageAboutEvent += "</div>";
+                        $(this).append(messageAboutEvent);
                     }
+                    updatelinktoEventDetails();
                 }
             });
 
@@ -363,27 +341,28 @@ box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
                     format: "DD.MM.YYYY",
                     schedules: eventarray,
                     select: function(date, context) {
-                        $("#infobycalendar").html("");
+                        $(".infobycalendar").remove();
                         if (context.storage.schedules.length > 0) {
-                            $("#infobycalendar")
-                                .append("<p>Вы выбрали дату " + context.storage.schedules[0].date + "</p>");
+                            var messageAboutEvent = "";
+                            messageAboutEvent += "<div class='infobycalendar'><p>Вы выбрали дату " + context.storage.schedules[0].date + "</p>";
                             for (var i = 0; i < context.storage.schedules.length; i++) {
-                                $("#infobycalendar").append("<p>Название мероприятия " +
-                                    context.storage.schedules[i].eventname +
-                                    "</p>");
-                                $("#infobycalendar").append("<p>Диапозон " +
-                                    context.storage.schedules[i].startdatetime +
-                                    "-" +
-                                    context.storage.schedules[i].stopdatetime +
-                                    "</p>");
-                                $("#infobycalendar").append('<a href="/PublicEventsInfo/Details/' +
-                                    context.storage.schedules[i].eventid +
-                                    '" style="cursor:pointer;width:100%">Подробнее</a>');
+                                messageAboutEvent += "<p>Название мероприятия " + context.storage.schedules[i].eventname + "</p>";
+                                messageAboutEvent += "<p>Диапозон " + context.storage.schedules[i].startdatetime + "-" + context.storage.schedules[i].stopdatetime + "</p>";
+                                messageAboutEvent += '<a id="eventDetails" href="/PublicEventsInfo/Details/' + context.storage.schedules[i].eventid + '" style="cursor:pointer;width: 150px;border-radius: 7%;">Подробнее</a>';
                             }
+                            messageAboutEvent += "</div>";
+                            $(this).append(messageAboutEvent);
                         }
+                        updatelinktoEventDetails();
                     }
                 });
             };
+
+            var updatelinktoEventDetails = function () {
+                $("#eventDetails").click(function () {
+                    $(location).attr("href", $(this)[0].href);
+                })
+            }
 
             $(".eventdirection").click(function() {
                 var hasClass = this.classList.contains('active');

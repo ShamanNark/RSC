@@ -39,7 +39,7 @@ namespace RSC.Controllers
                 cfg.CreateMap<RSC.Data.DbModels.Event, EventCreateViewModel>();
                 cfg.CreateMap<EventCreateViewModel, RSC.Data.DbModels.Event>();
                 cfg.CreateMap<List<RSC.Data.DbModels.Event>, List<EventCreateViewModel>>();
-                cfg.CreateMap< List<EventCreateViewModel>, List<RSC.Data.DbModels.Event>>();
+                cfg.CreateMap<List<EventCreateViewModel>, List<RSC.Data.DbModels.Event>>();
             });
         }
 
@@ -72,12 +72,12 @@ namespace RSC.Controllers
             };
             return View(model);
         }
-        
+
         //public IActionResult StudStarter()
         //{
         //    return View();
         //}
-        
+
 
         //public IActionResult Events()
         //{
@@ -134,8 +134,8 @@ namespace RSC.Controllers
                 eventid = item.Id,
                 name = "event",
                 date = item.StartDateTime.ToString("yyyy-MM-dd"),
-                startdatetime = item.StartDateTime,
-                stopdatetime = item.StopDateTime,
+                startdatetime = item.StartDateTime.ToShortDateString(),
+                stopdatetime = item.StopDateTime.ToShortDateString(),
                 eventname = item.NameEvent
             }).ToArray();
             return new JsonResult(model);
@@ -152,7 +152,7 @@ namespace RSC.Controllers
                 var coFileId = await dowloadFiles.AddFile(uploadedFile, "/CoPrivateFiles/" + uploadedFile.Name, uploadedFile.FileName);
                 if (coFileId != null)
                 {
-                    var cofileDb = new CoPersonalFile {FileId = coFileId ?? 0, StudentCouncilId = studentCouncilId};
+                    var cofileDb = new CoPersonalFile { FileId = coFileId ?? 0, StudentCouncilId = studentCouncilId };
                     db.CoPersonalFiles.Add(cofileDb);
                     db.SaveChanges();
                 }
