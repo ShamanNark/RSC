@@ -1,8 +1,8 @@
 ﻿@model RSC.Controllers.Models.EventsViewModels.EventCreateViewModel
 
 <div class="paddingMainblock">
-    <h2>Описание мероприятия</h2>
-    <div class="col-md-5">
+    <div class="col-md-5" style="padding-left: 0px;">
+        <h2>Описание мероприятия</h2>
         <div class="form-group">
             <label asp-for="EventTypeId" class="control-label"></label>
             @Html.DropDownList("EventTypeId", Model.EventTypes, new { @class = "form-control", disabled = "disabled" })

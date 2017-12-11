@@ -1,8 +1,8 @@
 ﻿@model RSC.Controllers.Models.EventsViewModels.EventCreateViewModel
 
 <div class="col-md-12 paddingMainblock">
-    <h2>Целевые показатели</h2>
     <div class="targets">
+    <h2>Целевые показатели</h2>
         @for (var i = 0; i < Model.TargetIndicators.Count(); i++)
         {
             <div id="addrow_@i" class="targetevent">

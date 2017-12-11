@@ -40,6 +40,20 @@ button {
     border-radius: 12px;
 }
 
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: white;
+    cursor: default;
+
+    background: linear-gradient(to right, #e55727 9%, #e21c25) 0 0 no-repeat
+
+}
+
+.nav-tabs > li > a{
+    color:black;
+}
+
+
 .thumbnail {
     margin-top: 20px;
     margin-left: 90px;
@@ -49,7 +63,8 @@ button {
     border: none;
     -webkit-box-shadow: 5px 0px 44px -20px rgba(0,0,0,0.74);
     -moz-box-shadow: 5px 0px 44px -20px rgba(0,0,0,0.74);
-    box-shadow: 5px 0px 44px -20px rgba(0,0,0,0.74);
+    box-shadow: 5px 0px 44px -20px rgba(0,0,0,0.74)
+
 }
 
     .thumbnail .form-control {
