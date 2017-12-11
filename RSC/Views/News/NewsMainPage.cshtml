@@ -239,10 +239,16 @@
                     <h5>@Model.Announs.Select(a => a.NameEvent).Skip(2).FirstOrDefault()</h5>
                 </div>
                 <div class="row">
-                    <img class="row" src="@Url.Content( @Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).Skip(2).FirstOrDefault() ?? "")">
+                    @if (Model.Announs.Select(a => a.PublicEventInformation).Skip(2).FirstOrDefault() != null)
+                    {
+                        <img class="row" src="@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).Skip(2).FirstOrDefault() ?? "")">
+                    }
                 </div>
                 <div class="row">
-                    <p>@Model.Announs.Select(a => a.PublicEventInformation.TextForDetailsView).Skip(2).FirstOrDefault()</p>
+                    @if (Model.Announs.Select(a => a.PublicEventInformation).Skip(2).FirstOrDefault() != null)
+                    {
+                        <p>@Model.Announs.Select(a => a.PublicEventInformation.TextForDetailsView).Skip(2).FirstOrDefault()</p>
+                    }
                 </div>
             </a>
         </div>
