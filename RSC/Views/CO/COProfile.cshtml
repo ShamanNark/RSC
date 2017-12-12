@@ -301,7 +301,7 @@
             
             <h4 style="font-weight:bold;">@Model.StudentCouncil.UniversityData.UniversityName</h4>
             <div style="padding-top:10px; padding-bottom:10px;">
-                <a>@Model.StudentCouncil.UniversityData.UniversityWebSite</a>
+                <a href="@Model.StudentCouncil.UniversityData.UniversityWebSite">@Model.StudentCouncil.UniversityData.UniversityWebSite</a>
             </div>
             <p>@Model.StudentCouncil.UniversityData.UniversityAddress</p> 
             <p><i class="fa fa-phone " aria-hidden="true"></i><span style="padding-left:8px;">@Model.StudentCouncil.JobPhone</span></p>
@@ -342,10 +342,10 @@
                 <div class="one-info-block padding-content-header-title so-profile-lefblock-title oib-students col-md-12">
                     <h2 class="so-block-left-header-title" style="color:black;">Ссылки:</h2>
                     <ul class="so-block-content-text" style="color:black;">
-                        <li>Студенческий информационный центр ИТА ЮФА</li>
-                        <li>Объединенный совет обучающихся ЮФА</li>
-                        <li>Центр Карьеры ЮФА</li>
-                        <li>Официальный канал ЮФА<br />в YouTube алло</li>
+                        <li>Студенческий информационный центр</li>
+                        <li>Объединенный совет обучающихся</li>
+                        <li>Центр Карьеры</li>
+                        <li>Официальный канал<br />в YouTube</li>
                     </ul>
                 </div>
             </div>
@@ -376,7 +376,7 @@
                     <h2 class="so-block-header-title ">Мероприятия</h2>
                     <p class="so-block-content-text">Короткое описание о том,<br />какие проводяться мероприятия</p>
                 </a>
-                <a href="@Url.Action("Index","Profile")" class="one-info-block oib-prdso col-md-6  paddingside-zero" style="background: url('/img/onevent.jpg') no-repeat;background-size:cover; background-position: center center;-webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
+                <a href="/about/aboutprdso" class="one-info-block oib-prdso col-md-6  paddingside-zero" style="background: url('/img/onevent.jpg') no-repeat;background-size:cover; background-position: center center;-webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
 -moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
                     <h2 class="so-block-header-title">ПРДСО</h2>
                     <p class="so-block-content-text">Короткое описание<br />о конкурсе ПРДСО</p>
@@ -415,7 +415,7 @@
                         }
 
                         input[type="file"] {
-                            display: none;
+                            visibility: hidden;
                         }
                     </style>
                     <label for="file-upload" class="custom-file-upload">
