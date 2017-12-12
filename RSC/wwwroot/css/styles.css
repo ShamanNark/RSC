@@ -39,6 +39,16 @@ button {
 .form-control {
     border-radius: 12px;
 }
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: white;
+    cursor: default;
+    background: linear-gradient(to right, #e55727 9%, #e21c25) 0 0 no-repeat
+}
+
+.nav-tabs > li > a {
+    color: black;
+}
+
 
 .thumbnail {
     margin-top: 20px;
@@ -1369,7 +1379,8 @@ h3{
         padding-right: 25px;
         float: right;
         font-size: 12px;
-        color: lightgray;
+        color: white;
+        border-color: lightgrey;
     }
 
 
