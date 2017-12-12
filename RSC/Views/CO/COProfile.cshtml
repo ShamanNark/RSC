@@ -29,8 +29,11 @@
         z-index: 1;
     }
 
-
-
+    #eventDetails {
+        background-color: rgb(229,111,52) !important;
+        color: white !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+    } 
     .infobycalendar-block {
         background-color: white;
     }
@@ -58,7 +61,8 @@
 
     }
     .coinfo {
-        min-height: 440px;
+        padding-top:7%;
+        padding-bottom:7%;
     }
 
     .pg-main {
@@ -74,41 +78,58 @@
 
     .info-blocks {
         padding-left: 0px;
-        padding-right: 0px;
-        min-height: 900px;
-        
+        padding-right: 0px;        
     }
 
     .one-info-block {
         padding-left: 0px;
         padding-right: 0px;
         background-color: white;
-        height: 450px;
-
+        height: 350px;
     }
 
-    .one-info-block h2 {
-        padding-top: 35%;
-        padding-left: 10%;
-        color: white;
-        font-size: 20px;
+    .so-block-header-title {
+        font-family: 'Geometria','Open Sans','helvetica','sans-serif';
+        padding-top: 10%;
+        font-size: 18px;
+        color: whitesmoke;
+        padding-left: 12%;
+        font-weight:bolder;
+    }
+
+    .so-block-content-text {
+        font-family: 'Geometria','Open Sans','helvetica','sans-serif';
+        padding-top: 3%;
+        font-size: 12px;
+        color: whitesmoke;
+        padding-left: 12%;
         font-weight: bold;
+    }
+
+    .so-block-left-header-title {
+        font-family: 'Geometria','Open Sans','helvetica','sans-serif';
+        padding-top: 8%;
+        font-size: 18px;
+        color: whitesmoke;
+        padding-left: 12%;
+        font-weight: bolder;
+    }
+
+    .so-block-left-content-title {
+        font-family: 'Geometria','Open Sans','helvetica','sans-serif';
+        padding-top: 3%;
+        font-size: 12px;
+        color: whitesmoke;
+        padding-left: 12%;
+        font-weight: bolder;
     }
 
     .oib-links {
-        
+        padding-left: 15%;
     }
-
-    .oib-links h2{
-        text-align: center;
-        padding-top: 15%;
-        font-size: 20px;
-        font-weight: bold;
+    
+    .oib-links ul {
     }
-
-        .oib-links ul {
-            text-align: center;
-        }
 
     .oib-links li{
         
@@ -117,59 +138,47 @@
     .oib-studstarter {
         background-color:palevioletred;
     }
-    .oib-studstarter h2 {
-        text-align: center;
-        } 
-        
+
     .oib-co-members {
         background-color:slateblue;
     }
 
-    .oib-co-members h2{
-        text-align: center;
-    }
-
     .oib-students {
-        background-color: olive;
     }
 
-        .oib-students h2 {
-            padding-top: 15%;
-            padding-left: 10%;
-        }
+    .oib-students h2 {
+
+    }
 
     .oib-events {
         background-color: aqua;
     }
-        .oib-events h2 {
-            text-align: center;
-        }
-
 
 
     .oib-prdso {
         background-color: cadetblue;
     }
 
-        .oib-prdso h2 {
-            text-align: center;
-        }
 
     .links-block {
-        min-height: 530px;
-        background-color: lightpink;
+        text-align:center
     }
 
+        .links-block h2 {
+            font-family: 'Geometria','Open Sans','helvetica','sans-serif';
+            padding-top: 3%;
+            font-size: 18px;
+            font-weight: bolder;
+        }
+
     .cal-filters {
-        width: 80%;
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
         min-height: 450px;
-        max-width: 395px;
         background-color: #fff;
         font-size: 100%;
         margin: 0 auto;
-        
+        border-left: solid 3px rgb(240,240,240);
     }
 
     .active {
@@ -222,12 +231,7 @@
 
     .pignose-calendar-unit-sat a {
         color: black !important;
-    }
-
-    /*.pignose-calendar-unit.pignose-calendar-unit-active .pignose-calendar-unit-sat a {
-        color: white;
-    }*/
-    
+    }    
     
     .pignose-calendar-unit-sun a {
         color: black !important;
@@ -236,12 +240,37 @@
     .eventdirection {
         box-shadow: none;
         border: none;
-        margin-top: 7px;
+        margin-top: 3px;
+        padding-top: 5px;
+        padding-left: 13px;
+        padding-right: 13px;
+        padding-bottom: 5px;
         border-radius: 20px;
-        font-weight: bold;
         font-size: 12px;
+        font-weight: bold;
+        font-family: 'Geometria','Open Sans','helvetica','sans-serif';
     }
 
+    .so-profile-block-title {
+        font-family: 'Geometria','Open Sans','helvetica','sans-serif';
+        padding-bottom:10px;
+    }
+
+    .padding-content-header-title{
+        padding-left:15%;
+    }
+
+    .file-row-style {
+        position: relative;
+        cursor: pointer;
+        padding-left:20%;
+        padding-right:20%;
+        padding-top:3%;
+        padding-bottom:3%;
+    }
+        .file-row-style:hover {
+            background-color: rgb(240,240,240);
+        }
 </style>
 
 <div class="comain col-md-12">
@@ -250,101 +279,160 @@
         <h3 style="display: inline-block"><a href="@Url.Action("Index","Profile")" style="color:white;">Заявка</a></h3>
         <h3 style="display: inline-block">Представитель СО</h3>
         <h3 style="display: inline-block">@Model.StudentCouncil.Name @Model.StudentCouncil.Surname</h3>
-
             <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" style=" display: inline-block;">
-
                 <button class="btn-red" style="margin-left:20px; margin-top:10px; padding-left: 20px; padding-right: 20px; padding-top: 3px; padding-bottom: 3px;" type="submit">ВЫЙТИ</button>
-            </form>
-        
+            </form>        
         </div>
 
     </div>
 
     <div class="coinfo col-md-12">
-        <div class="col-md-2"></div>
-        <div class="col-md-2">
-            <img src="~/img/raiting.jpg" alt="rating">
+        <div class="col-md-2" style="text-align:right;">
+            <img style="height:180px;" src="~/img/raiting.jpg" alt="rating">
         </div>
-        <div class="col-md-6" style="padding-top: 40px;">
+        <div class="col-md-2" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <h4>Ваши результаты:</h4>
+            <h4>По РФ - 21</h4>
+            <h4>По ФО - 11</h4>
+            <h4>По Региону - 3</h4>
+            <h4>По ПРДСО - 72</h4>
+        </div>
+        <div class="col-md-6" style="padding-left:60px; text-align:left;">
             
-            <p>@Model.StudentCouncil.UniversityData.UniversityName</p>
-            <p>@Model.StudentCouncil.UniversityData.UniversityWebSite</p>
+            <h4 style="font-weight:bold;">@Model.StudentCouncil.UniversityData.UniversityName</h4>
+            <div style="padding-top:10px; padding-bottom:10px;">
+                <a>@Model.StudentCouncil.UniversityData.UniversityWebSite</a>
+            </div>
             <p>@Model.StudentCouncil.UniversityData.UniversityAddress</p> 
+            <p><i class="fa fa-phone " aria-hidden="true"></i><span style="padding-left:8px;">@Model.StudentCouncil.JobPhone</span></p>
         </div>
         <div class="col-md-2"></div>
     </div>
 
     <div class="pg-main col-md-12">
-        @*<div id="infobycalendar" class="col-md-2  infobycalendar-block"></div>*@
-        <div class="col-md-12"style="padding-top:10%">
-            <div class="col-md-2"></div>
-
-            <div class="pgcalendar col-md-4" style="padding-left: 0px; padding-right: 0px; width:400px;"></div>
-            <div class="cal-filters col-md-4" style="display:inline; word-wrap: break-word; width:400px;">
-                <p style="font-family: 'Geometria','Open Sans','helvetica','sans-serif'; font-weight: bold; border:none; min-height:20px;padding-top: 30px; text-align:center;">Фильтр:</p>
-                @foreach (var item in @Model.EventDirections)
-            {
-                    <input class="eventdirection form-control" type="button" data-directionid="@item.Id" value="@item.Name"/>
-                }
+        <div class="col-md-12"style="padding-top:10%; padding-left: 10%;">
+            <div class="pgcalendar col-md-6" style="padding-left: 0px; padding-right: 0px; width:400px;"></div>
+            <div class="cal-filters col-md-6">
+                <div class="col-md-12">
+                    <p style="font-family: 'Geometria','Open Sans','helvetica','sans-serif'; font-weight: bold; border:none; min-height:20px;padding-top: 30px; padding-left: 25px; text-align:left;">Фильтр:</p>
+                </div>
+                <div class="col-md-12" style="display:flex; justify-content:space-between; flex-direction:column;">
+                    @for (var i = 0; i < @Model.EventDirections.Count(); i = i + 2)
+                    {
+                        <div style="display:flex;justify-content:flex-start; flex-direction:row;">
+                            <div class="col-md-6">
+                                <p class="eventdirection" type="button" style="" data-directionid="@Model.EventDirections[i].Id">@Model.EventDirections[i].Name</p>
+                            </div>
+                            @if (i < @Model.EventDirections.Count())
+                            {
+                                <div class="col-md-6">
+                                    <p class="eventdirection" type="button" style="" data-directionid="@Model.EventDirections[i + 1].Id">@Model.EventDirections[i + 1].Name</p>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
             </div>
-            <div class="col-md-2"></div>
         </div>
-</div>
+    </div>
 
     <div class="info-blocks col-md-12">
-        <div class=" oib-links col-md-6" style="text-align:center;">            
-            @*<h2>Ссылки:</h2>
-            <ul style="padding-left: 0pt;">
-                <li>Ссылка один</li>
-                <li>Ссылка два</li>
-                <li>Ссылка три</li>
-                <li>Ссылка четыре</li>
-                <li>Ссылка пять</li>
-            </ul>*@
+        <div class="col-md-12 paddingside-zero" >
+            <div class="col-md-5 paddingside-zero">
+                <div class="one-info-block padding-content-header-title so-profile-lefblock-title oib-students col-md-12">
+                    <h2 class="so-block-left-header-title" style="color:black;">Ссылки:</h2>
+                    <ul class="so-block-content-text" style="color:black;">
+                        <li>Студенческий информационный центр ИТА ЮФА</li>
+                        <li>Объединенный совет обучающихся ЮФА</li>
+                        <li>Центр Карьеры ЮФА</li>
+                        <li>Официальный канал ЮФА<br />в YouTube алло</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-7 paddingside-zero">
+                <div class="one-info-block  oib-studstarter col-md-6 paddingside-zero" style="background: url('/img/studstarter.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
+-moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
+                    <h2 class="so-block-header-title ">Студстартер</h2>
+                    <p class="so-block-content-text">Министерство образования РФ<br />готовит масштабный ребрендинг<br />российского студенческого центра<br />"Росстуденчество"</p>
+                </div>
+                <a href="@Url.Action("Index","CoMembers")" class="one-info-block oib-co-members col-md-6 paddingside-zero" style="background: url('/img/sopeople.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
+-moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
+                    <h2 class="so-block-header-title ">Члены совета<br />обучающихся</h2>
+                    <p class="so-block-content-text">Министерство образования РФ<br />говорит масштабный ребрединг<br />россйского студентческого центра<br />"Росстуденчество"</p>
+                </a>
+            </div>
         </div>
-        <div class="one-info-block oib-studstarter col-md-3" style="background: url('/img/studstarter.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
+        <div class="col-md-12 paddingside-zero" >
+            <div class="col-md-5  paddingside-zero">
+                <a href="@Url.Action("Students","CO")" class="one-info-block padding-content-header-title so-profile-lefblock-title oib-students col-md-12 paddingside-zero" style="background: url('/img/students.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
 -moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
-            <h2>Студстартер</h2>
+                    <h2 class="so-block-left-header-title">Студенты</h2>
+                    <p class="so-block-left-content-title">В данном разделе предоставлен список<br />активных студентов</p>
+                </a>
+            </div>
+            <div class="col-md-7  paddingside-zero">
+                <a href="@Url.Action("PrdsoEvents","CO")"  class="one-info-block oib-events col-md-6  paddingside-zero" style="background: url('/img/meropriyatia.jpg') no-repeat;background-size:cover; background-position: center center;-webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
+-moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
+                    <h2 class="so-block-header-title ">Мероприятия</h2>
+                    <p class="so-block-content-text">Короткое описание о том,<br />какие проводяться мероприятия</p>
+                </a>
+                <a href="@Url.Action("Index","Profile")" class="one-info-block oib-prdso col-md-6  paddingside-zero" style="background: url('/img/onevent.jpg') no-repeat;background-size:cover; background-position: center center;-webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
+-moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
+                    <h2 class="so-block-header-title">ПРДСО</h2>
+                    <p class="so-block-content-text">Короткое описание<br />о конкурсе ПРДСО</p>
+                </a>
+            </div>
         </div>
-        <a href="@Url.Action("Index","CoMembers")" class="one-info-block oib-co-members col-md-3" style="background: url('/img/sopeople.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
--moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
-            <h2>Члены совета обучающихся</h2>
-        </a>
-        <a href="@Url.Action("Students","CO")" class="one-info-block oib-students col-md-6" style="background: url('/img/students.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
--moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
-            <h2>Студенты</h2>
-        </a>
-        <div class="one-info-block oib-events col-md-3" style="background: url('/img/meropriyatia.jpg') no-repeat;background-size:cover; background-position: center center;-webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
--moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
-            <h2>Мероприятия</h2>
-        </div>
-        <a href="@Url.Action("PrdsoEvents","CO")" class="one-info-block oib-prdso col-md-3" style="background: url('/img/onevent.jpg') no-repeat;background-size:cover; background-position: center center;-webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
--moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
-            <h2>ПРДСО</h2>
-        </a>
     </div>
     <div class="links-block col-md-12">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <h2>Документы самоуправления</h2>
-            
-            <ul>
-                @foreach (var file in Model.Files)
-                {
-                    <li>@file.File.Name
-                        <a href="@file.File.Path" download>
-                            <i class="fa fa-download"></i>Скачать
-                        </a>
-                    </li>
-                }
-            </ul>
-            <h3>Выберите файл для загрузки</h3>
+        <h2>Документы самоуправления</h2>
+        <div class="col-md-12" style="padding-top:30px;">
+            @foreach (var file in Model.Files)
+            {
+                <div class="col-md-12 file-row-style" style="">
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <i class="fa fa-file-text-o fa-2x" style="color:crimson" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-md-8" style="text-align:left;">
+                            @file.File.Name
+                        </div>
+                        <div class="col-md-2">
+                            <a href="@file.File.Path" download>Скачать</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div>
             <form asp-action="AddFile" asp-controller="CO" method="post" enctype="multipart/form-data">
-                <input type="file" name="uploadedFile" /><br>
-                <input type="submit" value="Загрузить" />
+                <div class="col-md-12 file-row-style">
+                    <style>
+                        .custom-file-upload {
+                            width:200px;
+                            display: inline-block;
+                            cursor: pointer;
+                        }
+
+                        input[type="file"] {
+                            display: none;
+                        }
+                    </style>
+                    <label for="file-upload" class="custom-file-upload">
+                        <span style="padding-top:3px;">
+                            <i class="fa fa-upload fa-2x" aria-hidden="true" style="color:crimson"></i>
+                        </span>
+                        <span>
+                            Выберите файл для загрузки
+                        </span>
+                    </label>
+                    <input id="file-upload" type="file" /> 
+
+                    <input class="btn btn-blue" type="submit" value="Загрузить" />
+                </div>
             </form>
         </div>
-        <div class="col-md-3"></div>
+
     </div>
 
 </div>

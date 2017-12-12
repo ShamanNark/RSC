@@ -1505,3 +1505,14 @@ h3{
         -webkit-filter: blur(0px);
         visibility: visible;
     }
+
+    .paddingside-zero {
+        padding-left:0 ;
+        padding-right:0;
+    }
+
+    .so-profile-header-block {
+        padding-top: 15%;
+        padding-left: 15%;
+        text-align: left;
+    }
