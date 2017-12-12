@@ -271,6 +271,15 @@
         .file-row-style:hover {
             background-color: rgb(240,240,240);
         }
+    .custom-file-upload {
+        width: 200px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    input[type="file"] {
+        visibility: hidden;
+    }
 </style>
 
 <div class="comain col-md-12">
@@ -323,7 +332,7 @@
                             <div class="col-md-6">
                                 <p class="eventdirection" type="button" style="" data-directionid="@Model.EventDirections[i].Id">@Model.EventDirections[i].Name</p>
                             </div>
-                            @if (i < @Model.EventDirections.Count())
+                            @if ((i+1) < @Model.EventDirections.Count())
                             {
                                 <div class="col-md-6">
                                     <p class="eventdirection" type="button" style="" data-directionid="@Model.EventDirections[i + 1].Id">@Model.EventDirections[i + 1].Name</p>
@@ -407,17 +416,6 @@
         <div>
             <form asp-action="AddFile" asp-controller="CO" method="post" enctype="multipart/form-data">
                 <div class="col-md-12 file-row-style">
-                    <style>
-                        .custom-file-upload {
-                            width:200px;
-                            display: inline-block;
-                            cursor: pointer;
-                        }
-
-                        input[type="file"] {
-                            visibility: hidden;
-                        }
-                    </style>
                     <label for="file-upload" class="custom-file-upload">
                         <span style="padding-top:3px;">
                             <i class="fa fa-upload fa-2x" aria-hidden="true" style="color:crimson"></i>
