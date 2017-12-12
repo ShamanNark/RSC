@@ -127,6 +127,7 @@
             color: black;
             font-weight: bold;
             word-wrap: break-word;
+            font-size: 20px;
         }
 
 
@@ -205,7 +206,7 @@
         </div>
     </div>
 </div>
-<div class="col-md-12" style="padding-left: 0px; padding-right:0px;">
+<div class="col-md-12" style="padding-left: 0px; padding-right:0px; margin-top: 40px;">
     <a class="headerNewsMainPage" href="@Url.Action("AnnouncementsBoard","PublicEventsInfo")"><h3 style="
     top: -13px;
     position: absolute;
@@ -217,7 +218,7 @@
     font-weight:bold;
 ">АНОНСЫ</h3></a>
     <hr style="border: solid 1px lightgray;" />
-        <div class="row">
+        <div class="row" style="margin-top:40px;">
             <a href="@Url.Action("Details","PublicEventsInfo", new { id = @Model.Announs.Select(a => a.Id).FirstOrDefault()})" class="col-md-4">
                 <div class="row" style="word-wrap: break-word; ">
                     <h5 class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-transform:uppercase; text-align:center;">@Model.Announs.Select(a => a.NameEvent).FirstOrDefault()</h5>
@@ -231,7 +232,7 @@
                 <div class="row" style="word-wrap: break-word;">
                     @if (Model.Announs.Select(a => a.PublicEventInformation).FirstOrDefault() != null)
                     {
-                        <p class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold;">@Model.Announs.Select(a => a.PublicEventInformation.TextForDetailsView).FirstOrDefault()</p>
+                        <p class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-align:center;">@Model.Announs.Select(a => a.PublicEventInformation.TextForDetailsView).FirstOrDefault()</p>
                     }
                 </div>
             </a>
@@ -269,7 +270,7 @@
             </a>
         </div>
 </div>
-<div class="col-md-12" style="padding-left: 0px; padding-right:0px;">
+<div class="col-md-12" style="padding-left: 0px; padding-right:0px; margin-top: 40px;">
     <a class="headerNewsMainPage" href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Interviews.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Интервью").Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})"><h3 style="
     top: -13px;
     position: absolute;
@@ -302,7 +303,7 @@
             </a>
         </div>
 </div>
-<div class="col-md-12" style="padding-left:0px; padding-right:0px;">
+<div class="col-md-12" style="padding-left:0px; padding-right:0px; margin-top:40px;">
     <a class="headerNewsMainPage" href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Blogs.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Блог").Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})"><h3 style="
     top: -13px;
     position: absolute;

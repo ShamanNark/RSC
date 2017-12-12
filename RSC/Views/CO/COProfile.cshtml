@@ -9,7 +9,7 @@
     .pignose-calendar {
         width: 100%;
         max-width: 600px;
-        border: 1px solid #d8d8d8;
+        border:none;
     }
 
 
@@ -166,7 +166,6 @@
         min-height: 453px;
         max-width: 395px;
         background-color: #fff;
-        border: 1px solid #d8d8d8;
         font-size: 100%;
         margin: 0 auto;
         
@@ -180,6 +179,56 @@
         width:150px;
         text-align: center;
         position:center;
+    }
+
+    .pignose-calendar-top{
+        border: none !important;
+        box-shadow: none !important;
+        background: none !important;
+    }
+    
+    .pignose-calendar .pignose-calendar-unit.pignose-calendar-unit-active a {
+        background-color: rgb(229,111,52);
+        color: #ffffff !important;
+        font-weight: 600;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .pignose-calendar-button-schedule-pin {
+        background-color: rgb(229,111,52) !important;
+    }
+
+
+    .pignose-calendar-week-sat {
+        color: black !important;
+    }
+
+    .pignose-calendar-week-sun {
+        color: black !important;
+    }
+    
+    
+    
+    .pignose-calendar .pignose-calendar-unit a {
+        color: black;
+        font-weight: bold;
+    }
+
+    .pignose-calendar-unit-sat a {
+        color: black !important;
+    }
+
+    .pignose-calendar-unit-sat a {
+        color: black !important;
+    }
+
+    /*.pignose-calendar-unit.pignose-calendar-unit-active .pignose-calendar-unit-sat a {
+        color: white;
+    }*/
+    
+    
+    .pignose-calendar-unit-sun a {
+        color: black !important;
     }
 
 </style>
@@ -216,15 +265,18 @@
 
     <div class="pg-main col-md-12">
         @*<div id="infobycalendar" class="col-md-2  infobycalendar-block"></div>*@
-        <div class="pgcalendar col-md-4" style="padding-left: 0px; padding-right: 0px;"></div>
-        <div class="cal-filters col-md-4">
-            <h4 style="font-family: 'Raleway','Open Sans','helvetica','sans-serif'; font-weight: bold">Фильтр:</h4>
-            @foreach (var item in @Model.EventDirections)
+        <div class="col-md-12"style="padding-top:10%">
+            <div class="col-md-2"></div>
+            <div class="pgcalendar col-md-4" style="padding-left: 0px; padding-right: 0px;"></div>
+            <div class="cal-filters col-md-4" style="display:inline; word-wrap: break-word;">
+                <p style="font-family: 'Raleway','Open Sans','helvetica','sans-serif'; font-weight: bold; border:none; min-height:20px; max-width:80%; padding-top: 30px;">Фильтр:</p>
+                @foreach (var item in @Model.EventDirections)
             {
-                <input class="eventdirection form-control" type="button" data-directionid="@item.Id" value="@item.Name"/>   
-            }
+                    <input class="eventdirection form-control" type="button" data-directionid="@item.Id" value="@item.Name" />
+                }
+            </div>
+            <div class="col-md-2"></div>
         </div>
-    <div class="col-md-2"></div>
 </div>
 
     <div class="info-blocks col-md-12">
