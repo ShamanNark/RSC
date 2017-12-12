@@ -10,6 +10,7 @@
         width: 100%;
         max-width: 600px;
         border:none;
+        box-shadow: none;
     }
 
 
@@ -63,12 +64,12 @@
     .pg-main {
         padding-top: 40px;
         min-height: 800px;
-        background: linear-gradient(to right, #e55727 9%, #e21c25) 0 0 no-repeat;
-        background: -webkit-linear-gradient(left, #e55727 9%, #e21c25) 0 0 no-repeat;
-        background: -moz-linear-gradient(right, #e55727 9%, #e21c25) 0 0 no-repeat;
-        background: -ms-linear-gradient(left, #e55727 9%, #e21c25) 0 0 no-repeat;
-        background: -o-linear-gradient(right, #e55727 9%, #e21c25) 0 0 no-repeat;
-        background: linear-gradient(to right, #e55727 9%, #e21c25) 0 0 no-repeat;
+        background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,linear-gradient(to right, #e55727 9%, #e21c25) 0 0 no-repeat;
+        background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,-webkit-linear-gradient(left, #e55727 9%, #e21c25) 0 0 no-repeat;
+        background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,-moz-linear-gradient(right, #e55727 9%, #e21c25) 0 0 no-repeat;
+        background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,-ms-linear-gradient(left, #e55727 9%, #e21c25) 0 0 no-repeat;
+        background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,-o-linear-gradient(right, #e55727 9%, #e21c25) 0 0 no-repeat;
+        background: url(../../img/pdrso-dots.png) 0px 0px no-repeat,linear-gradient(to right, #e55727 9%, #e21c25) 0 0 no-repeat;
     }
 
     .info-blocks {
@@ -163,7 +164,7 @@
         width: 80%;
         padding-left: 15px;
         padding-right: 15px;
-        min-height: 453px;
+        min-height: 450px;
         max-width: 395px;
         background-color: #fff;
         font-size: 100%;
@@ -172,7 +173,8 @@
     }
 
     .active {
-        background-color: coral;
+        background-color: rgb(229,111,52);
+        color: white;
     }
 
     .detailsbutton{
@@ -231,6 +233,15 @@
         color: black !important;
     }
 
+    .eventdirection {
+        box-shadow: none;
+        border: none;
+        margin-top: 7px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
 </style>
 
 <div class="comain col-md-12">
@@ -267,12 +278,13 @@
         @*<div id="infobycalendar" class="col-md-2  infobycalendar-block"></div>*@
         <div class="col-md-12"style="padding-top:10%">
             <div class="col-md-2"></div>
-            <div class="pgcalendar col-md-4" style="padding-left: 0px; padding-right: 0px;"></div>
-            <div class="cal-filters col-md-4" style="display:inline; word-wrap: break-word;">
-                <p style="font-family: 'Raleway','Open Sans','helvetica','sans-serif'; font-weight: bold; border:none; min-height:20px; max-width:80%; padding-top: 30px;">Фильтр:</p>
+
+            <div class="pgcalendar col-md-4" style="padding-left: 0px; padding-right: 0px; width:400px;"></div>
+            <div class="cal-filters col-md-4" style="display:inline; word-wrap: break-word; width:400px;">
+                <p style="font-family: 'Geometria','Open Sans','helvetica','sans-serif'; font-weight: bold; border:none; min-height:20px;padding-top: 30px; text-align:center;">Фильтр:</p>
                 @foreach (var item in @Model.EventDirections)
             {
-                    <input class="eventdirection form-control" type="button" data-directionid="@item.Id" value="@item.Name" />
+                    <input class="eventdirection form-control" type="button" data-directionid="@item.Id" value="@item.Name"/>
                 }
             </div>
             <div class="col-md-2"></div>
@@ -281,14 +293,14 @@
 
     <div class="info-blocks col-md-12">
         <div class=" oib-links col-md-6" style="text-align:center;">            
-            <h2>Ссылки:</h2>
+            @*<h2>Ссылки:</h2>
             <ul style="padding-left: 0pt;">
                 <li>Ссылка один</li>
                 <li>Ссылка два</li>
                 <li>Ссылка три</li>
                 <li>Ссылка четыре</li>
                 <li>Ссылка пять</li>
-            </ul>
+            </ul>*@
         </div>
         <div class="one-info-block oib-studstarter col-md-3" style="background: url('/img/studstarter.jpg') no-repeat;background-size:cover; background-position: center center; -webkit-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);
 -moz-box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82); box-shadow: inset 10px 10px 300px -11px rgba(0,0,0,0.82);">
