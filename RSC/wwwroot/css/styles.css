@@ -460,9 +460,7 @@ h3{
     }
 
         .nav-right-links li a {
-            font-size: 12px;
-            font-weight: bold;
-            color: black;
+            
         }
 
 
@@ -868,15 +866,67 @@ h3{
     text-align: center;
 }
 
-.studstarter-buttons {
+.poll-block-buttons {
     padding-top: 360px;
-    text-align: center;
+    text-align: center
+
 }
 
-    .studstarter-buttons .btn-blue {
-        padding-left: 40px;
-        padding-right: 40px;
+.poll-block-buttons .btn-blue {
+    padding-left: 40px;
+    padding-right: 40px
+}
+
+.poll-block {
+    min-height: 700px;
+    margin-top: 62px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color: none;
+    box-shadow: none
+}
+
+
+.poll-block h2 {
+    margin: 0;
+    font-size: 133px;
+    font-weight: 900;
+    letter-spacing: 11px;
+    text-align: center;
+    color: rgba(53, 53, 53, 0.05);
+    text-transform: uppercase
+}
+
+
+@media (max-width: 1215px) {
+    .poll-block h2 {
+        font-size: 100px
     }
+}
+
+
+.poll-block h3 {
+    text-align: center;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 0;
+    top: -102px;
+    color: black;
+    font-weight: 600;
+    font-size: 35px
+}
+
+
+@media (max-width: 1215px) {
+    .poll-block h3 {
+        font-size: 30px;
+        top: -85px
+
+    }
+}
+
+
+
 
 .prdso {
     min-height: 700px;
