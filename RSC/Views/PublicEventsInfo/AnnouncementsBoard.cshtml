@@ -43,8 +43,9 @@
         background: linear-gradient(to right, #5ca4c2, #4674a3 98%) 0 0 no-repeat;
         padding-top: 10px;
         padding-bottom: 10px;
-        min-height: 50px;
-        float: left;
+        margin-bottom: 30px;
+        min-height: 150px;
+        float: right;
         width: 100%
     }
 
@@ -67,6 +68,8 @@
         list-style: none;
         text-align: center;
         color: #ffffff;
+        padding: 10px 10px;
+        float: right;
     }
 
     .tabs-controllers__item-active {
@@ -85,8 +88,8 @@
         <ul id="tabs-list" class="tab-controllers">
             @for (var i = 0; i < Model.EventDirections.Count(); i++)
             {
-                <li class="tabs-controllers__item  col-md-3 " data-class="">
-                    <a class="newslink @(@Model.EventDirections[i].Id == Model.SelectedEventDirectionId ? "tabs-controllers__item-active" : "")" data-value="@Model.EventDirections[i].Id">@Model.EventDirections[i].Name</a>
+                <li class="tabs-controllers__item  col-md-3" data-class="">
+                    <a style="font-size:14px;" class="newslink @(@Model.EventDirections[i].Id == Model.SelectedEventDirectionId ? "tabs-controllers__item-active" : "")" data-value="@Model.EventDirections[i].Id">@Model.EventDirections[i].Name</a>
                 </li>
 
             }

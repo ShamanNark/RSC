@@ -239,12 +239,11 @@
                 <div class="row" style="word-wrap: break-word;">
                     <h5 class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-transform:uppercase; text-align:center;">@Model.Announs.Select(a => a.NameEvent).Skip(1).FirstOrDefault()</h5>
                 </div>
-                <div class="row">
                     @if (Model.Announs.Select(a => a.PublicEventInformation).Skip(1).FirstOrDefault() != null)
                     {
-                        <img class="col-md-12" src="@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).Skip(1).FirstOrDefault() ?? "")">
+                        <div class="col-md-12" style="background: url(@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).Skip(1).FirstOrDefault() ?? "")) no-repeat;background-size:cover;background-position: center center; min-height: 200px;">
+                        </div>
                     }
-                </div>
                 <div class="row" style="word-wrap: break-word;">
                     @if (Model.Announs.Select(a => a.PublicEventInformation).Skip(1).FirstOrDefault() != null)
                     {
@@ -256,12 +255,11 @@
                 <div class="row" style="word-wrap: break-word;">
                     <h5 class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-transform:uppercase; text-align:center;">@Model.Announs.Select(a => a.NameEvent).Skip(2).FirstOrDefault()</h5>
                 </div>
-                <div class="row">
                     @if (Model.Announs.Select(a => a.PublicEventInformation).Skip(2).FirstOrDefault() != null)
                     {
-                        <img class="row" src="@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).Skip(2).FirstOrDefault() ?? "")">
+                        <div class="col-md-12" style="background: url(@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).Skip(2).FirstOrDefault() ?? "")) no-repeat;background-size:cover;background-position: center center; min-height: 200px;">
+                        </div>
                     }
-                </div>
                 <div class="row" style="word-wrap: break-word;">
                     @if (Model.Announs.Select(a => a.PublicEventInformation).Skip(2).FirstOrDefault() != null)
                     {
