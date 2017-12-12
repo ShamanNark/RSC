@@ -201,6 +201,28 @@
         padding-right: 0px;
         padding-bottom: 30px;
     }
+
+    .row-prdso-event-style {
+        padding-top: 2%;
+        padding-bottom: 2%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:center;
+    }
+    .row-prdso-event-style:hover {
+        background-color: rgb(240,240,240);
+        cursor: pointer;
+    }
+    .content-events-header {
+        margin-top: 25px;
+        padding-left: 0px;
+        padding-right: 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 </style>
 
 @Html.HiddenFor(model => model.PrdsoId)
@@ -321,7 +343,7 @@
                 <div class="col-md-12" style="height:100px;">
                     <h2>Мероприятия</h2>
                 </div>
-                <div class="col-md-12" style="margin-top: 25px; padding-left:0px; padding-right:0px;">
+                <div class="col-md-12 content-events-header">
                     @if(Model.Prdso.Status.Name == "Rejected")
                     {
                         <label class="col-md-12" style="color:lightcoral">@Model.Prdso.PrdsoStatusComment</label>
@@ -374,22 +396,11 @@
                         {
                             @if (item.Id == eventun.EventTypeId)
                             {
-                                <div class="col-md-12">
+                                <div class="col-md-12 row-prdso-event-style">
                                     <div class="col-sm-6">
-                                        <label style="color: black; font-size: 16px;">
-                                            <a href="@Url.Action("Details", "Events", new {id = @eventun.Id})" style="cursor: pointer; width: 100%">@eventun.NameEvent</a>
-                                        </label>
+                                        <a href="@Url.Action("Details", "Events", new {id = @eventun.Id})" style="cursor: pointer; color:black; font-size:15px; width: 100%">@eventun.NameEvent</a>                                        
                                     </div>
                                     <div class="col-sm-6" style="text-align: right;">
-                                        @*@if( (User.IsInRole("OPERATOR") || User.IsInRole("ADMIN")))
-                                        {
-                                            <select class="form-control" data-eventId="@eventun.Id">
-                                                @foreach (var state in Model.EventStates)
-                                                {
-                                                    <option value="@state.Id">@state.Name</option>
-                                                }
-                                            </select>
-                                        }*@
                                         
                                         @if((User.IsInRole("OOBO") || User.IsInRole("ADMIN")) && Model.Prdso.Status.Name == "Approved")
                                         {
@@ -404,7 +415,7 @@
 
                                         @if ((User.IsInRole("OOBO") || User.IsInRole("ADMIN")) && Model.Prdso.Status.Name != "Approved" && Model.Prdso.Status.Name != "Submitted")
                                         {
-                                            @Html.ActionLink("Изменить", "Edit", "Events", new {id = eventun.Id}, new {@class = "btn btn-default"})
+                                            @Html.ActionLink("Изменить", "Edit", "Events", new { id = eventun.Id }, new { @class = "btn btn-default", style="padding-right:7px; margin-right:7px;" })
                                             @Html.ActionLink("Удалить", "Delete", "Events", new {id = eventun.Id}, new {@class = "btn btn-default"})
                                         }                                        
                                     </div>
@@ -416,7 +427,7 @@
 
                 @if (User.IsInRole("OOBO") && Model.Prdso.Status.Name != "Approved" && Model.Prdso.Status.Name != "Submitted")
                 {
-                    <div class="col-md-12 ">
+                    <div class="col-md-12 paddingside-zero" style="padding-top:20px;">
                         <div class="input-group">
                             <span class="input-group-addon">
                                 @Html.CheckBoxFor(model => model.Prdso.UniversityApproved)
