@@ -30,68 +30,50 @@
         <img src="@Html.DisplayFor(model => model.SmallFoto.Path)" style="width:100%;padding-top:10px;"/>
         <h4>Проводится:</h4>
         <p>@Html.DisplayFor(model => model.Event.StartDateTime) - @Html.DisplayFor(model => model.Event.StopDateTime)</p>
-        <h4>Адрес мероприятия:</h4>
-        <p>@Html.DisplayFor(model => model.Event.Adress)</p>
-        @*<a href="#" class="btn-red" style="padding-left:15px; padding-right:15px;">ПОДАТЬ ЗАЯВКУ</a>*@
+        @*<h4>Адрес мероприятия:</h4>
+        <p>@Html.DisplayFor(model => model.Event.Adress)</p>*@
     </div>
     <div class="col-md-9" style="padding-left:30px;">
         <div class="col-md-12 event-full-info">
             <h1 style="padding-left:15px;">@Html.DisplayFor(model => model.Event.NameEvent)</h1>
             <div class="col-md-12 event-about">
-                <h2>О МЕРОПРИЯТИИ</h2>
+                <h2 style="font-weight: bold;">О МЕРОПРИЯТИИ</h2>
                 <h3>Описание:</h3>
                 <p style="word-wrap:break-word;">@Html.DisplayFor(model => model.Event.PublicEventInformation.TextForDetailsView)</p>
 
-                @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.VideoLink) != null)
-            {
+                @if (!string.IsNullOrEmpty(@Model.Event.PublicEventInformation.VideoLink))
+                {
                     <h3>Видеопрезентация:</h3>
                     <p>@Html.DisplayFor(model => model.Event.PublicEventInformation.VideoLink)</p>
                 }
 
-                @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.EventWebSite) != null)
+                @if (!string.IsNullOrEmpty(@Model.Event.PublicEventInformation.EventWebSite))
                 {
                     <h3>Сайт мероприятия:</h3>
                     @Html.DisplayFor(model => model.Event.PublicEventInformation.EventWebSite)
 
                 }
-                @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.FacebookGroup) != null || @Html.DisplayFor(model => model.Event.PublicEventInformation.VKGroup) != null || @Html.DisplayFor(model => model.Event.PublicEventInformation.InstagramGroup) != null)
-            {
+                @if (!string.IsNullOrEmpty(Model.Event.PublicEventInformation.FacebookGroup) || !string.IsNullOrEmpty(Model.Event.PublicEventInformation.VKGroup) || !string.IsNullOrEmpty(Model.Event.PublicEventInformation.InstagramGroup))
+                {
                     <h3>Ссылки на социальные сети мероприятия:</h3>
-                    @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.FacebookGroup) != null)
+                    @if (!string.IsNullOrEmpty(Model.Event.PublicEventInformation.FacebookGroup))
                     {
 
                         @Html.DisplayFor(model => model.Event.PublicEventInformation.FacebookGroup)
                         <br />
-
-
-
                     }
-                    @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.VKGroup) != null)
-                {
+                    @if (!string.IsNullOrEmpty(Model.Event.PublicEventInformation.VKGroup))
+                    {
                         @Html.DisplayFor(model => model.Event.PublicEventInformation.VKGroup)
                         <br />
                     }
-                    @if (@Html.DisplayFor(model => model.Event.PublicEventInformation.InstagramGroup) != null)
-                {
+                    @if (!string.IsNullOrEmpty(Model.Event.PublicEventInformation.InstagramGroup))
+                    {
                         @Html.DisplayFor(model => model.Event.PublicEventInformation.InstagramGroup)
 
                     }
-
-
-
-
                 }
-
-
             </div>
         </div>
     </div>
-
-
 </div>
-
-
-@*<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>*@

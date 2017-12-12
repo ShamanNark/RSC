@@ -80,18 +80,44 @@
     .dateTimePadding {
         padding-top: 25px;
     }
+
+    .announcements-header-directions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .row-header-directions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:center;
+    }
 </style>
 <link href="~/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
 <div class="news-header">
     <div class="navbar-collapse collapse">
-        <ul id="tabs-list" class="tab-controllers">
-            @for (var i = 0; i < Model.EventDirections.Count(); i++)
+        <ul id="tabs-list" class="tab-controllers announcements-header-directions">
+            @for (var i = 0; i < Model.EventDirections.Count(); i = i + 3)
             {
-                <li class="tabs-controllers__item  col-md-3" data-class="">
-                    <a style="font-size:14px;" class="newslink @(@Model.EventDirections[i].Id == Model.SelectedEventDirectionId ? "tabs-controllers__item-active" : "")" data-value="@Model.EventDirections[i].Id">@Model.EventDirections[i].Name</a>
-                </li>
-
+                <ul class="row row-header-directions">
+                    <li class="tabs-controllers__item  col-md-4" data-class="">
+                        <a style="font-size:14px;" class="newslink @(@Model.EventDirections[i].Id == Model.SelectedEventDirectionId ? "tabs-controllers__item-active" : "")" data-value="@Model.EventDirections[i].Id">@Model.EventDirections[i].Name</a>
+                    </li>
+                    @if ((i + 1) < @Model.EventDirections.Count())
+                    {
+                    <li class="tabs-controllers__item  col-md-4" data-class="">
+                        <a style="font-size:14px;" class="newslink @(@Model.EventDirections[i + 1].Id == Model.SelectedEventDirectionId ? "tabs-controllers__item-active" : "")" data-value="@Model.EventDirections[i + 1].Id">@Model.EventDirections[i + 1].Name</a>
+                    </li>
+                    }
+                    @if ((i + 2) < @Model.EventDirections.Count())
+                    {
+                    <li class="tabs-controllers__item  col-md-4" data-class="">
+                        <a style="font-size:14px;" class="newslink @(@Model.EventDirections[i + 2].Id == Model.SelectedEventDirectionId ? "tabs-controllers__item-active" : "")" data-value="@Model.EventDirections[i + 2].Id">@Model.EventDirections[i + 2].Name</a>
+                    </li>
+                    }
+                </ul>
             }
         </ul>
     </div>
