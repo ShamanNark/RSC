@@ -225,6 +225,26 @@ h3{
 
 
 /* КНОПКИ */
+
+.text-headings {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    color: black;
+    font-weight: 200;
+    border-bottom: 2px solid;
+    border-bottom-color: currentcolor;
+    border-color: linear-gradient(to right, rgb(91,165,194), rgb(68,116,164));
+    border-color: rgb(91,165,194);
+
+}
+
+.subheadings {
+    color: rgb(91,165,194);
+    font-weight:bold;
+    font-size: 16px;
+}
+
 .btn-nav {
     height: 45px;
     width: 100%;

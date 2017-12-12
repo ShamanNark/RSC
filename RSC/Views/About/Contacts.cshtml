@@ -1,26 +1,34 @@
 ﻿
 @{
     ViewData["Title"] = "Контакты";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-md-3"></div>
 
-<div class="col-md-9">
-    <h3 style="color: #23527c;">Контакты</h3>
+
+<div class="col-md-12" style="padding-left:0px;">
+    <h3 class="text-headings">Контакты</h3>
+    <div class="col-md-6" style="padding-left:0px;padding-right:0px;">
     <p>
-        Почтовый адрес: ул.Николоямская, д.11, стр.1, Москва, 109240 (станция метро Таганская, Кольцевая линия)<br /><br />
-        Телефоны горячей линии:<br />
-        +7 800 555 2390 Горячая линия по вопросам социальной и правовой помощи студентам<br />
-        E-mail: pravo@russtudcenter.ru<br /><br />
-        Отдел ПРДСО:<br />
-        Телефон: +7(495)915-26-02<br />
-        E-mail:  prdso@russtudcenter.ru<br /><br />
-        По другим вопросам:<br />
-        +7(495)915-28-10, +7(495)915-56-14<br />
-        Приемная: post@russtudcenter.ru<br />
+        <b>Почтовый адрес:</b> ул.Николоямская, д.11, стр.1, Москва, 109240 (станция метро Таганская, Кольцевая линия)<br /><br />
+        <b>Горячая линия по вопросам социальной и правовой помощи студентам:</b><br />
+        +7 800 555 2390 <br />
+        <b>E-mail:</b> pravo@russtudcenter.ru<br /><br />
+        <b>Отдел ПРДСО:</b><br />
+        <b>Телефон:</b> +7(495)915-26-02<br />
+        <b>E-mail:</b>  prdso@russtudcenter.ru<br /><br />
+        <b>По другим вопросам:</b><br />br />
+        +7(495)915-28-10, +7(495)915-56-14<br /><br />
+        <b>Приемная:</b> <br />
+        +7 495 915-28-10<br />
+        +7 495 915-56-14<br />
+        post@russtudcenter.ru <br />
 
     </p>
-
+    </div>
+    <div class="col-md-6" style="padding-left:0px;padding-right:0px;">
+    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3331602dddf5fc2e904bf851b828ea1e3f62c77b2e319a61617ef0f9df4263a3&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+    </div>
 </div>
 @section Scripts{
     <script>
