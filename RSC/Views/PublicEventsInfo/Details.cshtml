@@ -8,6 +8,8 @@
 <style>
     .main-event-block{
         margin-top: 60px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
     .event-left-info {
         text-align: center;
@@ -25,7 +27,7 @@
 
 <div class="col-md-12 main-event-block">
     <div class="col-md-3 event-left-info">
-        <img src="@Html.DisplayFor(model => model.SmallFoto.Path)" style="width:100%"/>
+        <img src="@Html.DisplayFor(model => model.SmallFoto.Path)" style="width:100%;padding-top:10px;"/>
         <h4>Проводится:</h4>
         <p>@Html.DisplayFor(model => model.Event.StartDateTime) - @Html.DisplayFor(model => model.Event.StopDateTime)</p>
         <h4>Адрес мероприятия:</h4>
