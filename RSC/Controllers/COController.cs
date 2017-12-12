@@ -17,10 +17,11 @@ using RSC.Controllers.Models.CoProfileViewModels;
 using RSC.Controllers.Models.EventsViewModels;
 using RSC.Data.DbModels;
 using Event = RSC.Data.DbModels.Event;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace RSC.Controllers
 {
-    [Authorize(Roles = "ADMIN, CO")]
+    [Authorize(Roles = "CO")]
     public class COController : Controller
     {
         private readonly ApplicationDbContext db;
@@ -43,18 +44,19 @@ namespace RSC.Controllers
             });
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult COProfile()
         {
             var userId = _userManager.GetUserId(User);
             var studentCouncil = db.StudentsCouncils.Include(s => s.UniversityData)
-                                                      .Include(s => s.OrderCreationCouncilOfLearners)
-                                                      .Include(s => s.ProtocolApprovalStudentAssociations)
-                                                      .FirstOrDefault(s => s.ApplicationUserId == userId);
+                                                    .Include(s => s.ApplicationUser)
+                                                    .Include(s => s.OrderCreationCouncilOfLearners)
+                                                    .Include(s => s.ProtocolApprovalStudentAssociations)
+                                                    .FirstOrDefault(s => s.ApplicationUserId == userId);
+
+            if (studentCouncil != null && studentCouncil.ApplicationUser.Status != ApplicationUserStatus.Approved)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             var prdsoEvents = db.Events.Include(e => e.Costs)
                                        .Include(e => e.TargetIndicators)
@@ -72,17 +74,6 @@ namespace RSC.Controllers
             };
             return View(model);
         }
-
-        //public IActionResult StudStarter()
-        //{
-        //    return View();
-        //}
-
-
-        //public IActionResult Events()
-        //{
-        //    return View();
-        //}
 
         public IActionResult Students()
         {

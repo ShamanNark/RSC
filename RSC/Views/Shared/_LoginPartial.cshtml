@@ -27,18 +27,18 @@
             {
                 <li><a href="@Url.Action("Index","Admin")">Админ панель</a></li>
             }
-            @if ((User.IsInRole("CO") || User.IsInRole("ADMIN")))
+            @if (User.IsInRole("CO"))
             {
                 <li><a href="@Url.Action("COProfile","CO")">Личный кабнет CO</a></li>
             }
-            @if (( User.IsInRole("OOBO") || User.IsInRole("ADMIN") || User.IsInRole("CO") ) && ViewBag.HasPrdso == "True" )
+            @if (( User.IsInRole("OOBO") || User.IsInRole("ADMIN") || User.IsInRole("CO") ) )
             {
                 <li><a href="@Url.Action("Index","Profile")">ПРДСО</a></li>
             }
-            @if ((User.IsInRole("OOBO") || User.IsInRole("ADMIN")) && (ViewBag.Status == "Approved" && ViewBag.HasPrdso != "True") )
+            @*@if (User.IsInRole("OOBO") || User.IsInRole("ADMIN"))
             {
                 <li><a href="@Url.Action("Create","PRDSO")">Cоздать ПРДСО</a></li>
-            }
+            }*@
             <li> <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
                     
                      <button class="btn-red" style="margin-left:20px; margin-top:10px; padding-left: 20px; padding-right: 20px; padding-top: 3px; padding-bottom: 3px;" type="submit">ВЫЙТИ</button>

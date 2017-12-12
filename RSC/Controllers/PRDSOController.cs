@@ -70,20 +70,7 @@ namespace RSC.Controllers
                 Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name"),
                 UniversityDatas = new SelectList(db.UniversityDatas.Select(uny => new { Id = uny.Id, Name = uny.UniversityName }), "Id", "Name"),
                 StudentCouncils = Mapper.Map<List<StudentsCouncilViewModel>>(db.StudentsCouncils.Where(sc => sc.UniversityDataId == oovo.UniversityDataId).ToList()),
-            };
-            
-            if (user != null)
-            {
-                ViewBag.Status = user.Status == ApplicationUserStatus.Approved ? "Approved" : "Not";
-            }
-            else
-            {
-                ViewBag.Status = "Not";
-            }
-
-            ViewBag.HasPrdso = "False";
-
-
+            };            
             return View(model);
         }
         
@@ -93,7 +80,6 @@ namespace RSC.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var dowloadFiles = new Helper.DownloadFiles(db, _appEnvironment);
                 var prdso = Mapper.Map<Prdso>(model);
                 var prdsoStatus = db.PrdsoStatuses.FirstOrDefault(status => status.Name == "None");

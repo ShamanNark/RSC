@@ -39,18 +39,18 @@ namespace RSC.Controllers
                 }).OrderByDescending(n => n.CreateDateTime).Take(6).ToList(),
             };
 
-            var user = await _userManager.GetUserAsync(User);
-            if (user != null)
-            {
-                ViewBag.Status = user.Status == ApplicationUserStatus.Approved ? "Approved" : "Not";
-                var prdsoobj = db.PrdsoList.Where(prdso => prdso.University.ApplicationUserId == user.Id || prdso.StudentsCouncil.ApplicationUserId == user.Id).FirstOrDefault();
-                ViewBag.HasPrdso = prdsoobj != null ? "True" : "False";
-            }
-            else
-            {
-                ViewBag.Status = "Not";
-                ViewBag.HasPrdso = "False";
-            }
+            //var user = await _userManager.GetUserAsync(User);
+            //if (user != null)
+            //{
+            //    ViewBag.Status = user.Status == ApplicationUserStatus.Approved ? "Approved" : "Not";
+            //    var prdsoobj = db.PrdsoList.Where(prdso => prdso.University.ApplicationUserId == user.Id || prdso.StudentsCouncil.ApplicationUserId == user.Id).FirstOrDefault();
+            //    ViewBag.HasPrdso = prdsoobj != null ? "True" : "False";
+            //}
+            //else
+            //{
+            //    ViewBag.Status = "Not";
+            //    ViewBag.HasPrdso = "False";
+            //}
             return View(viewModel);
         }
 

@@ -49,6 +49,22 @@ namespace RSC.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
+                if (oovo != null)
+                {
+                    if(oovo.ApplicationUser.Status != ApplicationUserStatus.Approved)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                if (co != null)
+                {
+                    if (co.ApplicationUser.Status != ApplicationUserStatus.Approved)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
                 prdso = oovo != null ? db.PrdsoList.Include(p => p.University)  
                                                    .Include(p => p.University.UniversityData)
                                                    .Include(p => p.Status)
@@ -71,7 +87,7 @@ namespace RSC.Controllers
 
             if (prdso == null )
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Create", "PRDSO");
             }
 
             var model = new ProfileViewModel
@@ -84,19 +100,7 @@ namespace RSC.Controllers
                 Events =  db.Events.Where(e => e.PrdsoId == prdso.Id).ToList(),
                 EventStatuses = db.EventStatuses.ToList(),
                 EventStates = db.EventStates.ToList()
-            };
-            
-            if (user != null)
-            {
-                ViewBag.Status = user.Status == ApplicationUserStatus.Approved ? "Approved" : "Not";
-                ViewBag.HasPrdso = prdso != null ? "True" : "False";
-            }
-            else
-            {
-                ViewBag.Status = "Not";
-                ViewBag.HasPrdso = "False";
-            }
-
+            };            
             return View(model);
         }
 
