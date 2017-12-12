@@ -46,6 +46,11 @@ namespace RSC.Controllers
             return View();
         }
 
+        public IActionResult Napravleniya()
+        {
+            return View();
+        }
+
 
     }
 }
