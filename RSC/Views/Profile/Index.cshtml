@@ -232,12 +232,12 @@
        
         <div class="col-md-6">
             <h2>ПРДСО</h2>
-            <h4 style="font-size:12px;">@Model.Prdso.University.UniversityData.UniversityName</h4>
+            <h4 style="font-size:12px; cursor:default;">@Model.Prdso.University.UniversityData.UniversityName</h4>
         </div>
         <div class="col-md-6">
             @if (Model.University != null)
             {
-                <h4 class="prdso-username">@Model.University.MiddleName @Model.University.Name @Model.University.Surname </h4>
+                <h4 class="prdso-username" style="cursor:default;">@Model.University.MiddleName @Model.University.Name @Model.University.Surname </h4>
                 <i class="fa fa-user-circle-o" aria-hidden="true" style="float: right; margin-top: 25px; padding-right: 5px; color: white;"></i>
             }
         </div>
@@ -279,22 +279,22 @@
 
                             @if (Model.Prdso.Status.Name == "None")
                             {
-                                <p style="float:right; padding-right: 10px; color: navajowhite; font-weight: bold;">Подготовка</p>
+                                <p style="float:right; cursor:default; padding-right: 10px; color: navajowhite; font-weight: bold;">Подготовка</p>
                             }
 
                             @if(Model.Prdso.Status.Name == "Submitted")
                             {
-                                <p style="float:right; padding-right: 10px; color: lightgreen; font-weight: bold;">На рассмотрении</p>
+                                <p style="float:right; cursor:default; padding-right: 10px; color: lightgreen; font-weight: bold;">На рассмотрении</p>
                             }
 
                             @if (Model.Prdso.Status.Name == "Approved")
                             {
-                                <p style="float:right; padding-right: 10px; color: lawngreen; font-weight: bold;">Подтверждено</p>
+                                <p style="float:right; cursor:default; padding-right: 10px; color: lawngreen; font-weight: bold;">Подтверждено</p>
                             }
 
                             @if (Model.Prdso.Status.Name == "Rejected")
                             {
-                                <p style="float:right; padding-right: 10px; color: lightcoral; font-weight: bold;">Отказано</p>
+                                <p style="float:right; cursor:default; padding-right: 10px; color: lightcoral; font-weight: bold;">Отказано</p>
                             }
                         </li>
                         <li class="col-md-12"><a href="#">Количество мероприятий</a><label class="pull-right">@Model.Events.Count()</label></li>
@@ -341,7 +341,7 @@
         <div class="col-md-8 prdso-dashboard-main">
             <div class="col-md-12 prdso-dashboard-main-content">
                 <div class="col-md-12" style="height:100px;">
-                    <h2>Мероприятия</h2>
+                    <h2 style="cursor:default;">Мероприятия</h2>
                 </div>
                 <div class="col-md-12 content-events-header">
                     @if(Model.Prdso.Status.Name == "Rejected")
