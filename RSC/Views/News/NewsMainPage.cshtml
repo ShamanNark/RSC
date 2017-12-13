@@ -335,7 +335,7 @@
         </div>
 </div>
 
-@*<div class="col-md-12" style="padding-left:0px; padding-right:0px; margin-top:40px;">
+<div class="col-md-12" style="padding-left:0px; padding-right:0px; margin-top:40px;">
             <a class="headerNewsMainPage" href="@Url.Action("NewsBoard","News", new { newsRubricId = Model.Blogs.Select(n => n.ObjectNews.ListObjectNewsNewsRubric.Where(nn => nn.NewsRubric.Name == "Блог").Select(nn => nn.NewsRubricId).FirstOrDefault()).FirstOrDefault()})"><h3 style="
             top: -13px;
             position: absolute;
@@ -393,13 +393,13 @@
 
 
 
-                    @*<div class="col-md-8 big-news-block" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault() ?? "")) no-repeat;background-size:cover; background-position: center center;">
+                    <div class="col-md-8 big-news-block" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault() ?? "")) no-repeat;background-size:cover; background-position: center center;">
                         <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).FirstOrDefault()})">
                             <h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>
                         </a>
                     </div>
                     </div>
-    </div>*@
+    </div>
 
 @section Scripts{
     <script>
