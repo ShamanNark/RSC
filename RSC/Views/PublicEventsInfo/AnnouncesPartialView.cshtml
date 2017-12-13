@@ -5,7 +5,7 @@
 {
     <div class="col-md-6 blocknews">
         <div class="borderblock col-md-12">
-            <div class="col-md-4 imagenews" style="background-image: url(@Url.Content(item.SmallFotoPath))"></div>
+            <div class="col-md-4 imagenews" style="background-image: url('@Url.Content(item.SmallFotoPath)')"></div>
             <div class="col-md-8" style="word-wrap:break-word;">
                 <p style="font-weight:bold; text-overflow: ellipsis;">@Html.DisplayFor(modelItem => item.NameEvent)</p>
                 <p>@Html.DisplayFor(modelItem => item.StartDateTime) - @Html.DisplayFor(modelItem => item.StopDateTime)</p>
