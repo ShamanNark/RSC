@@ -245,7 +245,7 @@
 
                 @if (Model.Announs.Select(a => a.PublicEventInformation).FirstOrDefault() != null)
                 {                    
-                    <div class="col-md-12" style="background: url(@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).FirstOrDefault() ?? "")) no-repeat;background-size:cover;background-position: center center; min-height: 200px;">
+                    <div class="col-md-12" style="background: url('@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).FirstOrDefault() ?? "")') no-repeat;background-size:cover;background-position: center center; min-height: 200px;">
                     </div>
                 }
                 <div class="col-md-12" style="word-wrap: break-word;padding-left: 0px; padding-right:0px;">
@@ -261,7 +261,7 @@
                 </div>
                     @if (Model.Announs.Select(a => a.PublicEventInformation).Skip(1).FirstOrDefault() != null)
                     {
-                        <div class="col-md-12" style="background: url(@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).Skip(1).FirstOrDefault() ?? "")) no-repeat;background-size:cover;background-position: center center; min-height: 200px;">
+                        <div class="col-md-12" style="background: url('@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).Skip(1).FirstOrDefault() ?? "")') no-repeat;background-size:cover;background-position: center center; min-height: 200px;">
                         </div>
                     }
                 <div class="col-md-12" style="word-wrap: break-word;padding-left: 0px; padding-right:0px;">
@@ -277,7 +277,7 @@
                 </div>
                     @if (Model.Announs.Select(a => a.PublicEventInformation).Skip(2).FirstOrDefault() != null)
                     {
-                        <div class="col-md-12" style="background: url(@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).Skip(2).FirstOrDefault() ?? "")) no-repeat;background-size:cover;background-position: center center; min-height: 200px;">
+                        <div class="col-md-12" style="background: url('@Url.Content(@Model.Announs.Select(a => a.PublicEventInformation.SmallFoto.Path).Skip(2).FirstOrDefault() ?? "")') no-repeat;background-size:cover;background-position: center center; min-height: 200px;">
                         </div>
                     }
                 <div class="col-md-12" style="word-wrap: break-word;padding-left: 0px; padding-right:0px;">
@@ -394,11 +394,11 @@
 
 
                     @*<div class="col-md-8 big-news-block" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault() ?? "")) no-repeat;background-size:cover; background-position: center center;">
-                        <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).FirstOrDefault()})">
-                            <h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>
-                        </a>
+        <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).FirstOrDefault()})">
+            <h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>
+        </a>
+    </div>*@
                     </div>
-                    </div>*@
     </div>
 
 @section Scripts{
