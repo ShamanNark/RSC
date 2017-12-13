@@ -174,7 +174,7 @@
     .cal-filters {
         padding-left: 10px;
         padding-right: 10px;
-        min-height: 451px;
+        min-height: 450px;
         background-color: #fff;
         font-size: 100%;
         margin: 0 auto;
@@ -466,10 +466,10 @@
                     $(".infobycalendar").remove();
                     if (context.storage.schedules.length > 0) {
                         var messageAboutEvent = "";
-                        messageAboutEvent += "<div class='infobycalendar'><p>Вы выбрали дату " + context.storage.schedules[0].date + "</p>";
+                        messageAboutEvent += "<div class='infobycalendar'>";
                         for (var i = 0; i < context.storage.schedules.length; i++) {
-                            messageAboutEvent += "<p>Название мероприятия " + context.storage.schedules[i].eventname + "</p>";
-                            messageAboutEvent += "<p>Диапозон " + context.storage.schedules[i].startdatetime + "-" + context.storage.schedules[i].stopdatetime + "</p>";
+                            messageAboutEvent += "<p>Мероприятие: " + context.storage.schedules[i].eventname + "</p>";
+                            messageAboutEvent += "<p>Дата проведения " + context.storage.schedules[i].startdatetime + "-" + context.storage.schedules[i].stopdatetime + "</p>";
                             messageAboutEvent += '<a id="eventDetails" href="/PublicEventsInfo/Details/' + context.storage.schedules[i].eventid + '" style="cursor:pointer;width: 150px;border-radius: 7%;">Подробнее</a>';
                         }
                         messageAboutEvent += "</div>";
