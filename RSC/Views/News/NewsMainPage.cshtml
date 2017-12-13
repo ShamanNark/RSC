@@ -393,12 +393,12 @@
 
 
 
-                    <div class="col-md-8 big-news-block" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault() ?? "")) no-repeat;background-size:cover; background-position: center center;">
+                    @*<div class="col-md-8 big-news-block" style="background: url(@Url.Content( @Model.Blogs.Select(n => n.ObjectNews.MainImage).FirstOrDefault() ?? "")) no-repeat;background-size:cover; background-position: center center;">
                         <a href="@Url.Action("Details","News", new { id = @Model.Blogs.Select(n => n.ObjectNews.Id).FirstOrDefault()})">
                             <h4 class="titleimage">@Model.Blogs.Select(n => n.ObjectNews.Title).FirstOrDefault()</h4>
                         </a>
                     </div>
-                    </div>
+                    </div>*@
     </div>
 
 @section Scripts{
