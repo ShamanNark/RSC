@@ -879,6 +879,15 @@ h3{
 
 .rounds {
     text-align: center;
+
+
+}
+
+.poll-main {
+    text-align: center;
+    height: 360px;
+
+
 }
 
 .poll-block-buttons {
@@ -898,7 +907,8 @@ h3{
     padding-left: 0px;
     padding-right: 0px;
     background-color: none;
-    box-shadow: none
+    box-shadow: none;
+    background: url(/img/Russiatr.png) no-repeat;
 }
 
 
