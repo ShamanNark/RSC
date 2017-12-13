@@ -178,7 +178,7 @@ namespace RSC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "Profile");
             }
-
+            model.CreateStudentCouncil = false;
             model.Regions = new SelectList(db.Regions.Select(region => new { Id = region.Id, Name = region.RegionName }).ToList(), "Id", "Name");
             model.UniversityDatas = new SelectList(db.UniversityDatas.Select(uny => new { Id = uny.Id, Name = uny.UniversityName }), "Id", "Name");
             model.StudentCouncils = Mapper.Map<List<StudentsCouncilViewModel>>(db.StudentsCouncils.Where(sc => sc.UniversityDataId == model.UniversityViewModel.UniversityDataId).ToList());

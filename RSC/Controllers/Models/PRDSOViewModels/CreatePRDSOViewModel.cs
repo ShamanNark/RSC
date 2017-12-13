@@ -15,28 +15,28 @@ namespace RSC.Controllers.Models.PRDSOViewModels
 
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указан ОГРН")]
         [Display(Name = "ОГРН *")]
         public string OGRN { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указан ИНН")]
         [Display(Name = "ИНН *")]
         public string INN { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указано ОКПО")]
         [Display(Name = "ОКПО *")]
         public string OKPO { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указано КПП")]
         [Display(Name = "КПП *")]
         public string KPP { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указан юридический адрес")]
         [Display(Name = "Юридический адрес *")]
         [DataType(DataType.Text)]
         public string UrAddress { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указан почтовый адрес")]
         [Display(Name = "Почтовый адрес *")]
         public string MailAddress { get; set; }
         
@@ -44,7 +44,7 @@ namespace RSC.Controllers.Models.PRDSOViewModels
         [DataType(DataType.Url)]
         public string WebSite { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Не указан ЕГРЮЛ")]
         [Display(Name = "ЕГРЮЛ *")]
         public IFormFile EGRULfile { get; set; }
 
@@ -56,26 +56,26 @@ namespace RSC.Controllers.Models.PRDSOViewModels
         #region Heads OOVO
 
         #region Master head
-        [Required]
+        [Required(ErrorMessage = "Не указана фамилия руководителя")]
         [Display(Name = "Фамилия *")]
         public string Surname { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Не указано имя руководителя")]
         [Display(Name = "Имя *")]
         public string Name { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Не указано отчество руководителя")]
         [Display(Name = "Отчество *")]
         public string MiddleName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указана должность руководителя")]
         [Display(Name = "Должность *")]
         public string Position { get; set; }
         
         [Display(Name = "Факс")]
         public string Fax { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указан телефон руководителя")]
         [Display(Name = "Телефон *")]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNummber { get; set; }
@@ -84,7 +84,7 @@ namespace RSC.Controllers.Models.PRDSOViewModels
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Не указан приказ об утверждении руководителя")]
         [Display(Name = "Приказ об утверждении (назначении) ректора *")]
         public IFormFile OderApprovalRectorFile { get; set; }
 
@@ -101,34 +101,34 @@ namespace RSC.Controllers.Models.PRDSOViewModels
         #region Billing infomation
 
 
-        [Required]
+        [Required(ErrorMessage = "Не указан ИНН")]
         [Display(Name = "ИНН банка *")]
         public string BankINN { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Не указан КПП")]
         [Display(Name = "КПП банка *")]
         public string BankKPP { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Не указано наименование обслуживающего банка")]
         [Display(Name = "Наименование обслуживающего банка *")]
         public string BankName { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Не указан расчетный счет")]
         [Display(Name = "Расчетный счет *")]
         [DataType(DataType.CreditCard)]
         public string CheckingAccount { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Не указан корреспондентский счет")]
         [Display(Name = "Корреспондентский счет *")]
         [DataType(DataType.CreditCard)]
         public string CorrespondentAccount { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Не указано БИК")]
         [Display(Name = "Код БИК")]
         public string BICCode { get; set; }
         #endregion
