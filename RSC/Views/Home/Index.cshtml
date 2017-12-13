@@ -8,6 +8,32 @@
 .poll-item{
     height: 350px; width:80%;background-color: rgba(255,255,255, 0.7);-webkit-box-shadow: 0px 0px 18px -8px rgba(0,0,0,0.75);-moz-box-shadow: 0px 0px 18px -8px rgba(0,0,0,0.75);box-shadow: 0px 0px 18px -8px rgba(0,0,0,0.75);margin: auto;
     }
+.poll-h{
+    margin-top:15%;
+    font-weight: 400;
+
+}
+
+    .poll-item .btn-red {
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        
+    }
+
+    .poll-list {
+        list-style-type: none;
+        text-align: left;
+     
+    }
+
+    .poll-list li {
+        padding-top: 10px;
+        text-decoration: underline;
+        color: gray;
+    }
+
 </style>
 
 <div class="slider col-md-12">   
@@ -83,7 +109,7 @@
             <div class="col-md-4">
                 <img src="img/round3.png" alt="">
             </div>
-            <div class="studstarter-buttons">
+            <div class="studstarter-buttons col-md-12">
                 <a href="" class="btn-blue">ПРЕДЛОЖИТЬ РЕСУРС</a>
             </div>
         </div>
@@ -144,13 +170,55 @@
         <h3>Социалогическая мастерская</h3>
         <div class="poll-main col-md-12">
             <div class="col-md-4">
-                <div class="poll-item"></div>
+                <div class="poll-item">
+                    <div class="col-md-12">
+                        <h4 class="poll-h">ОПРОСЫ</h4>
+                        <ul class="poll-list">
+                            <li>Стоит ли учиться летом?</li>
+                            <li>Нужны ли промежуточные экзамены?</li>
+                            <li>Можно ли совмещать учебу и активную студенческую жизнь?</li>
+                        </ul>
+                        <div class="col-md-12" style="margin-top:50px;">
+                            <a class="btn-red">БОЛЬШЕ ОПРОСОВ</a>
+                            </div>
+                        </div>
+
+                </div>
             </div>
             <div class="col-md-4">
-                <div class="poll-item"></div>
+                <div class="poll-item">
+                    <div class="col-md-12">
+                        <h4 class="poll-h">АНАЛИТИКА</h4>
+                        <p style="text-align:center; padding-left: 5%;">С помощью новых структур идет совершенствование управления университетом. У нас этот процесс вертикальный - основные полномочия у единого центра, ректората. На Западе гораздо больше передано структурным подразделениям.</p>
+                        <div class="col-md-12" style="margin-top:20px;"><a class="btn-red">ПОДРОБНЕЕ</a></div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4">
-                <div class="poll-item"></div>
+                <div class="poll-item">
+                    <div class="col-md-12">
+                        <h4 class="poll-h">ГОЛОСОВАНИЕ</h4>
+                        <p style="text-align:center; padding-left: 5%; font-size: 20px; color:gray; padding-top: 30px;">Стоит ли делать<br /> youtube канал<br /> для нашего проекта?</p>
+
+                        <form class="form-inline">
+
+                            <div class="form-group">
+                                <input name="group20" type="radio" id="radio120" checked="checked">
+                                <label for="radio120">Да</label>
+                            </div>
+
+                            <div class="form-group" style="padding-left:40px;">
+                                <input name="group20" type="radio" id="radio121">
+                                <label for="radio121">Нет</label>
+                            </div>
+
+                          </form>
+
+                        <div class="col-md-12" style="margin-top:40px;">
+                            <a class="btn-red">БОЛЬШЕ ОПРОСОВ</a>
+                        </div>
+                        </div>
+                </div>
             </div>
             
         </div>
