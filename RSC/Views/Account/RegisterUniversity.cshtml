@@ -1,27 +1,18 @@
 ﻿@using RSC.Controllers.Models.AccountViewModels
 @model RSC.Models.RegisterViewModels.RegisterUniversityViewModel
 
-@{
-    ViewData["Title"] = "RegisterUniversiy";
-}
 <style>
-    
-
-        .multiselect-container > li > a {
-            white-space: normal;
-        }
-
-
-
+    .multiselect-container > li > a {
+        white-space: normal;
+    }
 </style>
+
 <h2>Регистрация ООВО</h2>
 
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="RegisterUniversity" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
             <div class="form-group">
                 <label asp-for="MiddleName" class="control-label"></label>
                 <input asp-for="MiddleName" class="form-control" />
