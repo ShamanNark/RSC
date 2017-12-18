@@ -24,7 +24,7 @@
     </environment>
 </head>
 <body>
-    <nav class="container navbar-default navbar-fixed-top">
+    <nav class="container navbar-default navbar-fixed-top hidden-sm hidden-xs">
             <a href="/"><img src="~/img/logo.png" alt="Росстуденчество"></a>            
             <ul class="nav-right-links">
 
@@ -70,7 +70,7 @@
         </nav>
 
 
-    <nav class="navbar container navbar-default navbar-fixed-top nav2">
+    <nav class="navbar container navbar-default navbar-fixed-top nav2 hidden-sm hidden-xs">
         <div class="dropdown col-md-2 sec-nav" id="rosstudMenu">
             <button class="btn btn-nav dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 О НАС
@@ -158,27 +158,7 @@
 
 
         </nav>
-
-
-        @*<nav class="navbar container navbar-default navbar-fixed-top nav2">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav col-md-12">
-                    <li class="col-md-2 sec-nav-li"><a href="/about/index">О НАС</a></li>
-                    <li class="col-md-2 sec-nav-li"><a href="#">СТУДЕНТУ</a></li>
-                    <li class="col-md-2 sec-nav-li"><a href="#">СОВЕТАМ</a></li>
-                    <li class="col-md-2 sec-nav-li"><a href="#">ПРДСО</a></li>
-                    <li class="col-md-2 sec-nav-li"><a href="#">АБИТУРИЕНТУ</a></li>
-                    <li class="col-md-2 sec-nav-li"><a href="#">В УЧЕБЕ</a></li>
-                </ul>
-            </div>
-        </nav>*@
-
+        @*BODY*@
         <div role="main" class="container main">
             @RenderBody()
         </div>
