@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using RSC.Controllers.Models.PublicNewsInfoViewModels;
 using RSC.Data.DbModels;
 using RSC.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace RSC.Controllers
 {
@@ -19,10 +20,12 @@ namespace RSC.Controllers
         private int pageSize = 10;
         private ApplicationDbContext db;
         private readonly IHostingEnvironment _appEnvironment;
-        public PublicEventsInfoController(ApplicationDbContext context, IHostingEnvironment appEnvironment)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public PublicEventsInfoController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IHostingEnvironment appEnvironment)
         {
             db = context;
             _appEnvironment = appEnvironment;
+            _userManager = userManager;
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<PublicEventInformation, PublicNewsInfoViewModel>();
@@ -97,6 +100,8 @@ namespace RSC.Controllers
                                                     .Include(e => e.SmallFoto)
                                                     .Include(e => e.Event)
                                                     .Include(e => e.Event.EventType)
+                                                    .Include(e => e.EventSubscribers)
+                                                    .ThenInclude(sub => sub.ApplicationUser)
                                                     .FirstOrDefault(e => e.EventId == id);
             if (eventdb == null)
             {
@@ -172,6 +177,21 @@ namespace RSC.Controllers
             };
 
             return PartialView("AnnouncesPartialView", viewModel);
+        }
+
+        public IActionResult Subscribe(int eventId)
+        {
+            var userId = _userManager.GetUserId(User);
+            if (userId != null)
+            {
+                db.EventSubscribers.Add(new EventSubscriber
+                {
+                    ApplicationUserId = userId,
+                    PublicEventInformationId = eventId
+                });
+                db.SaveChanges();
+            }
+            return RedirectToAction("Details", "PublicEventsInfo", new { id = eventId });
         }
     }
 }

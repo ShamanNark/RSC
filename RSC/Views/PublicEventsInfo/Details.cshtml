@@ -32,6 +32,9 @@
         <p>@Html.DisplayFor(model => model.Event.StartDateTime) - @Html.DisplayFor(model => model.Event.StopDateTime)</p>
         @*<h4>Адрес мероприятия:</h4>
         <p>@Html.DisplayFor(model => model.Event.Adress)</p>*@
+        <div class="col-md-12" style="padding-bottom:10px;">
+            <a href="@Url.Action("Subscribe", "PublicEventsInfo", new { eventId = Model.Id })" class="btn btn-default btn-sm btn-red">Записаться</a>
+        </div>
     </div>
     <div class="col-md-9" style="padding-left:30px;">
         <div class="col-md-12 event-full-info">
@@ -75,5 +78,21 @@
                 }
             </div>
         </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="col-md-12">
+        <h4>Участники :</h4>
+    </div>
+    <div class="col-md-12">
+        @foreach (var user in Model.EventSubscribers)
+        {
+            <div class="col-md-2">
+                <span>@user.ApplicationUser.Email</span>
+                <span>@user.ApplicationUser.UserName</span>
+                <span>@user.ApplicationUser.UserType</span>
+            </div>
+        }
     </div>
 </div>
