@@ -60,7 +60,8 @@ namespace RSC.Data
                     new IdentityRole { Name = "OOBO", NormalizedName = "OOBO"},
                     new IdentityRole { Name = "CO", NormalizedName = "CO" },
                     new IdentityRole { Name = "ASSESSOR", NormalizedName = "ASSESSOR" },
-                    new IdentityRole { Name = "STUDENT", NormalizedName = "STUDENT"}
+                    new IdentityRole { Name = "STUDENT", NormalizedName = "STUDENT"},
+                    new IdentityRole { Name = "NEWSEDITOR", NormalizedName = "NEWSEDITOR"}
                 };
 
                 foreach (var s in roles)
