@@ -32,7 +32,7 @@ namespace RSC.Controllers
             _appEnvironment = appEnvironment;
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN, NEWSEDITOR")]
         public IActionResult Index(int page = 1)
         {
             var count = db.News.Count();
@@ -53,7 +53,7 @@ namespace RSC.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN, NEWSEDITOR")]
         public IActionResult Create()
         {
             var NewsRubricsViewModel = db.NewsRubrics.Select(n => new NewsRubricViewModel
@@ -66,7 +66,7 @@ namespace RSC.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN, NEWSEDITOR")]
         public async Task<IActionResult> Create(CreateNewsViewModel model)
         {
             var maxId = 1;
@@ -94,7 +94,7 @@ namespace RSC.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN, NEWSEDITOR")]
         public IActionResult Edit(int id)
         {
             var NewsRubricsViewModel = db.NewsRubrics.Select(n => new NewsRubricViewModel
@@ -117,7 +117,7 @@ namespace RSC.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN, NEWSEDITOR")]
         public async Task<IActionResult> Edit(EditNewsViewModel model)
         {
             var news = db.News.Include(n => n.ListObjectNewsNewsRubric).FirstOrDefault(n => n.Id == model.Id);
@@ -166,7 +166,7 @@ namespace RSC.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN, NEWSEDITOR")]
         public IActionResult Delete(int id)
         {
             var viewmodel = db.News.Where(n => n.Id == id).Select(n => new DetailsNewsViewModel
@@ -181,7 +181,7 @@ namespace RSC.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN, NEWSEDITOR")]
         public IActionResult Delete(DetailsNewsViewModel model)
         {
             var dbModel = db.News.FirstOrDefault(n => n.Id == model.Id);
