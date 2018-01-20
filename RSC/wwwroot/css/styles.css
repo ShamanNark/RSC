@@ -23,9 +23,9 @@ body {
     min-height: 610px;
 }
 
-.container {
+/*.container {
     width: 1245px !important;
-}
+}*/
 
 input, textarea {
     font-family: 'Arial','Open Sans',sans-serif;
@@ -765,7 +765,7 @@ h3{
 
 @media (max-width: 1215px) {
     .calendar h2 {
-        font-size: 120px;
+        font-size: 30px;
     }
 }
 
@@ -800,6 +800,12 @@ h3{
     .tags img {
         height: 380px;
     }
+
+@media (max-width: 1215px) {
+    .tags img {
+        height: 250px;
+    }
+}
 
 .calendar-buttons {
     text-align: center;
@@ -851,7 +857,7 @@ h3{
 
 @media (max-width: 1215px) {
     .studstarter h2 {
-        font-size: 100px;
+        font-size: 30px;
     }
 }
 
@@ -926,7 +932,7 @@ h3{
 
 @media (max-width: 1215px) {
     .poll-block h2 {
-        font-size: 100px
+        font-size: 30px
     }
 }
 
@@ -1269,6 +1275,12 @@ h3{
         text-align: center;
         text-shadow: 0px 0px 8px #000000;
     }
+
+@media (max-width: 1215px) {
+    .news-block h4 {
+        margin-top: 0px;
+    }
+}
 
 
 
