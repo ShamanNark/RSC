@@ -753,6 +753,14 @@ h3{
     background: url(../../img/calendar-dots.png) 10px 10px no-repeat, linear-gradient(to right, rgba(157,200,218,0.7),rgb(144,172,200)) 0 no-repeat;
 }
 
+@media (max-width: 1215px) {
+    .calendar {
+        margin-top: 10px;
+        background: linear-gradient(to right, rgba(157,200,218,0.7),rgb(144,172,200)) 0 no-repeat;
+        min-height: 450px;
+    }
+}
+
     .calendar h2 {
         padding-top: 20px;
         font-size: 152px;
@@ -766,6 +774,7 @@ h3{
 @media (max-width: 1215px) {
     .calendar h2 {
         font-size: 30px;
+        margin-top: 0px;
     }
 }
 
@@ -786,7 +795,9 @@ h3{
 
 @media (max-width: 1215px) {
     .calendar h3 {
-        top: -110px;
+        top: -60px;
+        font-size: 35px;
+        
     }
 }
 
@@ -803,7 +814,8 @@ h3{
 
 @media (max-width: 1215px) {
     .tags img {
-        height: 250px;
+        height: auto;
+        width: 100%;
     }
 }
 
@@ -811,6 +823,7 @@ h3{
     text-align: center;
     padding-top: 25px;
 }
+
 
 .find-your {
     border-color: #fff;
