@@ -87,9 +87,9 @@ namespace RSC.Controllers
                 var dbUviversity = db.Universities.Include(university => university.UniversityData).FirstOrDefault(university => university.Id == model.UniversityViewModel.Id);
                 if (dbUviversity != null)
                 {
-                    dbUviversity.Name = model.UniversityViewModel.Name;
-                    dbUviversity.MiddleName = model.UniversityViewModel.MiddleName;
-                    dbUviversity.Surname = model.UniversityViewModel.Surname;
+                    dbUviversity.ApplicationUser.Name = model.UniversityViewModel.Name;
+                    dbUviversity.ApplicationUser.MiddleName = model.UniversityViewModel.MiddleName;
+                    dbUviversity.ApplicationUser.Surname = model.UniversityViewModel.Surname;
                     dbUviversity.JobPhoneNumber = model.UniversityViewModel.JobPhoneNumber;
                     dbUviversity.Fax = model.UniversityViewModel.Fax;
                     db.Universities.Update(dbUviversity);
@@ -155,7 +155,7 @@ namespace RSC.Controllers
                         dbCouncil.ConferenceProtocolId = conferenceProtocolId ?? 0;
                     }
                     dbCouncil.ApplicationUserId = user.Id;
-                    dbCouncil.RegionId = dbUviversity.RegionId;
+                    //dbCouncil.RegionId = dbUviversity.RegionId;
                     dbCouncil.UniversityDataId = dbUviversity.UniversityDataId;
                     db.StudentsCouncils.Add(dbCouncil);
                     db.SaveChanges();

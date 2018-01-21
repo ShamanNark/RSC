@@ -1,4 +1,5 @@
 ﻿@using RSC.Controllers.Models.AccountViewModels
+@using RSC.Data.DbModels
 @model RSC.Models.RegisterViewModels.RegisterStudentCouncilViewModel
 
 <h2>Регистрация СО</h2>
@@ -8,24 +9,44 @@
         <form asp-action="RegisterStudentCouncil" method="post"  enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Surname" class="control-label"></label>
-                <input asp-for="Surname" class="form-control" />
-                <span asp-validation-for="Surname" class="text-danger"></span>
+                <label asp-for="ApplicationUserViewModel.Email" class="control-label"></label>
+                <input asp-for="ApplicationUserViewModel.Email" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="ApplicationUserViewModel.Avatar" class="control-label"></label>
+                <input asp-for="ApplicationUserViewModel.Avatar" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.Avatar" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MiddleName" class="control-label"></label>
-                <input asp-for="MiddleName" class="form-control" />
-                <span asp-validation-for="MiddleName" class="text-danger"></span>
+                <label asp-for="ApplicationUserViewModel.Surname" class="control-label"></label>
+                <input asp-for="ApplicationUserViewModel.Surname" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.Surname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RegionId" class="control-label"></label>
-                @Html.DropDownList("RegionId", (ViewBag.Regions as SelectList), htmlAttributes: new { @class = "form-control" })
-                <span asp-validation-for="RegionId" class="text-danger"></span>
+                <label asp-for="ApplicationUserViewModel.Name" class="control-label"></label>
+                <input asp-for="ApplicationUserViewModel.Name" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserViewModel.MiddleName" class="control-label"></label>
+                <input asp-for="ApplicationUserViewModel.MiddleName" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserViewModel.Birthday" class="control-label"></label>
+                <input asp-for="ApplicationUserViewModel.Birthday" type="date" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserViewModel.Gender" class="control-label"></label>
+                <select asp-for="ApplicationUserViewModel.Gender" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+                <span asp-validation-for="ApplicationUserViewModel.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserViewModel.RegionId" class="control-label"></label>
+                @Html.DropDownList("ApplicationUserViewModel.RegionId", (ViewBag.Regions as SelectList), htmlAttributes: new { @class = "form-control" })
+                <span asp-validation-for="ApplicationUserViewModel.RegionId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UniversityDataId" class="control-label"></label>
@@ -41,19 +62,19 @@
                 <span asp-validation-for="UniversityDataId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="ApplicationUserViewModel.PhoneNumber" class="control-label"></label>
+                <input asp-for="ApplicationUserViewModel.PhoneNumber" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+                <label asp-for="ApplicationUserViewModel.Password" class="control-label"></label>
+                <input asp-for="ApplicationUserViewModel.Password" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword" class="control-label"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                <label asp-for="ApplicationUserViewModel.ConfirmPassword" class="control-label"></label>
+                <input asp-for="ApplicationUserViewModel.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderCreationCouncilOfLearnersFile" class="control-label"></label>
@@ -69,6 +90,31 @@
                 <label asp-for="ConferenceProtocolFile" class="control-label"></label>
                 <input asp-for="ConferenceProtocolFile" class="form-control" />
                 <span asp-validation-for="ConferenceProtocolFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserViewModel.VKLink"></label>
+                <input asp-for="ApplicationUserViewModel.VKLink" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.VKLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserViewModel.FacebookLink"></label>
+                <input asp-for="ApplicationUserViewModel.FacebookLink" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.FacebookLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserViewModel.TwitterLink"></label>
+                <input asp-for="ApplicationUserViewModel.TwitterLink" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.TwitterLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserViewModel.InstagramLink"></label>
+                <input asp-for="ApplicationUserViewModel.InstagramLink" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.InstagramLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationUserViewModel.TelegramLink"></label>
+                <input asp-for="ApplicationUserViewModel.TelegramLink" class="form-control" />
+                <span asp-validation-for="ApplicationUserViewModel.TelegramLink" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Создать" class="btn btn-default" />

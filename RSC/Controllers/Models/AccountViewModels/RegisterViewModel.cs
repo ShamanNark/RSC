@@ -8,9 +8,9 @@ namespace RSC.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [Required(ErrorMessage = "Не указана электронная почта")]
         public string Email { get; set; }
 
         [Required]
@@ -26,6 +26,7 @@ namespace RSC.Models.AccountViewModels
 
         [Display(Name ="Номер телефона")]
         [DataType(DataType.PhoneNumber)]
+        [Required(ErrorMessage = "Не указан основной телефоный номер")]
         public string PhoneNumber { get; set; }
 
         public string ApplicationUserId { get; set; }

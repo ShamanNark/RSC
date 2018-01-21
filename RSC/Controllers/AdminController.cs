@@ -91,8 +91,7 @@ namespace RSC.Controllers
                     item.AdditionInfo = Mapper.Map<AdditionInfo>(assessordb);
                     break;
                 case ApplicationUserTypes.StudentCouncil:
-                    var councildb = db.StudentsCouncils.Include(council => council.Region)
-                                                       .Include(council => council.UniversityData)
+                    var councildb = db.StudentsCouncils.Include(council => council.UniversityData)
                                                        .Include(council => council.ConferenceProtocol)
                                                        .Include(council => council.OrderCreationCouncilOfLearners)
                                                        .Include(council => council.ProtocolApprovalStudentAssociations)
@@ -101,8 +100,7 @@ namespace RSC.Controllers
                     item.AdditionInfo = Mapper.Map<AdditionInfo>(councildb);
                     break;
                 case ApplicationUserTypes.University:
-                    var universitydb = db.Universities.Include(council => council.Region)
-                                                       .Include(council => council.UniversityData)
+                    var universitydb = db.Universities.Include(council => council.UniversityData)
                                                        .Include(council => council.PowerOfAttorney)
                                                        .Where(university => university.ApplicationUserId == user.Id).FirstOrDefault();
                     item.AdditionInfoType = "University";

@@ -10,16 +10,12 @@ namespace RSC.Data.DbModels
 {
     public class Student
     {
-        public int Id { get; set; }
-
-        [Display(Name = "Регион")]
-        public int RegionId { get; set; }
+        public int Id { get; set; }        
         [Display(Name = "Степень образования")]
         public Degrees CategoryId { get; set; }
-
-        public virtual Region Region {get; set;}
-
-
+        [Display(Name = "Университет")]
+        public int UniversityDataId { get; set; }
+        public virtual UniversityData UniversityData { get; set; }
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; } 
     }

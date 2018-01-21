@@ -233,13 +233,7 @@ namespace RSC.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            ViewBag.Ganders = new SelectList(new List<SelectListItem>
-            {
-                new SelectListItem { Selected = true, Text = "Мужской", Value = "0"},
-                new SelectListItem { Selected = false, Text = "Женкский", Value = "1"},
-            }, "Value", "Text", 0);
-            ViewBag.Regions = new SelectList(db.Regions.Select(b => new { Id = b.Id, Name = b.RegionName }).ToList(), "Id", "Name");
-          
+            ViewBag.Regions = new SelectList(db.Regions.Select(b => new { Id = b.Id, Name = b.RegionName }).ToList(), "Id", "Name");          
             ViewBag.Degress = new SelectList(new List<SelectListItem>
             {
                 new SelectListItem { Selected = true, Text = "Магистр", Value = "0"},
@@ -256,7 +250,7 @@ namespace RSC.Controllers
             return View();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
@@ -283,7 +277,7 @@ namespace RSC.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
+        }*/
 
         [HttpGet]
         [AllowAnonymous]
@@ -300,7 +294,16 @@ namespace RSC.Controllers
         {           
             if (ModelState.IsValid)
             {
-                return await RegisterApplicationUser(model);
+                var user = new Student
+                {
+                    UniversityDataId = model.UniversityDataId,
+                    CategoryId = model.CategoryId,
+                    ApplicationUser = Mapper.Map<ApplicationUser>(model.ApplicationUserViewModel)
+                };
+
+                db.Students.AddAsync(user);
+                await db.SaveChangesAsync();
+                //return await RegisterApplicationUser(model);
             }
 
             // If we got this far, something failed, redisplay form
@@ -689,7 +692,7 @@ namespace RSC.Controllers
             var studentDb = Mapper.Map<Student>(model);
             db.Students.Add(studentDb);
             await db.SaveChangesAsync();
-            studentDb.ApplicationUser.PhoneNumber = model.PhoneNumber;
+            studentDb.ApplicationUser.PhoneNumber = model.ApplicationUserViewModel.PhoneNumber;
             studentDb.ApplicationUser.UserType = ApplicationUserTypes.Student;
             await _userManager.AddToRoleAsync(studentDb.ApplicationUser, "STUDENT");
             await db.SaveChangesAsync();

@@ -23,11 +23,26 @@ namespace RSC.Models
         [Display(Name = "Дата рождения")]
         public DateTime Birthday { get; set; }
 
-        [Display(Name = "Фотография")]
+        [Display(Name = "Фото")]
         public FileModel Avatar { get; set; }
 
         [Display(Name = "Пол")]
-        public Gender Gender { get; set; }        
+        public Gender Gender { get; set; }
+
+        [Display(Name = "Регион")]
+        public int RegionId { get; set; }
+        public virtual Region Region { get; set; }
+
+        [Display(Name = "Ссылка ВКонтакте")]
+        public string VKLink { get; set; }
+        [Display(Name = "Ссылка Facebook")]
+        public string FacebookLink { get; set; }
+        [Display(Name = "Ссылка Twitter")]
+        public string TwitterLink { get; set; }
+        [Display(Name = "Ссылка Instagram")]
+        public string InstagramLink { get; set; }
+        [Display(Name = "Ссылка Telegram")]
+        public string TelegramLink { get; set; }
 
         public ApplicationUserStatus Status { get; set; }
         public ApplicationUserTypes UserType { get; set; }

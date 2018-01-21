@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using RSC.Controllers.Models;
 using RSC.Models.AccountViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,24 +9,12 @@ using System.Threading.Tasks;
 
 namespace RSC.Models.RegisterViewModels
 {
-    public class RegisterUniversityViewModel : RegisterViewModel
+    public class RegisterUniversityViewModel
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Не указано отчество ООВО")]
-        [Display(Name = "Отчество")]
-        public string MiddleName { get; set; }
-        [Required(ErrorMessage = "Не указано имя ООВО")]
-        [Display(Name = "Имя")]
-        public string Name { get; set; }
-        [Required(ErrorMessage = "Не указана фамилия ООВО")]
-        [Display(Name = "Фамилия")]
-        public string Surname { get; set; }
         [Required(ErrorMessage = "Не указан факс")]
         [Display(Name = "Факс")]
         public string Fax { get; set; }
-        [Required(ErrorMessage = "Не указан регион")]
-        [Display(Name = "Регион")]
-        public int RegionId { get; set; }
         [Required(ErrorMessage = "Не указана форма ООВО")]
         [Display(Name = "Форма ООВО")]
         public string UniversityForm { get; set; }
@@ -41,5 +30,8 @@ namespace RSC.Models.RegisterViewModels
         [Required(ErrorMessage = "Не указана доверенность")]
         [Display(Name = "Доверенность *")]
         public IFormFile PowerOfAttorneyFile { get; set; }
+
+        [Required]
+        public ApplicationUserViewModel ApplicationUserViewModel { get; set; }
     }
 }

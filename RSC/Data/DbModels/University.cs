@@ -1,6 +1,7 @@
 ﻿using RSC.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,15 +13,14 @@ namespace RSC.Data.DbModels
         public int Id { get; set; }
         public string UniversityForm { get; set; }
         public string UniversityName { get; set; }
+        [Display(Name = "Рабочий телефон")]
         public string JobPhoneNumber { get; set; }
+        [Display(Name = "Факс")]
         public string Fax { get; set; }
 
         public int PowerOfAttorneyId { get; set; }
         [ForeignKey("PowerOfAttorneyId")]
         public virtual FileModel PowerOfAttorney { get; set; }
-
-        public int RegionId { get; set; }
-        public virtual Region Region { get; set; }
 
         public int UniversityDataId { get; set; }            
         public virtual UniversityData UniversityData { get; set; }
