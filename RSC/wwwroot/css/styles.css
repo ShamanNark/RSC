@@ -1091,6 +1091,7 @@ h3{
 
 @media (max-width: 1215px) {
     .one-prdso-block {
+        min-height: 220px;
         border-bottom: none;
         border-right: none;
     }
@@ -1108,6 +1109,7 @@ h3{
 
 @media (max-width: 1215px) {
     .one-prdso-block h5 {
+        padding-top: 190px;
         margin-top: 0px;
     }
 }
