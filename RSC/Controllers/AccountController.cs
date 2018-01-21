@@ -19,6 +19,7 @@ using RSC.Data.DbModels;
 using AutoMapper;
 using RSC.Controllers.Models.AccountViewModels;
 using Microsoft.AspNetCore.Hosting;
+using RSC.Helper;
 
 namespace RSC.Controllers
 {
@@ -51,6 +52,7 @@ namespace RSC.Controllers
                                        cfg.CreateMap<RegisterStudentViewModel, Student>();
                                        cfg.CreateMap<RegisterStudentCouncilViewModel, StudentsCouncil>();
                                        cfg.CreateMap<RegisterUniversityViewModel, University>();
+                                       cfg.CreateMap<RSC.Controllers.Models.ApplicationUserViewModel, ApplicationUser>();
                                      });
         }
 
@@ -303,10 +305,9 @@ namespace RSC.Controllers
 
                 db.Students.AddAsync(user);
                 await db.SaveChangesAsync();
-                //return await RegisterApplicationUser(model);
+                return RedirectToAction("Index", "Home");
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
         
@@ -326,10 +327,19 @@ namespace RSC.Controllers
         {
             if (ModelState.IsValid)
             {
-               return await RegisterApplicationUser(model);
+                var user = new Assessor
+                {                    
+                    ExperienceOfParticipation = model.ExperienceOfParticipation,
+                    JobPhoneNumber = model.JobPhoneNumber,
+                    Organisation = model.Organisation,
+                    OrganisationPosition = model.OrganisationPosition,
+                    ApplicationUser = Mapper.Map<ApplicationUser>(model.ApplicationUserViewModel)
+                };
+                db.Asssessors.AddAsync(user);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -348,7 +358,17 @@ namespace RSC.Controllers
         {
             if (ModelState.IsValid)
             {
-                return await RegisterApplicationUser(model);
+                var user = new StudentsCouncil
+                {
+                    
+                    UniversityDataId = model.UniversityDataId,
+                    JobPhone = model.JobPhone,
+                    Fax = model.Fax,
+                    ApplicationUser = Mapper.Map<ApplicationUser>(model.ApplicationUserViewModel)
+                };
+                db.StudentsCouncils.AddAsync(user);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form
@@ -370,7 +390,21 @@ namespace RSC.Controllers
         {
             if (ModelState.IsValid)
             {
-                return await RegisterApplicationUser(model);
+                var downloadFilesHelper = new DownloadFiles(db, _appEnvironment);
+                var powerOfAttorneyFileId= await downloadFilesHelper.AddFile(model.PowerOfAttorneyFile, "/Доверенность/" + model.PowerOfAttorneyFile.Name, model.PowerOfAttorneyFile.FileName);
+                var user = new University
+                {
+                    PowerOfAttorneyId = powerOfAttorneyFileId ?? 0,
+                    UniversityWebSite = model.UniversityWebSite,
+                    UniversityForm = model.UniversityForm,
+                    UniversityDataId = model.UniversityDataId,
+                    JobPhoneNumber = model.JobPhoneNumber,
+                    Fax = model.Fax,                    
+                    ApplicationUser = Mapper.Map<ApplicationUser>(model.ApplicationUserViewModel)
+                };
+                db.Universities.AddAsync(user);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form

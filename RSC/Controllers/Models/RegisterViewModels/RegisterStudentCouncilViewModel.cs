@@ -17,6 +17,13 @@ namespace RSC.Models.RegisterViewModels
         [Display(Name = "Наименование образовательной организации")]
         public int UniversityDataId { get; set; }
 
+        [Required(ErrorMessage = "Не Указан рабочий телефон")]
+        [Display(Name = "Рабочий телефон")]
+        public string JobPhone { get; set; }
+
+        [Display(Name = "Факс")]
+        public string Fax { get; set; }
+
         [Required(ErrorMessage = "Не указан приказ создания совета обучающихся")]
         [Display(Name = "Приказ создания совета обучающихся *")]
         public IFormFile OrderCreationCouncilOfLearnersFile { get; set; }

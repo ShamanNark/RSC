@@ -12,7 +12,7 @@ namespace RSC.Data.DbModels
     {
         public int Id { get; set; }
         public string UniversityForm { get; set; }
-        public string UniversityName { get; set; }
+        public string UniversityWebSite { get; set; }
         [Display(Name = "Рабочий телефон")]
         public string JobPhoneNumber { get; set; }
         [Display(Name = "Факс")]
