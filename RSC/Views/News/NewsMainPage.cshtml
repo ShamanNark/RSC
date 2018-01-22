@@ -232,7 +232,7 @@
     font-weight:bold;">АНОНСЫ</h3></a>
     <hr style="border: solid 1px lightgray;" />
         <div class="col-md-12" style="margin-top:40px; padding-left:0px;padding-right:0px;">
-            <a href="@Url.Action("Details","News", new { id = @Model.News.Select(n => n.ObjectNews.Id).FirstOrDefault() })" class="col-md-4">
+            <a href="@Url.Action("Details","News", new { id = @Model.Announs.Select(n => n.ObjectNews.Id).FirstOrDefault() })" class="col-md-4">
                 <div class="col-md-12" style="word-wrap: break-word; padding-left: 0px; padding-right:0px;">
                     <h5 class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-transform:uppercase; text-align:center;">@Model.Announs.Select(a => a.ObjectNews.Title).FirstOrDefault()</h5>
                 </div>
@@ -249,7 +249,7 @@
                 }
                 </div>
             </a>
-            <a href = "@Url.Action("Details","News", new { id = @Model.News.Select(n => n.ObjectNews.Id).Skip(1).FirstOrDefault() })" class="col-md-4">
+            <a href = "@Url.Action("Details","News", new { id = @Model.Announs.Select(n => n.ObjectNews.Id).Skip(1).FirstOrDefault() })" class="col-md-4">
                 <div class="col-md-12" style="word-wrap: break-word;padding-left: 0px; padding-right:0px;">
                     <h5 class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-transform:uppercase; text-align:center;">@Model.Announs.Select(a => a.ObjectNews.Title).Skip(1).FirstOrDefault()</h5>
                 </div>
@@ -265,7 +265,7 @@
                     }
                 </div>
             </a>
-            <a href = "@Url.Action("Details","News", new { id = @Model.News.Select(n => n.ObjectNews.Id).Skip(2).FirstOrDefault() })" class="col-md-4">
+            <a href = "@Url.Action("Details","News", new { id = @Model.Announs.Select(n => n.ObjectNews.Id).Skip(2).FirstOrDefault() })" class="col-md-4">
                 <div class="col-md-12" style="word-wrap: break-word;padding-left: 0px; padding-right:0px;">
                     <h5 class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-transform:uppercase; text-align:center;">@Model.Announs.Select(a => a.ObjectNews.Title).Skip(2).FirstOrDefault()</h5>
                 </div>
