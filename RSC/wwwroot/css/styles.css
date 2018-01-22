@@ -745,6 +745,17 @@ h3{
     border: 2px solid #e41b25;
 }
 
+.carimg {
+    height: 503px;
+}
+
+@media (max-width: 1215px) {
+    .carimg {
+        
+        background-position: center;
+    }
+}
+
 .calendar {
     min-height: 740px;
     margin-top: 60px;
