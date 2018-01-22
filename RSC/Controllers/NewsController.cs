@@ -217,7 +217,7 @@ namespace RSC.Controllers
 
             var announs = db.ListObjectNewsNewsRubric.Include(n => n.NewsRubric)
                                                   .Include(n => n.ObjectNews)
-                                                  .Where(n => n.NewsRubric.Name == "Анонс")
+                                                  .Where(n => n.NewsRubric.Name == "Анонсы")
                                                   .OrderByDescending(n => n.ObjectNews.UpdateDateTime)
                                                   .Take(3)
                                                   .ToList();
