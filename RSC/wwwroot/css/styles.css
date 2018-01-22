@@ -23,6 +23,13 @@ body {
     min-height: 610px;
 }
 
+@media (max-width: 1215px) {
+    .main {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
 /*.container {
     width: 1245px !important;
 }*/
@@ -942,6 +949,12 @@ h3{
     background: url(/img/Russiatr.png) no-repeat;
 }
 
+@media (max-width: 1215px) {
+    .poll-block {
+       background-position: center;
+    }
+}
+
 
 .poll-block h2 {
     margin: 0;
@@ -976,7 +989,7 @@ h3{
 @media (max-width: 1215px) {
     .poll-block h3 {
         font-size: 30px;
-        top: -85px
+        top: -40px
 
     }
 }
@@ -1164,11 +1177,17 @@ h3{
     filter: grayscale(100%);
 }
 
+
+
     .prdso .one-prdso-block:nth-child(2):hover {
         filter: none;
     }
 
-
+@media (max-width: 1215px) {
+    .prdso .one-prdso-block:nth-child(2) {
+        min-height: 220px;
+    }
+}
         .prdso .one-prdso-block:nth-child(2):hover h4,
         .prdso .one-prdso-block:nth-child(2):hover h3,
         .prdso .one-prdso-block:nth-child(2):hover h5 {
@@ -1190,6 +1209,14 @@ h3{
     filter: grayscale(100%);
 }
 
+@media (max-width: 1215px) {
+    .prdso .one-prdso-block:nth-child(3) {
+        min-height: 220px;
+        border-top: 5px solid;
+        border-right: 5px solid;
+        border-color: white;
+    }
+}
 
     .prdso .one-prdso-block:nth-child(3):hover {
         filter: none;
@@ -1218,6 +1245,15 @@ h3{
         filter: none;
     }
 
+
+@media (max-width: 1215px) {
+    .prdso .one-prdso-block:nth-child(4) {
+        min-height: 220px;
+        border-top: 5px solid;
+        border-left: 5px solid;
+        border-color: white;
+    }
+}
 
         .prdso .one-prdso-block:nth-child(4):hover h4,
         .prdso .one-prdso-block:nth-child(4):hover h3,
@@ -1297,7 +1333,6 @@ h3{
 
 .social-block {
     min-height: 500px;
-    background-color: lightseagreen;
 }
 
 
@@ -1310,6 +1345,16 @@ h3{
     -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
     box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);
 }
+
+@media (max-width: 1215px) {
+    .news-block{
+        min-height: 0px;
+        margin-top: 0px;
+        box-shadow: none;
+    }
+}
+
+
 
 
     .news-block h1 {
@@ -1341,7 +1386,7 @@ h3{
 
 @media (max-width: 1215px) {
     .news-block h4 {
-        margin-top: 0px;
+        margin-top: 50px;
     }
 }
 
@@ -1384,6 +1429,15 @@ h3{
             filter: grayscale(100%);
         }
 
+@media (max-width: 1215px) {
+    .news-block .one-news-block:nth-child(2) {
+        min-height: 220px;
+        background-position: center;
+        border-top: 5px solid;
+        border-color: white;
+    }
+}
+
         .news-block .one-news-block:nth-child(2):hover {
             filter: none;
         }
@@ -1404,6 +1458,16 @@ h3{
             text-align: center;
             filter: grayscale(100%);
         }
+
+@media (max-width: 1215px) {
+    .news-block .one-news-block:nth-child(3) {
+        min-height: 220px;
+        background-position: center;
+        border-top: 5px solid;
+        border-right: none;
+        border-color: white;
+    }
+}
 
         .news-block .one-news-block:nth-child(3):hover {
             filter: none;
@@ -1427,6 +1491,13 @@ h3{
             filter: grayscale(100%);
         }
 
+@media (max-width: 1215px) {
+    .news-block .one-news-block:nth-child(4) {
+        min-height: 220px;
+        background-position: center;
+    }
+}
+
             .news-block .one-news-block:nth-child(4):hover {
                 filter: none;
             }
@@ -1447,6 +1518,14 @@ h3{
             text-align: center;
             filter: grayscale(100%);
         }
+
+@media (max-width: 1215px) {
+    .news-block .one-news-block:nth-child(5) {
+        min-height: 220px;
+        border-right: none;
+        background-position: center;
+    }
+}
 
             .news-block .one-news-block:nth-child(5):hover {
                 filter: none;
@@ -1491,6 +1570,14 @@ h3{
     border-color: white;
 }
 
+@media (max-width: 1215px) {
+    .news-banner {
+        min-height: 220px;
+        border-bottom: none;
+        border-right: none;
+    }
+}
+
     .news-banner h1 {
         padding-top: 70px;
     }
@@ -1519,6 +1606,14 @@ h3{
     margin-top: 60px;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+@media (max-width: 1215px) {
+    .footer-main-block {
+        margin-top: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 
@@ -1552,6 +1647,12 @@ h3{
     padding-bottom: 10px;
     border-bottom: 1px solid;
     border-color: white;
+}
+
+@media (max-width: 1215px) {
+    .footer-logo {
+        border: none;
+    }
 }
 
     .footer-logo p {
@@ -1593,6 +1694,12 @@ h3{
     padding-top: 80px;
     padding-left: 0px;
     padding-right: 0px;
+}
+
+@media (max-width: 1215px) {
+    .footer-info {
+        padding-top: 30px;
+    }
 }
 
 .footer-info-item {
