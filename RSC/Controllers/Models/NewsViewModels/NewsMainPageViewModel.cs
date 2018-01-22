@@ -11,14 +11,15 @@ namespace RSC.Controllers.Models.NewsViewModels
         public List<ObjectNewsNewsRubric> Blogs { get; set; }
         public List<ObjectNewsNewsRubric> Interviews { get; set; }
         public List<ObjectNewsNewsRubric> News { get; set; }
-        public List<Event> Announs { get; set; }
+        //public List<Event> Announs { get; set; }
+        public List<ObjectNewsNewsRubric> Announs { get; set; }
 
         public NewsMainPageViewModel()
         {
             Blogs = new List<ObjectNewsNewsRubric>();
             Interviews = new List<ObjectNewsNewsRubric>();
             News = new List<ObjectNewsNewsRubric>();
-            Announs = new List<Event>();
+            Announs = new List<ObjectNewsNewsRubric>();
         }
 
     }

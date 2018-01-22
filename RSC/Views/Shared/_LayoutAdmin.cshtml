@@ -70,7 +70,7 @@
                     </li>
                 </ul>
             }
-            @if (User.IsInRole("NEWSEDITOR"))
+            @if (User.IsInRole("NEWSEDITOR") || User.IsInRole("ADMIN"))
             {
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
