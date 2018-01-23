@@ -775,7 +775,7 @@ h3{
     .calendar {
         margin-top: 10px;
         background: linear-gradient(to right, rgba(157,200,218,0.7),rgb(144,172,200)) 0 no-repeat;
-        min-height: 450px;
+        min-height: 520px;
     }
 }
 
@@ -951,7 +951,9 @@ h3{
 
 @media (max-width: 1215px) {
     .poll-block {
-       background-position: center;
+        min-height: 540px;
+        margin-top: 0px;
+        background-position: center;
     }
 }
 
@@ -969,7 +971,9 @@ h3{
 
 @media (max-width: 1215px) {
     .poll-block h2 {
-        font-size: 30px
+        font-size: 40px;
+        position: relative;
+        top: 20px
     }
 }
 
@@ -989,8 +993,7 @@ h3{
 @media (max-width: 1215px) {
     .poll-block h3 {
         font-size: 30px;
-        top: -40px
-
+        top: -10px
     }
 }
 
@@ -1007,6 +1010,14 @@ h3{
 .poll-h {
     margin-top: 15%;
     font-weight: 400;
+}
+
+
+@media (max-width: 1215px) {
+    .poll-h {
+        margin-top: 3%;
+        padding-top: 25px;
+    }
 }
 
 .poll-item .btn-red {
@@ -1723,12 +1734,17 @@ h3{
 }
 
 .social-icons {
-    
     padding-left: 50px;
     padding-right: 50px;
     color: lightgray;
     background-color: #262626;
     min-height: 34px;
+    text-align: center;
+}
+
+@media (max-width: 1215px) {
+    .social-icons {
+    }
 }
 
     .social-icons p {
@@ -1765,6 +1781,17 @@ h3{
         padding-right: 30px;
         padding-bottom: 10px;
     }
+
+
+.mobfooter {
+    min-height: 200px;
+    background-color: #333;
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid white;
+}
+
+
 
 
 .mem1 {
