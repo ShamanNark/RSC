@@ -50,24 +50,24 @@
     <tbody>
         @foreach (var item in Model.News) {
         <tr>
-            <td>
+            <td style="max-width: 150px;">
                 <p><img height="50" src="@Url.Content(item.MainImagePath)"></p>
             </td>
-            <td>
+            <td style="max-width: 150px; text-overflow: ellipsis; overflow: hidden;">
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
-            <td>
+            <td style="max-width: 150px; text-overflow: ellipsis; overflow: hidden;">
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
-                <span class="text">
+            <td style="max-width: 150px; text-overflow: ellipsis; overflow: hidden;">
+                <span style="max-width: 150px; word-wrap: break-word; word-break: break-all;">
                     @Html.Raw(@item.Text)
                 </span>
             </td>
-            <td>
+            <td style="max-width: 50px;">
                 @Html.DisplayFor(modelItem => item.CreateDateTime)
             </td>
-            <td style="display: flex; flex-direction: row; justify-content: space-between;">
+            <td style="display: flex; flex-direction: row; justify-content: space-between; max-width: 150px;">
                 @Html.ActionLink("Изменить", "Edit", new {  id=item.Id  }) |
                 @Html.ActionLink("Детали", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Удалить", "Delete", new { id=item.Id })

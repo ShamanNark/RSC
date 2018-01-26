@@ -26,6 +26,8 @@
         font-weight: 800;
         padding-top: 20px;
         padding-bottom: 20px;
+        word-wrap: break-word;
+        word-break: break-all;
     }
     .rs-news__img {
         padding-top: 20px;
@@ -58,8 +60,9 @@
         <img src="@Url.Content(Model.MainImagePath)">
     </div>*@
     
-    <div class="col-md-12" style="padding-left:0px; border-bottom: solid 1px lightgray;">
-        <p><img src="@Url.Content(Model.MainImagePath)" alt="Лейтенант Бокатуев" class="leftimg"> @Html.Raw(@Model.Text)</p>
+    <div class="col-md-12" style="padding-left:0px; border-bottom: solid 1px lightgray; word-wrap: break-word; word-break: break-all;">
+        <img src="@Url.Content(Model.MainImagePath)" class="leftimg">
+        <p style="word-wrap: break-word; word-break: break-all;"> @Html.Raw(@Model.Text)</p>
        
     </div>
     

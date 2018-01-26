@@ -245,7 +245,10 @@
                 <div class="col-md-12" style="word-wrap: break-word;padding-left: 0px; padding-right:0px;">
                 @if (Model.Announs.Select(a => a.ObjectNews.Text).FirstOrDefault() != null)
                 {
-                    <p class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-align:center;margin-top: 10px;">@Html.Raw(Model.Announs.Select(a => a.ObjectNews.Text).FirstOrDefault())</p>
+                    <div class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-align:center; margin-top: 10px;">
+                        @Html.Raw(Model.Announs.Select(a => a.ObjectNews.Text).FirstOrDefault())
+                    </div>
+                    @*<p class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-align:center;margin-top: 10px;">@Html.Raw(Model.Announs.Select(a => a.ObjectNews.Text).FirstOrDefault())</p>*@
                 }
                 </div>
             </a>
@@ -259,9 +262,12 @@
                         </div>
                     }
                 <div class="col-md-12" style="word-wrap: break-word;padding-left: 0px; padding-right:0px;">
-                    @if(Model.Announs.Select(a => a.ObjectNews.Text).Skip(1).FirstOrDefault() != null)
+                    @if (Model.Announs.Select(a => a.ObjectNews.Text).Skip(1).FirstOrDefault() != null)
                     {
-                        <p class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-align:center; margin-top: 10px;">@Html.Raw(@Model.Announs.Select(a => a.ObjectNews.Text).Skip(1).FirstOrDefault())</p>
+                        <div class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-align:center; margin-top: 10px;">
+                           @Html.Raw(@Model.Announs.Select(a => a.ObjectNews.Text).Skip(1).FirstOrDefault())
+                        </div>
+
                     }
                 </div>
             </a>
@@ -275,9 +281,11 @@
                         </div>
                     }
                 <div class="col-md-12" style="word-wrap: break-word;padding-left: 0px; padding-right:0px;">
-                    @if(Model.Announs.Select(a => a.ObjectNews).Skip(2).FirstOrDefault() != null)
+                    @if (Model.Announs.Select(a => a.ObjectNews).Skip(2).FirstOrDefault() != null)
                     {
-                        <p class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-align:center; margin-top: 10px;">@Html.Raw(@Model.Announs.Select(a => a.ObjectNews.Text).Skip(2).FirstOrDefault())</p>
+                        <div class="col-md-12" style="display: -webkit-box;margin: 0 auto;  line-height: 1.4;  -webkit-line-clamp: 3; height: 60px;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: black;font-weight: bold; text-align:center; margin-top: 10px;">
+                            @Html.Raw(@Model.Announs.Select(a => a.ObjectNews.Text).Skip(2).FirstOrDefault())
+                        </div>
                     }
                 </div>
             </a>
