@@ -929,6 +929,12 @@ h3{
     }
 }
 
+@media (max-width: 700px) {
+    .studstarter h2 {
+        font-size: 20px;
+    }
+}
+
 
 .studstarter h3 {
     text-align: center;
