@@ -965,10 +965,17 @@ h3{
 
 }
 
+@media (max-width: 1215px) {
+    .votemob {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+
 .poll-block-buttons {
     padding-top: 360px;
     text-align: center
-
 }
 
 .poll-block-buttons .btn-blue {
@@ -1137,6 +1144,8 @@ h3{
         min-height: 220px;
         border-bottom: none;
         border-right: none;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 
@@ -1623,6 +1632,8 @@ h3{
         min-height: 220px;
         border-bottom: none;
         border-right: none;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 
