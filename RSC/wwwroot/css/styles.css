@@ -25,6 +25,7 @@ body {
 
 @media (max-width: 1215px) {
     .main {
+        margin-top: 0px;
         padding-left: 0px;
         padding-right: 0px;
     }
@@ -378,6 +379,13 @@ h3{
     font-weight: 600;
 }
 
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    text-align: center;
+}
+
+
+
+
 
 .nav2 {
     padding-top: 10px;
@@ -452,6 +460,12 @@ h3{
     background-color: rgba(53, 53, 53, 0.05);
 }
 
+@media (max-width: 1215px) {
+    .navbar-nav > li > a {
+        background-color: white !important;
+    }
+}
+
     .navbar-default .navbar-nav > li > a:hover {
         background-color: lightgray;
     }
@@ -462,7 +476,16 @@ h3{
     float: left;
     width: 100%;
     clear: both;
+    border-bottom: 1px solid lightgray;
+    
 }
+
+.container > .navbar-collapse, .container-fluid > .navbar-collapse {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+
 
 
 .nav {
@@ -706,6 +729,14 @@ h3{
     background-size: 1140px 472px;
     background-repeat: no-repeat;
     background-position-x: 0px;
+}
+
+
+@media (max-width: 1215px) {
+    .slider {
+        margin-top: 0px;
+        
+    }
 }
 
 .tag {
