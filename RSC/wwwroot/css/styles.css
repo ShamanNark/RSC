@@ -357,6 +357,12 @@ h3{
     text-decoration: none;
 }
 
+@media (max-width: 1215px) {
+    .main {
+        padding: 13px 25px 13px 25px;
+    }
+}
+
 
     .btn-blue:hover {
         text-decoration: none;
@@ -1292,7 +1298,7 @@ h3{
     .prdso .one-prdso-block:nth-child(4) {
         min-height: 220px;
         border-top: 5px solid;
-        border-left: 5px solid;
+        
         border-color: white;
     }
 }
