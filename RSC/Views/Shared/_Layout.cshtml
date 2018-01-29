@@ -158,6 +158,76 @@
 
 
         </nav>
+
+    <nav class="navbar navbar-default navbar-fixed-top hidden-md hidden-lg">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar" style="border:none;">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar" style="background-color: #e21c25;"></span>
+                    <span class="icon-bar" style="background-color: #e21c25;"></span>
+                    <span class="icon-bar" style="background-color: #e21c25;"></span>
+                </button>
+                @*<a class="navbar-brand" href="/">Росстуденчество</a>*@
+                <a href="/"><img src="~/img/logo.png" alt="Росстуденчество"></a>  
+            </div>
+            <div id="navbar" class="collapse navbar-collapse" aria-expanded="true" style="">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">О НАС<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/about/rosstudenchestvo">РОССТУДЕНЧЕСТВО</a></li>
+                            <li><a href="/about/ourteam">НАША КОМАНДА</a></li>
+                            <li><a href="/about/contacts">КОНТАКТЫ</a></li>
+                            <li><a href="/news/newsmainpage">НОВОСТИ</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">СТУДЕНТУ<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://www.sberbank.ru/ru/person/credits/learn/learn_subsid">ОБРАЗОВАТЕЛЬНЫЙ КРЕДИТ</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">СОВЕТАМ<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            @*<li><a href="#">РОССТУДЕНЧЕСТВО</a></li>*@
+                          
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ПРДСО<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/about/aboutprdso">О КОНКУРСЕ</a></li>
+                            <li><a href="/about/napravleniya">НАПРАВЛЕНИЯ ПРДСО</a></li>                            
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">АБИТУРИЕНТУ<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://abitur.cbias.ru/">ПОСТУПАЙ ПРАВИЛЬНО</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">В УЧЕБЕ<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            @*<li><a href="http://abitur.cbias.ru/">ПОСТУПАЙ ПРАВИЛЬНО</a></li>*@
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    
+
+
+
         @*BODY*@
         <div role="main" class="container main">
             @RenderBody()
@@ -167,19 +237,21 @@
 
                 <div class="col-md-12 footer-logo">
                     <p>Официальный сайт «Росстуденчество»</p>
-                    <a href="/about/contacts" class="btn-transparent">ЗАДАТЬ ВОПРОС</a>
+                    <a href="/about/contacts" class="btn-transparent hidden-sm hidden-xs">ЗАДАТЬ ВОПРОС</a>
                 </div>
 
                 <div class="footer-info">
                     <div class="col-md-2 footer-info-item">
                         <p>ПРИЕМНАЯ:</p>
-                        <br>
+                        <br class="hidden-sm hidden-xs" />
                         <p><a href="tel:+7(495)915-28-10">+7 495 915-28-10</a> </p>
 
                         <p><a href="tel:+7(495)915-56-14">+7 495 915-56-14</a></p>
                         <p>
                             <a href="mailto:post@russtudcenter.ru">post@russtudcenter.ru</a>
                         </p>
+                        <br class="hidden-md" />
+
                     </div>
                     <div class="col-md-3 footer-info-item">
                         <p>Горячая линия по вопросам социальной и</p>
@@ -188,32 +260,34 @@
                         <p>
                             <a href="tel:+7(800)555-23-90">+7 800 555-23-90</a>
                         </p>
-
+                        <br class="hidden-md" />
 
                     </div>
                     <div class="col-md-2 footer-info-item">
                         <p>ОТДЕЛ ПРДСО:</p>
-                        <br>
+                        <br class="hidden-sm hidden-xs" />
                         <p>
                             <a href="tel:+7(495)915-26-02">+7 495 915-26-02</a>
                         </p>
                         <p>
                             <a href="mailto:prdso@russtudcenter.ru">prdso@russtudcenter.ru</a>
                         </p>
+                        <br class="hidden-md" />
 
                     </div>
                     <div class="col-md-2 footer-info-item">
                         <p>РЕСУРСНЫЙ ЦЕНТР:</p>
-                        <br>
+                        <br class="hidden-sm hidden-xs" />
                         <p>
                             <a href="tel:+7(495)915-03-97">+7 495 915-03-97</a>
                         </p>
                         <p>
                             <a href="mailto:resurs@russtudcenter.ru">resurs@russtudcenter.ru</a>
                         </p>
+                        <br class="hidden-md" />
 
                     </div>
-                    <div class="col-md-3 footer-info-right">
+                    <div class="col-md-3 footer-info-right hidden-sm hidden-xs">
                         <ul style="list-style-type: none;">
                             <li><a class="rf-links" href="http://kremlin.ru/">Сайт президента РФ</a></li>
                             <li>
@@ -223,12 +297,12 @@
 
                         </ul>
 
-                        <div class="five-icons">
-                            <a href="http://vk.com"><i class="fa fa-vk soc-pad" aria-hidden="true"></i></a>
-                            <a href="http://instagram.com"><i class="fa fa-instagram soc-pad" aria-hidden="true"></i></a>
-                            <a href="http://facebook.com"><i class="fa fa-facebook soc-pad" aria-hidden="true"></i></a>
-                            <a href="http://twitter.com"><i class="fa fa-twitter soc-pad" aria-hidden="true"></i></a>
-                            <a href="http://telegram.org"><i class="fa fa-telegram soc-pad" aria-hidden="true"></i></a>
+                        <div class="five-icons hidden-sm hidden-xs">
+                            <a href="https://vk.com/russtudcenter"><i class="fa fa-vk soc-pad" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/rosstudenchestvo/"><i class="fa fa-instagram soc-pad" aria-hidden="true"></i></a>
+                            <a href="https://www.facebook.com/russtudcenter"><i class="fa fa-facebook soc-pad" aria-hidden="true"></i></a>
+                            @*<a href="http://twitter.com"><i class="fa fa-twitter soc-pad" aria-hidden="true"></i></a>*@
+                            <a href="https://t.me/Russtud"><i class="fa fa-telegram soc-pad" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -236,12 +310,44 @@
 
             </div>
 
-            <div class="social-icons col-md-12" style="text-align:center;">
+            <div class="social-icons col-md-12 hidden-sm hidden-xs">
                 <div class="social-icons-inner">
                     <a style="float:left;padding-top: 8px; color:lightgray; text-decoration: underline;" href="#">Соглашение о пользовании сайтом</a>
 
                     <p class="adress">109240, ул. Николоямская, д. 11, стр. 1, Москва</p>
                 </div>
+            </div>
+
+            <div class="mobfooter hidden-md hidden-lg">
+                <a href="/about/contacts" class="btn-transparent col-md-12">ЗАДАТЬ ВОПРОС</a>
+
+                <div class="mobfive-icons">
+                    <a href="https://vk.com/russtudcenter"><i class="fa fa-vk fa-2x soc-pad" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/rosstudenchestvo/"><i class="fa fa-instagram fa-2x soc-pad" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/russtudcenter"><i class="fa fa-facebook fa-2x soc-pad" aria-hidden="true"></i></a>
+                    @*<a href="http://twitter.com"><i class="fa fa-twitter soc-pad" aria-hidden="true"></i></a>*@
+                    <a href="https://t.me/Russtud"><i class="fa fa-telegram fa-2x soc-pad" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="mob-links">
+                    <ul style="padding-left:0px; padding-bottom: 10px;">
+                        <li><a class="mobrf-links" href="http://kremlin.ru/">Сайт президента РФ</a></li>
+                        <li>
+                            <a class="mobrf-links" href="http://government.ru/">Сайт правительства РФ</a>
+                        </li>
+                        <li><a class="mobrf-links" href="http://минобрнауки.рф/">Сайт министерства образования РФ</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="social-icons col-md-12 hidden-md hidden-lg">
+                    <div class="social-icons-inner">
+                        <a style="padding-top: 8px; color:lightgray; padding-top: 10px;" href="#">Соглашение о пользовании сайтом</a>
+
+                        <p>109240, ул. Николоямская, д. 11, стр. 1, Москва</p>
+                    </div>
+                </div>
+
             </div>
         </div>
         <environment include="Development">

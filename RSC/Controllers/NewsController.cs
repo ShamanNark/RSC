@@ -215,11 +215,17 @@ namespace RSC.Controllers
                                                   .Take(5)
                                                   .ToList();
 
-            var announs = db.Events.Include(e => e.PublicEventInformation)
-                                   .Include(e => e.PublicEventInformation.SmallFoto)
-                                   .Where(e => e.EventState.CodeName == "Announcement" || e.EventState.CodeName == "Event")
-                                   .Take(3)
-                                   .ToList();
+            var announs = db.ListObjectNewsNewsRubric.Include(n => n.NewsRubric)
+                                                  .Include(n => n.ObjectNews)
+                                                  .Where(n => n.NewsRubric.Name == "Анонсы")
+                                                  .OrderByDescending(n => n.ObjectNews.UpdateDateTime)
+                                                  .Take(3)
+                                                  .ToList();
+            //var announs = db.Events.Include(e => e.PublicEventInformation)
+            //                       .Include(e => e.PublicEventInformation.SmallFoto)
+            //                       .Where(e => e.EventState.CodeName == "Announcement" || e.EventState.CodeName == "Event")
+            //                       .Take(3)
+            //                       .ToList();
 
             var model = new NewsMainPageViewModel
             {
