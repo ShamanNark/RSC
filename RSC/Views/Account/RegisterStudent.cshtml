@@ -5,18 +5,13 @@
 <h2>Регитрация студента</h2>
 
 <div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" asp-action="RegisterStudent" method="post">
+    <div class="col-md-5">
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" asp-action="RegisterStudent" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ApplicationUserViewModel.Email" class="control-label"></label>
                 <input asp-for="ApplicationUserViewModel.Email" class="form-control" />
                 <span asp-validation-for="ApplicationUserViewModel.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationUserViewModel.Avatar" class="control-label"></label>
-                <input asp-for="ApplicationUserViewModel.Avatar" class="form-control" />
-                <span asp-validation-for="ApplicationUserViewModel.Avatar" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ApplicationUserViewModel.Surname" class="control-label"></label>
@@ -81,34 +76,42 @@
                 <input asp-for="ApplicationUserViewModel.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ApplicationUserViewModel.ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ApplicationUserViewModel.VKLink"></label>
-                <input asp-for="ApplicationUserViewModel.VKLink" class="form-control" />
-                <span asp-validation-for="ApplicationUserViewModel.VKLink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationUserViewModel.FacebookLink"></label>
-                <input asp-for="ApplicationUserViewModel.FacebookLink" class="form-control" />
-                <span asp-validation-for="ApplicationUserViewModel.FacebookLink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationUserViewModel.TwitterLink"></label>
-                <input asp-for="ApplicationUserViewModel.TwitterLink" class="form-control" />
-                <span asp-validation-for="ApplicationUserViewModel.TwitterLink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationUserViewModel.InstagramLink"></label>
-                <input asp-for="ApplicationUserViewModel.InstagramLink" class="form-control" />
-                <span asp-validation-for="ApplicationUserViewModel.InstagramLink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationUserViewModel.TelegramLink"></label>
-                <input asp-for="ApplicationUserViewModel.TelegramLink" class="form-control" />
-                <span asp-validation-for="ApplicationUserViewModel.TelegramLink" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <input type="submit" value="Создать" class="btn btn-default" />
             </div>
         </form>
+    </div>
+    <div class="col-md-5 pull-right">
+        <div class="form-group">
+            <label asp-for="ApplicationUserViewModel.AvatarFile" class="control-label"></label>
+            <input asp-for="ApplicationUserViewModel.AvatarFile" class="form-control" />
+            <span asp-validation-for="ApplicationUserViewModel.AvatarFile" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApplicationUserViewModel.VKLink"></label>
+            <input asp-for="ApplicationUserViewModel.VKLink" class="form-control" />
+            <span asp-validation-for="ApplicationUserViewModel.VKLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApplicationUserViewModel.FacebookLink"></label>
+            <input asp-for="ApplicationUserViewModel.FacebookLink" class="form-control" />
+            <span asp-validation-for="ApplicationUserViewModel.FacebookLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApplicationUserViewModel.TwitterLink"></label>
+            <input asp-for="ApplicationUserViewModel.TwitterLink" class="form-control" />
+            <span asp-validation-for="ApplicationUserViewModel.TwitterLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApplicationUserViewModel.InstagramLink"></label>
+            <input asp-for="ApplicationUserViewModel.InstagramLink" class="form-control" />
+            <span asp-validation-for="ApplicationUserViewModel.InstagramLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApplicationUserViewModel.TelegramLink"></label>
+            <input asp-for="ApplicationUserViewModel.TelegramLink" class="form-control" />
+            <span asp-validation-for="ApplicationUserViewModel.TelegramLink" class="text-danger"></span>
+        </div>
     </div>
 </div>

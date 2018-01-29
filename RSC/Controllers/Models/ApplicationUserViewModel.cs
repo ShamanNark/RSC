@@ -30,19 +30,11 @@ namespace RSC.Controllers.Models
 
         [Display(Name = "Фото")]
         [Required(ErrorMessage = "Что то не так с фото")]
-        public IFormFile Avatar { get; set; }
+        public IFormFile AvatarFile { get; set; }
 
         [Display(Name = "Пол")]
         [Required(ErrorMessage = "Что то не так с пол")]
         public Gender Gender { get; set; }
-
-        [Display(Name = "Организация")]
-        [Required(ErrorMessage = "Не указана оргонизация")]
-        public string Organisation { get; set; }
-
-        [Display(Name = "Должность")]
-        [Required(ErrorMessage = "Не указана должность")]
-        public string OrganisationPosition { get; set; }
 
         [Display(Name = "Регион")]
         [Required(ErrorMessage = "Не указан регион")]

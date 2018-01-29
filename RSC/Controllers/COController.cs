@@ -140,7 +140,7 @@ namespace RSC.Controllers
                 var dowloadFiles = new Helper.DownloadFiles(db, _appEnvironment);
                 var userId = _userManager.GetUserId(User);
                 var studentCouncilId = db.StudentsCouncils.Where(s => s.ApplicationUserId == userId).Select(s => s.Id).FirstOrDefault();
-                var coFileId = await dowloadFiles.AddFile(uploadedFile, "/CoPrivateFiles/" + uploadedFile.Name, uploadedFile.FileName);
+                var coFileId = await dowloadFiles.SaveCoPrivateFile(uploadedFile, uploadedFile.Name, uploadedFile.FileName);
                 if (coFileId != null)
                 {
                     var cofileDb = new CoPersonalFile { FileId = coFileId ?? 0, StudentCouncilId = studentCouncilId };

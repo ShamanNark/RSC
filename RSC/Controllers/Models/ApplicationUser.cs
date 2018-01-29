@@ -24,6 +24,7 @@ namespace RSC.Models
         public DateTime Birthday { get; set; }
 
         [Display(Name = "Фото")]
+        public int? AvatarId { get; set; }
         public FileModel Avatar { get; set; }
 
         [Display(Name = "Пол")]

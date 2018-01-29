@@ -72,7 +72,7 @@ namespace RSC.Controllers
             var dowloadFiles = new Helper.DownloadFiles(db, _appEnvironment);
             if (model.FotoFile != null)
             {
-                var fotoFileId = await dowloadFiles.AddImages(model.FotoFile, "/EventPublicFotos/" + eventdb.NameEvent, model.FotoFile.FileName);
+                var fotoFileId = await dowloadFiles.SaveEventPublicFoto(model.FotoFile, eventdb.NameEvent, model.FotoFile.FileName);
                 if (fotoFileId != null)
                 {
                     dbmodel.FotoId = fotoFileId ?? 0;
@@ -81,7 +81,7 @@ namespace RSC.Controllers
 
             if (model.SmallFotoFile != null)
             {
-                var smallFileId = await dowloadFiles.AddImages(model.SmallFotoFile, "/EventPublicSmallFotos/" + eventdb.NameEvent, model.SmallFotoFile.FileName);
+                var smallFileId = await dowloadFiles.SaveEventPublicSmallFotos(model.SmallFotoFile, eventdb.NameEvent, model.SmallFotoFile.FileName);
                 if (smallFileId != null)
                 {
                     dbmodel.SmallFotoId = smallFileId ?? 0;

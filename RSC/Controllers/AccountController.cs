@@ -296,6 +296,8 @@ namespace RSC.Controllers
         {           
             if (ModelState.IsValid)
             {
+                Helper.DownloadFiles saveFileHelper = new DownloadFiles(db, _appEnvironment);
+                var imagePath = await saveFileHelper.SaveProfileImage(model.ApplicationUserViewModel.AvatarFile, model.ApplicationUserViewModel.AvatarFile.Name, model.ApplicationUserViewModel.AvatarFile.FileName);
                 var user = new Student
                 {
                     UniversityDataId = model.UniversityDataId,
@@ -303,12 +305,12 @@ namespace RSC.Controllers
                     ApplicationUser = Mapper.Map<ApplicationUser>(model.ApplicationUserViewModel)
                 };
 
-                db.Students.AddAsync(user);
+                await db.Students.AddAsync(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
             }
 
-            return View(model);
+            return RedirectToAction("Register");
         }
         
 
@@ -327,15 +329,18 @@ namespace RSC.Controllers
         {
             if (ModelState.IsValid)
             {
+                Helper.DownloadFiles saveFileHelper = new DownloadFiles(db, _appEnvironment);
+                var avatarid = await saveFileHelper.SaveProfileImage(model.ApplicationUserViewModel.AvatarFile, model.ApplicationUserViewModel.AvatarFile.Name, model.ApplicationUserViewModel.AvatarFile.FileName);
                 var user = new Assessor
-                {                    
+                {                
                     ExperienceOfParticipation = model.ExperienceOfParticipation,
                     JobPhoneNumber = model.JobPhoneNumber,
                     Organisation = model.Organisation,
                     OrganisationPosition = model.OrganisationPosition,
                     ApplicationUser = Mapper.Map<ApplicationUser>(model.ApplicationUserViewModel)
                 };
-                db.Asssessors.AddAsync(user);
+                user.ApplicationUser.AvatarId = avatarid;
+                await db.Asssessors.AddAsync(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
             }
@@ -358,20 +363,35 @@ namespace RSC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new StudentsCouncil
+                Helper.DownloadFiles saveFileHelper = new DownloadFiles(db, _appEnvironment);
+                var avatarId = await saveFileHelper.SaveProfileImage(model.ApplicationUserViewModel.AvatarFile, model.ApplicationUserViewModel.AvatarFile.Name, model.ApplicationUserViewModel.AvatarFile.FileName);
+
+                if (model.ConferenceProtocolFile != null || model.OrderCreationCouncilOfLearnersFile != null || model.ProtocolApprovalStudentAssociationsFile != null)
                 {
                     
+                }
+
+                var conferenceProtocolId = await saveFileHelper.SaveConferenceProtocol(model.ConferenceProtocolFile, model.ConferenceProtocolFile.Name, model.ConferenceProtocolFile.FileName);
+                var orderCreationCouncilofLearnersId = await saveFileHelper.SaveOrderCreationCouncilOfLearners(model.OrderCreationCouncilOfLearnersFile, model.OrderCreationCouncilOfLearnersFile.Name, model.OrderCreationCouncilOfLearnersFile.FileName);
+                var protocolApprovalStudentAssociationId = await saveFileHelper.SaveProtocolApprovalStudentAssociations(model.ProtocolApprovalStudentAssociationsFile, model.ProtocolApprovalStudentAssociationsFile.Name, model.ProtocolApprovalStudentAssociationsFile.FileName);
+                
+
+                var user = new StudentsCouncil
+                {
                     UniversityDataId = model.UniversityDataId,
                     JobPhone = model.JobPhone,
                     Fax = model.Fax,
+                    ConferenceProtocolId = conferenceProtocolId,
+                    OrderCreationCouncilOfLearnersId = orderCreationCouncilofLearnersId,
+                    ProtocolApprovalStudentAssociationsId = protocolApprovalStudentAssociationId,
                     ApplicationUser = Mapper.Map<ApplicationUser>(model.ApplicationUserViewModel)
                 };
-                db.StudentsCouncils.AddAsync(user);
+                user.ApplicationUser.AvatarId = avatarId;
+                await db.StudentsCouncils.AddAsync(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -390,8 +410,9 @@ namespace RSC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var downloadFilesHelper = new DownloadFiles(db, _appEnvironment);
-                var powerOfAttorneyFileId= await downloadFilesHelper.AddFile(model.PowerOfAttorneyFile, "/Доверенность/" + model.PowerOfAttorneyFile.Name, model.PowerOfAttorneyFile.FileName);
+                var saveFilesHelper = new DownloadFiles(db, _appEnvironment);
+                var avatarId = await saveFilesHelper.SaveProfileImage(model.ApplicationUserViewModel.AvatarFile, model.ApplicationUserViewModel.AvatarFile.Name, model.ApplicationUserViewModel.AvatarFile.FileName);
+                var powerOfAttorneyFileId= await saveFilesHelper.SavePowerOfAttorney(model.PowerOfAttorneyFile, model.PowerOfAttorneyFile.Name, model.PowerOfAttorneyFile.FileName);
                 var user = new University
                 {
                     PowerOfAttorneyId = powerOfAttorneyFileId ?? 0,
@@ -402,7 +423,8 @@ namespace RSC.Controllers
                     Fax = model.Fax,                    
                     ApplicationUser = Mapper.Map<ApplicationUser>(model.ApplicationUserViewModel)
                 };
-                db.Universities.AddAsync(user);
+                user.ApplicationUser.AvatarId = avatarId;
+                await db.Universities.AddAsync(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
             }
@@ -639,10 +661,10 @@ namespace RSC.Controllers
                     await RegisterStudentDb(T as RegisterStudentViewModel);
                     break;
                 case "RegisterStudentCouncilViewModel":
-                    await RegisterStudentCouncilDb(T as RegisterStudentCouncilViewModel);
+                    //await RegisterStudentCouncilDb(T as RegisterStudentCouncilViewModel);
                     break;
                 case "RegisterUniversityViewModel":
-                    await RegisterUniversityDb(T as RegisterUniversityViewModel);
+                    //await RegisterUniversityDb(T as RegisterUniversityViewModel);
                     break;
                 case "RegisterAssessorViewModel":
                     await RegisterAssessorDb(T as RegisterAssessorViewModel);
@@ -662,64 +684,64 @@ namespace RSC.Controllers
             await db.SaveChangesAsync();
         }
 
-        private async Task<bool> RegisterUniversityDb(RegisterUniversityViewModel model)
-        {
-            var universityDb = Mapper.Map<University>(model);
-            var downloadfile = new Helper.DownloadFiles(db, _appEnvironment);
-            var nameFile = db.UniversityDatas.Where(u => u.Id == model.UniversityDataId).First();
-            var powerofAttorneyId = await downloadfile.AddFile(model.PowerOfAttorneyFile, "/Доверенность/" + nameFile.UniversityShortName, model.PowerOfAttorneyFile.FileName);
-            if(powerofAttorneyId != null)
-            {
-                universityDb.PowerOfAttorneyId = powerofAttorneyId ?? 0;
-            }
-            db.Universities.Add(universityDb);
-            db.SaveChanges();
-            universityDb.UniversityData.UniversityWebSite = model.UniversityWebSite;
-            universityDb.ApplicationUser.UserType = ApplicationUserTypes.University;
-            await _userManager.AddToRoleAsync(universityDb.ApplicationUser, "OOBO");
-            db.SaveChanges();
-            return true;
-        }
+        //private async Task<bool> RegisterUniversityDb(RegisterUniversityViewModel model)
+        //{
+        //    var universityDb = Mapper.Map<University>(model);
+        //    var downloadfile = new Helper.DownloadFiles(db, _appEnvironment);
+        //    var nameFile = db.UniversityDatas.Where(u => u.Id == model.UniversityDataId).First();
+        //    var powerofAttorneyId = await downloadfile.AddFile(model.PowerOfAttorneyFile, "/Доверенность/" + nameFile.UniversityShortName, model.PowerOfAttorneyFile.FileName);
+        //    if(powerofAttorneyId != null)
+        //    {
+        //        universityDb.PowerOfAttorneyId = powerofAttorneyId ?? 0;
+        //    }
+        //    db.Universities.Add(universityDb);
+        //    db.SaveChanges();
+        //    universityDb.UniversityData.UniversityWebSite = model.UniversityWebSite;
+        //    universityDb.ApplicationUser.UserType = ApplicationUserTypes.University;
+        //    await _userManager.AddToRoleAsync(universityDb.ApplicationUser, "OOBO");
+        //    db.SaveChanges();
+        //    return true;
+        //}
 
-        private async Task RegisterStudentCouncilDb(RegisterStudentCouncilViewModel model)
-        {
-            var studentCouncilDb = Mapper.Map<StudentsCouncil>(model);
-            var nameFile = db.UniversityDatas.Where(u => u.Id == model.UniversityDataId).First();
-            var downloadFiles = new Helper.DownloadFiles(db, _appEnvironment);
+        //private async Task RegisterStudentCouncilDb(RegisterStudentCouncilViewModel model)
+        //{
+        //    var studentCouncilDb = Mapper.Map<StudentsCouncil>(model);
+        //    var nameFile = db.UniversityDatas.Where(u => u.Id == model.UniversityDataId).First();
+        //    var downloadFiles = new Helper.DownloadFiles(db, _appEnvironment);
 
-            var orderCreationCouncilOfLearnersId = await downloadFiles.AddFile
-                (model.OrderCreationCouncilOfLearnersFile,
-                "/Приказ о создании Совета обучающихся/" + nameFile.UniversityShortName,
-                model.OrderCreationCouncilOfLearnersFile.FileName);
-            if (orderCreationCouncilOfLearnersId != null)
-            {
-                studentCouncilDb.OrderCreationCouncilOfLearnersId = orderCreationCouncilOfLearnersId ?? 0;
-            }
+        //    var orderCreationCouncilOfLearnersId = await downloadFiles.AddFile
+        //        (model.OrderCreationCouncilOfLearnersFile,
+        //        "/Приказ о создании Совета обучающихся/" + nameFile.UniversityShortName,
+        //        model.OrderCreationCouncilOfLearnersFile.FileName);
+        //    if (orderCreationCouncilOfLearnersId != null)
+        //    {
+        //        studentCouncilDb.OrderCreationCouncilOfLearnersId = orderCreationCouncilOfLearnersId ?? 0;
+        //    }
 
-            var protocolApprovalStudentAssociationsId = await downloadFiles.AddFile
-                (model.ProtocolApprovalStudentAssociationsFile,
-                "/Протокол СО об утверждении/" + nameFile.UniversityShortName,
-                model.ProtocolApprovalStudentAssociationsFile.FileName);
-            if (protocolApprovalStudentAssociationsId != null)
-            {
-                studentCouncilDb.ProtocolApprovalStudentAssociationsId = protocolApprovalStudentAssociationsId ?? 0;
-            }
+        //    var protocolApprovalStudentAssociationsId = await downloadFiles.AddFile
+        //        (model.ProtocolApprovalStudentAssociationsFile,
+        //        "/Протокол СО об утверждении/" + nameFile.UniversityShortName,
+        //        model.ProtocolApprovalStudentAssociationsFile.FileName);
+        //    if (protocolApprovalStudentAssociationsId != null)
+        //    {
+        //        studentCouncilDb.ProtocolApprovalStudentAssociationsId = protocolApprovalStudentAssociationsId ?? 0;
+        //    }
 
-            var conferenceProtocolId = await downloadFiles.AddFile
-                (model.ConferenceProtocolFile,
-                "/Протокол отчетно-выборной конференции СО/" + nameFile.UniversityShortName,
-                model.ConferenceProtocolFile.FileName);
-            if (conferenceProtocolId != null)
-            {
-                studentCouncilDb.ConferenceProtocolId = conferenceProtocolId ?? 0;
-            }
+        //    var conferenceProtocolId = await downloadFiles.AddFile
+        //        (model.ConferenceProtocolFile,
+        //        "/Протокол отчетно-выборной конференции СО/" + nameFile.UniversityShortName,
+        //        model.ConferenceProtocolFile.FileName);
+        //    if (conferenceProtocolId != null)
+        //    {
+        //        studentCouncilDb.ConferenceProtocolId = conferenceProtocolId ?? 0;
+        //    }
 
-            db.StudentsCouncils.Add(studentCouncilDb);
-            await db.SaveChangesAsync();
-            studentCouncilDb.ApplicationUser.UserType = ApplicationUserTypes.StudentCouncil;
-            await _userManager.AddToRoleAsync(studentCouncilDb.ApplicationUser, "CO");
-            await db.SaveChangesAsync();
-        }
+        //    db.StudentsCouncils.Add(studentCouncilDb);
+        //    await db.SaveChangesAsync();
+        //    studentCouncilDb.ApplicationUser.UserType = ApplicationUserTypes.StudentCouncil;
+        //    await _userManager.AddToRoleAsync(studentCouncilDb.ApplicationUser, "CO");
+        //    await db.SaveChangesAsync();
+        //}
 
         private async Task RegisterStudentDb(RegisterStudentViewModel model)
         {

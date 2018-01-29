@@ -128,47 +128,51 @@ namespace RSC.Controllers
                     }
 
                     var dbCouncil = Mapper.Map<Data.DbModels.StudentsCouncil>(model.StudentsCouncilViewModel);
-                    var orderCreationCouncilOfLearnersId = await dowloadFiles.AddFile
+                    var orderCreationCouncilOfLearnersId = await dowloadFiles.SaveOrderCreationCouncilOfLearners
                         (model.StudentsCouncilViewModel.OrderCreationCouncilOfLearnersFile,
-                        "/Приказ о создании Совета обучающихся/" + dbUviversity.UniversityData.UniversityShortName,
+                        dbUviversity.UniversityData.UniversityShortName,
                         model.StudentsCouncilViewModel.OrderCreationCouncilOfLearnersFile.FileName);
+
                     if (orderCreationCouncilOfLearnersId != null)
                     {
                         dbCouncil.OrderCreationCouncilOfLearnersId = orderCreationCouncilOfLearnersId ?? 0;
                     }
 
-                    var protocolApprovalStudentAssociationsId = await dowloadFiles.AddFile
+                    var protocolApprovalStudentAssociationsId = await dowloadFiles.SaveProtocolApprovalStudentAssociations
                         (model.StudentsCouncilViewModel.ProtocolApprovalStudentAssociationsFile,
-                        "/Протокол СО об утверждении/" + dbUviversity.UniversityData.UniversityShortName,
-                        model.StudentsCouncilViewModel.ProtocolApprovalStudentAssociationsFile.FileName);
+                         dbUviversity.UniversityData.UniversityShortName,
+                         model.StudentsCouncilViewModel.ProtocolApprovalStudentAssociationsFile.FileName);
+
                     if (protocolApprovalStudentAssociationsId != null)
                     {
                         dbCouncil.ProtocolApprovalStudentAssociationsId = protocolApprovalStudentAssociationsId ?? 0;
                     }
 
-                    var conferenceProtocolId = await dowloadFiles.AddFile
+                    var conferenceProtocolId = await dowloadFiles.SaveConferenceProtocol
                         (model.StudentsCouncilViewModel.ConferenceProtocolFile,
-                        "/Протокол отчетно-выборной конференции СО/" + dbUviversity.UniversityData.UniversityShortName,
+                        dbUviversity.UniversityData.UniversityShortName,
                         model.StudentsCouncilViewModel.ConferenceProtocolFile.FileName);
+
                     if (conferenceProtocolId != null)
                     {
                         dbCouncil.ConferenceProtocolId = conferenceProtocolId ?? 0;
                     }
+
                     dbCouncil.ApplicationUserId = user.Id;
-                    //dbCouncil.RegionId = dbUviversity.RegionId;
                     dbCouncil.UniversityDataId = dbUviversity.UniversityDataId;
                     db.StudentsCouncils.Add(dbCouncil);
                     db.SaveChanges();
                     await _userManager.AddToRoleAsync(user, "CO");
                     prdso.StudentsCouncilId = dbCouncil.Id;
                 }
-                var fileid = await dowloadFiles.AddFile(model.EGRULfile, "/EGRUL/" + dbUviversity.UniversityData.UniversityShortName, model.EGRULfile.FileName);
+
+                var fileid = await dowloadFiles.SaveEGRULFile(model.EGRULfile, dbUviversity.UniversityData.UniversityShortName, model.EGRULfile.FileName);
                 if(fileid != null)
                 {
                     prdso.EGRULId = fileid ?? 0;
                 }
 
-                var oderApprovalRectorId = await dowloadFiles.AddFile(model.OderApprovalRectorFile, "/Приказ об утверждении (назначении) ректора/" + dbUviversity.UniversityData.UniversityShortName, model.OderApprovalRectorFile.FileName);
+                var oderApprovalRectorId = await dowloadFiles.OrderApprovalRectorFile(model.OderApprovalRectorFile, dbUviversity.UniversityData.UniversityShortName, model.OderApprovalRectorFile.FileName);
                 if (fileid != null)
                 {
                     prdso.OderApprovalRectorId = oderApprovalRectorId ?? 0;

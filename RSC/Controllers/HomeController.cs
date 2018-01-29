@@ -24,7 +24,7 @@ namespace RSC.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var viewModel = new HomeIndexViewModel
             {
