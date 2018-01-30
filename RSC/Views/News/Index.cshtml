@@ -56,13 +56,13 @@
             <td style="max-width: 150px; text-overflow: ellipsis; overflow: hidden;">
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
-            <td style="max-width: 150px; text-overflow: ellipsis; overflow: hidden;">
+            <td style="max-width: 150px; max-height: 100px; text-overflow: ellipsis; overflow: hidden;">
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td style="max-width: 150px; text-overflow: ellipsis; overflow: hidden;">
-                <span style="max-width: 150px; word-wrap: break-word; word-break: break-all;">
+                <div style="max-width: 150px; max-height: 100px;word-wrap: break-word; word-break: break-all;">
                     @Html.Raw(@item.Text)
-                </span>
+                </div>
             </td>
             <td style="max-width: 50px;">
                 @Html.DisplayFor(modelItem => item.CreateDateTime)
