@@ -26,13 +26,13 @@ namespace RSC.Helper
         public async Task<int?> SaveEGRULFile(IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
             var folderPath = "/files/EGRUL/";
-            return await AddFile(uploadedFile, folderPath, fileName, fullPathWithFormatFile);
+            return await AddFile(uploadedFile, folderPath, fileName);
         }
 
         public async Task<int?> OrderApprovalRectorFile(IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
             var folderPath = "/files/Приказ об утверждении (назначении) ректора/";
-            return await AddFile(uploadedFile, folderPath, fileName, fullPathWithFormatFile);
+            return await AddFile(uploadedFile, folderPath, fileName);
         }
 
         #endregion
@@ -42,25 +42,25 @@ namespace RSC.Helper
         public async Task<int?> SaveCoPrivateFile(IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
             var folderPath = "/files/CoPrivateFiles/";
-            return await AddFile(uploadedFile, folderPath, fileName, fullPathWithFormatFile);
+            return await AddFile(uploadedFile, folderPath, fileName);
         }
 
         public async Task<int?> SaveConferenceProtocol(IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
             var folderPath = "/files/Протокол отчетно-выборной конференции СО/";
-            return await AddFile(uploadedFile, folderPath, fileName, fullPathWithFormatFile);
+            return await AddFile(uploadedFile, folderPath, fileName);
         }
 
         public async Task<int?> SaveProtocolApprovalStudentAssociations(IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
             var folderPath = "/files/Протокол СО об утверждении/";
-            return await AddFile(uploadedFile, folderPath, fileName, fullPathWithFormatFile);
+            return await AddFile(uploadedFile, folderPath, fileName);
         }
 
         public async Task<int?> SaveOrderCreationCouncilOfLearners(IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
             var folderPath = "/files/Приказ о создании Совета обучающихся/";
-            return await AddFile(uploadedFile, folderPath, fileName, fullPathWithFormatFile);
+            return await AddFile(uploadedFile, folderPath, fileName);
         }
 
         #endregion
@@ -70,13 +70,13 @@ namespace RSC.Helper
         public async Task<int?> SaveEventPublicFoto(IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
             var folderPath = "/files/EventPublicFotos/";
-            return await AddFile(uploadedFile, folderPath, fileName, fullPathWithFormatFile);
+            return await AddFile(uploadedFile, folderPath, fileName);
         }
 
         public async Task<int?> SaveEventPublicSmallFotos(IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
             var folderPath = "/files/EventPublicSmallFotos/";
-            return await AddFile(uploadedFile, folderPath, fileName, fullPathWithFormatFile);
+            return await AddFile(uploadedFile, folderPath, fileName);
         }
 
         #endregion 
@@ -84,25 +84,35 @@ namespace RSC.Helper
         public async Task<int?> SavePowerOfAttorney (IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
             var folderPath = "/files/Доверенность/";
-            return await AddFile(uploadedFile, folderPath, fileName, fullPathWithFormatFile);
+            return await AddFile(uploadedFile, folderPath, fileName);
         }
 
         public async Task<int?> SaveProfileImage(IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
             var folderPath = "/files/Аватарки/";
-            return await AddFile(uploadedFile, folderPath , fileName, fullPathWithFormatFile);
+            return await AddFile(uploadedFile, folderPath , fileName);
         }
 
-        private async Task<int?> AddFile(IFormFile uploadedFile, string nameFolder, string fileName, string fullPathWithFormatFile)
+        private async Task<int?> AddFile(IFormFile uploadedFile, string nameFolder, string fileName)
         {
             try
             {
                 if (uploadedFile != null)
                 {
-                    string path = /*"/files/"*/ nameFolder + fileName + Path.GetExtension(fullPathWithFormatFile).ToLowerInvariant();
+                    string path = "";
+                    int index = 0;
+                    do
+                    {
+                        string name = Path.GetFileNameWithoutExtension(fileName);
+                        path = _appEnvironment.WebRootPath + nameFolder + name + $"({index})" + Path.GetExtension(fileName).ToLowerInvariant();
+                        index++;
+                        var t =  File.Exists(path);
+                    }
+                    while(File.Exists(path));
+
                     char[] charsToTrim = { ' ', '\t'};
                     path = path.Trim(charsToTrim);
-                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.CreateNew))
+                    using (var fileStream = new FileStream(path, FileMode.CreateNew))
                     {
                         await uploadedFile.CopyToAsync(fileStream);
                     }

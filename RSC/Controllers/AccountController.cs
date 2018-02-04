@@ -20,6 +20,7 @@ using AutoMapper;
 using RSC.Controllers.Models.AccountViewModels;
 using Microsoft.AspNetCore.Hosting;
 using RSC.Helper;
+using System.Security.Cryptography;
 
 namespace RSC.Controllers
 {
@@ -61,12 +62,11 @@ namespace RSC.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(string returnUrl = null)
+        public async Task<IActionResult> Login(string statusmessage)
         {
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
-            ViewData["ReturnUrl"] = returnUrl;
+            ViewBag.StatusMessage = statusmessage;
             return View();
         }
 
@@ -80,6 +80,7 @@ namespace RSC.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                //_signInManager.SignInAsync()
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
@@ -232,7 +233,7 @@ namespace RSC.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register(string statusMessage)
+        public IActionResult Register(RegisterViewModel model)
         {
             //ViewData["ReturnUrl"] = returnUrl;
             ViewBag.Regions = new SelectList(db.Regions.Select(b => new { Id = b.Id, Name = b.RegionName }).ToList(), "Id", "Name");          
@@ -248,8 +249,9 @@ namespace RSC.Controllers
                 Name = u.UniversityName,
                 ShortName = u.UniversityShortName
             }).ToList();
-           
-            return View(statusMessage);
+            ViewBag.ErrorMessage = model.StatusMessage;
+
+            return View();
         }
 
         /*[HttpPost]
@@ -283,10 +285,10 @@ namespace RSC.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterStudent(string StatusMessage)
+        public IActionResult RegisterStudent()
         {
             //ViewData["ReturnUrl"] = returnUrl;
-            return View(StatusMessage);
+            return View();
         }
 
         [HttpPost]
@@ -296,29 +298,40 @@ namespace RSC.Controllers
         {           
             if (ModelState.IsValid)
             {
+                var isEmailExist = db.Users.Any(u => u.Email == model.ApplicationUserViewModel.Email);
+                if (isEmailExist)
+                {
+                    return new RedirectToActionResult("Register", "Account", new RegisterViewModel { StatusMessage = "Ошибка: такой email уже существует" });
+                }
+
                 Helper.DownloadFiles saveFileHelper = new DownloadFiles(db, _appEnvironment);
-                var imageId = await saveFileHelper.SaveProfileImage(model.ApplicationUserViewModel.AvatarFile, model.ApplicationUserViewModel.AvatarFile.Name, model.ApplicationUserViewModel.AvatarFile.FileName);
+                var imageId = await saveFileHelper.SaveProfileImage(model.ApplicationUserViewModel.AvatarFile, model.ApplicationUserViewModel.AvatarFile.FileName, model.ApplicationUserViewModel.AvatarFile.Name);
                 var user = new Student
                 {
                     UniversityDataId = model.UniversityDataId,
                     CategoryId = model.CategoryId,
                     ApplicationUser = Mapper.Map<ApplicationUser>(model.ApplicationUserViewModel)
                 };
+                //user.ApplicationUser.PasswordHash = _userManager.PasswordHasher.HashPassword(user.ApplicationUser.Email, model.ApplicationUserViewModel.Password);
                 user.ApplicationUser.AvatarId = imageId;
+                user.ApplicationUser.LockoutEnabled = true;
+                user.ApplicationUser.UserName = user.ApplicationUser.Email;
+                user.ApplicationUser.NormalizedEmail = user.ApplicationUser.Email.ToUpper();
+                user.ApplicationUser.NormalizedUserName = user.ApplicationUser.Email.ToUpper();
                 await db.Students.AddAsync(user);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                await _userManager.AddPasswordAsync(user.ApplicationUser, model.ApplicationUserViewModel.Password);
+                return RedirectToAction("Login", "Account",  new { statusmessage = "Регистрация прошла успешно"});
             }
 
-            return RedirectToAction("Register", "Модель не валидна");
+            return RedirectToAction("Register", "Account" , "Ошибка: заполните все обязательные поля");
         }
         
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterAssessor(string returnUrl = null)
+        public IActionResult RegisterAssessor()
         {
-            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
@@ -350,9 +363,8 @@ namespace RSC.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterStudentCouncil(string returnUrl = null)
+        public IActionResult RegisterStudentCouncil()
         {
-            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
@@ -397,9 +409,8 @@ namespace RSC.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterUniversity(string returnUrl = null)
+        public IActionResult RegisterUniversity()
         {
-            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
@@ -632,6 +643,11 @@ namespace RSC.Controllers
         }
 
         #region Helpers
+    
+        private bool CheckEmailExist(string email)
+        {
+            return db.Users.Any(s => s.Email == email);            
+        }
 
         private void AddErrors(IdentityResult result)
         {
@@ -798,6 +814,51 @@ namespace RSC.Controllers
             return View(model);
         }
 
+        private string HashPassword(string password)
+        {
+            byte[] salt;
+            byte[] buffer2;
+            if (password == null)
+            {
+                throw new ArgumentNullException("password");
+            }
+            using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, 0x10, 0x3e8))
+            {
+                salt = bytes.Salt;
+                buffer2 = bytes.GetBytes(0x20);
+            }
+            byte[] dst = new byte[0x31];
+            Buffer.BlockCopy(salt, 0, dst, 1, 0x10);
+            Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
+            return Convert.ToBase64String(dst);
+        }
+
+        private bool VerifyHashedPassword(string hashedPassword, string password)
+        {
+            byte[] buffer4;
+            if (hashedPassword == null)
+            {
+                return false;
+            }
+            if (password == null)
+            {
+                throw new ArgumentNullException("password");
+            }
+            byte[] src = Convert.FromBase64String(hashedPassword);
+            if ((src.Length != 0x31) || (src[0] != 0))
+            {
+                return false;
+            }
+            byte[] dst = new byte[0x10];
+            Buffer.BlockCopy(src, 1, dst, 0, 0x10);
+            byte[] buffer3 = new byte[0x20];
+            Buffer.BlockCopy(src, 0x11, buffer3, 0, 0x20);
+            using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, dst, 0x3e8))
+            {
+                buffer4 = bytes.GetBytes(0x20);
+            }
+            return buffer3 == buffer4;
+        }
         #endregion
     }
 }

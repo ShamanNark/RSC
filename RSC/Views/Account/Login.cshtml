@@ -19,11 +19,10 @@
     
     <div class="col-md-3"></div>
     <div class="col-md-6" style="padding-top: 100px;">
+        @Html.Partial("/Views/Shared/_StatusMessage.cshtml", (string)@ViewBag.StatusMessage)
         <div class="thumbnail">
             <h3>ВХОД НА САЙТ</h3>
-            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                @*<h4>Use a local account to log in.</h4>*@
-
+            <form  asp-action="Login" method="post">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Email"></label>
@@ -35,14 +34,6 @@
                     <input asp-for="Password" class="form-control"/>
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                @*<div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="RememberMe">
-                            <input asp-for="RememberMe"/>
-                            @Html.DisplayNameFor(m => m.RememberMe)
-                        </label>
-                    </div>
-                </div>*@
                 <div class="form-group">
                     <p>
                         <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Регистрация</a>

@@ -7,12 +7,16 @@
 
   <ItemGroup>
     <Compile Remove="Views\PublicNewsInfo\**" />
+    <Compile Remove="wwwroot\files\NewFolder\**" />
     <Compile Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
     <Content Remove="Views\PublicNewsInfo\**" />
+    <Content Remove="wwwroot\files\NewFolder\**" />
     <Content Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
     <EmbeddedResource Remove="Views\PublicNewsInfo\**" />
+    <EmbeddedResource Remove="wwwroot\files\NewFolder\**" />
     <EmbeddedResource Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
     <None Remove="Views\PublicNewsInfo\**" />
+    <None Remove="wwwroot\files\NewFolder\**" />
     <None Remove="wwwroot\files\Протокол СО об утверждении Программы развития деятельности студенческих объединений ООВО\**" />
   </ItemGroup>
 
