@@ -1,4 +1,5 @@
-﻿@{
+﻿@model string
+@{
     ViewData["Title"] = "Регистрация";
 }
 <link rel="stylesheet" href="~/bootstrap-multiselect/css/bootstrap-multiselect.css" type="text/css" />
@@ -13,7 +14,7 @@
             <li role="presentation"><a href="#assessor" aria-controls="assessor" role="tab" data-toggle="tab">Эксперт</a></li>
         </ul>
 
-        @Html.Partial("/Views/Shared/_StatusMessage.cshtml", "");
+        @Html.Partial("/Views/Shared/_StatusMessage.cshtml", @Model)
 
         <!-- Tab panes -->
         <div class="tab-content">

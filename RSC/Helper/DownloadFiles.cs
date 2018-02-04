@@ -89,7 +89,7 @@ namespace RSC.Helper
 
         public async Task<int?> SaveProfileImage(IFormFile uploadedFile, string fileName, string fullPathWithFormatFile)
         {
-            var folderPath = "/files/Аватар/";
+            var folderPath = "/files/Аватарки/";
             return await AddFile(uploadedFile, folderPath , fileName, fullPathWithFormatFile);
         }
 
@@ -102,7 +102,7 @@ namespace RSC.Helper
                     string path = /*"/files/"*/ nameFolder + fileName + Path.GetExtension(fullPathWithFormatFile).ToLowerInvariant();
                     char[] charsToTrim = { ' ', '\t'};
                     path = path.Trim(charsToTrim);
-                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.CreateNew))
                     {
                         await uploadedFile.CopyToAsync(fileStream);
                     }

@@ -232,9 +232,9 @@ namespace RSC.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
+        public IActionResult Register(string statusMessage)
         {
-            ViewData["ReturnUrl"] = returnUrl;
+            //ViewData["ReturnUrl"] = returnUrl;
             ViewBag.Regions = new SelectList(db.Regions.Select(b => new { Id = b.Id, Name = b.RegionName }).ToList(), "Id", "Name");          
             ViewBag.Degress = new SelectList(new List<SelectListItem>
             {
@@ -249,7 +249,7 @@ namespace RSC.Controllers
                 ShortName = u.UniversityShortName
             }).ToList();
            
-            return View();
+            return View(statusMessage);
         }
 
         /*[HttpPost]
@@ -283,10 +283,10 @@ namespace RSC.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterStudent(string returnUrl = null)
+        public IActionResult RegisterStudent(string StatusMessage)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            //ViewData["ReturnUrl"] = returnUrl;
+            return View(StatusMessage);
         }
 
         [HttpPost]
@@ -297,20 +297,20 @@ namespace RSC.Controllers
             if (ModelState.IsValid)
             {
                 Helper.DownloadFiles saveFileHelper = new DownloadFiles(db, _appEnvironment);
-                var imagePath = await saveFileHelper.SaveProfileImage(model.ApplicationUserViewModel.AvatarFile, model.ApplicationUserViewModel.AvatarFile.Name, model.ApplicationUserViewModel.AvatarFile.FileName);
+                var imageId = await saveFileHelper.SaveProfileImage(model.ApplicationUserViewModel.AvatarFile, model.ApplicationUserViewModel.AvatarFile.Name, model.ApplicationUserViewModel.AvatarFile.FileName);
                 var user = new Student
                 {
                     UniversityDataId = model.UniversityDataId,
                     CategoryId = model.CategoryId,
                     ApplicationUser = Mapper.Map<ApplicationUser>(model.ApplicationUserViewModel)
                 };
-
+                user.ApplicationUser.AvatarId = imageId;
                 await db.Students.AddAsync(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
             }
 
-            return RedirectToAction("Register");
+            return RedirectToAction("Register", "Модель не валидна");
         }
         
 
