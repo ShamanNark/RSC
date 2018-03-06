@@ -80,7 +80,7 @@
                 <li id="rosstudenchestvo" class="sec-nav-li col-md-2"><a href="/about/rosstudenchestvo">РОССТУДЕНЧЕСТВО</a></li>
                 <li id="ourteam" class="sec-nav-li col-md-2"><a href="/about/ourteam">НАША КОМАНДА</a></li>
                 <li id="contacts" class="sec-nav-li col-md-2"><a href="/about/contacts">КОНТАКТЫ</a></li>
-                <li id="newsmainp" class="sec-nav-li col-md-2"><a href="/news/newsmainpage">НОВОСТИ</a></li>
+                <li class="sec-nav-li col-md-2"><a href="#"></a></li>
                 <li class="sec-nav-li col-md-2"><a href="#"></a></li>
                 <li class="sec-nav-li col-md-2"><a href="#"></a></li>
             </ul>
@@ -113,19 +113,19 @@
                 <li class="col-md-2 sec-nav-li"><a href="#"></a></li>
             </ul>
         </div>
-        <div class="dropdown col-md-2 sec-nav" id="prdsoMenu">
-            <button class="btn btn-nav dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                ПРДСО
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu container menu-all menu4" aria-labelledby="dropdownMenu4">
+        <div class="dropdown col-md-2 sec-nav" id="prdsoMenu" href="/news/newsmainpage">
+            <a class="btn btn-nav dropdown-toggle" id="dropdownMenu4" href="/news/newsmainpage" style="padding-top:13px; color: black;">
+                НОВОСТИ
+                @*<span class="caret"></span>*@
+            </a> 
+            @*<ul class="dropdown-menu container menu-all menu4" aria-labelledby="dropdownMenu4">
                 <li id="aboutprdso" class="col-md-2 sec-nav-li"><a href="/about/aboutprdso">О КОНКУРСЕ</a></li>
                 <li id="napravleniyaprdso" class="col-md-2 sec-nav-li"><a href="/about/napravleniya">НАПРАВЛЕНИЯ ПРДСО</a></li>
                 <li class="col-md-2 sec-nav-li"><a href="#"></a></li>
                 <li class="col-md-2 sec-nav-li"><a href="#"></a></li>
                 <li class="col-md-2 sec-nav-li"><a href="#"></a></li>
                 <li class="col-md-2 sec-nav-li"><a href="#"></a></li>
-            </ul>
+            </ul>*@
         </div>
         <div class="dropdown col-md-2 sec-nav">
             <button class="btn btn-nav dropdown-toggle" type="button" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -179,7 +179,7 @@
                             <li><a href="/about/rosstudenchestvo">РОССТУДЕНЧЕСТВО</a></li>
                             <li><a href="/about/ourteam">НАША КОМАНДА</a></li>
                             <li><a href="/about/contacts">КОНТАКТЫ</a></li>
-                            <li><a href="/news/newsmainpage">НОВОСТИ</a></li>
+                            @*<li><a href="/news/newsmainpage">НОВОСТИ</a></li>*@
                             
                         </ul>
                     </li>
@@ -197,12 +197,12 @@
 
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ПРДСО<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                    <li >
+                        <a href="/news/newsmainpage" class="dropdown-toggle">НОВОСТИ@*<span class="caret"></span>*@</a>
+                        @*<ul class="dropdown-menu">
                             <li><a href="/about/aboutprdso">О КОНКУРСЕ</a></li>
                             <li><a href="/about/napravleniya">НАПРАВЛЕНИЯ ПРДСО</a></li>                            
-                        </ul>
+                        </ul>*@
                     </li>
 
                     <li class="dropdown">
@@ -289,11 +289,12 @@
                     </div>
                     <div class="col-md-3 footer-info-right hidden-sm hidden-xs">
                         <ul style="list-style-type: none;">
-                            <li><a class="rf-links" href="http://kremlin.ru/">Сайт президента РФ</a></li>
+                            <li><a class="rf-links" href="http://kremlin.ru/">Сайт Президента РФ</a></li>
                             <li>
-                                <a class="rf-links" href="http://government.ru/">Сайт правительства РФ</a>
+                                <a class="rf-links" href="http://government.ru/">Сайт Правительства РФ</a>
                             </li>
                             <li><a class="rf-links" href="http://минобрнауки.рф/">Сайт министерства образования РФ</a></li>
+
 
                         </ul>
 

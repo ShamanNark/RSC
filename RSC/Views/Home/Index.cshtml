@@ -85,7 +85,7 @@
     
 </div>
 
-<div class="prdso col-md-12">
+@*<div class="prdso col-md-12">
     <div class="col-md-6 col-xs-12 prdso-banner">
         <h1>Конкурс ПРДСО</h1>
         <p class="hidden-xs hidden-sm">
@@ -113,12 +113,7 @@
         <h3>Культура и творчество</h3>
         <h4><<студенческий совет>></h4>
     </div>
-    @*<div class="col-md-3 one-prdso-block">
-        <h3>
-            Профессиональные
-            компетенции
-        </h3>
-    </div>*@    
+     
     <div class="col-md-3 hidden-xs hidden-sm one-prdso-block">
         <h5>Дата проведения 17.09.17</h5>
         <h3>Профессиональные
@@ -130,8 +125,60 @@
         <h3>Предпринимательство</h3>
         <h4><<студенческий совет>></h4>
     </div>
-</div>
+</div>*@
 
+
+<div class="news-block col-md-12">
+    <div class="col-md-6 col-xs-12 col-sm-12 news-banner">
+        <h1>Новости</h1>
+        <p class="hidden-xs hidden-sm">
+            Здесь будет какая-то информация о том, что это за
+            «новости» в целом, что здесь можно найти и что узнать,
+            но кратко, буквально одно-два предложения.
+        </p>
+        <div class="news-buttons">
+            <a href="@Url.Action("NewsMainPage","News")" class="btn-red">ПОСМОТРЕТЬ ВСЕ</a>
+        </div>
+    </div>
+
+
+    <div class="col-md-3 col-xs-7 col-sm-7 one-news-block">
+        <h4><i class="fa fa-flask fa-3x"></i></h4>
+        <h3>НОВОСТИ НАУКИ</h3>
+
+    </div>
+
+    <div class="col-md-3 col-xs-5 col-sm-5 one-news-block">
+        <h4><i class="fa fa-compass fa-3x"></i></h4>
+        <h3>НОВОСТИ СПОРТА</h3>
+
+    </div>
+
+
+
+
+    <div class="col-md-6 col-xs-5 col-sm-5 one-news-block">
+        <h4><i class="fa fa-university fa-3x"></i></h4>
+        <h3>НОВОСТИ КУЛЬТУРЫ</h3>
+
+    </div>
+
+
+    <div class="col-md-3 col-xs-7 col-sm-7 one-news-block">
+        <h4><i class="fa fa-suitcase fa-3x"></i></h4>
+        <h3>БИЗНЕС ОБЗОР</h3>
+
+    </div>
+
+    <div class="col-md-3 one-news-block hidden-xs hidden-sm">
+        <h4>
+            <i class="fa fa-user-circle-o fa-3x"></i>
+        </h4>
+        <h3>НОВОСТИ ВУЗОВ</h3>
+
+    </div>
+
+</div>
 
 <div class="poll-block col-md-12">    
     
@@ -196,71 +243,5 @@
 
 
 
-<div class="news-block col-md-12">
-    <div class="col-md-6 col-xs-12 col-sm-12 news-banner">
-        <h1>Новости</h1>
-        <p class="hidden-xs hidden-sm">
-            Здесь будет какая-то информация о том, что это за
-            «новости» в целом, что здесь можно найти и что узнать,
-            но кратко, буквально одно-два предложения.
-        </p>
-        <div class="news-buttons">
-            <a href="@Url.Action("NewsMainPage","News")" class="btn-red">ПОСМОТРЕТЬ ВСЕ</a>
-        </div>
-    </div>
-    @*@foreach (var item in Model.News)
-    {
-        <a href="@Url.Action("Details","News",new {id = @item.Id})">
-            <div class="col-md-3 one-news-block" style="background-image: url(@Url.Content(item.HomePageImagePath)); -webkit-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24); -moz-box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24); box-shadow: inset 0px -138px 41px -31px rgba(0,0,0,0.24);">
-                @if (@item.Title.Length > 39)
-                {
-                    <h3>@item.Title.Substring(0, 39)...</h3>
 
-                }
-                else
-                {
-                    <h3>@item.Title</h3>
-                }
-                <h4>читать далее>></h4>
-            </div>
-        </a>
-    }*@
-
-    <div class="col-md-3 col-xs-7 col-sm-7 one-news-block">
-        <h4><i class="fa fa-flask fa-3x"></i></h4>
-        <h3>НОВОСТИ НАУКИ</h3>
-
-    </div>
-
-    <div class="col-md-3 col-xs-5 col-sm-5 one-news-block">
-        <h4><i class="fa fa-compass fa-3x"></i></h4>
-        <h3>НОВОСТИ СПОРТА</h3>
-
-    </div>
-
-
-
-
-    <div class="col-md-6 col-xs-5 col-sm-5 one-news-block">
-        <h4><i class="fa fa-university fa-3x"></i></h4>
-        <h3>НОВОСТИ КУЛЬТУРЫ</h3>
-
-    </div>
-
-
-    <div class="col-md-3 col-xs-7 col-sm-7 one-news-block">
-        <h4><i class="fa fa-suitcase fa-3x"></i></h4>
-        <h3>БИЗНЕС ОБЗОР</h3>
-
-    </div>
-
-    <div class="col-md-3 one-news-block hidden-xs hidden-sm">
-        <h4>
-            <i class="fa fa-user-circle-o fa-3x"></i>
-        </h4>
-            <h3>НОВОСТИ ВУЗОВ</h3>
-
-</div>
-
-</div>
 
